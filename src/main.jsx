@@ -6,7 +6,12 @@ import { PrimereactStyles } from "./styles/PrimereactStyles.js";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { PrimeReactProvider } from "primereact/api";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
+if (import.meta.env.VITE_NODE_ENV === "production") {
+  disableReactDevTools();
+}
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -25,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <GlobalStyles />
       <PrimereactStyles />
       <AppProvider />
+      <ReactQueryDevtools />
     </QueryClientProvider>
     <ToastContainer
       position="bottom-right"
