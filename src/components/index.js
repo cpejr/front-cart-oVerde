@@ -16,11 +16,9 @@ export { default as HamburgerMenu } from "./features/layout/Header/HambuguerMenu
 export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
-export { default as ModalUpdateMemorial } from "./features/modals/ModalUpdateMemorial/ModalUpdateMemorial.jsx";
+export { default as ModalUpdateTree } from "./features/modals/ModalUpdateTree/ModalUpdateTree.jsx";
 
 // Modals
 
-export { default as ModalDeleteEvent } from "./features/modals/ModalDeleteEvent/ModalDeleteEvent.jsx";
-export { default as ModalEditEvent } from "./features/modals/ModalEditEvent/ModalEditEvent.jsx";
 export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
 export { default as ModalLogOff } from "./features/modals/ModalLogOff/ModalLogoff.jsx";

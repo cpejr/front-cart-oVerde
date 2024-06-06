@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../components/features/layout/Header/Header";
 import Footer from "../../components/features/layout/Footer/Footer";
 import { Button } from "../../components";
-import { BomDespachoImageSupportPage, QRCodeImage, WhatsAppIcon } from "../../assets";
+import { WhatsAppIcon } from "../../assets";
 import { 
   Container, 
   HeaderArea, 
@@ -32,7 +32,7 @@ export default function Support() {
         <Header />
       </HeaderArea>
   
-      <Image src={BomDespachoImageSupportPage} alt="SupportPageBomDespachoImage"/>  
+      <Image alt="ImagemCartaoVerde1"/>  
 
       <Title>
         APOIE O PROJETO NOSSA HISTÓRIA
@@ -51,7 +51,7 @@ export default function Support() {
             PARA DOAR:
           </SubTitle>
           <QRCodeAndText>
-            <QRCode src={QRCodeImage} alt="Qr Code"/>
+            <QRCode alt="QrCode"/>
             <QRCodeText>
               Escaneie o código ao lado ou faça um pix para 123.321.123
             </QRCodeText>

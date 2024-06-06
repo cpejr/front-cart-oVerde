@@ -1,51 +1,51 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
-  getMemorial,
-  deleteMemorial,
-  updateMemorial,
-  postMemorial,
+  getTree,
+  deleteTree,
+  updateTree,
+  postTree,
 } from "../../services/endpoints";
 
-export function useGetMemorial({
+export function useGetTree({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["memorial"],
-    queryFn: () => getMemorial(),
+    queryKey: ["tree"],
+    queryFn: () => getTree(),
     onSuccess,
     onError,
   });
 }
 
-export function useDeleteMemorial({
+export function useDeleteTree({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
-    mutationFn: deleteMemorial,
+    mutationFn: deleteTree,
     onSuccess,
     onError,
   });
 }
 
-export function useUpdateMemorial({
+export function useUpdateTree({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
-    mutationFn: updateMemorial,
+    mutationFn: updateTree,
     onSuccess,
     onError,
   });
 }
 
-export function usePostMemorial({
+export function usePostTree({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useMutation({
-    mutationFn: postMemorial,
+    mutationFn: postTree,
     onSuccess,
     onError,
   });

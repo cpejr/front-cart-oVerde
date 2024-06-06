@@ -5,9 +5,9 @@ import { updateCollectionValidationSchema } from "./utils";
 import { FaLink } from "react-icons/fa6";
 import { AiOutlineUpload } from "react-icons/ai";
 
-export default function ModalUpdateMemorial({
+export default function ModalUpdateTree({
   close,
-  handleMemorialUpdate,
+  handleTreeUpdate,
   id,
   values,
   modal,
@@ -41,7 +41,7 @@ export default function ModalUpdateMemorial({
   ];
 
   function handleSubmit(data) {
-    handleMemorialUpdate(id, data);
+    handleTreeUpdate(id, data);
     close();
   }
 
@@ -67,9 +67,9 @@ export default function ModalUpdateMemorial({
   );
 }
 
-ModalUpdateMemorial.propTypes = {
+ModalUpdateTree.propTypes = {
   close: PropTypes.func.isRequired,
-  handleMemorialUpdate: PropTypes.func.isRequired,
+  handleTreeUpdate: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   modal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,

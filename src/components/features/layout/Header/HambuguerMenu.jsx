@@ -24,15 +24,13 @@ export default function HamburguerMenu() {
       <MenuOutlined style={{ color: "orange", fontSize: "25px" }} />,
       [
         getItem(" Nossa História", "/historia"),
-        getItem("Acervo", "/memorial"),
+        getItem("Acervo", "/minhas-arvores"),
         getItem("Quem somos", "/sobre"),
-        getItem("Eventos", "/eventos"),
         getItem("Apoiar e contribuir", "/suporte"),
         ...(isAdmin
           ? [
               getItem("Usuários", "/gerenciar-usuarios"),
-              getItem("Arquivos", "/gerenciar-memorial"),
-              getItem("Gerenciar Eventos", "/gerenciar-eventos"),
+              getItem("Arquivos", "/gerenciar-arvores"),
             ]
           : []),
       ]

@@ -11,7 +11,7 @@ import {
   VerticalLine,
   DivLine,
   Line,
-} from "../Memorial/Styles";
+} from "./Styles";
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
@@ -21,7 +21,7 @@ const cardData = [
   { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
 ];
 
-export default function Memorial() {
+export default function MyTrees() {
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },

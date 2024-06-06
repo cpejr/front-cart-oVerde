@@ -15,15 +15,13 @@ export default function Header() {
     <Container>
       <City src={LogoCidade} onClick={() => navigate("/")}></City>
       <Link to="/historia">História</Link>
-      <Link to="/memorial">Memorial</Link>
+      <Link to="/minhas-arvores">Árvores</Link>
       <Link to="/sobre">Sobre</Link>
-      <Link to="/eventos">Eventos</Link>
       <Link to="/suporte"> Apoiar</Link>
       {isAdmin ? (
         <React.Fragment>
           <Link to={"/gerenciar-usuarios"}>Usuários</Link>
-          <Link to={"/gerenciar-memorial"}>Arquivos</Link>
-          <Link to={"/gerenciar-eventos"}>Eventos</Link>
+          <Link to={"/gerenciar-minhas-arvores"}>Arquivos</Link>
         </React.Fragment>
       ) : null}
       <HamburgerMenu />

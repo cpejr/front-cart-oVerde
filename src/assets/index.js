@@ -1,7 +1,7 @@
 export { default as Add } from "./Add.svg";
 export { default as FirstStoryImage } from "./FirstStoryImage.svg";
 
-export { default as imageEventNotFound } from "./Home/EventNotFound.png";
+export { default as background } from "./Home/background.png";
 
 export { default as LogoBranca } from './Footer/LogoBranca.svg';
 

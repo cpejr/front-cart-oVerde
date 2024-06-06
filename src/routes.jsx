@@ -12,13 +12,11 @@ import {
   Home,
   Collection,
   Support,
-  Events,
   ManageCollection,
-  ManageEvents,
   ManageUsers,
   Story,
   AboutUs,
-  Memorial,
+  MyTrees,
 } from "./pages";
 import { AppLayout } from "./components";
 import useAuthStore from "./Stores/auth";
@@ -37,11 +35,9 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
-        <Route path="memorial" element={<Memorial />} />
-        <Route path="eventos" element={<Events />} />
+        <Route path="minhas-arvores" element={<MyTrees />} />
         <Route element={<PrivateAdminRoutes />}>
-          <Route path="gerenciar-memorial" element={<ManageCollection />} />
-          <Route path="gerenciar-eventos" element={<ManageEvents />} />
+          <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
       </Route>

@@ -25,73 +25,40 @@ export async function updateUser({ _id, newUserData }) {
 
   return data;
 }
-export const getEvents = async (filters = {}) => {
-  const { data } = await api.get(`/event`, { params: filters });
-  return data;
-};
-export const deleteEvents = async (_id) => {
-  const { data } = await api.delete(`/event/${_id}`);
-  return data;
-};
 
-export const createEvents = async (newEvent) => {
-  const { data } = await api.post(`/event`, newEvent);
+//CategoryTree endpoints
+export const getCategoryTrees = async (filters = {}) => {
+  const { data } = await api.get("/categoryTrees", { params: filters });
   return data;
 };
 
-export async function updateEvents({ _id, body }) {
-  const { data } = await api.put(`/event/${_id}`, body);
-
-  return data;
-}
-
-export const getEventsByCategoryId = async ({ id, name, type }) => {
-  const { data } = await api.get("/event/search-by-category", {
-    params: { id, name, type },
-  });
-
-  return data;
-};
-//CategoryType endpoints
-export const getCategoryType = async (filters = {}) => {
-  const { data } = await api.get("/categoryType", { params: filters });
-  return data;
-};
-
-export const getCategoryTypeByName = async (name) => {
-  const { data } = await api.get("/categoryType/search-by-name", {
+export const getCategoryTreesByName = async (name) => {
+  const { data } = await api.get("/categoryTrees/search-by-name", {
     params: { name },
   });
   return data;
 };
 
-//CategoryType endpoints
-export const getCategoryPrice = async (filters = {}) => {
-  const { data } = await api.get("/categoryPrice", { params: filters });
-  return data;
-};
-
-//memorial
-
-export async function getMemorial() {
-  const { data } = await api.get("/memorial");
+//trees
+export async function getTrees() {
+  const { data } = await api.get("/trees");
 
   return data;
 }
 
-export async function deleteMemorial(_id) {
-  const { data } = await api.delete(`/memorial/${_id}`);
+export async function deleteTrees(_id) {
+  const { data } = await api.delete(`/trees/${_id}`);
   return data;
 }
 
-export async function updateMemorial({ _id, newData }) {
-  const { data } = await api.put(`/memorial/${_id}`, newData);
+export async function updateTrees({ _id, newData }) {
+  const { data } = await api.put(`/trees/${_id}`, newData);
 
   return data;
 }
 
-export async function postMemorial(newMemorial) {
-  const { data } = await api.post(`/memorial`, newMemorial);
+export async function postTrees(newTrees) {
+  const { data } = await api.post(`/trees`, newTrees);
 
   return data;
 }

@@ -47,11 +47,11 @@ export default function Home() {
           <LargerImg
             alt="Foto representando o Cartão Verde"
           />
-          <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/minhas-arvores")}>Saiba Mais</Button>
         </Column>
       </Section>
 
-      <Section>
+      {/* <Section>
         <Column>
           <Title>Nosso eventos</Title>
           <p>
@@ -65,7 +65,7 @@ export default function Home() {
         <SmallerImg
           alt="Foto representativa de uma das árvores"
         />
-      </Section>
+      </Section> */}
     </Container>
   );
 }
