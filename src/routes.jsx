@@ -10,7 +10,6 @@ import {
 
 import {
   Home,
-  Collection,
   Support,
   ManageCollection,
   ManageUsers,

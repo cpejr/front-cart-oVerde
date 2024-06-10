@@ -21,7 +21,7 @@ export default function Header() {
       {isAdmin ? (
         <React.Fragment>
           <Link to={"/gerenciar-usuarios"}>Usuários</Link>
-          <Link to={"/gerenciar-minhas-arvores"}>Arquivos</Link>
+          <Link to={"/gerenciar-arvores"}>Arquivos</Link>
         </React.Fragment>
       ) : null}
       <HamburgerMenu />
