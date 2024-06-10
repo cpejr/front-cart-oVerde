@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import {
   getCategoryType,
   getCategoryTypeByName,
-} from "../../services/endpoints";
+} from "../../services/api/endpoints";
 
 export function useGetCategoryType({
   filters,

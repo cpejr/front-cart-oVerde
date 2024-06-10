@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Menu, Modal } from "antd";
 import { breakpoints, colors, fonts } from "../../../../styles/stylesVariables";
+import { Menubar } from "primereact/menubar";
 
 export const Container = styled.div`
   height: 7rem;
@@ -118,4 +119,9 @@ export const ModalStyle = styled(Modal)`
     margin: 0;
     border-radius: none;
   }
+`;
+export const PrimeHeader = styled(Menubar)`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 `;

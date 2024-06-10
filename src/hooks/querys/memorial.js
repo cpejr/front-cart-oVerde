@@ -4,7 +4,7 @@ import {
   deleteTree,
   updateTree,
   postTree,
-} from "../../services/endpoints";
+} from "../../services/api/endpoints";
 
 export function useGetTree({
   onSuccess = () => {},

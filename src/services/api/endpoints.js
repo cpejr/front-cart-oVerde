@@ -1,4 +1,4 @@
-import useAuthStore from "../Stores/auth";
+import useAuthStore from "../../Stores/auth";
 import api from "./api";
 //user
 

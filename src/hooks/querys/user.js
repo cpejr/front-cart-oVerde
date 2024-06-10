@@ -4,7 +4,7 @@ import {
   deleteUser,
   updateUser,
   login,
-} from "../../services/endpoints";
+} from "../../services/api/endpoints";
 
 export function useGetUsers({
   onSuccess = () => {},

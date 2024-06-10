@@ -6,7 +6,7 @@ import {
   getEventsByCategoryId,
   deleteEvents,
   updateEvents,
-} from "../../services/endpoints";
+} from "../../services/api/endpoints";
 
 export function useGetEvents({
   filters,

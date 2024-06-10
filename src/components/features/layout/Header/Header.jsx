@@ -1,29 +1,55 @@
-import { Container, City } from "./Styles";
+import { Container, City, PrimeHeader } from "./Styles";
 import { LogoCidade } from "../../../../assets/index";
-import { HamburgerMenu } from "../../../index";
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Link, LoginSocialArea } from "../../../../components";
 import "react-toastify/dist/ReactToastify.css";
 import useAuthStore from "../../../../Stores/auth";
+import { LoginSocialArea } from "../../../../components";
+import { HamburgerMenu } from "../../../index";
 
 export default function Header() {
   const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
   const navigate = useNavigate();
 
+  const items = [
+    {
+      label: "História",
+      url: "/historia",
+    },
+    {
+      label: "Árvores",
+      url: "/minhas-arvores",
+    },
+    {
+      label: "Sobre",
+      url: "/sobre",
+    },
+    {
+      label: "Apoiar",
+      url: "/suporte",
+    },
+    ...(isAdmin
+      ? [
+          {
+            label: "Administrador",
+            items: [
+              {
+                label: "Gerenciar usuários",
+                url: "/gerenciar-usuarios",
+              },
+              {
+                label: "Gerenciar árvores",
+                url: "/gerenciar-arvores",
+              },
+            ],
+          },
+        ]
+      : []),
+  ];
+
   return (
     <Container>
       <City src={LogoCidade} onClick={() => navigate("/")}></City>
-      <Link to="/historia">História</Link>
-      <Link to="/minhas-arvores">Árvores</Link>
-      <Link to="/sobre">Sobre</Link>
-      <Link to="/suporte"> Apoiar</Link>
-      {isAdmin ? (
-        <React.Fragment>
-          <Link to={"/gerenciar-usuarios"}>Usuários</Link>
-          <Link to={"/gerenciar-arvores"}>Arquivos</Link>
-        </React.Fragment>
-      ) : null}
+      <PrimeHeader model={items} />
       <HamburgerMenu />
       <LoginSocialArea />
     </Container>

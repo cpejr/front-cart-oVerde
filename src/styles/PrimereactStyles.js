@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import { colors } from "../styles/stylesVariables";
+import { colors, breakpoints } from "../styles/stylesVariables";
 
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
     background-color: ${colors.background.primary}; 
-    color: white;
+    color: ${colors.font.primary};
     border-bottom: 0.5px solid ${colors.font.title};
     padding: 1rem 0;
     font-size: 1rem;
@@ -20,11 +20,13 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-item {
-    background-color: ${colors.background.primary};
-    color:${colors.font.primary};
+    background-color: ${colors.background.white};
+    color:${colors.font.secondary};
     text-align: center;
     &:hover {
-      background-color: ${colors.background.hover};
+      background-color: ${colors.background.primary};
+      color:${colors.font.primary};
+
     }
   }
 
@@ -48,7 +50,7 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-dropdown-items-wrapper, .p-dropdown-panel {
-    background-color: ${colors.background.primary};
+    background-color: #fff;
     border-radius: 10px;
   }
 
@@ -80,6 +82,89 @@ export const PrimereactStyles = createGlobalStyle`
     &:hover &:active{
       border: 2px solid ${colors.accent.primary};    
     }
+  }
+
+  .p-inputtext{
+    color: ${colors.font.primary};
+    
+  }
+  .p-inputtext::placeholder {
+    color: ${colors.font.primary};
+  }
+  .p-datepicker {
+    background-color: ${colors.background.primary};
+    color: white;
+    ::placeholder {
+    font-size: 1rem;
+    font-weight: 300;
+    color: ${colors.font.primary};
+  }
+  }
+  .p-calendar-w-btn	{
+    background-color: ${colors.background.primary};
+    color: white;
+  }
+  .p-datepicker-header{
+    background-color: ${colors.background.primary};
+    
+  }
+
+  .p-datepicker-year{
+    color: ${colors.font.primary};
+  } 
+  .p-datepicker-month{
+    color: ${colors.font.primary};
+  }
+  .p-button-secondary{
+    color: ${colors.font.primary};
+  }
+
+  .data-pc-section{
+    >span{
+      >td{
+        color: green;
+      }
+    }
+  }
+
+  .p-menubar{
+    display: flex;
+    justify-content: space-around;
+    background-color: ${colors.background.secondary};
+    border: none;
+    @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 60%;
+  }
+  }
+  .p-menuitem{
+    background-color: ${colors.background.secondary};
+    &:hover{
+      background-color: ${colors.background.secondary};
+    }
+  }
+  .p-menuitem-link{
+    background-color: ${colors.background.secondary};
+    &:hover{
+      background-color: ${colors.background.secondary};
+    }
+  
+  }
+  .p-menuitem-text{
+    color: ${colors.accent.primary};
+    
+ 
+  }
+  .p-submenu-icon{
+    color: ${colors.accent.primary};
+  }
+  .p-submenu-list{
+    background-color: ${colors.background.secondary};
+  }
+  .p-submenu-list{
+    cursor: pointer;
   }
 
 `;

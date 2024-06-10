@@ -17,13 +17,7 @@ import {
   ModalStyle,
   SocialMedias,
 } from "./Styles";
-import {
-  Login,
-  LogoCidade,
-  Whatsapp,
-  Facebook,
-  Instagram,
-} from "../../../../assets/index";
+import { Whatsapp, Facebook, Instagram } from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
