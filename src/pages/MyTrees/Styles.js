@@ -131,3 +131,40 @@ export const UniSelect = styled(Dropdown)`
     width: 20%;
   }
 `;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+`;
+
+export const Button = styled.button`
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 20%;
+  cursor: pointer;
+`;
+
+export const CertificateText = styled.div`
+  color: black;
+`;
+
+export const CertificateTitle = styled.h1`
+  color: black;
+`;
+
+export const PdfArea = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+`;
