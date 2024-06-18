@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { MultiSelect } from "primereact/multiselect";
+import { InputNumber } from "primereact/inputnumber";
 import { colors, breakpoints } from "../../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
 
 export const Form = styled.form`
   margin: 30px 0;
@@ -24,39 +25,48 @@ export const Form = styled.form`
   }
 `;
 
-export const Select = styled(Dropdown)`
+export const Select = styled(MultiSelect)`
+  font-size: 1.3rem;
   width: 70%;
-  background-color: ${colors.font.primary};
-  color: ${colors.font.secondary};
+  background-color: inherit;
+  color: ${(props) => props?.selectColor};
   border-radius: 4px;
-  border: 2px solid ${colors.background.primary};
-  height: 4vh;
-  text-align: center;
+  height: 6.5vh;
+  text-align: left;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
-  ::placeholder {
-    font-weight: 400;
-  }
+    props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`};
+
   .p-multiselect-label {
     width: 215px;
-    overflow-x: scroll;
+    overflow-x: hidden;
+  }
+  .p-placeholder {
+    color: ${(props) => props?.selectColor};
   }
   &:hover {
-    border: 2px solid ${colors.font.other};
-  }
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 50%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 33%;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 50%;
+    border-color: ${colors.accent.primary};
   }
 `;
+
+export const StyledNumber = styled(InputNumber)`
+  width: 70%;
+  height: 6.5vh;
+
+  .p-inputnumber-input {
+    border-color: ${colors.font.primary};
+    font-size: 1.3rem;
+    background-color: inherit;
+    padding: 0.8rem 1.6rem;
+    text-align: left;
+    &:hover {
+      border-color: ${colors.accent.primary};
+    }
+    @media (max-width: ${breakpoints.mobile}) {
+      width: 80%;
+    }
+  }
+`;
+
 export const ErrorMessage = styled.p`
   font-size: 1.3rem;
   margin: 0px;

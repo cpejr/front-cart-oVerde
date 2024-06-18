@@ -1,31 +1,31 @@
 export const colors = {
   background: {
-    primary: "#7F260F",
-    secondary: "#000000",
-    hover: "#53190a",
+    primary: "#FFFFFF",
+    secondary: "#33603F",
+    hover: "#BAFA53",
     menu: "#1C1C1C",
   },
   font: {
-    primary: "#FFF",
+    primary: "#33603F",
     secondary: "#000",
-    title: "#EEDAC5",
-    line: "#FFD599",
+    title: "#33603F",
+    line: "#33603F",
   },
   accent: {
-    primary: "#F19709",
-    hover: "#d28408",
+    primary: "#BAFA53",
+    hover: "#33603F",
   },
   modals: {
     background: "#f5eff9",
-    modalButton: "#f19709",
+    modalButton: "#BAFA53",
   },
   error: {
-    primary: "pink",
+    primary: "red",
     secondary: "#9E0000",
   },
   warning: "#F19709",
   placeholder: "#DFDFDF",
-  underline: "#FFD599",
+  underline: "#33603F",
 };
 
 export const fonts = {

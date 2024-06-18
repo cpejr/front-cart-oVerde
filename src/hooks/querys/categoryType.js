@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 import {
-  getCategoryType,
-  getCategoryTypeByName,
+  getCategoryTrees,
+  getCategoryTreesByName,
 } from "../../services/api/endpoints";
 
 export function useGetCategoryType({
@@ -13,7 +13,7 @@ export function useGetCategoryType({
 } = {}) {
   return useQuery({
     queryKey: ["categoryType", filters],
-    queryFn: () => getCategoryType(filters),
+    queryFn: () => getCategoryTrees(filters),
     onSuccess,
     onError,
   });
@@ -25,7 +25,7 @@ export function useGetCategoryTypeByName({
 } = {}) {
   return useQuery({
     queryKey: ["categoryType", name],
-    queryFn: () => getCategoryTypeByName(name),
+    queryFn: () => getCategoryTreesByName(name),
     onSuccess,
     onError,
   });

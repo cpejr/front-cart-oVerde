@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { updateCollectionValidationSchema } from "./utils";
-import { FaLink } from "react-icons/fa6";
 import { AiOutlineUpload } from "react-icons/ai";
 
 export default function ModalUpdateTree({
@@ -17,28 +16,45 @@ export default function ModalUpdateTree({
   const inputs = [
     {
       type: "input",
-      key: "title",
-      placeholder: "Mudar Titulo",
-      value: values.title,
+      key: "name",
+      placeholder: "Mudar Nome",
+      value: values.name,
     },
     {
       type: "input",
-      key: "link",
-      placeholder: "Mudar Link",
-      value: values.link,
-      icon: FaLink,
+      key: "location",
+      placeholder: "Mudar Localização",
+      value: values.location,
+    },
+    {
+      type: "input",
+      key: "description",
+      placeholder: "Mudar Descrição",
+      value: values.description,
+    },
+    {
+      type: "input",
+      key: "especire",
+      placeholder: "Mudar Espécie",
+      value: values.especire,
+    },
+    {
+      type: "number",
+      key: "price",
+      placeholder: "Mudar preço",
+      value: values.price,
     },
     {
       type: "archive",
       key: "archive",
-      placeholder: "Adicionar Arquivo",
+      placeholder: "Adicionar Foto",
       values: values.archives?.map((archive) => ({
-        name: archive?.name,
+        name: archive.name,
         base64: undefined,
       })),
       icon: AiOutlineUpload,
     },
-  ];
+  ];  
 
   function handleSubmit(data) {
     handleTreeUpdate(id, data);
@@ -61,7 +77,7 @@ export default function ModalUpdateTree({
         inputs={inputs}
         onSubmit={handleSubmit}
         schema={updateCollectionValidationSchema}
-        color={"black"}
+        color={"#33603F"}
       ></FormSubmit>
     </ModalStyle>
   );

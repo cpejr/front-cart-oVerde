@@ -41,7 +41,10 @@ FormInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   register: PropTypes.func,
   error: PropTypes.bool.isRequired,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   type: PropTypes.string,
   color: PropTypes.string,
   icon: PropTypes.elementType,
