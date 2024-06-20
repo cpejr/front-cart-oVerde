@@ -12,7 +12,7 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar } from "../../components";
+import { SearchBar, GooglePayButton } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
 
@@ -76,6 +76,7 @@ export default function MyTrees() {
               <LargeCard data={card} />
             </Line>
           ))}
+        <GooglePayButton />
       </DivLine>
     </Container>
   );

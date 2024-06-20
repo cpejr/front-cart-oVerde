@@ -17,7 +17,7 @@ export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
 export { default as ModalUpdateTree } from "./features/modals/ModalUpdateTree/ModalUpdateTree.jsx";
-
+export { default as GooglePayButton } from "./features/GooglePayButton/GoogleButton.jsx";
 // Modals
 
 export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
