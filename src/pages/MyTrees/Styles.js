@@ -150,7 +150,7 @@ export const Button = styled.button`
   margin-bottom: 20px;
   padding: 10px 20px;
   font-size: 16px;
-  width: 20%;
+  width: 100%;
   cursor: pointer;
 `;
 

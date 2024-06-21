@@ -17,6 +17,7 @@ export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
 export { default as ModalUpdateTree } from "./features/modals/ModalUpdateTree/ModalUpdateTree.jsx";
+export { default as TreeCertificatePDF } from "./features/PDF/TreeCertificatePDF.jsx";
 
 // Modals
 

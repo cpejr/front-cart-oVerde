@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import generatePDF, { Margin } from "react-to-pdf";
+//import generatePDF, { Margin } from "react-to-pdf";
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import {
   Container,
   Content,
@@ -14,13 +15,12 @@ import {
   VerticalLine,
   DivLine,
   Line,
-  CertificateText,
-  CertificateTitle,
   PdfArea
 } from "./Styles";
 import { SearchBar } from "../../components";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 import { Checkbox } from "primereact/checkbox";
+import TreeCertificatePDF from "../../components/features/PDF/TreeCertificatePDF.jsx";
 
 const cardData = [
   { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
@@ -47,17 +47,9 @@ export default function MyTrees() {
 
   const recoverContentToPDF = () => document.getElementById("content-id");
 
-  const generateCertificatePDF = () => {
-    const customizationPDF = {
-      fileName: "Certificado_Posse_Arvore.pdf",
-      page: {
-        margin: { top: 50, right: 40, bottom: 10, left: 60 },
-        format: "A4",
-        orientation: "landscape",
-      },
-    };
-
-    generatePDF(recoverContentToPDF, customizationPDF);
+  const PdfData = {
+    name: "usuario",
+    tree: "árvore",
   };
 
   return (
@@ -99,18 +91,13 @@ export default function MyTrees() {
           ))}
       </DivLine>
       <PdfArea>
-          <Button onClick={generateCertificatePDF}>
-            Gerar Certificado
-          </Button>
-          <Content id="content-id">
-            <CertificateTitle>Certificado de Posse de Árvore</CertificateTitle>
-            <CertificateText>
-              Este certificado confirma que <strong>nome</strong> é o
-              proprietário da árvore <strong>arvore</strong>.
-            </CertificateText>
-            <CertificateText>Data da Aquisição: {new Date().toLocaleDateString()}</CertificateText>
-          </Content>
-        </PdfArea>
+        <PDFDownloadLink
+          document={<TreeCertificatePDF data={PdfData} />}
+          filename="certificate.pdf"
+        >
+            <Button> Download PDF </Button>
+        </PDFDownloadLink>
+      </PdfArea>
     </Container>
   );
 }
