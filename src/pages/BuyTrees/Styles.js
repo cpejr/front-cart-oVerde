@@ -12,13 +12,23 @@ export const Title = styled.div`
   color: ${colors.font.primary};
   font-size: 30px;
   margin-left: 5%;
-  width: fit-content;
+  width:fit-content;
   border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
+    width: 110px;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+    width: 100px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 24px;
+    width: 95px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
+    width: 90px;
   }
 `;
 

@@ -46,7 +46,7 @@ export const SocialMedias = styled.div`
 export const Hamburguer = styled(Menu)`
   width: 0rem;
   border-bottom: none;
-  background-color: black;
+  background-color: ${colors.background.secondary};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -5,6 +5,7 @@ import useAuthStore from "../../../../Stores/auth";
 
 export default function HamburguerMenu() {
   const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
+  const isLogged = useAuthStore((state) => state?.auth);
   const navigate = useNavigate();
   function getItem(label, key, icon, children, type, style) {
     return {
@@ -21,10 +22,10 @@ export default function HamburguerMenu() {
     getItem(
       "",
       "hamburger",
-      <MenuOutlined style={{ color: "orange", fontSize: "25px" }} />,
+      <MenuOutlined style={{ color: "#BAFA53", fontSize: "25px" }} />,
       [
         getItem(" Nossa História", "/historia"),
-        getItem("Acervo", "/minhas-arvores"),
+        getItem("Árvores", "/comprar-arvores"),
         getItem("Quem somos", "/sobre"),
         getItem("Apoiar e contribuir", "/suporte"),
         ...(isAdmin
@@ -33,6 +34,9 @@ export default function HamburguerMenu() {
               getItem("Arquivos", "/gerenciar-arvores"),
             ]
           : []),
+          ...(isLogged
+            ? [getItem("Minhas Árvores", "/minhas-arvores")]
+            : []),
       ]
     ),
   ];

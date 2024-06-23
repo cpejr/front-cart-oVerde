@@ -47,7 +47,7 @@ export default function Home() {
           <LargerImg
             alt="Foto representando o Cartão Verde"
           />
-          <Button onClick={() => navigate("/minhas-arvores")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/comprar-arvores")}>Saiba Mais</Button>
         </Column>
       </Section>
 

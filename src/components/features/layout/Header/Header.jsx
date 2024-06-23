@@ -8,6 +8,7 @@ import { HamburgerMenu } from "../../../index";
 
 export default function Header() {
   const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
+  const isLogged = useAuthStore((state) => state?.auth);
   const navigate = useNavigate();
 
   const items = [
@@ -17,7 +18,7 @@ export default function Header() {
     },
     {
       label: "Árvores",
-      url: "/minhas-arvores",
+      url: "/comprar-arvores",
     },
     {
       label: "Sobre",
@@ -44,6 +45,13 @@ export default function Header() {
           },
         ]
       : []),
+      ...(isLogged
+        ? [
+          {
+            label: "Minhas árvores",
+            url: "/minhas-arvores",
+          },]
+        : []),
   ];
 
   return (

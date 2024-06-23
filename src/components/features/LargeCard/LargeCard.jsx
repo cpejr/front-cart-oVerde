@@ -18,7 +18,7 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
-  const { title, description, link, buttonText } = data;
+  const { name, description, link, buttonText } = data;
 
   return (
     <ConfigProvider
@@ -43,7 +43,7 @@ export default function LargeCard({ data }) {
           ))}
         </Carousel>
         <Group>
-          <CardTitle>{title}</CardTitle>
+          <CardTitle>{name}</CardTitle>
         </Group>
         <CardLine>
           <p>{description}</p>

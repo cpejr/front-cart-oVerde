@@ -13,7 +13,7 @@ import { SearchBar } from "../../components";
 import { useGetTree } from "../../hooks/querys/tree";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
 
-export default function MyTrees() {
+export default function BuyTrees() {
   const filters = [
     { label: "Mais Recentes", value: "data" },
     { label: "Preço", value: "price" },
@@ -41,7 +41,7 @@ export default function MyTrees() {
     let cardContent = collection;
     cardContent.sort(orderBy);
     for (let content of cardContent) {
-      content.buttonText = "Baixar Certificado";
+      content.buttonText = "Comprar Certificado";
       content.link = "EDITE EM MyTrees.jsx " + content._id;
     }
     console.log(cardContent);
@@ -68,7 +68,7 @@ export default function MyTrees() {
 
   return (
     <Container>
-      <Title>MINHAS ÁRVORES</Title>
+      <Title>COMPRAR ÁRVORES</Title>
 
       <Filter>
         <DivSelect>
