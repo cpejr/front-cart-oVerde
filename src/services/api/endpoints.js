@@ -28,37 +28,43 @@ export async function updateUser({ _id, newUserData }) {
 
 //CategoryTree endpoints
 export const getCategoryTrees = async (filters = {}) => {
-  const { data } = await api.get("/categoryTrees", { params: filters });
+  const { data } = await api.get("/categoryTree", { params: filters });
   return data;
 };
 
 export const getCategoryTreesByName = async (name) => {
-  const { data } = await api.get("/categoryTrees/search-by-name", {
+  const { data } = await api.get("/categoryTree/search-by-name", {
     params: { name },
   });
   return data;
 };
 
-//trees
-export async function getTrees() {
-  const { data } = await api.get("/trees");
+//tree
+export async function getTree() {
+  const { data } = await api.get("/tree");
 
   return data;
 }
 
-export async function deleteTrees(_id) {
-  const { data } = await api.delete(`/trees/${_id}`);
+export async function deleteTree(_id) {
+  const { data } = await api.delete(`/tree/${_id}`);
   return data;
 }
 
-export async function updateTrees({ _id, newData }) {
-  const { data } = await api.put(`/trees/${_id}`, newData);
-
+export async function updateTree({ _id, newData }) {
+  const { data } = await api.put(`/tree/${_id}`, newData);
   return data;
 }
 
-export async function postTrees(newTrees) {
-  const { data } = await api.post(`/trees`, newTrees);
-
-  return data;
+export async function postTree(newTrees) {
+  try {
+    const newprice = parseFloat(newTrees.price);
+    const tree = {... newTrees, price:newprice};
+    console.log(tree);
+    const { data } = await api.post(`/tree`, tree);
+  
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
 }

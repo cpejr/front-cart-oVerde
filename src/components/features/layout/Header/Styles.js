@@ -6,7 +6,7 @@ import { Menubar } from "primereact/menubar";
 export const Container = styled.div`
   height: 7rem;
   display: flex;
-  background-color: black;
+  background-color: ${colors.background.secondary};
   align-items: center;
   justify-content: space-evenly;
   padding: 0 3rem;

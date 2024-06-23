@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../../styles/stylesVariables";
 
 export const Container = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ export const StyledInput = styled.input`
   border-radius: 0.4rem;
   color: ${(props) => props?.color};
   cursor: ${(props) => props?.cursor};
-  font-size: 20px;
+  font-size: 1.3rem;
   background-color: inherit;
   padding-right: 25px;
   background: url(${(props) => props?.icon}) no-repeat;
@@ -28,8 +29,8 @@ export const StyledInput = styled.input`
   &::placeholder {
     color: ${(props) => props?.color};
   }
-  @media (max-width: 700px) {
-    font-size: 16px;
+  &:hover {
+    border-color: ${colors.accent.primary};
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
