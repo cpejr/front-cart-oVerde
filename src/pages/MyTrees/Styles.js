@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
-import { Checkbox } from "primereact/checkbox";
 
 export const Container = styled.div`
   display: flex;
@@ -10,11 +9,11 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  color: #eedac5;
+  color: ${colors.font.primary};
   font-size: 30px;
   margin-left: 5%;
   width: 120px;
-  border-bottom: 2px solid #eedac5;
+  border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
     width: 110px;
@@ -40,7 +39,6 @@ export const DivLine = styled.div`
   align-self: center;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
 `;
 
 export const Line = styled.div`
@@ -56,19 +54,10 @@ export const Line = styled.div`
 export const Filter = styled.div`
   display: flex;
   width: 100%;
-  align-items: flex-start;
-  justify-content: space-evenly;
-`;
-
-export const Characteristics = styled.div`
-  display: flex;
-  flex-direction: column;
-  > label {
-    align-items: center;
-    display: flex;
-    gap: 0.5rem;
-    padding-top: 0.3rem;
-    color: #eedac5;
+  align-items: center;
+  justify-content: space-around;
+  @media (max-width: ${breakpoints.tablet}) {
+    justify-content:space-evenly
   }
 `;
 
@@ -77,19 +66,6 @@ export const VerticalLine = styled.div`
   height: 10rem;
 `;
 
-export const FilterTitle = styled.div`
-  display: flex;
-  color: ${colors.accent};
-  padding-bottom: 1rem;
-`;
-
-export const StyledCheckbox = styled(Checkbox)`
-  width: 20px;
-  height: 20px;
-  border: 2px solid ${colors.darkwhite};
-  border-radius: 5px;
-  justify-content: center;
-`;
 
 export const DivSelect = styled.div`
   display: flex;
@@ -97,37 +73,25 @@ export const DivSelect = styled.div`
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  width: 10%;
-  @media (max-width: ${breakpoints.miniTablet}) {
+  width: 70%;
+  @media (max-width: ${breakpoints.mobile}) {
     width: 40%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    flex-direction: column;
-    width: 20%;
   }
 `;
 
 export const UniSelect = styled(Dropdown)`
   gap: 1rem;
+  color: ${colors.font.primary};
   .p-dropdown-label {
     color: white;
     width: 100%;
   }
   .p-inputtext {
-    color: white;
+    color: ${colors.font.primary};
     font-size: 14px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
   }
 
-  @media (max-width: ${breakpoints.tablet}) {
-    max-width: 100%;
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 30%;
-  }
-  @media (max-width: ${breakpoints.smallMobile}) {
-    width: 20%;
-  }
 `;

@@ -1,11 +1,12 @@
-import { CiBookmark } from "react-icons/ci";
+import PropTypes from "prop-types";
+import { ConfigProvider } from "antd";
 import {
   StyledCard,
+  StyledButton,
   Group,
-  LineSVG,
   CardLine,
   CardTitle,
-  FavoriteIcon,
+  DivButton,
 } from "./Styles";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -17,29 +18,48 @@ const images = [
 ];
 
 export default function LargeCard({ data }) {
-  const { title, description } = data;
+  const { title, description, link, buttonText } = data;
 
   return (
-    <StyledCard>
-      <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
-        {images.map((image, index) => (
-          <div key={index}>
-            <img alt={`carousel-img-${index}`} src={image} />
-          </div>
-        ))}
-      </Carousel>
-      <Group>
-        <LineSVG></LineSVG>
-        <CardTitle>
-          {title}
-          <FavoriteIcon>
-            <CiBookmark />
-          </FavoriteIcon>
-        </CardTitle>
-      </Group>
-      <CardLine>
-        <p>{description}</p>
-      </CardLine>
-    </StyledCard>
+    <ConfigProvider
+      theme={{
+        components: {
+          Button: {
+            defaultBg: `#BAFA53`,
+            defaultHoverBg: `#33603F`,
+            defaultColor: `#33603F`,
+            defaultHoverColor: `white`,
+            paddingBlock:`20px`,
+          },
+        },
+      }}
+    >
+      <StyledCard>
+        <Carousel showStatus={false} showIndicators={false} showThumbs={false}>
+          {images.map((image, index) => (
+            <div key={index}>
+              <img alt={`carousel-img-${index}`} src={image} />
+            </div>
+          ))}
+        </Carousel>
+        <Group>
+          <CardTitle>{title}</CardTitle>
+        </Group>
+        <CardLine>
+          <p>{description}</p>
+        </CardLine>
+        <DivButton>
+          <StyledButton href={link}>{buttonText}</StyledButton>
+        </DivButton>
+      </StyledCard>
+    </ConfigProvider>
   );
 }
+
+LargeCard.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  link: PropTypes.string,
+  buttonText: PropTypes.string,
+  data: PropTypes.object,
+};
