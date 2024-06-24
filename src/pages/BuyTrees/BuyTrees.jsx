@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { useGetTree } from "../../hooks/querys/tree";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
+import axios from "axios";
 
 export default function BuyTrees() {
   const filters = [
@@ -58,6 +59,16 @@ export default function BuyTrees() {
     }
   }
 
+  const buyTree = async (treeId) => {
+    try {
+      const userId = `${userId}`; // Substitua pelo ID do usuário logado
+      const response = await axios.post(`/api/users/${userId}/buyTree/${treeId}`);
+      toast.success(response.data.message);
+    } catch (error) {
+      toast.error("Erro ao comprar a árvore!", error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     if (!isLoading && collection) {
       formatAllCollection();
@@ -96,7 +107,7 @@ export default function BuyTrees() {
             .sort(orderBy)
             .map((card, index) => (
               <Line key={index}>
-                <LargeCard data={card} />
+                <LargeCard data={card} onBuy={() => buyTree(card._id)} />
               </Line>
             ))}
         </DivLine>

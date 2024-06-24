@@ -17,7 +17,7 @@ const images = [
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
 ];
 
-export default function LargeCard({ data }) {
+export default function LargeCard({ data, onBuy }) {
   const { name, description, link, buttonText } = data;
 
   return (
@@ -49,7 +49,11 @@ export default function LargeCard({ data }) {
           <p>{description}</p>
         </CardLine>
         <DivButton>
-          <StyledButton href={link}>{buttonText}</StyledButton>
+          {onBuy ? (
+            <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
+          ) : (
+            <StyledButton href={link}>{buttonText}</StyledButton>
+          )}
         </DivButton>
       </StyledCard>
     </ConfigProvider>
@@ -62,4 +66,5 @@ LargeCard.propTypes = {
   link: PropTypes.string,
   buttonText: PropTypes.string,
   data: PropTypes.object,
+  onBuy: PropTypes.func,
 };
