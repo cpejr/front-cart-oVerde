@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { useGetTree } from "../../hooks/querys/tree";
 import LargeCard from "../../components/features/LargeCard/LargeCard";
+import axios from "axios";
 
 export default function MyTrees() {
   const filters = [
@@ -37,6 +38,16 @@ export default function MyTrees() {
     setSearchValue(e.target.value);
   };
 
+  const fetchPurchasedTrees = async () => {
+    try{
+      const response = await axios.get("/api/user/purchasedTrees/${userId}");
+      const data = Array.isArray(response.data) ? response.data : [];
+      setCollections(data);
+    } catch(err) {
+      toast.error("Erro ao carregar itens", err);
+    }
+  }
+
   async function formatAllCollection() {
     let cardContent = collection;
     cardContent.sort(orderBy);
@@ -57,6 +68,10 @@ export default function MyTrees() {
       }
     }
   }
+
+  useEffect(() => {
+    fetchPurchasedTrees();
+  }, []);
 
   useEffect(() => {
     if (!isLoading && collection) {
@@ -89,7 +104,7 @@ export default function MyTrees() {
         <Title>Carregando</Title>
       ) : (
         <DivLine>
-          {collections
+          {collections 
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
@@ -98,7 +113,8 @@ export default function MyTrees() {
               <Line key={index}>
                 <LargeCard data={card} />
               </Line>
-            ))}
+            ))
+          }
         </DivLine>
       )}
     </Container>
