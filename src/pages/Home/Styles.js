@@ -24,6 +24,7 @@ export const Section = styled.div`
     flex-direction: column;
     width: 100vw;
     margin: 0 auto;
+    gap: 2 rem;
   }
 `;
 
@@ -55,6 +56,7 @@ export const Column = styled.div`
 
   @media (max-width: ${breakpoints.mobile}) {
     max-width: 80%;
+    padding-bottom: 1 rem;
   }
 `;
 
@@ -94,6 +96,9 @@ export const VideoDiv = styled.div`
 export const Image = styled.div`
   display: flex;
   > img {
-    width: 20rem;
+    width: 18rem;
+    @media (max-width: ${breakpoints.mobile}) {
+      display: none;
+    }
   }
 `;
