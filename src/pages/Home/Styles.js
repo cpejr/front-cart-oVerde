@@ -1,40 +1,16 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { background } from "../../assets";
 
 export const Container = styled.div`
   font-size: 1.2rem;
 `;
 
 export const Overlay = styled.div`
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 16%,
-      rgba(0, 0, 0, 0.53125) 100%
-    ),
-    url(${background});
   height: 70vh;
-  padding-left: 10%;
-  background-color: #c5c9d5;
-
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-
-  img {
-    width: 75%;
-    height: auto;
-  }
-`;
-
-export const UnderImage = styled.img`
-  width: 100%;
-  height: auto;
 `;
 
 export const Section = styled.div`
@@ -82,27 +58,6 @@ export const Column = styled.div`
   }
 `;
 
-export const LargerImg = styled.img`
-  width: 100%;
-  @media (min-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-`;
-export const SmallerImg = styled.img`
-  max-width: 35%;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-`;
-
-//Sponsors
-
-export const Sponsor = styled.img`
-  width: 10rem;
-  height: auto;
-`;
-
 export const StyledSponsors = styled.div`
   background-color: white;
   display: flex;
@@ -127,11 +82,18 @@ export const VideoDiv = styled.div`
     height: 16.875rem;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 25rem;
+    width: 22rem;
     height: 14.0625rem;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
-    width: 20rem;
+    width: 18rem;
     height: 11.25rem;
+  }
+`;
+
+export const Image = styled.div`
+  display: flex;
+  > img {
+    width: 20rem;
   }
 `;
