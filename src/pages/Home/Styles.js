@@ -56,7 +56,6 @@ export const Column = styled.div`
 
   @media (max-width: ${breakpoints.mobile}) {
     max-width: 80%;
-    padding-bottom: 1 rem;
   }
 `;
 
@@ -79,16 +78,17 @@ export const VideoDiv = styled.div`
   width: 40rem;
   height: 22.5rem;
   border-radius: 6px;
+  padding-top: 1rem;
   @media (max-width: ${breakpoints.smallTablet}) {
-    width: 30rem;
+    width: 28rem;
     height: 16.875rem;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 22rem;
+    width: 18rem;
     height: 14.0625rem;
   }
   @media (max-width: ${breakpoints.smallDevice}) {
-    width: 18rem;
+    width: 15rem;
     height: 11.25rem;
   }
 `;
