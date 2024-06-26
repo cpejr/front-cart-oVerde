@@ -116,3 +116,22 @@ export const StyledSponsors = styled.div`
     max-width: 100%;
   }
 `;
+
+export const VideoDiv = styled.div`
+  display: flex;
+  width: 40rem;
+  height: 22.5rem;
+  border-radius: 6px;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    width: 30rem;
+    height: 16.875rem;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 25rem;
+    height: 14.0625rem;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 20rem;
+    height: 11.25rem;
+  }
+`;

@@ -1,12 +1,4 @@
-import {
-  Container,
-  Overlay,
-  Section,
-  Title,
-  Column,
-  LargerImg,
-  SmallerImg,
-} from "./Styles";
+import { Container, Overlay, Section, Title, Column, VideoDiv } from "./Styles";
 
 import { Button } from "../../components";
 
@@ -20,53 +12,92 @@ export default function Home() {
   return (
     <Container>
       <Overlay>
-        <img alt="Apresentação do site" />
+        <VideoDiv>
+          <iframe
+            width="100%"
+            height="100%"
+            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
+            title={"Video"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </VideoDiv>
       </Overlay>
       <Sponsors />
       <Section>
         <Column>
-          <Title>Quem somos</Title>
+          <Title>Missão</Title>
           <p>
-            Texto de quem somos do Cartão Verde.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg alt="Painel com diversas impressões digitais" />
+
           <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
         </Column>
-        <SmallerImg alt="Painel com diversas impressões digitais" />
+        <VideoDiv>
+          <iframe
+            width="100%"
+            height="100%"
+            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
+            title={"Video"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </VideoDiv>
       </Section>
 
       <Section>
-        <SmallerImg
-          alt="Foto representando o Cartão Verde"
-        />
+        <VideoDiv>
+          <iframe
+            width="100%"
+            height="100%"
+            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
+            title={"Video"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </VideoDiv>
         <Column>
-          <Title>O que é o Cartão Verde?</Title>
+          <Title>Visão e Valores</Title>
           <p>
-            Texto falando sobre o que é o Cartão Verde.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg
-            alt="Foto representando o Cartão Verde"
-          />
-          <Button onClick={() => navigate("/minhas-arvores")}>Saiba Mais</Button>
+          {/* <LargerImg
+            src={"cidade"}
+            alt="Foto representando a cidade de Bom Despacho"
+          /> */}
+          <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
         </Column>
       </Section>
 
-      {/* <Section>
+      <Section>
         <Column>
-          <Title>Nosso eventos</Title>
+          <Title>Nossos produtos</Title>
           <p>
-            Texto sobre os Eventos
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg
-            alt="Foto representativa de uma das árvores"
-          />
+          {/* <LargerImg
+            src={"festa"}
+            alt="Foto representativa de uma das festas da cidade"
+          /> */}
           <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
         </Column>
-        <SmallerImg
-          alt="Foto representativa de uma das árvores"
-        />
-      </Section> */}
+        <VideoDiv>
+          <iframe
+            width="100%"
+            height="100%"
+            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
+            title={"Video"}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </VideoDiv>
+      </Section>
     </Container>
   );
 }
-
