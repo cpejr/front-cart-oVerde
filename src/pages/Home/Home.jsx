@@ -4,11 +4,10 @@ import {
   Section,
   Title,
   Column,
-  VideoDiv,
-  Image,
+  Image
 } from "./Styles";
 import { Square } from "../../assets/index";
-import { Button } from "../../components";
+import { Button, VideoLarger, VideoSmall } from "../../components";
 
 import { useNavigate } from "react-router-dom";
 
@@ -17,16 +16,8 @@ export default function Home() {
   return (
     <Container>
       <Overlay>
-        <VideoDiv>
-          <iframe
-            width="100%"
-            height="100%"
-            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
-            title={"Video"}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
-        </VideoDiv>
+      <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+      <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Overlay>
       <Section>
         <Column>
@@ -36,32 +27,14 @@ export default function Home() {
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
         </Column>
-        <VideoDiv>
-          <iframe
-            width="100%"
-            height="100%"
-            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
-            title={"Video"}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
-        </VideoDiv>
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Section>
 
       <Section>
-        <VideoDiv>
-          <iframe
-            width="100%"
-            height="100%"
-            src={"https://www.youtube.com/embed/RkzvCixHOVw"}
-            title={"Video"}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
-        </VideoDiv>
+      <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <Column>
           <Title>Visão e valores</Title>
           <p>
@@ -69,10 +42,7 @@ export default function Home() {
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          {/* <LargerImg
-            src={"cidade"}
-            alt="Foto representando a cidade de Bom Despacho"
-          /> */}
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
         </Column>
       </Section>
@@ -85,10 +55,6 @@ export default function Home() {
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          {/* <LargerImg
-            src={"festa"}
-            alt="Foto representativa de uma das festas da cidade"
-          /> */}
           <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
         </Column>
         <Image>

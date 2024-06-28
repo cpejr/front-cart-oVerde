@@ -17,7 +17,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 2rem 0;
   @media (max-width: ${breakpoints.mobile}) {
     display: flex;
@@ -41,8 +41,12 @@ export const Button = styled.button`
 
 export const Title = styled.h1`
   color: ${colors.font.title};
+  /* border-bottom: 2px solid ${colors.font.title}; */
   border-bottom: 2px solid ${colors.font.title};
+  padding-bottom: 10px;
   margin: 0;
+  width: 100%;
+  /* text-align: ${(props) => (props.align === "right" ? "right" : "left")}; */
 `;
 
 export const Column = styled.div`
@@ -73,30 +77,13 @@ export const StyledSponsors = styled.div`
   }
 `;
 
-export const VideoDiv = styled.div`
-  display: flex;
-  width: 40rem;
-  height: 22.5rem;
-  border-radius: 6px;
-  padding-top: 1rem;
-  @media (max-width: ${breakpoints.smallTablet}) {
-    width: 28rem;
-    height: 16.875rem;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 18rem;
-    height: 14.0625rem;
-  }
-  @media (max-width: ${breakpoints.smallDevice}) {
-    width: 15rem;
-    height: 11.25rem;
-  }
-`;
-
 export const Image = styled.div`
   display: flex;
-  > img {
-    width: 18rem;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+    > img {
+    width: 20rem;
     @media (max-width: ${breakpoints.mobile}) {
       display: none;
     }
