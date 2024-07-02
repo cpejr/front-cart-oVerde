@@ -1,4 +1,6 @@
+// Libs
 import { useState } from "react";
+// Components
 import {
   Container,
   Title,
@@ -7,19 +9,12 @@ import {
   DivSelect,
   FilterTitle,
   UniSelect,
-  StyledCheckbox,
   VerticalLine,
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar } from "../../components";
-import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { SearchBar, LargeCard } from "@components";
 import { Checkbox } from "primereact/checkbox";
-
-const cardData = [
-  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-];
 
 export default function MyTrees() {
   const filters = [
@@ -27,17 +22,23 @@ export default function MyTrees() {
     { label: "Favoritos", value: "favoritos" },
   ];
 
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
-  ];
-
   const [searchValue, setSearchValue] = useState("");
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
+
+  // Link Simulation (It will be removed)
+
+  const cardData = [
+    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  ];
+  const characteristicCheckboxes = [
+    { label: "Característica 1" },
+    { label: "Característica 2" },
+    { label: "Característica 3" },
+  ];
 
   return (
     <Container>
