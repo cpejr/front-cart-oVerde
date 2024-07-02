@@ -1,6 +1,11 @@
+// Libs
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { LoadingOutlined } from "@ant-design/icons";
+// Components
 import {
   Container,
   TypeSelect,
@@ -8,28 +13,29 @@ import {
   Title,
   LoadingStyles,
 } from "./Styles";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { ModalDeleteItem, Table, SearchBar } from "../../components";
-import { LoadingOutlined } from "@ant-design/icons";
-
+import { ModalDeleteItem, Table, SearchBar } from "@components";
 import {
   useDeleteUsers,
   useGetUsers,
   useUpdateUsers,
-} from "../../hooks/querys/user";
+} from "@hooks/querys/user";
 
 export default function ManageUsers() {
+  // States and Variables
+
   const [userID, setUserID] = useState("");
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [modalDelete, setModalDelete] = useState(false);
+  const queryClient = useQueryClient();
 
+  // Modal Handling
+
+  const [modalDelete, setModalDelete] = useState(false);
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
-
   const modalCloseButton = <AiOutlineCloseCircle />;
-  const queryClient = useQueryClient();
+
+  // Table Handling
 
   const columns = [
     { field: "imageURL", header: "Foto" },
@@ -43,7 +49,13 @@ export default function ManageUsers() {
     { label: "Administrador", value: true },
     { label: "Usuário", value: false },
   ];
-  //formating the users
+
+  function handleSearchChange(e) {
+    setSearchQuery(e.target.value);
+  }
+
+  // Formating Users object to fit into Table
+
   async function formatAllUsers() {
     const filteredUsers = user.filter((user) =>
       user?.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -85,7 +97,8 @@ export default function ManageUsers() {
     closeModalDelete();
   }
 
-  //backend calls
+  // Backend Calls
+
   const { mutate: deleteUser } = useDeleteUsers({
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -123,13 +136,9 @@ export default function ManageUsers() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isLoading, searchQuery]);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   return (
     <Container>
-        <Title>GERENCIAR USUÁRIOS</Title>
+      <Title>GERENCIAR USUÁRIOS</Title>
       <SearchBar
         placeholder={"Pesquisar usuário"}
         value={searchQuery}
