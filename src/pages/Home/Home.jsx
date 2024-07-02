@@ -1,23 +1,17 @@
-import {
-  Container,
-  Overlay,
-  Section,
-  Title,
-  Column,
-  Image
-} from "./Styles";
-import { Square } from "../../assets/index";
-import { Button, VideoLarger, VideoSmall } from "../../components";
-
+// Libs
 import { useNavigate } from "react-router-dom";
+// Components
+import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
+import { Square } from "@assets/index";
+import { Button, VideoLarger, VideoSmall } from "@components";
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <Container>
       <Overlay>
-      <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-      <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Overlay>
       <Section>
         <Column>
@@ -34,7 +28,7 @@ export default function Home() {
       </Section>
 
       <Section>
-      <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <Column>
           <Title>Visão e valores</Title>
           <p>

@@ -1,5 +1,4 @@
-import { Square } from "../../assets/index";
-
+import { Square } from "@assets/index";
 import { Title, Container, Image } from "./Styles";
 
 export default function AboutUs() {
