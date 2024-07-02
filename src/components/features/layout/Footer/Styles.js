@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { breakpoints } from "../../../../styles/stylesVariables";
+import { breakpoints, colors } from "../../../../styles/stylesVariables";
 
 export const Container = styled.div`
-  background-color: #000000;
+  background-color: ${colors.background.secondary};
   display: flex;
   max-width: 100%;
   height: 10rem;
