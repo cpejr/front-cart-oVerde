@@ -21,7 +21,7 @@ export default function HamburguerMenu() {
     getItem(
       "",
       "hamburger",
-      <MenuOutlined style={{ color: "orange", fontSize: "25px" }} />,
+      <MenuOutlined style={{ color: "white", fontSize: "25px" }} />,
       [
         getItem(" Nossa História", "/historia"),
         getItem("Acervo", "/minhas-arvores"),

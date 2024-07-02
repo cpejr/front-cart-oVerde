@@ -6,7 +6,7 @@ import { Menubar } from "primereact/menubar";
 export const Container = styled.div`
   height: 7rem;
   display: flex;
-  background-color: black;
+  background-color: ${colors.background.secondary};
   align-items: center;
   justify-content: space-evenly;
   padding: 0 3rem;
@@ -46,7 +46,7 @@ export const SocialMedias = styled.div`
 export const Hamburguer = styled(Menu)`
   width: 0rem;
   border-bottom: none;
-  background-color: black;
+  background-color: ${colors.background.secondary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ export const ModalStyle = styled(Modal)`
     padding: 1rem;
     align-items: center;
     justify-content: center;
-    color: ${colors.white};
+    color: ${colors.font.primary};
     padding: 6;
     margin: 0;
     border-radius: none;
