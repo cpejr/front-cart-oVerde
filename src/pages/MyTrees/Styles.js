@@ -85,3 +85,25 @@ export const UniSelect = styled(Dropdown)`
   }
 
 `;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: #fff;
+`;
+
+export const CertificateText = styled.div`
+  color: black;
+`;
+
+export const CertificateTitle = styled.h1`
+  color: black;
+`;

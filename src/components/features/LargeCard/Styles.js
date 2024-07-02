@@ -87,3 +87,11 @@ export const StyledButton = styled(Button)`
     width:180px;
   }
 `;
+
+export const Button = styled.button`
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+`;

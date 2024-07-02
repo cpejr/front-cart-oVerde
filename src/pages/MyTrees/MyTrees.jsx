@@ -1,13 +1,18 @@
+// Libs
 import { useState, useEffect } from "react";
+// Components
 import {
   Container,
   Title,
   Filter,
   DivSelect,
   UniSelect,
+  VerticalLine,
   DivLine,
   Line,
 } from "./Styles";
+import { SearchBar, LargeCard } from "@components";
+import { Checkbox } from "primereact/checkbox";
 import { toast } from "react-toastify";
 import { SearchBar } from "../../components";
 import { useGetTree } from "../../hooks/querys/tree";
@@ -18,6 +23,24 @@ export default function MyTrees() {
   const filters = [
     { label: "Mais Recentes", value: "data" },
     { label: "Preço", value: "price" },
+  ];
+
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
+
+  // Link Simulation (It will be removed)
+
+  const cardData = [
+    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  ];
+  const characteristicCheckboxes = [
+    { label: "Característica 1" },
+    { label: "Característica 2" },
+    { label: "Característica 3" },
   ];
 
   const [searchValue, setSearchValue] = useState("");

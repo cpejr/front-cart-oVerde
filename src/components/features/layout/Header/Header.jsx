@@ -1,9 +1,11 @@
-import { Container, City, PrimeHeader } from "./Styles";
-import { LogoCidade } from "../../../../assets/index";
+// Libs
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import useAuthStore from "../../../../Stores/auth";
-import { LoginSocialArea } from "../../../../components";
+// Components
+import { Container, City, PrimeHeader } from "./Styles";
+import { LogoCidade } from "@assets/index";
+import useAuthStore from "@Stores/auth";
+import { LoginSocialArea } from "@components";
 import { HamburgerMenu } from "../../../index";
 
 export default function Header() {

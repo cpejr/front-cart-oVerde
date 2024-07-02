@@ -1,4 +1,11 @@
+// Libs
+import { pdf } from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
+import { CiBookmark } from "react-icons/ci";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import PropTypes from "prop-types";
+// Components
 import { ConfigProvider } from "antd";
 import {
   StyledCard,
@@ -8,9 +15,22 @@ import {
   CardTitle,
   DivButton,
 } from "./Styles";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { TreeCertificatePDF, Button } from "@components";
+import { colors } from "@styles/stylesVariables";
 
+export default function LargeCard({ data }) {
+  // Link Simulation (it will be removed)
+  const images = [
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+    "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
+  ];
+  const { title, description } = data;
+  const PdfData = {
+    user: "usuario",
+    tree: "árvore",
+    certificate: "certificado",
+  };
 const images = [
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
   "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/54/b8/ac/noturna.jpg?w=500&h=500&s=1",
@@ -19,6 +39,14 @@ const images = [
 
 export default function LargeCard({ data, onBuy }) {
   const { name, description, link, buttonText } = data;
+
+  // PDF Handling
+
+  function SaveFile() {
+    pdf(<TreeCertificatePDF data={PdfData} />)
+      .toBlob()
+      .then((blob) => saveAs(blob, `${PdfData?.certificate}.pdf`));
+  }
 
   return (
     <ConfigProvider
@@ -59,6 +87,13 @@ export default function LargeCard({ data, onBuy }) {
     </ConfigProvider>
   );
 }
+
+LargeCard.propTypes = {
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+  }),
+};
 
 LargeCard.propTypes = {
   title: PropTypes.string,

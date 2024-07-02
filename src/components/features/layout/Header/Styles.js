@@ -50,6 +50,9 @@ export const Hamburguer = styled(Menu)`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 8rem;
+  }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 6rem;
   }
@@ -114,7 +117,7 @@ export const ModalStyle = styled(Modal)`
     padding: 1rem;
     align-items: center;
     justify-content: center;
-    color: ${colors.white};
+    color: ${colors.font.primary};
     padding: 6;
     margin: 0;
     border-radius: none;

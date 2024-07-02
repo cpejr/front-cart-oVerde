@@ -2,8 +2,9 @@ export { default as Add } from "./Add.svg";
 export { default as FirstStoryImage } from "./FirstStoryImage.svg";
 
 export { default as background } from "./Home/background.png";
+export { default as Square } from "./Home/Square.svg";
 
-export { default as LogoBranca } from './Footer/LogoBranca.svg';
+export { default as LogoBranca } from "./Footer/LogoBranca.svg";
 
 export { default as LogoCidade } from "./Header/CityLogo.svg";
 export { default as Facebook } from "./Header/Facebook.svg";
