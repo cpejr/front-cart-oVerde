@@ -50,6 +50,9 @@ export const Hamburguer = styled(Menu)`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 8rem;
+  }
   @media (max-width: ${breakpoints.smallTablet}) {
     width: 6rem;
   }

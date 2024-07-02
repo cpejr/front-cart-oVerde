@@ -1,72 +1,60 @@
-import {
-  Container,
-  Overlay,
-  Section,
-  Title,
-  Column,
-  LargerImg,
-  SmallerImg,
-} from "./Styles";
-
-import { Button } from "../../components";
-
-import Sponsors from "./Sponsors";
+// Libs
 import { useNavigate } from "react-router-dom";
-
-//ADICIONAR O src NAS TAGS DE IMAGENS
+// Components
+import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
+import { Square } from "@assets/index";
+import { Button, VideoLarger, VideoSmall } from "@components";
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <Container>
       <Overlay>
-        <img alt="Apresentação do site" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Overlay>
-      <Sponsors />
       <Section>
         <Column>
-          <Title>Quem somos</Title>
+          <Title>Missão</Title>
           <p>
-            Texto de quem somos do Cartão Verde.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg alt="Painel com diversas impressões digitais" />
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
         </Column>
-        <SmallerImg alt="Painel com diversas impressões digitais" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Section>
 
       <Section>
-        <SmallerImg
-          alt="Foto representando o Cartão Verde"
-        />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <Column>
-          <Title>O que é o Cartão Verde?</Title>
+          <Title>Visão e valores</Title>
           <p>
-            Texto falando sobre o que é o Cartão Verde.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg
-            alt="Foto representando o Cartão Verde"
-          />
-          <Button onClick={() => navigate("/minhas-arvores")}>Saiba Mais</Button>
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+          <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
         </Column>
       </Section>
 
-      {/* <Section>
+      <Section>
         <Column>
-          <Title>Nosso eventos</Title>
+          <Title>Nossos produtos</Title>
           <p>
-            Texto sobre os Eventos
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <LargerImg
-            alt="Foto representativa de uma das árvores"
-          />
           <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
         </Column>
-        <SmallerImg
-          alt="Foto representativa de uma das árvores"
-        />
-      </Section> */}
+        <Image>
+          <img src={Square} alt="Imagem de decoração" />
+        </Image>
+      </Section>
     </Container>
   );
 }
-

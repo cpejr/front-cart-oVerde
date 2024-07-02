@@ -1,53 +1,30 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { background } from "../../assets";
 
 export const Container = styled.div`
   font-size: 1.2rem;
 `;
 
 export const Overlay = styled.div`
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 16%,
-      rgba(0, 0, 0, 0.53125) 100%
-    ),
-    url(${background});
   height: 70vh;
-  padding-left: 10%;
-  background-color: #c5c9d5;
-
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-
-  img {
-    width: 75%;
-    height: auto;
-  }
-`;
-
-export const UnderImage = styled.img`
-  width: 100%;
-  height: auto;
 `;
 
 export const Section = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 2rem 0;
   @media (max-width: ${breakpoints.mobile}) {
     display: flex;
     flex-direction: column;
     width: 100vw;
     margin: 0 auto;
+    gap: 2 rem;
   }
 `;
 
@@ -64,8 +41,12 @@ export const Button = styled.button`
 
 export const Title = styled.h1`
   color: ${colors.font.title};
+  /* border-bottom: 2px solid ${colors.font.title}; */
   border-bottom: 2px solid ${colors.font.title};
+  padding-bottom: 10px;
   margin: 0;
+  width: 100%;
+  /* text-align: ${(props) => (props.align === "right" ? "right" : "left")}; */
 `;
 
 export const Column = styled.div`
@@ -82,27 +63,6 @@ export const Column = styled.div`
   }
 `;
 
-export const LargerImg = styled.img`
-  width: 100%;
-  @media (min-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-`;
-export const SmallerImg = styled.img`
-  max-width: 35%;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
-  }
-`;
-
-//Sponsors
-
-export const Sponsor = styled.img`
-  width: 10rem;
-  height: auto;
-`;
-
 export const StyledSponsors = styled.div`
   background-color: white;
   display: flex;
@@ -114,5 +74,18 @@ export const StyledSponsors = styled.div`
   }
   @media (min-width: ${breakpoints.biggerScreen}) {
     max-width: 100%;
+  }
+`;
+
+export const Image = styled.div`
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+    > img {
+    width: 20rem;
+    @media (max-width: ${breakpoints.mobile}) {
+      display: none;
+    }
   }
 `;
