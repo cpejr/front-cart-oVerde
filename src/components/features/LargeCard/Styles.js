@@ -102,3 +102,11 @@ export const FavoriteIcon = styled.div`
   font-size: 2rem;
   cursor: pointer;
 `;
+
+export const Button = styled.button`
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+`;

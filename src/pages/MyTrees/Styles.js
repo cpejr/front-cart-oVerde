@@ -146,25 +146,10 @@ export const Content = styled.div`
   background: #fff;
 `;
 
-export const Button = styled.button`
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  width: 100%;
-  cursor: pointer;
-`;
-
 export const CertificateText = styled.div`
   color: black;
 `;
 
 export const CertificateTitle = styled.h1`
   color: black;
-`;
-
-export const PdfArea = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
 `;

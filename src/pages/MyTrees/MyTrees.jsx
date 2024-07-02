@@ -1,42 +1,25 @@
-import React, { useRef, useState } from "react";
-//import generatePDF, { Margin } from "react-to-pdf";
-import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+// Libs
+import { useState } from "react";
+// Components
 import {
   Container,
-  Content,
-  Button,
   Title,
   Filter,
   Characteristics,
   DivSelect,
   FilterTitle,
   UniSelect,
-  StyledCheckbox,
   VerticalLine,
   DivLine,
   Line,
-  PdfArea
 } from "./Styles";
-import { SearchBar } from "../../components";
-import LargeCard from "../../components/features/LargeCard/LargeCard";
+import { SearchBar, LargeCard } from "@components";
 import { Checkbox } from "primereact/checkbox";
-import TreeCertificatePDF from "../../components/features/PDF/TreeCertificatePDF.jsx";
-
-const cardData = [
-  { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-  { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-];
 
 export default function MyTrees() {
   const filters = [
     { label: "Melhor avaliados", value: "melhorAvaliados" },
     { label: "Favoritos", value: "favoritos" },
-  ];
-
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
   ];
 
   const [searchValue, setSearchValue] = useState("");
@@ -45,12 +28,17 @@ export default function MyTrees() {
     setSearchValue(e.target.value);
   };
 
-  const recoverContentToPDF = () => document.getElementById("content-id");
+  // Link Simulation (It will be removed)
 
-  const PdfData = {
-    name: "usuario",
-    tree: "árvore",
-  };
+  const cardData = [
+    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
+    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  ];
+  const characteristicCheckboxes = [
+    { label: "Característica 1" },
+    { label: "Característica 2" },
+    { label: "Característica 3" },
+  ];
 
   return (
     <Container>
@@ -90,14 +78,6 @@ export default function MyTrees() {
             </Line>
           ))}
       </DivLine>
-      <PdfArea>
-        <PDFDownloadLink
-          document={<TreeCertificatePDF data={PdfData} />}
-          filename="certificate.pdf"
-        >
-            <Button> Download PDF </Button>
-        </PDFDownloadLink>
-      </PdfArea>
     </Container>
   );
 }
