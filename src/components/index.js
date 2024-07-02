@@ -17,6 +17,8 @@ export { default as Table } from "./features/Table/Table.jsx";
 export { default as SearchBar } from "./features/SearchBar/SearchBar.jsx";
 export { default as FormSubmit } from "./features/FormSubmit/FormSubmit.jsx";
 export { default as ModalUpdateTree } from "./features/modals/ModalUpdateTree/ModalUpdateTree.jsx";
+export { default as TreeCertificatePDF } from "./features/PDF/TreeCertificatePDF.jsx";
+export { default as LargeCard } from "./features/LargeCard/LargeCard.jsx";
 export { default as VideoLarger } from "./features/Video/VideoLarger/VideoLarger.jsx";
 export { default as VideoSmall } from "./features/Video/VideoSmall/VideoSmall.jsx";
 

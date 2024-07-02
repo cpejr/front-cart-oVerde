@@ -33,6 +33,7 @@ export default function FormImageInput({
 
   useEffect(() => {
     if (onChange) onChange(imageURL);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [imageURL]);
 
   return (
@@ -62,4 +63,5 @@ FormImageInput.propTypes = {
   register: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func,
+  defaultValue: PropTypes.string,
 };
