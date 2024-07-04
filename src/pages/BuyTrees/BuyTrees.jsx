@@ -1,4 +1,7 @@
+// Libs
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+// Components
 import {
   Container,
   Title,
@@ -8,13 +11,11 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { toast } from "react-toastify";
-import { SearchBar } from "../../components";
-import { useGetTree } from "../../hooks/querys/tree";
-import LargeCard from "../../components/features/LargeCard/LargeCard";
-import axios from "axios";
+import { SearchBar, LargeCard } from "@components";
+import { useGetTree } from "@hooks/querys/tree";
 
 export default function BuyTrees() {
+  // Select Data
   const filters = [
     { label: "Mais Recentes", value: "data" },
     { label: "Preço", value: "price" },
@@ -22,19 +23,18 @@ export default function BuyTrees() {
 
   const [searchValue, setSearchValue] = useState("");
   const [order, setOrder] = useState("data");
-  const [collections, setCollections] = useState([]);
+  const handleSearchChange = (e) => {
+    setSearchValue(e.target.value);
+  };
 
-  //backend calls
+  // Backend Calls
   const { data: collection, isLoading } = useGetTree({
     onSuccess: () => {},
     onError: (err) => {
       toast.error("Erro ao carregar itens", err);
     },
   });
-
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
+  const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
     let cardContent = collection;
@@ -56,17 +56,10 @@ export default function BuyTrees() {
     }
   }
 
-  const buyTree = async (treeId) => {
-    try {
-      const userId = `${userId}`; // Substitua pelo ID do usuário logado
-      const response = await axios.post(
-        `/api/users/${userId}/buyTree/${treeId}`
-      );
-      toast.success(response.data.message);
-    } catch (error) {
-      toast.error("Erro ao comprar a árvore!", error.response.data.message);
-    }
-  };
+  async function buyTree(treeId) {
+    // Buy Function needs to be implemented
+    console.log(treeId);
+  }
 
   useEffect(() => {
     if (!isLoading && collection) {

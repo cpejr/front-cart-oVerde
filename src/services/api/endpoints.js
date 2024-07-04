@@ -116,6 +116,7 @@ export async function updateCertificate({ _id, newCertificateData }) {
  **************************/
 
 export async function getArchives(archives) {
+  console.log("✌️archives --->", archives);
   const { data } = await api.get(`/archive`, { params: { archive: archives } });
   return data;
 }

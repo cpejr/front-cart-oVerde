@@ -21,7 +21,8 @@ import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
 
 export default function LargeCard({ data, onBuy }) {
-  const { name, description, buttonText } = data;
+  const { description, buttonText } = data;
+  const name = data?.id_tree?.name || data?.name;
 
   // PDF Handling
   function SaveFile() {
@@ -31,12 +32,14 @@ export default function LargeCard({ data, onBuy }) {
   }
 
   // BackEnd Calls
-  const archiveIDs = data?.id_tree?.archive?.map((archive) => archive);
-  const formattedArchives = archiveIDs?.join(", ");
+  const IDs = data?.id_tree?.archive || data?.archive;
+  const archiveIDs = IDs?.map((archive) => archive?._id);
+  console.log("✌️archiveIDs --->", archiveIDs);
+  const formattedArchives = archiveIDs?.join(", ") || IDs?.join(", ");
 
   const { data: archiveData, isLoading: isImageLoading } = useGetArchives({
     id: formattedArchives,
-    name: data?.id_tree?.name,
+    name: name,
     onError: (err) => {
       console.error("Error ao pegar os arquivos", err);
     },
@@ -127,6 +130,7 @@ LargeCard.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    archive: PropTypes.array,
     id_tree: PropTypes.shape({
       name: PropTypes.string,
       archive: PropTypes.arrayOf(PropTypes.string),
