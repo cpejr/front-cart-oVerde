@@ -1,5 +1,6 @@
 // Libs
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 // Components
 import {
   Container,
@@ -7,102 +8,57 @@ import {
   Filter,
   DivSelect,
   UniSelect,
-  VerticalLine,
   DivLine,
   Line,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
-import { Checkbox } from "primereact/checkbox";
-import { toast } from "react-toastify";
-import { SearchBar } from "../../components";
-import { useGetTree } from "../../hooks/querys/tree";
-import LargeCard from "../../components/features/LargeCard/LargeCard";
-import axios from "axios";
+import useAuthStore from "../../Stores/auth";
+import { useGetCertificateByUser } from "@hooks/querys/certificate";
 
 export default function MyTrees() {
-  const filters = [
-    { label: "Mais Recentes", value: "data" },
-    { label: "Preço", value: "price" },
-  ];
+  // States and Variables
 
+  const userID = useAuthStore((state) => state?.auth?.user?._id);
+  const [order, setOrder] = useState("active");
+  const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-
-  const handleSearchChange = (e) => {
+  function handleSearchChange(e) {
     setSearchValue(e.target.value);
-  };
-
-  // Link Simulation (It will be removed)
-
-  const cardData = [
-    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
-  ];
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
-  ];
-
-  const [searchValue, setSearchValue] = useState("");
-  const [order, setOrder] = useState("data");
-  const [collections, setCollections] = useState([]);
-
-  //backend calls
-  const { data: collection, isLoading } = useGetTree({
-    onSuccess: () => {
-      console.log(collection);
-    },
-    onError: (err) => {
-      toast.error("Erro ao carregar itens", err);
-    },
-  });
-
-  const handleSearchChange = (e) => {
-    setSearchValue(e.target.value);
-  };
-
-  const fetchPurchasedTrees = async () => {
-    try{
-      const response = await axios.get("/api/user/purchasedTrees/${userId}");
-      const data = Array.isArray(response.data) ? response.data : [];
-      setCollections(data);
-    } catch(err) {
-      toast.error("Erro ao carregar itens", err);
-    }
   }
+
+  // Select Data
+
+  const filters = [
+    { label: "Válidos", value: "active" },
+    { label: "Expirados", value: "expirated" },
+  ];
+
+  // Backend Calls
+
+  const { data: personalCertificates, isLoading: isCertificatesLoading } =
+    useGetCertificateByUser({
+      id: userID,
+      type: order,
+      onError: (err) => {
+        toast.error("Erro ao carregar itens", err);
+      },
+    });
 
   async function formatAllCollection() {
-    let cardContent = collection;
-    cardContent.sort(orderBy);
+    let cardContent = personalCertificates;
     for (let content of cardContent) {
       content.buttonText = "Baixar Certificado";
-      content.link = "EDITE EM MyTrees.jsx " + content._id;
     }
-    console.log(cardContent);
-    setCollections(cardContent);
-  }
-
-  async function orderBy(a, b) {
-    if (order == "price") {
-      if (a.price >= b.price) {
-        return -1;
-      } else {
-        return 1;
-      }
-    }
+    setCertificateData(cardContent);
   }
 
   useEffect(() => {
-    fetchPurchasedTrees();
-  }, []);
-
-  useEffect(() => {
-    if (!isLoading && collection) {
+    if (!isCertificatesLoading && personalCertificates) {
       formatAllCollection();
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading]);
+  }, [personalCertificates, isCertificatesLoading]);
 
   return (
     <Container>
@@ -120,24 +76,28 @@ export default function MyTrees() {
           options={filters}
           optionLabel="label"
           placeholder="Ordenar Por"
-          onChange={(e) => {setOrder(e.value);formatAllCollection();}}
+          value={order}
+          onChange={(e) => {
+            setOrder(e.value);
+            formatAllCollection();
+          }}
         />
       </Filter>
-      {isLoading && collections ? (
+      {isCertificatesLoading && certificateData ? (
         <Title>Carregando</Title>
       ) : (
         <DivLine>
-          {collections 
+          {certificateData
             .filter((card) =>
-              card.name.toLowerCase().includes(searchValue.toLowerCase())
+              card?.id_tree?.name
+                ?.toLowerCase()
+                ?.includes(searchValue?.toLowerCase())
             )
-            .sort(orderBy)
             .map((card, index) => (
-              <Line key={index}>
+              <Line onClick={() => card} key={index}>
                 <LargeCard data={card} />
               </Line>
-            ))
-          }
+            ))}
         </DivLine>
       )}
     </Container>

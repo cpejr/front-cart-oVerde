@@ -9,8 +9,7 @@ import { LoginSocialArea } from "@components";
 import { HamburgerMenu } from "../../../index";
 
 export default function Header() {
-  const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
-  const isLogged = useAuthStore((state) => state?.auth);
+  const user = useAuthStore((state) => state?.auth?.user);
   const navigate = useNavigate();
 
   const items = [
@@ -30,7 +29,7 @@ export default function Header() {
       label: "Apoiar",
       url: "/suporte",
     },
-    ...(isAdmin
+    ...(user?.type
       ? [
           {
             label: "Administrador",
@@ -47,13 +46,14 @@ export default function Header() {
           },
         ]
       : []),
-      ...(isLogged
-        ? [
+    ...(user
+      ? [
           {
             label: "Minhas árvores",
             url: "/minhas-arvores",
-          },]
-        : []),
+          },
+        ]
+      : []),
   ];
 
   return (

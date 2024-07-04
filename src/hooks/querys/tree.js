@@ -12,7 +12,7 @@ export function useGetTree({
 } = {}) {
   return useQuery({
     queryKey: ["tree"],
-    queryFn: () => getTree(),
+    queryFn: getTree,
     onSuccess,
     onError,
   });

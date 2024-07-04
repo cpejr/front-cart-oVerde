@@ -38,10 +38,9 @@ export default function Home() {
           </p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/memorial")}>Saiba Mais</Button>
-          <LargerImg
-            alt="Foto representando o Cartão Verde"
-          />
-          <Button onClick={() => navigate("/comprar-arvores")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/comprar-arvores")}>
+            Saiba Mais
+          </Button>
         </Column>
       </Section>
 

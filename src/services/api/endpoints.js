@@ -1,6 +1,11 @@
 import useAuthStore from "../../Stores/auth";
 import api from "./api";
-//user
+
+/**************************
+ *                        *
+ *         User           *
+ *                        *
+ **************************/
 
 export async function getUsers() {
   const { data } = await api.get("/user");
@@ -26,7 +31,11 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 
-//CategoryTree endpoints
+/**************************
+ *                        *
+ *     Category Tree      *
+ *                        *
+ **************************/
 export const getCategoryTrees = async (filters = {}) => {
   const { data } = await api.get("/categoryTree", { params: filters });
   return data;
@@ -39,7 +48,12 @@ export const getCategoryTreesByName = async (name) => {
   return data;
 };
 
-//tree
+/**************************
+ *                        *
+ *         Tree           *
+ *                        *
+ **************************/
+
 export async function getTree() {
   const { data } = await api.get("/tree");
 
@@ -57,14 +71,40 @@ export async function updateTree({ _id, newData }) {
 }
 
 export async function postTree(newTrees) {
-  try {
-    const newprice = parseFloat(newTrees.price);
-    const tree = {... newTrees, price:newprice};
-    console.log(tree);
-    const { data } = await api.post(`/tree`, tree);
-  
-    return data;
-  } catch (e) {
-    console.log(e);
-  }
+  const newprice = parseFloat(newTrees.price);
+  const tree = { ...newTrees, price: newprice };
+  const { data } = await api.post(`/tree`, tree);
+
+  return data;
+}
+
+/**************************
+ *                        *
+ *      Certificate       *
+ *                        *
+ **************************/
+
+export async function getAllCertificates() {
+  const { data } = await api.get("/certificate");
+  return data;
+}
+
+export async function createCertificate(newCertificate) {
+  const { data } = await api.post("/certificate", newCertificate);
+  return data;
+}
+
+export async function getCertificateByUser({ id, type }) {
+  const { data } = await api.get(`/certificate/${id}`, { params: { type } });
+  return data;
+}
+
+export async function deleteCertificate(_id) {
+  const { data } = await api.delete(`/certificate/${_id}`);
+  return data;
+}
+
+export async function updateCertificate({ _id, newCertificateData }) {
+  const { data } = await api.put(`/certificate/${_id}`, newCertificateData);
+  return data;
 }

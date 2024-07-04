@@ -26,9 +26,7 @@ export default function BuyTrees() {
 
   //backend calls
   const { data: collection, isLoading } = useGetTree({
-    onSuccess: () => {
-      console.log(collection);
-    },
+    onSuccess: () => {},
     onError: (err) => {
       toast.error("Erro ao carregar itens", err);
     },
@@ -45,7 +43,6 @@ export default function BuyTrees() {
       content.buttonText = "Comprar Certificado";
       content.link = "EDITE EM MyTrees.jsx " + content._id;
     }
-    console.log(cardContent);
     setCollections(cardContent);
   }
 
@@ -62,7 +59,9 @@ export default function BuyTrees() {
   const buyTree = async (treeId) => {
     try {
       const userId = `${userId}`; // Substitua pelo ID do usuário logado
-      const response = await axios.post(`/api/users/${userId}/buyTree/${treeId}`);
+      const response = await axios.post(
+        `/api/users/${userId}/buyTree/${treeId}`
+      );
       toast.success(response.data.message);
     } catch (error) {
       toast.error("Erro ao comprar a árvore!", error.response.data.message);
@@ -93,7 +92,10 @@ export default function BuyTrees() {
           options={filters}
           optionLabel="label"
           placeholder="Ordenar Por"
-          onChange={(e) => {setOrder(e.value);formatAllCollection();}}
+          onChange={(e) => {
+            setOrder(e.value);
+            formatAllCollection();
+          }}
         />
       </Filter>
       {isLoading && collections ? (
