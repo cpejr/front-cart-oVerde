@@ -34,7 +34,6 @@ export default function LargeCard({ data, onBuy }) {
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
-  console.log("✌️archiveIDs --->", archiveIDs);
   const formattedArchives = archiveIDs?.join(", ") || IDs?.join(", ");
 
   const { data: archiveData, isLoading: isImageLoading } = useGetArchives({
