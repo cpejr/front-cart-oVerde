@@ -60,7 +60,7 @@ export default function ManageCollection() {
     },
     {
       type: "input",
-      key: "especire",
+      key: "specie",
       placeholder: "Espécie",
     },
     {
@@ -122,7 +122,7 @@ export default function ManageCollection() {
                 location: collection.location,
                 price: collection.price,
                 archive: collection.archive,
-                especire: collection.especire,
+                specie: collection.specie,
                 id_category: collection?.id_category,
               });
             }}
@@ -147,18 +147,18 @@ export default function ManageCollection() {
     },
   });
 
-  const { data: categoryTypes, isPending: isLoadingCategories } = useGetCategoryType({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["categoryTree"],
-      });
-      setSelectOptions(transformArrayItems(categoryTypes));
-    
-    },
-    onError: (err) => {
-      toast.error("Erro ao pegar categorias", err);
-    },
-  });
+  const { data: categoryTypes, isPending: isLoadingCategories } =
+    useGetCategoryType({
+      onSuccess: () => {
+        queryClient.invalidateQueries({
+          queryKey: ["categoryTree"],
+        });
+        setSelectOptions(transformArrayItems(categoryTypes));
+      },
+      onError: (err) => {
+        toast.error("Erro ao pegar categorias", err);
+      },
+    });
 
   const { mutate: postTree, isPending: loadingPostTree } = usePostTree({
     onSuccess: () => {
@@ -168,7 +168,7 @@ export default function ManageCollection() {
       toast.success("Árvore cadastrada!");
     },
     onError: (err) => {
-      toast.error("Erro ao cadastrar post.", err);
+      toast.error("Erro ao cadastrar uma árvore.", err);
     },
   });
   const { mutate: deleteTree, isPending: loadingDeleteTree } = useDeleteTree({
@@ -215,7 +215,7 @@ export default function ManageCollection() {
     setSelectOptions(types);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryTypes, collection, isLoading,isLoadingCategories]);
+  }, [categoryTypes, collection, isLoading, isLoadingCategories]);
   return (
     <Container>
       <Title>ADICIONAR NOVA ÁRVORE </Title>
@@ -227,9 +227,9 @@ export default function ManageCollection() {
           color={"#33603F"}
           loading={loadingPostTree}
         />
-      ) : 
+      ) : (
         <SubTitle>Carregando</SubTitle>
-      }
+      )}
       <SubTitle>GERENCIAR ÁRVORES</SubTitle>
       {isLoading || loadingEditTree || loadingDeleteTree ? (
         <LoadingStyles>

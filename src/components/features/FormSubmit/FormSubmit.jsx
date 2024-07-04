@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, ErrorMessage, InputKeep, Select,StyledNumber } from "./Styles";
+import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -25,12 +25,20 @@ export default function FormSubmit({
   });
 
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [newPrice, setPrice] = useState({});
+  const [newPrice, setPrice] = useState();
+
+  useEffect(() => {
+    const priceInput = inputs.find((input) => input.key === "price");
+    if (priceInput) {
+      setPrice(priceInput.value || 0);
+    }
+  }, [inputs]);
+
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
 
-  function handlePriceChange (e) {
+  function handlePriceChange(e) {
     setPrice(e.value);
   }
 
@@ -46,12 +54,12 @@ export default function FormSubmit({
       onSubmit({
         ...data,
         id_category: selectedOptions.id_categoryType,
-        price:newPrice,
+        price: newPrice,
         archive: archivesArray,
       });
       setArchivesArray([]);
     } else {
-      onSubmit({ data, id_category: selectedOptions });
+      onSubmit({ ...data, id_category: selectedOptions, price: newPrice });
     }
     reset();
   }

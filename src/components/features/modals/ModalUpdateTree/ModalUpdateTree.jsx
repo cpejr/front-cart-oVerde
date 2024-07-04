@@ -34,9 +34,9 @@ export default function ModalUpdateTree({
     },
     {
       type: "input",
-      key: "especire",
+      key: "specie",
       placeholder: "Mudar Espécie",
-      value: values.especire,
+      value: values.specie,
     },
     {
       type: "number",
@@ -48,13 +48,13 @@ export default function ModalUpdateTree({
       type: "archive",
       key: "archive",
       placeholder: "Adicionar Foto",
-      values: values.archives?.map((archive) => ({
+      values: values.archive?.map((archive) => ({
         name: archive.name,
         base64: undefined,
       })),
       icon: AiOutlineUpload,
     },
-  ];  
+  ];
 
   function handleSubmit(data) {
     handleTreeUpdate(id, data);
