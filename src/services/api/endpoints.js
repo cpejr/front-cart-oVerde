@@ -108,3 +108,14 @@ export async function updateCertificate({ _id, newCertificateData }) {
   const { data } = await api.put(`/certificate/${_id}`, newCertificateData);
   return data;
 }
+
+/**************************
+ *                        *
+ *         Archive        *
+ *                        *
+ **************************/
+
+export async function getArchives(archives) {
+  const { data } = await api.get(`/archive`, { params: { archive: archives } });
+  return data;
+}

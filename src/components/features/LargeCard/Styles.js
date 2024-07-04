@@ -87,3 +87,12 @@ export const StyledButton = styled(Button)`
     width: 180px;
   }
 `;
+export const CarouselStyles = styled.div`
+  .carousel .slide {
+    display: flex;
+    justify-content: center;
+  }
+  .carousel.carousel-slider .control-arrow {
+    background: ${colors.background.primary};
+  }
+`;
