@@ -138,8 +138,8 @@ export default function TreeCertificatePDF({ data }) {
           <div style={styles.collumn}>
             <div style={styles.space}>
               <Text style={styles.text}>
-                Este certificado confirma que {data?.user} é o proprietário da
-                árvore {data?.tree}.
+                Este certificado confirma que {data?.id_user?.name} é o
+                proprietário da árvore {data?.id_tree?.name}.
               </Text>
             </div>
 

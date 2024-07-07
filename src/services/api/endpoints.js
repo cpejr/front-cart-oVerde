@@ -1,6 +1,11 @@
 import useAuthStore from "../../Stores/auth";
 import api from "./api";
-//user
+
+/**************************
+ *                        *
+ *         User           *
+ *                        *
+ **************************/
 
 export async function getUsers() {
   const { data } = await api.get("/user");
@@ -26,39 +31,93 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 
-//CategoryTree endpoints
+/**************************
+ *                        *
+ *     Category Tree      *
+ *                        *
+ **************************/
 export const getCategoryTrees = async (filters = {}) => {
-  const { data } = await api.get("/categoryTrees", { params: filters });
+  const { data } = await api.get("/categoryTree", { params: filters });
   return data;
 };
 
 export const getCategoryTreesByName = async (name) => {
-  const { data } = await api.get("/categoryTrees/search-by-name", {
+  const { data } = await api.get("/categoryTree/search-by-name", {
     params: { name },
   });
   return data;
 };
 
-//trees
-export async function getTrees() {
-  const { data } = await api.get("/trees");
+/**************************
+ *                        *
+ *         Tree           *
+ *                        *
+ **************************/
+
+export async function getTree() {
+  const { data } = await api.get("/tree");
 
   return data;
 }
 
-export async function deleteTrees(_id) {
-  const { data } = await api.delete(`/trees/${_id}`);
+export async function deleteTree(_id) {
+  const { data } = await api.delete(`/tree/${_id}`);
   return data;
 }
 
-export async function updateTrees({ _id, newData }) {
-  const { data } = await api.put(`/trees/${_id}`, newData);
+export async function updateTree({ _id, newData }) {
+  const newPrice = parseFloat(newData?.price);
+  const newTree = { ...newData, price: newPrice };
+  const { data } = await api.put(`/tree/${_id}`, newTree);
+  return data;
+}
+
+export async function postTree(newTrees) {
+  const newprice = parseFloat(newTrees?.price);
+  const tree = { ...newTrees, price: newprice };
+  const { data } = await api.post(`/tree`, tree);
 
   return data;
 }
 
-export async function postTrees(newTrees) {
-  const { data } = await api.post(`/trees`, newTrees);
+/**************************
+ *                        *
+ *      Certificate       *
+ *                        *
+ **************************/
 
+export async function getAllCertificates() {
+  const { data } = await api.get("/certificate");
+  return data;
+}
+
+export async function createCertificate(newCertificate) {
+  const { data } = await api.post("/certificate", newCertificate);
+  return data;
+}
+
+export async function getCertificateByUser({ id, type }) {
+  const { data } = await api.get(`/certificate/${id}`, { params: { type } });
+  return data;
+}
+
+export async function deleteCertificate(_id) {
+  const { data } = await api.delete(`/certificate/${_id}`);
+  return data;
+}
+
+export async function updateCertificate({ _id, newCertificateData }) {
+  const { data } = await api.put(`/certificate/${_id}`, newCertificateData);
+  return data;
+}
+
+/**************************
+ *                        *
+ *         Archive        *
+ *                        *
+ **************************/
+
+export async function getArchives(archives) {
+  const { data } = await api.get(`/archive`, { params: { archive: archives } });
   return data;
 }

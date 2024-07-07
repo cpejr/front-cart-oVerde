@@ -1,83 +1,105 @@
 // Libs
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 // Components
 import {
   Container,
   Title,
   Filter,
-  Characteristics,
   DivSelect,
-  FilterTitle,
   UniSelect,
-  VerticalLine,
   DivLine,
   Line,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
-import { Checkbox } from "primereact/checkbox";
+import useAuthStore from "../../Stores/auth";
+import { useGetCertificateByUser } from "@hooks/querys/certificate";
 
 export default function MyTrees() {
-  const filters = [
-    { label: "Melhor avaliados", value: "melhorAvaliados" },
-    { label: "Favoritos", value: "favoritos" },
-  ];
+  // States and Variables
 
+  const userID = useAuthStore((state) => state?.auth?.user?._id);
+  const [order, setOrder] = useState("active");
+  const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
-
-  const handleSearchChange = (e) => {
+  function handleSearchChange(e) {
     setSearchValue(e.target.value);
-  };
+  }
 
-  // Link Simulation (It will be removed)
+  // Select Data
 
-  const cardData = [
-    { _id: 1, title: "Card 1", description: "Descrição do Card 1" },
-    { _id: 2, title: "Card 2", description: "Descrição do Card 2" },
+  const filters = [
+    { label: "Válidos", value: "active" },
+    { label: "Expirados", value: "expirated" },
   ];
-  const characteristicCheckboxes = [
-    { label: "Característica 1" },
-    { label: "Característica 2" },
-    { label: "Característica 3" },
-  ];
+
+  // Backend Calls
+
+  const { data: personalCertificates, isLoading: isCertificatesLoading } =
+    useGetCertificateByUser({
+      id: userID,
+      type: order,
+      onError: (err) => {
+        toast.error("Erro ao carregar itens", err);
+      },
+    });
+
+  async function formatAllCollection() {
+    let cardContent = personalCertificates;
+    for (let content of cardContent) {
+      content.buttonText = "Baixar Certificado";
+    }
+    setCertificateData(cardContent);
+  }
+
+  useEffect(() => {
+    if (!isCertificatesLoading && personalCertificates) {
+      formatAllCollection();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [personalCertificates, isCertificatesLoading]);
 
   return (
     <Container>
-      <Title>ACERVO</Title>
-      <SearchBar
-        placeholder="Pesquisar"
-        value={searchValue}
-        search={handleSearchChange}
-      />
+      <Title>MINHAS ÁRVORES</Title>
+
       <Filter>
-        <Characteristics>
-          <FilterTitle>Características:</FilterTitle>
-          {characteristicCheckboxes.map((checkbox, index) => (
-            <label key={index}>
-              <Checkbox />
-              {checkbox.label}
-            </label>
-          ))}
-        </Characteristics>
-        <VerticalLine />
         <DivSelect>
-          <UniSelect
-            options={filters}
-            optionLabel="label"
-            placeholder="Ordenar Por"
+          <SearchBar
+            placeholder="Pesquisar"
+            value={searchValue}
+            search={handleSearchChange}
           />
         </DivSelect>
+        <UniSelect
+          options={filters}
+          optionLabel="label"
+          placeholder="Ordenar Por"
+          value={order}
+          onChange={(e) => {
+            setOrder(e.value);
+            formatAllCollection();
+          }}
+        />
       </Filter>
-      <DivLine>
-        {cardData
-          .filter((card) =>
-            card.title.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((card, index) => (
-            <Line key={index}>
-              <LargeCard data={card} />
-            </Line>
-          ))}
-      </DivLine>
+      {isCertificatesLoading && certificateData ? (
+        <Title>Carregando</Title>
+      ) : (
+        <DivLine>
+          {certificateData
+            .filter((card) =>
+              card?.id_tree?.name
+                ?.toLowerCase()
+                ?.includes(searchValue?.toLowerCase())
+            )
+            .map((card, index) => (
+              <Line onClick={() => card} key={index}>
+                <LargeCard data={card} />
+              </Line>
+            ))}
+        </DivLine>
+      )}
     </Container>
   );
 }

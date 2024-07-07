@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, Select, ErrorMessage, InputKeep } from "./Styles";
+import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -25,9 +25,22 @@ export default function FormSubmit({
   });
 
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [newPrice, setPrice] = useState();
+
+  useEffect(() => {
+    const priceInput = inputs.find((input) => input.key === "price");
+    if (priceInput) {
+      setPrice(priceInput.value || 0);
+    }
+  }, [inputs]);
+
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
+
+  function handlePriceChange(e) {
+    setPrice(e.value);
+  }
 
   const [archivesArray, setArchivesArray] = useState([]);
   const [archiveError, setArchiveError] = useState(false);
@@ -38,10 +51,15 @@ export default function FormSubmit({
       setArchiveError(true);
       return;
     } else if (hasArchiveInput) {
-      onSubmit({ ...data, archives: archivesArray });
+      onSubmit({
+        ...data,
+        id_category: selectedOptions.id_categoryType,
+        price: newPrice,
+        archive: archivesArray,
+      });
       setArchivesArray([]);
     } else {
-      onSubmit(data);
+      onSubmit({ ...data, id_category: selectedOptions, price: newPrice });
     }
     reset();
   }
@@ -53,12 +71,13 @@ export default function FormSubmit({
           return (
             <Select
               key={input.key}
-              {...register(input.key, { required: input.required })}
-              error={errors[input.key] ? true : false}
               options={input.options}
+              selectColor={color}
               placeholder={input.placeholder}
               value={selectedOptions[input.key] || ""}
-              onChange={(e) => handleSelectChange(input.key, e.target.value)}
+              onChange={(e) => {
+                handleSelectChange(input.key, e.target.value);
+              }}
             ></Select>
           );
         } else if (input.type === "input") {
@@ -78,6 +97,18 @@ export default function FormSubmit({
                 <ErrorMessage>{errors[input.key]?.message}</ErrorMessage>
               )}
             </InputKeep>
+          );
+        } else if (input.type === "number") {
+          return (
+            <StyledNumber
+              key={input.key}
+              value={input.value}
+              minFractionDigits={2}
+              maxFractionDigits={2}
+              placeholder={input.placeholder}
+              error={errors[input.key] ? true : false}
+              onValueChange={handlePriceChange}
+            />
           );
         } else if (input.type === "archive") {
           return (

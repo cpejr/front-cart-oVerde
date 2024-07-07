@@ -12,13 +12,23 @@ export const Title = styled.div`
   color: ${colors.font.primary};
   font-size: 30px;
   margin-left: 5%;
-  width: fit-content;
+  width:fit-content;
   border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
+    width: 110px;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    font-size: 25px;
+    width: 100px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 24px;
+    width: 95px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 22px;
+    width: 90px;
   }
 `;
 
@@ -84,26 +94,4 @@ export const UniSelect = styled(Dropdown)`
     overflow: hidden;
   }
 
-`;
-
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
-  height: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  background: #fff;
-`;
-
-export const CertificateText = styled.div`
-  color: black;
-`;
-
-export const CertificateTitle = styled.h1`
-  color: black;
 `;

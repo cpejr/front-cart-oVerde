@@ -39,9 +39,6 @@ export default function ModalDeleteItem({
           fontSize="1.8rem"
           fontWeight="500"
           lineHeight="2.2rem"
-          hoverBackgroundColor={colors.modals.modalButton}
-          hoverColor={colors.font.primary}
-          borderColor={colors.modals.modalButton}
         >
           Excluir
         </Button>

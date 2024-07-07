@@ -9,7 +9,7 @@ import { LoginSocialArea } from "@components";
 import { HamburgerMenu } from "../../../index";
 
 export default function Header() {
-  const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
+  const user = useAuthStore((state) => state?.auth?.user);
   const navigate = useNavigate();
 
   const items = [
@@ -19,7 +19,7 @@ export default function Header() {
     },
     {
       label: "Árvores",
-      url: "/minhas-arvores",
+      url: "/comprar-arvores",
     },
     {
       label: "Sobre",
@@ -29,7 +29,7 @@ export default function Header() {
       label: "Apoiar",
       url: "/suporte",
     },
-    ...(isAdmin
+    ...(user?.type
       ? [
           {
             label: "Administrador",
@@ -43,6 +43,14 @@ export default function Header() {
                 url: "/gerenciar-arvores",
               },
             ],
+          },
+        ]
+      : []),
+    ...(user
+      ? [
+          {
+            label: "Minhas árvores",
+            url: "/minhas-arvores",
           },
         ]
       : []),

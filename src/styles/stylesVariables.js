@@ -3,28 +3,28 @@ export const colors = {
     primary: "#FFFFFF",
     secondary: "#33603F",
     hover: "#BAFA53",
-    menu: "#33603F",
+    menu: "#1C1C1C",
   },
   font: {
     primary: "#33603F",
     secondary: "#000",
     title: "#33603F",
-    line: "#FFD599",
+    line: "#33603F",
   },
   accent: {
-    primary: "#FFFFFF",
+    primary: "#BAFA53",
     hover: "#33603F",
   },
   modals: {
-    background: "#FFFFFF",
-    modalButton: "#33603F",
+    background: "#f5eff9",
+    modalButton: "#BAFA53",
   },
   error: {
-    primary: "pink",
+    primary: "red",
     secondary: "#9E0000",
   },
   warning: "#F19709",
-  placeholder: "#BAFA53",
+  placeholder: "#DFDFDF",
   underline: "#33603F",
 };
 

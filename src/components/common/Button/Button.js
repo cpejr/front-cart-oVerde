@@ -33,7 +33,7 @@ const Button = styled.button`
   cursor: pointer;
   /*características do texto*/
   font-family: ${(props) => props.fontFamily ?? fonts.Cabin};
-  font-size: ${((props) => props.fontSize, "1rem")};
+  font-size: ${((props) => props.fontSize, "2rem")};
   text-decoration: ${(props) => props.textDecoration ?? "none"};
   text-align: center;
   font-weight: ${(props) => props.fontWeight};

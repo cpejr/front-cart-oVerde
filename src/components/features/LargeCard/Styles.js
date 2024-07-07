@@ -1,34 +1,23 @@
 import styled from "styled-components";
 import { Card } from "antd";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
+import { Button } from "antd";
 
 export const StyledCard = styled(Card)`
   display: flex;
   flex-direction: column;
   width: 50%;
-  max-width: 60%;
-  margin-top: 3rem;
+  margin-top: 1rem;
   height: auto;
-  align-items: center;
   border-radius: 24px;
-  gap: 3.33rem;
+  border-color: ${colors.font.primary};
   background-color: white;
-  margin-bottom: 4rem;
-  &:hover {
-  }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    width: 80%;
-    max-width: 80%;
+  margin-bottom: 2rem;
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 90%;
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 70%;
-    max-width: 70%;
-  }
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 80%;
-    max-width: 80%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
   }
 `;
 
@@ -70,43 +59,40 @@ export const CardLine = styled.div`
   font-size: 20px;
   color: ${colors.font.secondary};
   @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 24px;
-  }
-`;
-
-export const LineSVG = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: end;
-  align-items: center;
-  > svg {
-    font-size: 30px;
-    @media (max-width: ${breakpoints.miniTablet}) {
-      font-size: 24px;
-    }
+    font-size: 16px;
   }
 `;
 
 export const Group = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 17.5px;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 15.75px;
+`;
+
+export const DivButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+`;
+
+export const StyledButton = styled(Button)`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-self: flex-end;
+  width: 250px;
+  font-size: 24px;
+  border: none;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
+    width: 180px;
   }
 `;
-
-export const FavoriteIcon = styled.div`
-  color: ${colors.font.secondary};
-  margin-left: 5px;
-  font-size: 2rem;
-  cursor: pointer;
-`;
-
-export const Button = styled.button`
-  margin-bottom: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  width: 100%;
-  cursor: pointer;
+export const CarouselStyles = styled.div`
+  .carousel .slide {
+    display: flex;
+    justify-content: center;
+  }
+  .carousel.carousel-slider .control-arrow {
+    background: ${colors.background.primary};
+  }
 `;
