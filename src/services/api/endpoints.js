@@ -31,6 +31,14 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 
+export async function refresh() {
+  const { setAuth } = useAuthStore.getState();
+  const { data } = await api.get('/user/refreshToken/');
+
+  setAuth(data.accessToken);
+  return data;
+}
+
 /**************************
  *                        *
  *     Category Tree      *
