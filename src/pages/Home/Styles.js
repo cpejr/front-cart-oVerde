@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../styles/stylesVariables';
 
 export const Container = styled.div`
   font-size: 1.2rem;
@@ -46,7 +47,7 @@ export const Title = styled.h1`
   padding-bottom: 10px;
   margin: 0;
   width: 100%;
-  /* text-align: ${(props) => (props.align === "right" ? "right" : "left")}; */
+  /* text-align: ${(props) => (props.align === 'right' ? 'right' : 'left')}; */
 `;
 
 export const Column = styled.div`
@@ -82,7 +83,7 @@ export const Image = styled.div`
   width: 40%;
   align-items: center;
   justify-content: center;
-    > img {
+  > img {
     width: 20rem;
     @media (max-width: ${breakpoints.mobile}) {
       display: none;
