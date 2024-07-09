@@ -1,7 +1,9 @@
-import styled from "styled-components";
-import { MultiSelect } from "primereact/multiselect";
-import { breakpoints, colors } from "../../../../styles/stylesVariables";
-import { Modal } from "antd";
+import { Modal } from 'antd';
+import { MultiSelect } from 'primereact/multiselect';
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../../../styles/stylesVariables';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

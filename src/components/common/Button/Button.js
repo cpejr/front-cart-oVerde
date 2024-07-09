@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { colors, fonts } from "../../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { colors, fonts } from '../../../styles/stylesVariables';
 
 const Button = styled.button`
   /*Posição */
@@ -14,10 +15,10 @@ const Button = styled.button`
   max-width: ${(props) => props.maxWidth};
   min-height: ${(props) => props.minHeight};
   max-height: ${(props) => props.maxHeight};
-  padding-top: ${(props) => props.paddingTop ?? "0.7rem"};
-  padding-left: ${(props) => props.paddingLeft ?? "3rem"};
-  padding-right: ${(props) => props.paddingRight ?? "3rem"};
-  padding-bottom: ${(props) => props.paddingBottom ?? "0.7rem"};
+  padding-top: ${(props) => props.paddingTop ?? '0.7rem'};
+  padding-left: ${(props) => props.paddingLeft ?? '3rem'};
+  padding-right: ${(props) => props.paddingRight ?? '3rem'};
+  padding-bottom: ${(props) => props.paddingBottom ?? '0.7rem'};
   height: ${(props) => props.height};
   gap: ${(props) => props.gap};
   width: ${(props) => props.width};
@@ -25,23 +26,23 @@ const Button = styled.button`
   color: ${(props) => props.color ?? colors.font.primary};
   background-color: ${(props) =>
     props.backgroundColor ?? colors.accent.primary};
-  border-width: ${(props) => props.borderWidth ?? "0.15rem"};
-  border-color: ${(props) => props.bordercolor ?? "transparent"};
+  border-width: ${(props) => props.borderWidth ?? '0.15rem'};
+  border-color: ${(props) => props.bordercolor ?? 'transparent'};
   border-style: solid;
-  border-radius: ${(props) => props.borderRadius ?? "10px"};
-  box-shadow: ${(props) => props.boxShadow ?? "none"};
+  border-radius: ${(props) => props.borderRadius ?? '10px'};
+  box-shadow: ${(props) => props.boxShadow ?? 'none'};
   cursor: pointer;
   /*características do texto*/
   font-family: ${(props) => props.fontFamily ?? fonts.Cabin};
-  font-size: ${((props) => props.fontSize, "1rem")};
-  text-decoration: ${(props) => props.textDecoration ?? "none"};
+  font-size: ${((props) => props.fontSize, '1rem')};
+  text-decoration: ${(props) => props.textDecoration ?? 'none'};
   text-align: center;
   font-weight: ${(props) => props.fontWeight};
   &:hover {
     background-color: ${(props) =>
       props.hoverBackgroundColor ?? colors.accent.hover};
     border-color: ${(props) => props.hoverBorderColor};
-    color: ${(props) => props.hoverColor ?? "white"};
+    color: ${(props) => props.hoverColor ?? 'white'};
   }
 `;
 

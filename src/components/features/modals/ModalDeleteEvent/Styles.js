@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { Modal } from "antd";
-import { colors } from "../../../../styles/stylesVariables";
+import { Modal } from 'antd';
+import styled from 'styled-components';
+
+import { colors } from '../../../../styles/stylesVariables';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

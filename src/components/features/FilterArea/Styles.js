@@ -1,8 +1,9 @@
-import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button } from "antd";
-import { MultiSelect } from "primereact/multiselect";
-import { Dropdown } from "primereact/dropdown";
+import { Button } from 'antd';
+import { Dropdown } from 'primereact/dropdown';
+import { MultiSelect } from 'primereact/multiselect';
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../../styles/stylesVariables';
 
 export const ContainerFilter = styled.div`
   display: flex;
@@ -59,7 +60,10 @@ export const Buttons = styled(Button)`
   margin-left: 10px;
   margin-right: 10px;
   background-color: ${colors.black};
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
     box-shadow 0.2s;
 
   @media (max-width: ${breakpoints.tablet}) {

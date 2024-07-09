@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -24,7 +24,7 @@ export const StyledInput = styled.input`
   background-position: 95%;
   outline: none;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${props?.color} solid`};
+    props?.error ? '0.1rem red solid' : `0.1rem ${props?.color} solid`};
   &::placeholder {
     color: ${(props) => props?.color};
   }

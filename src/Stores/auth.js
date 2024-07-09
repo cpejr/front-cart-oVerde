@@ -1,6 +1,6 @@
-import { jwtDecode } from "jwt-decode";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { jwtDecode } from 'jwt-decode';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 const useAuthStore = create(
   persist(
@@ -20,9 +20,9 @@ const useAuthStore = create(
       clearAuth: () => set({ auth: null }),
     }),
     {
-      name: "AuthData",
-    }
-  )
+      name: 'AuthData',
+    },
+  ),
 );
 
 export default useAuthStore;

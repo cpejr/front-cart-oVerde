@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { breakpoints, colors, fonts } from "../../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { breakpoints, colors, fonts } from '../../../styles/stylesVariables';
 
 export const SubmitSpace = styled.div`
   display: flex;

@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { Upload as AntdUpload } from "antd";
-import { colors } from "../../../styles/stylesVariables";
+import { Upload as AntdUpload } from 'antd';
+import styled from 'styled-components';
+
+import { colors } from '../../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ export const Upload = styled(AntdUpload)`
     display: none;
   }
 
-  cursor: ${(props) => (props.disabled ? "pointer" : "not-allowed")};
+  cursor: ${(props) => (props.disabled ? 'pointer' : 'not-allowed')};
   cursor: pointer !important;
 `;
 
@@ -34,7 +35,7 @@ export const RemoveArchive = styled.div`
   margin: 0 auto;
   gap: 0.5rem;
   font-size: 0.8rem;
-  display: ${(props) => props.hidden || "flex"};
+  display: ${(props) => props.hidden || 'flex'};
   align-items: center;
   color: ${(props) => props.color};
   cursor: pointer;
@@ -44,7 +45,7 @@ export const ErrorMessage = styled.p`
   font-size: 1.3rem;
   margin: 0px;
   color: ${(props) =>
-    props.color === "white" ? colors.error.primary : colors.error.secondary};
+    props.color === 'white' ? colors.error.primary : colors.error.secondary};
   font-weight: 400;
   text-align: center;
   margin-top: 10px;

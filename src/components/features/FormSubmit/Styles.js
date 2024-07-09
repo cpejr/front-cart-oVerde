@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { colors, breakpoints } from "../../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
+import { Dropdown } from 'primereact/dropdown';
+import styled from 'styled-components';
+
+import { colors, breakpoints } from '../../../styles/stylesVariables';
 
 export const Form = styled.form`
   margin: 30px 0;
@@ -33,7 +34,7 @@ export const Select = styled(Dropdown)`
   height: 4vh;
   text-align: center;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${colors.font.primary} solid`};
+    props?.error ? '0.1rem red solid' : `0.1rem ${colors.font.primary} solid`};
   ::placeholder {
     font-weight: 400;
   }

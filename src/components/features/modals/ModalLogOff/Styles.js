@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { Button } from "antd";
-import { colors } from "../../../../styles/stylesVariables";
+import { Button } from 'antd';
+import styled from 'styled-components';
+
+import { colors } from '../../../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;

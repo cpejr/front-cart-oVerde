@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;

@@ -1,5 +1,6 @@
-import axios from "axios";
-import useAuthStore from "../../Stores/auth";
+import axios from 'axios';
+
+import useAuthStore from '../../Stores/auth';
 
 const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 const api = axios.create({
@@ -17,7 +18,7 @@ api.interceptors.request.use(
     return req;
   },
 
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 export default api;

@@ -1,4 +1,3 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const newCollectionValidationSchema = z
-  .nonstrict();
+export const newCollectionValidationSchema = z.nonstrict();

@@ -1,17 +1,19 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+/* eslint-disable no-console */
+import { useQuery, useMutation } from '@tanstack/react-query';
+
 import {
   getUsers,
   deleteUser,
   updateUser,
   login,
-} from "../../services/api/endpoints";
+} from '../../services/api/endpoints';
 
 export function useGetUsers({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["users"],
+    queryKey: ['users'],
     queryFn: () => getUsers(),
     onSuccess,
     onError,

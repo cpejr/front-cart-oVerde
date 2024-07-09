@@ -1,7 +1,8 @@
-import { createGlobalStyle } from "styled-components";
-import { colors, breakpoints } from "../styles/stylesVariables";
+import { createGlobalStyle } from 'styled-components';
 
-export const PrimereactStyles = createGlobalStyle`
+import { colors, breakpoints } from './stylesVariables';
+
+const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
     background-color: ${colors.background.primary}; 
     color: ${colors.font.primary};
@@ -168,3 +169,4 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
 `;
+export default PrimereactStyles;

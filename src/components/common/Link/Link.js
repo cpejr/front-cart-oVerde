@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { colors, fonts, breakpoints } from "../../../styles/stylesVariables";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+import { colors, fonts, breakpoints } from '../../../styles/stylesVariables';
 
 const Link = styled(RouterLink)`
   /*Medidas*/
@@ -28,8 +29,8 @@ const Link = styled(RouterLink)`
   cursor: pointer;
   /*características do texto*/
   font-family: ${(props) => props.fontFamily ?? fonts.Cabin};
-  font-size: ${((props) => props.fontSize, "1rem")};
-  text-decoration: ${(props) => props.textDecoration ?? "none"};
+  font-size: ${((props) => props.fontSize, '1rem')};
+  text-decoration: ${(props) => props.textDecoration ?? 'none'};
   text-align: center;
   font-weight: ${(props) => props.fontWeight};
   &:hover {

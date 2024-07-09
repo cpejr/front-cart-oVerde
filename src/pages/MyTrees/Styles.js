@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
-import { Checkbox } from "primereact/checkbox";
+import { Checkbox } from 'primereact/checkbox';
+import { Dropdown } from 'primereact/dropdown';
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;

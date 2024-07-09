@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { colors } from "../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { colors } from '../../styles/stylesVariables';
 
 export const Container = styled.div`
   padding: 3rem 0;

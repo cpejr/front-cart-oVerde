@@ -1,17 +1,13 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
-import {
-  getTree,
-  deleteTree,
-  updateTree,
-  postTree,
-} from "../../services/api/endpoints";
+/* eslint-disable no-console */
+import { getTree, deleteTree, updateTree, postTree } from '@endpoints';
+import { useQuery, useMutation } from '@tanstack/react-query';
 
 export function useGetTree({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["tree"],
+    queryKey: ['tree'],
     queryFn: () => getTree(),
     onSuccess,
     onError,

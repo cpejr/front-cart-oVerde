@@ -1,12 +1,12 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-
+/* eslint-disable no-console */
 import {
   getEvents,
   createEvents,
   getEventsByCategoryId,
   deleteEvents,
   updateEvents,
-} from "../../services/api/endpoints";
+} from '@endpoints';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 export function useGetEvents({
   filters,
@@ -14,7 +14,7 @@ export function useGetEvents({
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", filters],
+    queryKey: ['events', filters],
     queryFn: () => getEvents(filters),
     onSuccess,
     onError,
@@ -49,7 +49,7 @@ export function useGetEventsByCategoryId({
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
-    queryKey: ["events", { id, name, type }],
+    queryKey: ['events', { id, name, type }],
     queryFn: () => getEventsByCategoryId({ id, name, type }),
     onSuccess,
     onError,

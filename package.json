@@ -9,7 +9,8 @@
     "prod": "env-cmd -f .env.production vite",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.1",

@@ -1,9 +1,9 @@
-import useAuthStore from "../../Stores/auth";
-import api from "./api";
-//user
+import api from './api';
+import useAuthStore from '../../Stores/auth';
+// user
 
 export async function getUsers() {
-  const { data } = await api.get("/user");
+  const { data } = await api.get('/user');
   return data;
 }
 
@@ -14,7 +14,7 @@ export async function deleteUser(_id) {
 }
 export const login = async (credentials) => {
   const { setAuth, setUser } = useAuthStore.getState();
-  const { data } = await api.post("/user", credentials);
+  const { data } = await api.post('/user', credentials);
   setAuth(data.token);
   setUser(data.user);
   return data;
@@ -26,22 +26,22 @@ export async function updateUser({ _id, newUserData }) {
   return data;
 }
 
-//CategoryTree endpoints
+// CategoryTree endpoints
 export const getCategoryTrees = async (filters = {}) => {
-  const { data } = await api.get("/categoryTrees", { params: filters });
+  const { data } = await api.get('/categoryTrees', { params: filters });
   return data;
 };
 
 export const getCategoryTreesByName = async (name) => {
-  const { data } = await api.get("/categoryTrees/search-by-name", {
+  const { data } = await api.get('/categoryTrees/search-by-name', {
     params: { name },
   });
   return data;
 };
 
-//trees
+// trees
 export async function getTrees() {
-  const { data } = await api.get("/trees");
+  const { data } = await api.get('/trees');
 
   return data;
 }

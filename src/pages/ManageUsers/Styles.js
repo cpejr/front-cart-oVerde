@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { breakpoints, colors } from "../../styles/stylesVariables";
-import { Select } from "antd";
+import { Select } from 'antd';
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;
@@ -59,7 +60,7 @@ export const TypeSelect = styled(Select)`
 `;
 
 export const LoadingStyles = styled.div`
-  display: "block";
+  display: 'block';
   font-size: 24px;
   margin: 20px auto;
 `;

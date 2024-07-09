@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { breakpoints } from "../../../../styles/stylesVariables";
+import styled from 'styled-components';
+
+import { breakpoints } from '../../../../styles/stylesVariables';
 
 export const VideoDivLarger = styled.div`
   display: flex;

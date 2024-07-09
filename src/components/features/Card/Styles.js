@@ -1,6 +1,7 @@
-import { Card, Button } from "antd";
-import styled from "styled-components";
-import { breakpoints, colors } from "../../../styles/stylesVariables";
+import { Card, Button } from 'antd';
+import styled from 'styled-components';
+
+import { breakpoints, colors } from '../../../styles/stylesVariables';
 
 export const StyledCard = styled(Card)`
   display: flex;

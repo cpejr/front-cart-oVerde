@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import { Input } from "antd";
-import { colors } from "../../../styles/stylesVariables";
-const { TextArea } = Input;
+import styled from 'styled-components';
+
+import { colors } from '../../../styles/stylesVariables';
 
 export const Container = styled.div`
   display: flex;
@@ -33,7 +32,7 @@ export const StyledTextArea = styled.textarea`
   color: white;
   background-color: ${colors.background.primary};
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem white solid`};
+    props?.error ? '0.1rem red solid' : `0.1rem white solid`};
   ::placeholder {
     font-weight: 400;
   }
