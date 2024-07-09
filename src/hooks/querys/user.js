@@ -4,8 +4,9 @@ import {
   deleteUser,
   updateUser,
   login,
+  refresh,
 } from "../../services/api/endpoints";
-
+import useAuthStore from "../../Stores/auth";
 export function useGetUsers({
   onSuccess = () => {},
   onError = (err) => console.error(err),
@@ -46,5 +47,21 @@ export function useLogin({
     mutationFn: login,
     onError,
     onSuccess,
+  });
+}
+
+export function useRefreshToken({ onSuccess = () => {} } = {}) {
+  const expireIn = useAuthStore((state) => state.auth?.expireIn);
+  
+  const onError = (err) => {
+    console.error(err);
+  };
+
+  return useQuery({
+    queryKey: ['refresh'],
+    queryFn: refresh,
+    onError,
+    onSuccess,
+    refetchInterval: expireIn * 1000, // Milliseconds
   });
 }
