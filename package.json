@@ -10,7 +10,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky install",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prettier": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.1",
