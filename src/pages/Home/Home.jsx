@@ -5,8 +5,14 @@ import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
 import { Square } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
 
-export default function Home() {
+export default function Home() { 
+
+
+
   const navigate = useNavigate();
+
+
+  
   return (
     <Container>
       <Overlay>
