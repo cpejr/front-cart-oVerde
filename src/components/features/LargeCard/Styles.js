@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Card } from "antd";
-import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button } from "antd";
+import styled from 'styled-components';
+import { Card } from 'antd';
+import { breakpoints, colors } from '../../../styles/stylesVariables';
+import { Button } from 'antd';
 
 export const StyledCard = styled(Card)`
   display: flex;
@@ -85,6 +85,10 @@ export const StyledButton = styled(Button)`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 18px;
     width: 180px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 4vw;
+    width: 100%;
   }
 `;
 export const CarouselStyles = styled.div`

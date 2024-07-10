@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { MenuOutlined } from "@ant-design/icons";
-import { Hamburguer } from "../Header/Styles";
-import useAuthStore from "../../../../Stores/auth";
+import { useNavigate } from 'react-router-dom';
+import { MenuOutlined } from '@ant-design/icons';
+import { Hamburguer } from '../Header/Styles';
+import useAuthStore from '../../../../Stores/auth';
 
 export default function HamburguerMenu() {
   const isAdmin = useAuthStore((state) => state?.auth?.user?.type);
@@ -20,29 +20,26 @@ export default function HamburguerMenu() {
 
   const menuItems = [
     getItem(
-      "",
-      "hamburger",
-      <MenuOutlined style={{ color: "#BAFA53", fontSize: "25px" }} />,
+      '',
+      'hamburger',
+      <MenuOutlined style={{ color: '#BAFA53', fontSize: '25px' }} />,
       [
-        getItem(" Nossa História", "/historia"),
-        getItem("Árvores", "/comprar-arvores"),
-        getItem("Quem somos", "/sobre"),
-        getItem("Apoiar e contribuir", "/suporte"),
+        getItem('Home', '/'),
+        getItem('Árvores', '/comprar-arvores'),
+        getItem('Quem somos', '/sobre'),
         ...(isAdmin
           ? [
-              getItem("Usuários", "/gerenciar-usuarios"),
-              getItem("Arquivos", "/gerenciar-arvores"),
+              getItem('Usuários', '/gerenciar-usuarios'),
+              getItem('Arquivos', '/gerenciar-arvores'),
             ]
           : []),
-          ...(isLogged
-            ? [getItem("Minhas Árvores", "/minhas-arvores")]
-            : []),
-      ]
+        ...(isLogged ? [getItem('Minhas Árvores', '/minhas-arvores')] : []),
+      ],
     ),
   ];
 
   function onClick(key) {
-    if (key && key !== "login" && key !== "/story") {
+    if (key && key !== 'login') {
       navigate(key);
     }
   }

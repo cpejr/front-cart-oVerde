@@ -1,12 +1,12 @@
 // Libs
-import { useNavigate } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 // Components
-import { Container, City, PrimeHeader } from "./Styles";
-import { LogoCidade } from "@assets/index";
-import useAuthStore from "@Stores/auth";
-import { LoginSocialArea } from "@components";
-import { HamburgerMenu } from "../../../index";
+import { Container, City, PrimeHeader } from './Styles';
+import { LogoCidade } from '@assets/index';
+import useAuthStore from '@Stores/auth';
+import { LoginSocialArea } from '@components';
+import { HamburgerMenu } from '../../../index';
 
 export default function Header() {
   const user = useAuthStore((state) => state?.auth?.user);
@@ -14,33 +14,29 @@ export default function Header() {
 
   const items = [
     {
-      label: "História",
-      url: "/historia",
+      label: 'Home',
+      url: '/',
     },
     {
-      label: "Árvores",
-      url: "/comprar-arvores",
+      label: 'Árvores',
+      url: '/comprar-arvores',
     },
     {
-      label: "Sobre",
-      url: "/sobre",
-    },
-    {
-      label: "Apoiar",
-      url: "/suporte",
+      label: 'Sobre',
+      url: '/sobre',
     },
     ...(user?.type
       ? [
           {
-            label: "Administrador",
+            label: 'Administrador',
             items: [
               {
-                label: "Gerenciar usuários",
-                url: "/gerenciar-usuarios",
+                label: 'Gerenciar usuários',
+                url: '/gerenciar-usuarios',
               },
               {
-                label: "Gerenciar árvores",
-                url: "/gerenciar-arvores",
+                label: 'Gerenciar árvores',
+                url: '/gerenciar-arvores',
               },
             ],
           },
@@ -49,8 +45,8 @@ export default function Header() {
     ...(user
       ? [
           {
-            label: "Minhas árvores",
-            url: "/minhas-arvores",
+            label: 'Minhas árvores',
+            url: '/minhas-arvores',
           },
         ]
       : []),
@@ -58,7 +54,7 @@ export default function Header() {
 
   return (
     <Container>
-      <City src={LogoCidade} onClick={() => navigate("/")}></City>
+      <City src={LogoCidade} onClick={() => navigate('/')}></City>
       <PrimeHeader model={items} />
       <HamburgerMenu />
       <LoginSocialArea />
