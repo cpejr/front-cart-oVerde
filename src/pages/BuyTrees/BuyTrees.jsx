@@ -17,8 +17,10 @@ import { useGetTree } from "@hooks/querys/tree";
 export default function BuyTrees() {
   // Select Data
   const filters = [
-    { label: "Mais Recentes", value: "data" },
-    { label: "Preço", value: "price" },
+    { label: "Mais Recentes", value: "recent" },
+    { label: "Mais Antigas", value: "older" },
+    { label: "Mais baratas", value: "lowPrice" },
+    { label: "Mais caras", value: "higherPrice" },
   ];
 
   const [searchValue, setSearchValue] = useState("");
@@ -36,25 +38,38 @@ export default function BuyTrees() {
   });
   const [collections, setCollections] = useState([]);
 
-  async function formatAllCollection() {
+  function formatAllCollection() {
     let cardContent = collection;
-    cardContent.sort(orderBy);
+
+    if (order == "recent") {
+      cardContent = cardContent.reverse();
+      console.log("Aqui no recent");
+    } else if (order == "older") {
+      cardContent;
+      console.log("Aqui no older");
+    } else {
+      cardContent.sort(orderBy);
+      console.log("Aqui no .sort");
+    }
+
     for (let content of cardContent) {
       content.buttonText = "Comprar Certificado";
       content.link = "EDITE EM MyTrees.jsx " + content._id;
     }
     setCollections(cardContent);
+    console.log("Aqui no setCollections");
   }
 
-  async function orderBy(a, b) {
-    if (order == "price") {
-      if (a.price >= b.price) {
-        return -1;
-      } else {
-        return 1;
-      }
+  function orderBy(a, b) {
+    if (order == "lowPrice") {
+      return b.price - a.price;
+    } else if (order == "higherPrice") {
+      return a.price - b.price;
     }
+    console.log(a.price);
   }
+  console.log("Aqui no orderby");
+  console.log(order);
 
   async function buyTree(treeId) {
     // Buy Function needs to be implemented
@@ -67,7 +82,7 @@ export default function BuyTrees() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading]);
+  }, [collection, isLoading, order]);
 
   return (
     <Container>
@@ -84,7 +99,7 @@ export default function BuyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Ordenar Por"
+          placeholder="Filtrar por"
           onChange={(e) => {
             setOrder(e.value);
             formatAllCollection();
@@ -99,7 +114,7 @@ export default function BuyTrees() {
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-            .sort(orderBy)
+
             .map((card, index) => (
               <Line key={index}>
                 <LargeCard data={card} onBuy={() => buyTree(card._id)} />
