@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { breakpoints, colors,fonts } from "../../styles/stylesVariables";
-import { MultiSelect } from "primereact/multiselect";
+import styled from 'styled-components';
+import { breakpoints, colors, fonts } from '../../styles/stylesVariables';
+import { MultiSelect } from 'primereact/multiselect';
 
 export const Container = styled.div`
   display: flex;
@@ -19,7 +19,11 @@ export const Title = styled.div`
     font-size: 34px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 28px;
+    font-size: 24px;
+    margin-left: 8%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 5vw;
     margin-left: 8%;
   }
 `;
@@ -28,7 +32,7 @@ export const SubTitle = styled.h2`
   font-size: 36px;
   font-family: ${fonts.Cabin};
   color: ${colors.font.title};
-  margin-left:5%;
+  margin-left: 5%;
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
   text-underline-offset: 0.5rem;
@@ -43,7 +47,7 @@ export const SubTitle = styled.h2`
   }
 `;
 export const LoadingStyles = styled.div`
-  display: "block";
+  display: 'block';
   font-size: 24px;
   margin: 20px auto;
 `;
