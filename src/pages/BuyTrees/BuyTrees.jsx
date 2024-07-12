@@ -51,7 +51,7 @@ export default function BuyTrees() {
     }
   }, [order]);
 
-  function formatAllCollection() {
+  async function formatAllCollection() {
     let cardContent = collection;
     console.log("COLLECTION");
 
@@ -60,7 +60,7 @@ export default function BuyTrees() {
       console.log("Aqui no recent");
     } else if (order == "older") {
       cardContent;
-      console.log("Aqui no older");
+      console.log(cardContent);
     } else {
       cardContent.sort(orderBy);
       console.log("Aqui no .sort");
