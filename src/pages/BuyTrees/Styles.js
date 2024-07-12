@@ -1,18 +1,30 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem 0;
 `;
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+export const LoadingSpinner = styled(AiOutlineLoading3Quarters)`
+  animation: ${spin} 1s linear infinite;
+  font-size: 25px;
+  color: #333;
+  margin-left: 10px;
+`;
 
 export const Title = styled.div`
   color: ${colors.font.primary};
   font-size: 30px;
   margin-left: 5%;
-  width:fit-content;
+  width: fit-content;
   border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
@@ -57,7 +69,7 @@ export const Filter = styled.div`
   align-items: center;
   justify-content: space-around;
   @media (max-width: ${breakpoints.tablet}) {
-    justify-content:space-evenly
+    justify-content: space-evenly;
   }
 `;
 
@@ -65,7 +77,6 @@ export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
 `;
-
 
 export const DivSelect = styled.div`
   display: flex;
@@ -93,5 +104,4 @@ export const UniSelect = styled(Dropdown)`
     white-space: nowrap;
     overflow: hidden;
   }
-
 `;
