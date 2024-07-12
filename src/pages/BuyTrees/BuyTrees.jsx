@@ -10,6 +10,7 @@ import {
   UniSelect,
   DivLine,
   Line,
+  LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
@@ -25,6 +26,7 @@ export default function BuyTrees() {
 
   const [searchValue, setSearchValue] = useState("");
   const [order, setOrder] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -39,6 +41,7 @@ export default function BuyTrees() {
   const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
+    setLoading(true);
     let cardContent = [...collection];
     console.log(cardContent);
     let cardContent2 = collection;
@@ -58,6 +61,7 @@ export default function BuyTrees() {
     }));
 
     setCollections(cardContent);
+    setLoading(false);
   }
 
   function orderBy(a, b) {
@@ -74,6 +78,7 @@ export default function BuyTrees() {
   }
 
   useEffect(() => {
+    console.log("Loading State:", loading);
     if (!isLoading && collection) {
       formatAllCollection();
     }
@@ -99,7 +104,8 @@ export default function BuyTrees() {
           onChange={(e) => {
             setOrder(e.value);
           }}
-        />
+        />{" "}
+        {loading && <LoadingSpinner />}
       </Filter>
       {isLoading && collections ? (
         <Title>Carregando</Title>
