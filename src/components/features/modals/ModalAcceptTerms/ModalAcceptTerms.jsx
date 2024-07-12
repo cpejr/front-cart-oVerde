@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CheckboxLabel,
   Container,
@@ -8,7 +7,6 @@ import {
   StyledCheckBox,
 } from "./Style";
 import Square from "../../../../assets/Home/Square.svg";
-import { Checkbox } from "antd";
 
 export default function ModalAcceptTerms() {
   return (

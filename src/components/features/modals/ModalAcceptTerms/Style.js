@@ -20,7 +20,7 @@ export const Container = styled.div`
       font-size: 1rem;
     }
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 `;
