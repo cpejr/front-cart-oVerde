@@ -24,7 +24,7 @@ export default function BuyTrees() {
   ];
 
   const [searchValue, setSearchValue] = useState("");
-  const [order, setOrder] = useState("data");
+  const [order, setOrder] = useState("");
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -37,53 +37,36 @@ export default function BuyTrees() {
     },
   });
   const [collections, setCollections] = useState([]);
-  console.log("COLLECTIONSSS");
-
-  useEffect(() => {
-    if (!isLoading && collection) {
-      formatAllCollection();
-    }
-  }, [collection, isLoading]);
-
-  useEffect(() => {
-    if (collection) {
-      formatAllCollection();
-    }
-  }, [order]);
 
   async function formatAllCollection() {
-    let cardContent = collection;
-    console.log("COLLECTION");
-
-    if (order == "recent") {
+    let cardContent = [...collection];
+    console.log(cardContent);
+    let cardContent2 = collection;
+    console.log(cardContent2);
+    if (order === "recent") {
       cardContent = cardContent.reverse();
-      console.log("Aqui no recent");
-    } else if (order == "older") {
+    } else if (order === "older") {
       cardContent;
-      console.log(cardContent);
     } else {
       cardContent.sort(orderBy);
-      console.log("Aqui no .sort");
     }
 
-    for (let content of cardContent) {
-      content.buttonText = "Comprar Certificado";
-      content.link = "EDITE EM MyTrees.jsx " + content._id;
-    }
+    cardContent = cardContent.map((content) => ({
+      ...content,
+      buttonText: "Comprar Certificado",
+      link: "EDITE EM MyTrees.jsx " + content._id,
+    }));
+
     setCollections(cardContent);
-    console.log("Aqui no setCollections");
   }
 
   function orderBy(a, b) {
-    if (order == "lowPrice") {
-      return b.price - a.price;
-    } else if (order == "higherPrice") {
+    if (order === "lowPrice") {
       return a.price - b.price;
+    } else if (order === "higherPrice") {
+      return b.price - a.price;
     }
-    console.log(a.price);
   }
-  console.log("Aqui no orderby");
-  console.log(order);
 
   async function buyTree(treeId) {
     // Buy Function needs to be implemented
@@ -94,7 +77,6 @@ export default function BuyTrees() {
     if (!isLoading && collection) {
       formatAllCollection();
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading, order]);
 
@@ -116,7 +98,6 @@ export default function BuyTrees() {
           placeholder="Filtrar por"
           onChange={(e) => {
             setOrder(e.value);
-            formatAllCollection();
           }}
         />
       </Filter>
