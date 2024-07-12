@@ -13,5 +13,7 @@ export { default as Whatsapp } from "./Header/whatsapp.svg";
 export { default as Twitter } from "./Header/Twitter.svg";
 export { default as Login } from "./Header/Login.svg";
 export { default as MenuLogo } from "./Header/Menu.svg";
+export {default as Delete} from "./CartPage/Delete.png";
+export {default as Tree} from "./CartPage/Tree.png";
 
 export { default as WhatsAppIcon } from "./Support/WhatsAppIcon.png";

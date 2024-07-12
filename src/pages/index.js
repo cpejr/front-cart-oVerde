@@ -7,3 +7,4 @@ export { default as MyTrees } from "./MyTrees/MyTrees";
 export { default as BuyTrees } from "./BuyTrees/BuyTrees";
 export { default as Story } from "./Story/Story";
 export { default as AboutUs } from "./AboutUs/AboutUs";
+export { default as CartPage } from "./CartPage/CartPage";
