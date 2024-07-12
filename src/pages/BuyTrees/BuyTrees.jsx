@@ -37,9 +37,23 @@ export default function BuyTrees() {
     },
   });
   const [collections, setCollections] = useState([]);
+  console.log("COLLECTIONSSS");
+
+  useEffect(() => {
+    if (!isLoading && collection) {
+      formatAllCollection();
+    }
+  }, [collection, isLoading]);
+
+  useEffect(() => {
+    if (collection) {
+      formatAllCollection();
+    }
+  }, [order]);
 
   function formatAllCollection() {
     let cardContent = collection;
+    console.log("COLLECTION");
 
     if (order == "recent") {
       cardContent = cardContent.reverse();
