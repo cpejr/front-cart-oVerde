@@ -20,7 +20,8 @@ export const Container = styled.div`
       font-size: 1rem;
     }
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
   }
 `;
@@ -73,6 +74,7 @@ export const CheckboxLabel = styled.label`
   }
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 0.8rem;
+    font-weight: bold;
     gap: 5px;
   }
 `;
