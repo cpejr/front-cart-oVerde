@@ -4,11 +4,11 @@ import { Button } from "antd";
 
 export const Box = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 360px;
+  flex-direction: row;
+  max-width: 460px;
   margin-top: 1rem;
   height: auto;
-  border-radius: 24px;
+  border-radius: 15px;
   border: 1px solid ${colors.font.primary};
   background-color: white;
   margin-bottom: 2rem;
@@ -36,18 +36,31 @@ export const DivButton = styled.div`
   justify-content: center;
 `;
 
+export const PriceLabel = styled.h1`
+  margin-left: 10px;
+  font-size: 1.4em;
+`
+
 export const StyledButton = styled.button`
   justify-self: center;
   width: 180px;
   padding: 5px 0;
   font-size: 17px;
-  border: none;
+  border-color: transparent;
+  border-radius: 12px;
   text-align: center;
   background-color: ${colors.accent.primary};
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-left: 40px;
+  margin-right: 10px;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 18px;
     width: 180px;
+  }
+  &:hover{
+    background-color: forestgreen;
+    transition: 1s;
+    transform: scale(1.2);
   }
 `;
 

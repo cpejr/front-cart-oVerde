@@ -1,10 +1,10 @@
-import {Box, StyledButton } from './Styles';
+import {Box, StyledButton, PriceLabel } from './Styles';
 
 export default function CartBuyBox({value}) {
 
     return (
         <Box>
-            <h1>TOTAL: R$ {value}</h1>
+            <PriceLabel>TOTAL: R$ {value}</PriceLabel>
             <StyledButton>FECHAR COMPRA</StyledButton>
         </Box>
     );

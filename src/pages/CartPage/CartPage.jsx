@@ -12,42 +12,67 @@ import { useGetTree } from "@hooks/querys/tree";
 
 export default function CartPage() {
 
-  /* Backend Calls
-  const { data: collection, isLoading } = useGetTree({
-    onSuccess: () => {},
-    onError: (err) => {
-      toast.error("Erro ao carregar itens", err);
+  const data = [
+    {
+      name: "Test Tree 1",
+      location: "Test Location 1",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
+      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
+      price: 99.99,
+      specie: "Test Specie 1",
+      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
     },
-  });
-  const [collections, setCollections] = useState([]);
-
-  async function formatAllCollection() {
-    let cardContent = collection;
-    for (let content of cardContent) {
-      content.buttonText = "R$ 99,99";
-      content.link = "EDITE EM MyTrees.jsx " + content._id;
+    {
+      name: "Test Tree 2",
+      location: "Test Location 2",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
+      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
+      price: 109.99,
+      specie: "Test Specie 2",
+      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
+    },
+    {
+      name: "Test Tree 3",
+      location: "Test Location 3",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
+      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
+      price: 119.99,
+      specie: "Test Specie 3",
+      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
+    },
+    {
+      name: "Test Tree 4",
+      location: "Test Location 4",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
+      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
+      price: 129.99,
+      specie: "Test Specie 4",
+      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
+    },
+    {
+      name: "Test Tree 5",
+      location: "Test Location 5",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
+      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
+      price: 139.99,
+      specie: "Test Specie 5",
+      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
     }
-    setCollections(cardContent);
-  }
+  ];
 
-  useEffect(() => {
-    if (!isLoading && collection) {
-      formatAllCollection();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading]); */
-
+  const calculateTotalPrice = (data) => {
+    return data.reduce((total, tree) => total + tree.price, 0);
+  };
+  
   return (
     <Container>
       <Title>CARRINHO DE COMPRAS</Title>
-      <CartBuyBox value={"99,99"}/>
+      <CartBuyBox value={calculateTotalPrice(data)}/>
 
       <CardsContainer>
-        <CartCard/>
-        <CartCard/>
-        <CartCard/>
-        <CartCard/>
+      {data.map((tree, index) => (
+        <CartCard data={tree}/>
+      ))}
       </CardsContainer>
 
     </Container>

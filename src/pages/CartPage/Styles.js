@@ -26,7 +26,14 @@ export const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px
-`
+  gap: 10px;
+  height: 300px;
+  border-radius: 12px; 
+  overflow-y: auto;  
+  border: 1px solid black;  
+  width: 84vw;
+  align-self: center;
+`;
+
 
 

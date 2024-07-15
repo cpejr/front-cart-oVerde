@@ -28,6 +28,18 @@ export const DeleteIcon = styled.img`
   right: 0;
   width: 8%;
   margin: 8px;
+  transition: filter 0.3s;
+  cursor: pointer;
+  @keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+  }
+  &:hover{
+    animation: shake 0.5s ease-in-out infinite;
+  }
 `
 
 export const Name = styled.h3`
