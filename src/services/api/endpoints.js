@@ -32,9 +32,10 @@ export async function updateUser({ _id, newUserData }) {
 }
 
 export async function refresh() {
+  console.log("ola");
   const { setAuth } = useAuthStore.getState();
-  const { data } = await api.get('/refresh');
-
+  const { data } = await api.get("/refresh");
+  console.log(data.accessToken);
   setAuth(data.accessToken);
   return data;
 }

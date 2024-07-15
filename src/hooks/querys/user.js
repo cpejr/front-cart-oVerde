@@ -52,13 +52,14 @@ export function useLogin({
 
 export function useRefreshToken({ onSuccess = () => {} } = {}) {
   const expireIn = useAuthStore((state) => state.auth?.expireIn);
-  
+  const clearAuth = useAuthStore((state) => state.clearAuth);
   const onError = (err) => {
     console.error(err);
+    clearAuth();
   };
 
   return useQuery({
-    queryKey: ['refresh'],
+    queryKey: ["refresh"],
     queryFn: refresh,
     onError,
     onSuccess,
