@@ -41,15 +41,15 @@ const router = createBrowserRouter(
         <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
+        <Route path="suporte" element={<Support />} />
         <Route element={<PrivateAdminRoutes />}>
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
-        <Route element={<LoggegRoutes/>}>
-          <Route path="minhas-arvores" element={<MyTrees/>}/>
+        <Route element={<LoggegRoutes />}>
+          <Route path="minhas-arvores" element={<MyTrees />} />
         </Route>
       </Route>
-      <Route path="suporte" element={<Support />} />
     </Route>
   )
 );

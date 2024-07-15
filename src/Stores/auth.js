@@ -5,9 +5,9 @@ const useAuthStore = create(
   (set, get) => ({
     auth: null,
     setAuth: (accessToken) => {
-      console.log(accessToken);
-      const { user } = jwtDecode(accessToken);
-      set({ auth: { accessToken, user } });
+      const { user, exp } = jwtDecode(accessToken);
+      console.log(jwtDecode(accessToken));
+      set({ auth: { accessToken, user, expireIn: exp } });
     },
     getToken: () => {
       return get().auth?.accessToken;
