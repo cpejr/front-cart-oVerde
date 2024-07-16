@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { colors, breakpoints } from "../styles/stylesVariables";
+import { createGlobalStyle } from 'styled-components';
+import { colors, breakpoints } from '../styles/stylesVariables';
 
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {
@@ -167,4 +167,34 @@ export const PrimereactStyles = createGlobalStyle`
     cursor: pointer;
   }
 
+  .p-multiselect-label-container{
+    display: flex;
+    align-items: center;  
+  }
+  
+  .p-datatable-thead>tr>th{
+    padding: 0px;
+  }
+
+  .p-paginator-first p-paginator-element p-link p-disabled{
+    @media (max-width: 308px) {
+      width: 20px;
+    }
+  }
+
+  .p-dropdown{
+    transition: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .p-paginator-bottom .p-paginator-pages,
+  .p-paginator-bottom .p-paginator-prev .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-next .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-first .p-paginator-icon,
+  .p-paginator-bottom .p-paginator-last .p-paginator-icon {
+    @media (max-width: 327px) {
+      width: 20px;
+    }
+  }
 `;

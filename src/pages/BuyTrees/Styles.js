@@ -96,4 +96,13 @@ export const UniSelect = styled(Dropdown)`
     white-space: nowrap;
     overflow: hidden;
   }
+  &:hover {
+    border-color: ${colors.accent.primary};
+    outline: none;
+    box-shadow: none;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
 `;

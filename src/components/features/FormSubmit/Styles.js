@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { MultiSelect } from "primereact/multiselect";
-import { InputNumber } from "primereact/inputnumber";
-import { colors, breakpoints } from "../../../styles/stylesVariables";
+import styled from 'styled-components';
+import { MultiSelect } from 'primereact/multiselect';
+import { InputNumber } from 'primereact/inputnumber';
+import { colors, breakpoints } from '../../../styles/stylesVariables';
 
 export const Form = styled.form`
   margin: 30px 0;
@@ -34,7 +34,7 @@ export const Select = styled(MultiSelect)`
   height: 6.5vh;
   text-align: left;
   border: ${(props) =>
-    props?.error ? "0.1rem red solid" : `0.1rem ${props?.selectColor} solid`};
+    props?.error ? '0.1rem red solid' : `0.1rem ${props?.selectColor} solid`};
 
   .p-multiselect-label {
     width: 215px;
@@ -60,6 +60,12 @@ export const StyledNumber = styled(InputNumber)`
     text-align: left;
     &:hover {
       border-color: ${colors.accent.primary};
+      outline: none;
+      box-shadow: none;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: none;
     }
     @media (max-width: ${breakpoints.mobile}) {
       width: 80%;
