@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Menu, Modal } from "antd";
-import { breakpoints, colors, fonts } from "../../../../styles/stylesVariables";
-import { Menubar } from "primereact/menubar";
+import styled from 'styled-components';
+import { Menu, Modal } from 'antd';
+import { breakpoints, colors, fonts } from '../../../../styles/stylesVariables';
+import { Menubar } from 'primereact/menubar';
 
 export const Container = styled.div`
   height: 7rem;
@@ -35,12 +35,23 @@ export const Column = styled.div`
 `;
 
 export const SocialMedias = styled.div`
+  margin-left: 5px;
+  padding-left: 15px;
+  border-left: 2px solid white;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
   justify-content: center;
   @media (max-width: ${breakpoints.smallTablet}) {
     display: none;
   }
+`;
+
+export const SocialImg = styled.a`
+  display: flex;
+  justify-content: center; /* Alinha horizontalmente ao centro */
+  align-items: center;
 `;
 
 export const Hamburguer = styled(Menu)`
@@ -62,11 +73,21 @@ export const Hamburguer = styled(Menu)`
 `;
 
 export const LoadingStyles = styled.div`
-  display: "block";
+  display: 'block';
   font-size: 24px;
 `;
 
 export const LoginSocial = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  @media (max-width: ${breakpoints.tablet}) {
+    min-width: 0;
+  }
+`;
+
+export const ConteinerLogin = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

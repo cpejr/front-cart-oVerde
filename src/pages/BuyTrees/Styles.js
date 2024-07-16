@@ -59,6 +59,10 @@ export const Filter = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     justify-content: space-evenly;
   }
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
 `;
 
 export const VerticalLine = styled.div`

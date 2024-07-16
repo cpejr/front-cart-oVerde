@@ -100,3 +100,15 @@ export const CarouselStyles = styled.div`
     background: ${colors.background.primary};
   }
 `;
+
+export const CarouselImg = styled.img`
+  width: 100%;
+  height: 435px;
+  object-fit: cover;
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 250px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 120px;
+  }
+`;

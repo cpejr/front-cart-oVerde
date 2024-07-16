@@ -6,20 +6,18 @@ import {
   useLocation,
   Navigate,
   Outlet,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import {
   Home,
-  Support,
   ManageCollection,
   ManageUsers,
-  Story,
   AboutUs,
   BuyTrees,
   MyTrees,
-} from "@pages";
-import { AppLayout } from "@components";
-import useAuthStore from "@Stores/auth";
+} from '@pages';
+import { AppLayout } from '@components';
+import useAuthStore from '@Stores/auth';
 
 function PrivateAdminRoutes() {
   const auth = useAuthStore((state) => state?.auth?.user?.type);
@@ -38,20 +36,18 @@ const router = createBrowserRouter(
     <Route>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
         <Route element={<PrivateAdminRoutes />}>
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
-        <Route element={<LoggegRoutes/>}>
-          <Route path="minhas-arvores" element={<MyTrees/>}/>
+        <Route element={<LoggegRoutes />}>
+          <Route path="minhas-arvores" element={<MyTrees />} />
         </Route>
       </Route>
-      <Route path="suporte" element={<Support />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 export default function Routes() {
   return <RouterProvider router={router} />;
