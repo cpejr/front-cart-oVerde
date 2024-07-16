@@ -10,9 +10,12 @@ import {
   UniSelect,
   DivLine,
   Line,
+  Terms,
+  HighlightLink,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
+import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
 export default function BuyTrees() {
   // Select Data
@@ -69,6 +72,13 @@ export default function BuyTrees() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading]);
 
+  //Modal Acceptance Term
+  const [ModalAccept, SetModalAccept] = useState(false);
+
+  const toggleModal = () => {
+    SetModalAccept(!ModalAccept);
+  };
+
   return (
     <Container>
       <Title>COMPRAR ÁRVORES</Title>
@@ -107,6 +117,14 @@ export default function BuyTrees() {
             ))}
         </DivLine>
       )}
+
+      <Terms>
+        <p>
+          Leia nosso termo de aceite clicando{" "}
+          <HighlightLink onClick={toggleModal}>aqui!</HighlightLink>
+        </p>
+      </Terms>
+      <ModalAcceptTerms show={ModalAccept} onClose={toggleModal} />
     </Container>
   );
 }

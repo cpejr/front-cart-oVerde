@@ -3,7 +3,7 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 import { Dropdown } from "primereact/dropdown";
 
 export const Container = styled.div`
-  display: flex;
+  display: ${(props) => (props.Modal ? "none" : "flex")};
   flex-direction: column;
   padding: 3rem 0;
 `;
@@ -12,7 +12,7 @@ export const Title = styled.div`
   color: ${colors.font.primary};
   font-size: 30px;
   margin-left: 5%;
-  width:fit-content;
+  width: fit-content;
   border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;
@@ -57,7 +57,7 @@ export const Filter = styled.div`
   align-items: center;
   justify-content: space-around;
   @media (max-width: ${breakpoints.tablet}) {
-    justify-content:space-evenly
+    justify-content: space-evenly;
   }
 `;
 
@@ -65,7 +65,6 @@ export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
 `;
-
 
 export const DivSelect = styled.div`
   display: flex;
@@ -93,5 +92,19 @@ export const UniSelect = styled(Dropdown)`
     white-space: nowrap;
     overflow: hidden;
   }
+`;
 
+export const Terms = styled.div`
+  display: flex;
+  margin-left: 5%;
+`;
+
+export const HighlightLink = styled.span`
+  color: ${colors.font.secondary};
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
