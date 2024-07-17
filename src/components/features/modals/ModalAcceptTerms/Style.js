@@ -47,9 +47,9 @@ export const Image = styled.div`
   align-items: center;
   justify-content: center;
   > img {
-    width: 20rem;
+    width: 25rem;
     @media (max-width: ${breakpoints.mobile}) {
-      width: 12rem;
+      width: 15rem;
     }
   }
 `;

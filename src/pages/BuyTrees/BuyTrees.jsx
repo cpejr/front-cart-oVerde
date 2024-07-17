@@ -124,7 +124,7 @@ export default function BuyTrees() {
           <HighlightLink onClick={toggleModal}>aqui!</HighlightLink>
         </p>
       </Terms>
-      <ModalAcceptTerms show={ModalAccept} onClose={toggleModal} />
+      <ModalAcceptTerms modal={ModalAccept} onClose={toggleModal} />
     </Container>
   );
 }

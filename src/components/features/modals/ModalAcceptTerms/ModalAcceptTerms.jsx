@@ -9,17 +9,11 @@ import {
   Section,
   StyledCheckBox,
 } from "./Style";
-import Square from "../../../../assets/Home/Square.svg";
+import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 
-//props validation
-ModalAcceptTerms.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
-export default function ModalAcceptTerms({ show, onClose }) {
+export default function ModalAcceptTerms({ modal, onClose }) {
   const [accept, setAccept] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
@@ -33,11 +27,10 @@ export default function ModalAcceptTerms({ show, onClose }) {
     if (accept) {
       setSubmit(!submit);
       onClose();
-      setAccept(false);
+      toggleAccept();
       setCheckBoxAlert(false);
     } else {
       setCheckBoxAlert(true);
-      //alert("É necessário aceitar antes de continuar.");
     }
   };
 
@@ -46,18 +39,12 @@ export default function ModalAcceptTerms({ show, onClose }) {
     setAccept(false);
   };
 
-  if (!show) return null;
-
   return (
     <Modal
-      visible={show}
-      onOk={handleSubmit}
+      open={modal}
       onCancel={handleCancel}
       footer={[
         <DivButton key="divButton">
-          <ModalButton key="back" onClick={handleCancel}>
-            Cancelar
-          </ModalButton>
           <ModalButton key="submit" type="primary" onClick={handleSubmit}>
             Confirmar
           </ModalButton>
@@ -89,7 +76,7 @@ export default function ModalAcceptTerms({ show, onClose }) {
         </Section>
 
         <Image>
-          <img src={Square} alt="Imagem de teste" />
+          <img src={LogoVerde} alt="Logo" />
         </Image>
 
         <Section>
@@ -115,8 +102,8 @@ export default function ModalAcceptTerms({ show, onClose }) {
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
             className="custom-checkbox"
-            checked={accept}
             onChange={toggleAccept}
+            checked={accept}
           />
           Eu concordo com os termos descritos acima
         </CheckboxLabel>
@@ -124,3 +111,9 @@ export default function ModalAcceptTerms({ show, onClose }) {
     </Modal>
   );
 }
+
+//props validation
+ModalAcceptTerms.propTypes = {
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
