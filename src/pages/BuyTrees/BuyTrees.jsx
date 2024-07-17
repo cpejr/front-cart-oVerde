@@ -10,6 +10,7 @@ import {
   UniSelect,
   DivLine,
   Line,
+  LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
@@ -17,12 +18,15 @@ import { useGetTree } from "@hooks/querys/tree";
 export default function BuyTrees() {
   // Select Data
   const filters = [
-    { label: "Mais Recentes", value: "data" },
-    { label: "Preço", value: "price" },
+    { label: "Mais Recentes", value: "recent" },
+    { label: "Mais Antigas", value: "older" },
+    { label: "Mais baratas", value: "lowPrice" },
+    { label: "Mais caras", value: "higherPrice" },
   ];
 
   const [searchValue, setSearchValue] = useState("");
-  const [order, setOrder] = useState("data");
+  const [order, setOrder] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -37,22 +41,34 @@ export default function BuyTrees() {
   const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
-    let cardContent = collection;
-    cardContent.sort(orderBy);
-    for (let content of cardContent) {
-      content.buttonText = "Comprar Certificado";
-      content.link = "EDITE EM MyTrees.jsx " + content._id;
+    setLoading(true);
+    let cardContent = [...collection];
+    console.log(cardContent);
+    let cardContent2 = collection;
+    console.log(cardContent2);
+    if (order === "recent") {
+      cardContent = cardContent.reverse();
+    } else if (order === "older") {
+      cardContent;
+    } else {
+      cardContent.sort(orderBy);
     }
+
+    cardContent = cardContent.map((content) => ({
+      ...content,
+      buttonText: "Comprar Certificado",
+      link: "EDITE EM MyTrees.jsx " + content._id,
+    }));
+
     setCollections(cardContent);
+    setLoading(false);
   }
 
-  async function orderBy(a, b) {
-    if (order == "price") {
-      if (a.price >= b.price) {
-        return -1;
-      } else {
-        return 1;
-      }
+  function orderBy(a, b) {
+    if (order === "lowPrice") {
+      return a.price - b.price;
+    } else if (order === "higherPrice") {
+      return b.price - a.price;
     }
   }
 
@@ -62,12 +78,12 @@ export default function BuyTrees() {
   }
 
   useEffect(() => {
+    console.log("Loading State:", loading);
     if (!isLoading && collection) {
       formatAllCollection();
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading]);
+  }, [collection, isLoading, order]);
 
   return (
     <Container>
@@ -84,12 +100,12 @@ export default function BuyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Ordenar Por"
+          placeholder="Filtrar por"
           onChange={(e) => {
             setOrder(e.value);
-            formatAllCollection();
           }}
-        />
+        />{" "}
+        {loading && <LoadingSpinner />}
       </Filter>
       {isLoading && collections ? (
         <Title>Carregando</Title>
@@ -99,7 +115,7 @@ export default function BuyTrees() {
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-            .sort(orderBy)
+
             .map((card, index) => (
               <Line key={index}>
                 <LargeCard data={card} onBuy={() => buyTree(card._id)} />

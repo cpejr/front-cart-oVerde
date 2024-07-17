@@ -1,11 +1,23 @@
-import styled from 'styled-components';
-import { breakpoints, colors } from '../../styles/stylesVariables';
-import { Dropdown } from 'primereact/dropdown';
+import styled, { keyframes } from "styled-components";
+import { breakpoints, colors } from "../../styles/stylesVariables";
+import { Dropdown } from "primereact/dropdown";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3rem 0;
+`;
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+export const LoadingSpinner = styled(AiOutlineLoading3Quarters)`
+  animation: ${spin} 1s linear infinite;
+  font-size: 25px;
+  color: #333;
+  margin-left: 10px;
 `;
 
 export const Title = styled.div`
