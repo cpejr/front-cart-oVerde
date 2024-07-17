@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Button from "../../common/Button/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
-import FormInput from "../../common/FormInput/FormInput";
-import UploadInput from "../../common/UploadInput/UploadInput";
-import { LoadingOutlined } from "@ant-design/icons";
+import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../../common/Button/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from './Styles';
+import FormInput from '../../common/FormInput/FormInput';
+import UploadInput from '../../common/UploadInput/UploadInput';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function FormSubmit({
   inputs,
@@ -28,7 +28,7 @@ export default function FormSubmit({
   const [newPrice, setPrice] = useState();
 
   useEffect(() => {
-    const priceInput = inputs.find((input) => input.key === "price");
+    const priceInput = inputs.find((input) => input.key === 'price');
     if (priceInput) {
       setPrice(priceInput.value || 0);
     }
@@ -46,7 +46,7 @@ export default function FormSubmit({
   const [archiveError, setArchiveError] = useState(false);
 
   function submitHandler(data) {
-    const hasArchiveInput = inputs.some((input) => input.type === "archive");
+    const hasArchiveInput = inputs.some((input) => input.type === 'archive');
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
       return;
@@ -67,20 +67,20 @@ export default function FormSubmit({
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>
       {inputs.map((input) => {
-        if (input.type === "select") {
+        if (input.type === 'select') {
           return (
             <Select
               key={input.key}
               options={input.options}
               selectColor={color}
               placeholder={input.placeholder}
-              value={selectedOptions[input.key] || ""}
+              value={selectedOptions[input.key] || ''}
               onChange={(e) => {
                 handleSelectChange(input.key, e.target.value);
               }}
             ></Select>
           );
-        } else if (input.type === "input") {
+        } else if (input.type === 'input') {
           return (
             <InputKeep key={input.key}>
               <FormInput
@@ -98,7 +98,7 @@ export default function FormSubmit({
               )}
             </InputKeep>
           );
-        } else if (input.type === "number") {
+        } else if (input.type === 'number') {
           return (
             <StyledNumber
               key={input.key}
@@ -110,7 +110,7 @@ export default function FormSubmit({
               onValueChange={handlePriceChange}
             />
           );
-        } else if (input.type === "archive") {
+        } else if (input.type === 'archive') {
           return (
             <UploadInput
               key={input.key}
@@ -129,7 +129,7 @@ export default function FormSubmit({
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        {loading ? <LoadingOutlined /> : "Enviar"}
+        {loading ? <LoadingOutlined /> : 'Enviar'}
       </Button>
     </Form>
   );

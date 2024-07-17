@@ -26,11 +26,11 @@ export default function HamburguerMenu() {
       [
         getItem('Home', '/'),
         getItem('Árvores', '/comprar-arvores'),
-        getItem('Quem somos', '/sobre'),
+        getItem('Sobre', '/sobre'),
         ...(isAdmin
           ? [
-              getItem('Usuários', '/gerenciar-usuarios'),
-              getItem('Arquivos', '/gerenciar-arvores'),
+              getItem('Gerenciar Usuários', '/gerenciar-usuarios'),
+              getItem('Gerenciar Árvores', '/gerenciar-arvores'),
             ]
           : []),
         ...(isLogged ? [getItem('Minhas Árvores', '/minhas-arvores')] : []),

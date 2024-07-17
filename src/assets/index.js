@@ -4,9 +4,10 @@ export { default as FirstStoryImage } from './FirstStoryImage.svg';
 export { default as background } from './Home/background.png';
 export { default as Square } from './Home/Square.svg';
 
-export { default as LogoBranca } from './Footer/LogoBranca.svg';
+export { default as LogoCartaoV } from './Footer/LogoCartaoVerde.svg';
 
-export { default as LogoCidade } from './Header/CityLogo.svg';
+export { default as LogoCV } from './Header/LogoCartaoVerde.svg';
+export { default as LogoAntiga } from './Header/CityLogo.svg';
 export { default as Facebook } from './Header/Facebook.svg';
 export { default as Instagram } from './Header/Instagram.svg';
 export { default as Whatsapp } from './Header/whatsapp.svg';

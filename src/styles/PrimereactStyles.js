@@ -176,25 +176,20 @@ export const PrimereactStyles = createGlobalStyle`
     padding: 0px;
   }
 
-  .p-paginator-first p-paginator-element p-link p-disabled{
-    @media (max-width: 308px) {
-      width: 20px;
-    }
-  }
-
   .p-dropdown{
     transition: none;
     outline: none;
     box-shadow: none;
   }
 
-  .p-paginator-bottom .p-paginator-pages,
-  .p-paginator-bottom .p-paginator-prev .p-paginator-icon,
-  .p-paginator-bottom .p-paginator-next .p-paginator-icon,
-  .p-paginator-bottom .p-paginator-first .p-paginator-icon,
-  .p-paginator-bottom .p-paginator-last .p-paginator-icon {
-    @media (max-width: 327px) {
-      width: 20px;
+  .p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last{
+    min-width: 0;
+    width: 45px;
+    @media (max-width: 320px) {
+      width: 25px;
+    }
+    @media (max-width: 240px) {
+      width: 15px;
     }
   }
 `;

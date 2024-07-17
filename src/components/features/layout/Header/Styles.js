@@ -16,8 +16,8 @@ export const Container = styled.div`
   }
 `;
 
-export const City = styled.img`
-  width: 50px;
+export const Logo = styled.img`
+  width: 100px;
   display: flex;
   cursor: pointer;
 `;
@@ -148,4 +148,7 @@ export const PrimeHeader = styled(Menubar)`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
 `;
