@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
-import { Dropdown } from "primereact/dropdown";
 
 export const Container = styled.div`
   display: flex;
@@ -27,7 +26,8 @@ export const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  height: 300px;
+  max-height: 320px;
+  height:auto;
   border-radius: 12px; 
   overflow-y: auto;  
   border: 1px solid black;  

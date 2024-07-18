@@ -1,14 +1,11 @@
-// Libs
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
 // Components
 import {
   Container,
   Title,
   CardsContainer,
 } from "./Styles";
-import { LargeCard, CartBuyBox, CartCard  } from "@components";
-import { useGetTree } from "@hooks/querys/tree";
+import { CartBuyBox, CartCard  } from "@components";
+
 
 export default function CartPage() {
 

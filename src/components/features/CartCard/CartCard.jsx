@@ -3,7 +3,6 @@ import {Delete, Tree} from "@assets/index";
 
 export default function CartCard({data}) {
 
-
     return (
         <Box>
             <DeleteIcon src={Delete}></DeleteIcon>

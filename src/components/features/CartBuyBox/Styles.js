@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button } from "antd";
 
 export const Box = styled.div`
   display: flex;
@@ -39,6 +38,9 @@ export const DivButton = styled.div`
 export const PriceLabel = styled.h1`
   margin-left: 10px;
   font-size: 1.4em;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1em;
+  }
 `
 
 export const StyledButton = styled.button`
@@ -53,14 +55,14 @@ export const StyledButton = styled.button`
   margin-bottom: 5px;
   margin-left: 40px;
   margin-right: 10px;
+  cursor:pointer;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 18px;
+    font-size: 0.8em;
     width: 180px;
   }
   &:hover{
-    background-color: forestgreen;
-    transition: 1s;
-    transform: scale(1.2);
+    color: white;
+    background-color: ${colors.accent.hover};
   }
 `;
 

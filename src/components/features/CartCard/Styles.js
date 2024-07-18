@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
-import { Button } from "antd";
+
 
 export const Box = styled.div`
   display: flex;
@@ -11,14 +11,14 @@ export const Box = styled.div`
   border-radius: 24px;
   border: 1px solid ${colors.font.primary};
   background-color: white;
-  margin-bottom: 2rem;
+  margin-bottom: 1em;
   align-self: center;
   position: relative;
   @media (max-width: ${breakpoints.mobile}) {
-    width: 90%;
+    width: 98%;
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70%;
+    width: 85%;
   }
 `;
 
@@ -49,6 +49,9 @@ export const Name = styled.h3`
 
 export const Description = styled.p`
     margin: 5px;
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 0.9em;
+    }
 `
 
 export const Price = styled.div`
@@ -56,12 +59,13 @@ export const Price = styled.div`
   width: 180px;
   padding: 5px 0;
   font-size: 17px;
-  border-radius: 24px;
+  border-radius: 12px;
   text-align: center;
   background-color: ${colors.accent.primary};
   margin-bottom: 10px;
+  margin-left: 5px;
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 18px;
+    font-size: 1em;
     width: 180px;
   }
 `;
