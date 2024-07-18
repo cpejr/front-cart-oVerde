@@ -100,11 +100,7 @@ export default function ModalAcceptTerms({ modal, onClose }) {
           </p>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
-          <StyledCheckBox
-            className="custom-checkbox"
-            onChange={toggleAccept}
-            checked={accept}
-          />
+          <StyledCheckBox className="custom-checkbox" onChange={toggleAccept} />
           Eu concordo com os termos descritos acima
         </CheckboxLabel>
       </Container>
@@ -114,6 +110,6 @@ export default function ModalAcceptTerms({ modal, onClose }) {
 
 //props validation
 ModalAcceptTerms.propTypes = {
-  show: PropTypes.bool.isRequired,
+  modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };

@@ -73,11 +73,10 @@ export default function BuyTrees() {
   }, [collection, isLoading]);
 
   //Modal Acceptance Term
-  const [ModalAccept, SetModalAccept] = useState(false);
+  const [modalAccept, setModalAccept] = useState(false);
 
-  const toggleModal = () => {
-    SetModalAccept(!ModalAccept);
-  };
+  const openModalAccept = () => setModalAccept(true);
+  const closeModalAccept = () => setModalAccept(false);
 
   return (
     <Container>
@@ -121,10 +120,10 @@ export default function BuyTrees() {
       <Terms>
         <p>
           Leia nosso termo de aceite clicando{" "}
-          <HighlightLink onClick={toggleModal}>aqui!</HighlightLink>
+          <HighlightLink onClick={openModalAccept}>aqui!</HighlightLink>
         </p>
       </Terms>
-      <ModalAcceptTerms modal={ModalAccept} onClose={toggleModal} />
+      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
     </Container>
   );
 }
