@@ -100,7 +100,11 @@ export default function ModalAcceptTerms({ modal, onClose }) {
           </p>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
-          <StyledCheckBox className="custom-checkbox" onChange={toggleAccept} />
+          <StyledCheckBox
+            className="custom-checkbox"
+            onChange={toggleAccept}
+            checked={accept}
+          />
           Eu concordo com os termos descritos acima
         </CheckboxLabel>
       </Container>
