@@ -4,7 +4,8 @@ import {
   Title,
   CardsContainer,
 } from "./Styles";
-import { CartBuyBox, CartCard  } from "@components";
+import { CartCard  } from "@components";
+import CartBuyBox from './CartBuyBox';
 
 
 export default function CartPage() {
@@ -68,7 +69,7 @@ export default function CartPage() {
 
       <CardsContainer>
       {data.map((tree, index) => (
-        <CartCard data={tree}/>
+        <CartCard key={index} data={tree}/>
       ))}
       </CardsContainer>
 

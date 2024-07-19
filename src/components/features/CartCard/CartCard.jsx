@@ -1,6 +1,8 @@
 import { Box, DeleteIcon, Description, Name, Price, Image } from "./Styles";
 import {Delete, Tree} from "@assets/index";
 
+import PropTypes from 'prop-types';
+
 export default function CartCard({data}) {
 
     return (
@@ -13,3 +15,11 @@ export default function CartCard({data}) {
         </Box>
     );
 }
+
+CartCard.propTypes = {
+    data: PropTypes.shape({
+        name: PropTypes.string,
+        description: PropTypes.string,
+        price: PropTypes.double, 
+    }),
+};

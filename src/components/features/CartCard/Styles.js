@@ -64,9 +64,18 @@ export const Price = styled.div`
   background-color: ${colors.accent.primary};
   margin-bottom: 10px;
   margin-left: 5px;
+  &:hover{
+    background-color: ${colors.accent.hover};
+    color: white;
+  }
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 1em;
-    width: 180px;
+    width: 3em;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1em;
+    width: 110px;
+    font-size: 0.9em;
   }
 `;
 

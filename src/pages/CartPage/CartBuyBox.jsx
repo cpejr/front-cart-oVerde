@@ -1,5 +1,7 @@
 import {Box, StyledButton, PriceLabel } from './Styles';
 
+import PropTypes from 'prop-types';
+
 export default function CartBuyBox({value}) {
 
     return (
@@ -9,3 +11,7 @@ export default function CartBuyBox({value}) {
         </Box>
     );
 }
+
+CartBuyBox.propTypes = {
+    value: PropTypes.double,
+};
