@@ -17,6 +17,7 @@ import {
   AboutUs,
   BuyTrees,
   MyTrees,
+  CartPage
 } from "@pages";
 import { AppLayout } from "@components";
 import useAuthStore from "@Stores/auth";
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
         <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
+        <Route path="carrinho" element={<CartPage />} />
         <Route element={<PrivateAdminRoutes />}>
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
@@ -48,8 +50,8 @@ const router = createBrowserRouter(
         <Route element={<LoggegRoutes/>}>
           <Route path="minhas-arvores" element={<MyTrees/>}/>
         </Route>
-      </Route>
       <Route path="suporte" element={<Support />} />
+      </Route>
     </Route>
   )
 );
