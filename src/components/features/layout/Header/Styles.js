@@ -43,7 +43,7 @@ export const SocialMedias = styled.div`
   align-items: center;
   gap: 10px;
   justify-content: center;
-  @media (max-width: ${breakpoints.smallTablet}) {
+  @media (max-width: ${breakpoints.mediumMobile}) {
     display: none;
   }
 `;
@@ -127,7 +127,7 @@ export const LoginButton = styled.button`
     width: 10rem;
     height: 40px;
   }
-  @media (max-width: ${breakpoints.smallDevice}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 7rem;
     font-size: 0.8rem;
   }
@@ -185,7 +185,6 @@ export const Selected = styled.div`
   align-items: center;
   padding-left: 12px;
   @media (max-width: ${breakpoints.smallTablet}) {
-    padding-left: 1.4rem;
     svg {
       color: white;
     }
