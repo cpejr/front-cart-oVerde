@@ -11,6 +11,7 @@ import { useLogin } from '../../../../hooks/querys/user';
 import useAuthStore from '../../../../Stores/auth';
 import { colors } from '../../../../styles/stylesVariables';
 import { ModalLogOff } from '../../..';
+import { IoIosArrowDown } from 'react-icons/io';
 import {
   LoadingStyles,
   LoginButton,
@@ -19,10 +20,18 @@ import {
   SocialMedias,
   ConteinerLogin,
   SocialImg,
+  Select,
+  Selected,
+  LanguageSelector,
 } from './Styles';
-import { Whatsapp, Instagram, BrazilFlag } from '../../../../assets/index';
+import { Whatsapp, Instagram, BrazilFlag, SpainFlag, USAFlag } from '../../../../assets/index';
 
 export default function LoginSocialArea() {
+  // Translations
+  const [collapse, setCollapse] = useState(false);
+  const availableLanguages = {'EN' : USAFlag, 'PT' : BrazilFlag, 'ES' : SpainFlag};
+  const [globalLang, setGlobalLang] = useState('PT');
+  
   // Variables
 
   const { auth } = useAuthStore();
@@ -91,9 +100,31 @@ export default function LoginSocialArea() {
         <GiShoppingCart size={40} color="white" />
       </ConteinerLogin>
       <SocialMedias>
-        <SocialImg>
-          <img src={BrazilFlag} alt="Bandeira Brasil" width="28px"></img>
-        </SocialImg>
+        <Select>
+          <Selected onClick={() => setCollapse((prev) => !prev)}>
+            <SocialImg>
+              <img src={availableLanguages[globalLang]} width="28px"></img>
+            </SocialImg>
+            <IoIosArrowDown color='white'/>
+          </Selected>
+          <LanguageSelector collapse={+collapse}>
+            {Object.entries(availableLanguages).map(([lang, flag]) => (
+              <button
+                type="button"
+                key={lang}
+                onClick={() => {
+                  setGlobalLang(lang);
+                  setCollapse((prev) => !prev);
+                }}
+                style={{ display: collapse ? 'flex' : 'none' }}
+               >
+                <SocialImg>
+                  <img src={flag} width="28px"></img>
+                </SocialImg>
+              </button>
+              ))}
+          </LanguageSelector>
+        </Select>
         <SocialImg href="https://www.instagram.com/prefeiturabd/">
           <img src={Instagram} alt="Logo Instagram" width="60%"></img>
         </SocialImg>

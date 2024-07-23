@@ -152,3 +152,109 @@ export const PrimeHeader = styled(Menubar)`
     display: none;
   }
 `;
+
+export const Select = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 700;
+  align-self: center;
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 0.2rem;
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    display: flex;
+    flex-direction: row;
+    font-weight: 600;
+    :hover {
+      text-decoration: underline;
+      text-decoration-color: white;
+      text-decoration-thickness: 0.2rem;
+    }
+  }
+  p {
+    font-size: 1.5rem;
+  }
+`;
+
+export const Selected = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+  @media (max-width: ${breakpoints.smallTablet}) {
+    padding-left: 1.4rem;
+    svg {
+      color: white;
+    }
+    p {
+      text-align: center;
+      color: white;
+    }
+  }
+`;
+
+export const LanguageSelector = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 200;
+  margin-top: 2rem;
+  transition: height 1s ease-in-out;
+  height: ${(props) => (props.collapse ? 'auto' : '0rem')};
+  overflow-y: hidden;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 0.5rem;
+  gap: 0.3rem;
+  button {
+    border: none;
+    background-color: white;
+    width: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    :hover {
+      cursor: pointer;
+    }
+    p {
+      font-weight: 700;
+      :hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-thickness: 0.2rem;
+      }
+    }
+  }
+  @media (max-width: ${breakpoints.smallTablet}) {
+    flex-direction: row;
+    border: none;
+    width: auto;
+    font-weight: 600;
+    height: auto;
+    display: ${(props) => (props.collapse ? 'flex' : 'none')};
+    transition: display 500ms ease-in-out;
+    margin-top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    justify-content: center;
+    button {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: 600;
+      p {
+        font-weight: 700;
+        :hover {
+          cursor: pointer;
+          text-decoration: underline;
+          text-decoration-color: white;
+          text-decoration-thickness: 0.2rem;
+        }
+      }
+    }
+  }
+`;
