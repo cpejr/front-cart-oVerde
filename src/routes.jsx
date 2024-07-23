@@ -6,7 +6,7 @@ import {
   useLocation,
   Navigate,
   Outlet,
-} from 'react-router-dom';
+} from "react-router-dom";
 
 import {
   Home,
@@ -15,9 +15,9 @@ import {
   AboutUs,
   BuyTrees,
   MyTrees,
-} from '@pages';
-import { AppLayout } from '@components';
-import useAuthStore from '@Stores/auth';
+} from "@pages";
+import { AppLayout } from "@components";
+import useAuthStore from "@Stores/auth";
 
 function PrivateAdminRoutes() {
   const auth = useAuthStore((state) => state?.auth?.user?.type);

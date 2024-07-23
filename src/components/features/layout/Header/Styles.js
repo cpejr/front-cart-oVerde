@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { Menu, Modal } from 'antd';
-import { breakpoints, colors, fonts } from '../../../../styles/stylesVariables';
-import { Menubar } from 'primereact/menubar';
+import styled from "styled-components";
+import { Menu, Modal } from "antd";
+import { breakpoints, colors, fonts } from "../../../../styles/stylesVariables";
+import { Menubar } from "primereact/menubar";
 
 export const Container = styled.div`
   height: 7rem;
@@ -73,7 +73,7 @@ export const Hamburguer = styled(Menu)`
 `;
 
 export const LoadingStyles = styled.div`
-  display: 'block';
+  display: "block";
   font-size: 24px;
 `;
 

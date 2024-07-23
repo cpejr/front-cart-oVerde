@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { colors, breakpoints } from '../styles/stylesVariables';
+import { createGlobalStyle } from "styled-components";
+import { colors, breakpoints } from "../styles/stylesVariables";
 
 export const PrimereactStyles = createGlobalStyle`
   .p-datatable .p-datatable-tbody > tr > td {

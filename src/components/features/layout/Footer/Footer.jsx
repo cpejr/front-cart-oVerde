@@ -1,11 +1,11 @@
-import { Container, CityLogo, Info, SocialMedias, Column } from './Styles';
+import { Container, CityLogo, Info, SocialMedias, Column } from "./Styles";
 import {
   LogoCartaoV,
   Instagram,
   Facebook,
   Whatsapp,
   Twitter,
-} from '../../../../assets/index';
+} from "../../../../assets/index";
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
       <CityLogo src={LogoCartaoV} width="250px" height="140px"></CityLogo>
       <Info>
         casatuetimbua@gmail.com <br />
-        (37) 9 9634 9759{' '}
+        (37) 9 9634 9759{" "}
       </Info>
       <SocialMedias>
         <Column>

@@ -1,12 +1,12 @@
 // Libs
-import { useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 // Components
-import { Container, Logo, PrimeHeader } from './Styles';
-import { LogoCV } from '@assets/index';
-import useAuthStore from '@Stores/auth';
-import { LoginSocialArea } from '@components';
-import { HamburgerMenu } from '../../../index';
+import { Container, Logo, PrimeHeader } from "./Styles";
+import { LogoCV } from "@assets/index";
+import useAuthStore from "@Stores/auth";
+import { LoginSocialArea } from "@components";
+import { HamburgerMenu } from "../../../index";
 
 export default function Header() {
   const user = useAuthStore((state) => state?.auth?.user);
@@ -14,29 +14,29 @@ export default function Header() {
 
   const items = [
     {
-      label: 'Home',
-      url: '/',
+      label: "Home",
+      url: "/",
     },
     {
-      label: 'Árvores',
-      url: '/comprar-arvores',
+      label: "Árvores",
+      url: "/comprar-arvores",
     },
     {
-      label: 'Sobre',
-      url: '/sobre',
+      label: "Sobre",
+      url: "/sobre",
     },
     ...(user?.type
       ? [
           {
-            label: 'Administrador',
+            label: "Administrador",
             items: [
               {
-                label: 'Gerenciar usuários',
-                url: '/gerenciar-usuarios',
+                label: "Gerenciar usuários",
+                url: "/gerenciar-usuarios",
               },
               {
-                label: 'Gerenciar árvores',
-                url: '/gerenciar-arvores',
+                label: "Gerenciar árvores",
+                url: "/gerenciar-arvores",
               },
             ],
           },
@@ -45,8 +45,8 @@ export default function Header() {
     ...(user
       ? [
           {
-            label: 'Minhas árvores',
-            url: '/minhas-arvores',
+            label: "Minhas árvores",
+            url: "/minhas-arvores",
           },
         ]
       : []),
@@ -54,7 +54,7 @@ export default function Header() {
 
   return (
     <Container>
-      <Logo src={LogoCV} onClick={() => navigate('/')}></Logo>
+      <Logo src={LogoCV} onClick={() => navigate("/")}></Logo>
       <PrimeHeader model={items} />
       <HamburgerMenu />
       <LoginSocialArea />

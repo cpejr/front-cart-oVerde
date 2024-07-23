@@ -1,11 +1,11 @@
 // Libs
-import { pdf } from '@react-pdf/renderer';
-import { saveAs } from 'file-saver';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import PropTypes from 'prop-types';
-import { ScaleLoader } from 'react-spinners';
-import { ConfigProvider } from 'antd';
+import { pdf } from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import PropTypes from "prop-types";
+import { ScaleLoader } from "react-spinners";
+import { ConfigProvider } from "antd";
 // Components
 import {
   StyledCard,
@@ -16,13 +16,12 @@ import {
   DivButton,
   CarouselStyles,
   CarouselImg,
-} from './Styles';
-import { TreeCertificatePDF } from '@components';
-import { useGetArchives } from '@hooks/querys/archive';
-import { colors } from '@styles/stylesVariables';
+} from "./Styles";
+import { TreeCertificatePDF } from "@components";
+import { useGetArchives } from "@hooks/querys/archive";
+import { colors } from "@styles/stylesVariables";
 
 export default function LargeCard({ data, onBuy }) {
-  console.log(data);
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
 
@@ -36,13 +35,13 @@ export default function LargeCard({ data, onBuy }) {
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
-  const formattedArchives = archiveIDs?.join(', ') || IDs?.join(', ');
+  const formattedArchives = archiveIDs?.join(", ") || IDs?.join(", ");
 
   const { data: archiveData, isLoading: isImageLoading } = useGetArchives({
     id: formattedArchives,
     name: name,
     onError: (err) => {
-      console.error('Error ao pegar os arquivos', err);
+      console.error("Error ao pegar os arquivos", err);
     },
   });
 
@@ -62,7 +61,7 @@ export default function LargeCard({ data, onBuy }) {
     >
       <StyledCard>
         {isImageLoading || !archiveData ? (
-          <CardLine style={{ justifyContent: 'center' }}>
+          <CardLine style={{ justifyContent: "center" }}>
             <ScaleLoader color={colors.font.secondary} />
           </CardLine>
         ) : (
@@ -75,29 +74,29 @@ export default function LargeCard({ data, onBuy }) {
               >
                 {archiveData.map((file, index) => (
                   <div key={index}>
-                    {file.startsWith('data:image') && (
+                    {file.startsWith("data:image") && (
                       <CarouselImg src={file} alt={`Imagem ${index}`} />
                     )}
-                    {file.startsWith('data:video') && (
+                    {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
                         Seu navegador não suporta o elemento de vídeo.
                       </video>
                     )}
-                    {file.startsWith('data:audio') && (
+                    {file.startsWith("data:audio") && (
                       <audio controls>
                         <source src={file} type="audio/mpeg" />
                         Seu navegador não suporta o elemento de áudio.
                       </audio>
                     )}
-                    {file.startsWith('data:application/pdf') && (
+                    {file.startsWith("data:application/pdf") && (
                       <object
                         data={file}
                         type="application/pdf"
                         width="100%"
                         height="400px"
                       >
-                        Seu navegador não suporta visualização de PDF. Você pode{' '}
+                        Seu navegador não suporta visualização de PDF. Você pode{" "}
                         <a href={file}>baixá-lo aqui</a>.
                       </object>
                     )}
@@ -134,6 +133,7 @@ LargeCard.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    price: PropTypes.string,
     archive: PropTypes.array,
     id_tree: PropTypes.shape({
       name: PropTypes.string,
