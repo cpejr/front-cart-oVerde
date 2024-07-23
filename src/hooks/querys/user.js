@@ -52,6 +52,7 @@ export function useLogin({
 
 export function useRefreshToken({ onSuccess = () => {} } = {}) {
   const expireIn = useAuthStore((state) => state.auth?.expireIn);
+
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const onError = (err) => {
     console.error(err);
@@ -63,6 +64,6 @@ export function useRefreshToken({ onSuccess = () => {} } = {}) {
     queryFn: refresh,
     onError,
     onSuccess,
-    refetchInterval: expireIn * 1000, // Milliseconds
+    refetchInterval: expireIn, // Milliseconds
   });
 }

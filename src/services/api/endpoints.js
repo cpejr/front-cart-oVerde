@@ -33,7 +33,7 @@ export async function updateUser({ _id, newUserData }) {
 export async function refresh() {
   const { setAuth } = useAuthStore.getState();
   const { data } = await api.get("/refresh");
-  console.log("oi");
+  
   setAuth(data.accessToken);
   return data;
 }
