@@ -4,9 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
 import { Square } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function Home() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   const navigate = useNavigate();
+
   return (
     <Container>
       <Overlay>
@@ -15,14 +22,12 @@ export default function Home() {
       </Overlay>
       <Section>
         <Column>
-          <Title>Missão</Title>
+          <Title>{translations.missionTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.missionText}
           </p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/sobre")}>{translations.buttonText}</Button>
         </Column>
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Section>
@@ -30,28 +35,24 @@ export default function Home() {
       <Section>
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <Column>
-          <Title>Visão e valores</Title>
+          <Title>{translations.visionTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.visionText}
           </p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/comprar-arvores")}>
-            Saiba Mais
+            {translations.buttonText}
           </Button>
         </Column>
       </Section>
 
       <Section>
         <Column>
-          <Title>Nossos produtos</Title>
+          <Title>{translations.productsTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.productsText}
           </p>
-          <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/eventos")}>{translations.buttonText}</Button>
         </Column>
         <Image>
           <img src={Square} alt="Imagem de decoração" />

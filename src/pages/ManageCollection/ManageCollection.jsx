@@ -23,8 +23,14 @@ import {
   AiOutlineUpload,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function ManageCollection() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
   const [collections, setCollections] = useState([]);
