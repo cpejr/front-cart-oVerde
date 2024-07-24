@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useLogin } from "../../../../hooks/querys/user";
 import useAuthStore from "../../../../Stores/auth";
 import { colors } from "../../../../styles/stylesVariables";
+import { useNavigate } from "react-router-dom";
 import { ModalLogOff } from "../../..";
 import {
   LoadingStyles,
@@ -24,7 +25,7 @@ import { Whatsapp, Instagram, BrazilFlag } from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
-
+  const navigate = useNavigate();
   const { auth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const user = useAuthStore((state) => state.auth?.user);
@@ -88,7 +89,11 @@ export default function LoginSocialArea() {
             {profilePicture}
           </LoginButton>
         )}
-        <GiShoppingCart size={40} color="white" />
+        <GiShoppingCart
+          size={40}
+          color="white"
+          onClick={() => navigate("/carrinho")}
+        />
       </ConteinerLogin>
       <SocialMedias>
         <SocialImg>
