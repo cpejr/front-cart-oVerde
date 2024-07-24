@@ -28,6 +28,6 @@ export const TableColumn = styled(Column)`
   color: ${colors.font.secondary};
   min-width: 200px;
   .p-bodycell {
-    align-itens: center;
+    align-items: center;
   }
 `;
