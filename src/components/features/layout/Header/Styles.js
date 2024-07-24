@@ -164,19 +164,6 @@ export const Select = styled.div`
     text-decoration: underline;
     text-decoration-thickness: 0.2rem;
   }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    display: flex;
-    flex-direction: row;
-    font-weight: 600;
-    :hover {
-      text-decoration: underline;
-      text-decoration-color: white;
-      text-decoration-thickness: 0.2rem;
-    }
-  }
-  p {
-    font-size: 1.5rem;
-  }
 `;
 
 export const Selected = styled.div`
@@ -184,15 +171,6 @@ export const Selected = styled.div`
   flex-direction: row;
   align-items: center;
   padding-left: 12px;
-  @media (max-width: ${breakpoints.smallTablet}) {
-    svg {
-      color: white;
-    }
-    p {
-      text-align: center;
-      color: white;
-    }
-  }
 `;
 
 export const LanguageSelector = styled.div`
@@ -225,34 +203,6 @@ export const LanguageSelector = styled.div`
         cursor: pointer;
         text-decoration: underline;
         text-decoration-thickness: 0.2rem;
-      }
-    }
-  }
-  @media (max-width: ${breakpoints.smallTablet}) {
-    flex-direction: row;
-    border: none;
-    width: auto;
-    font-weight: 600;
-    height: auto;
-    display: ${(props) => (props.collapse ? 'flex' : 'none')};
-    transition: display 500ms ease-in-out;
-    margin-top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    justify-content: center;
-    button {
-      font-size: 1.5rem;
-      color: white;
-      font-weight: 600;
-      p {
-        font-weight: 700;
-        :hover {
-          cursor: pointer;
-          text-decoration: underline;
-          text-decoration-color: white;
-          text-decoration-thickness: 0.2rem;
-        }
       }
     }
   }
