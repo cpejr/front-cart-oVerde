@@ -3,6 +3,7 @@ import {
   LoadingOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { GiShoppingCart } from "react-icons/gi";
 import { signInWithGooglePopup } from "../../../../services/firebase";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -16,8 +17,10 @@ import {
   LoginSocial,
   ModalStyle,
   SocialMedias,
+  ConteinerLogin,
+  SocialImg,
 } from "./Styles";
-import { Whatsapp, Facebook, Instagram } from "../../../../assets/index";
+import { Whatsapp, Instagram, BrazilFlag } from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
@@ -74,26 +77,29 @@ export default function LoginSocialArea() {
 
   return (
     <LoginSocial>
-      {isLoading ? (
-        <LoadingStyles>
-          <LoadingOutlined />
-        </LoadingStyles>
-      ) : (
-        <LoginButton onClick={isLogged ? openModalLogOff : logGoogleUser}>
-          {loginLogoff}
-          {profilePicture}
-        </LoginButton>
-      )}
+      <ConteinerLogin>
+        {isLoading ? (
+          <LoadingStyles>
+            <LoadingOutlined />
+          </LoadingStyles>
+        ) : (
+          <LoginButton onClick={isLogged ? openModalLogOff : logGoogleUser}>
+            {loginLogoff}
+            {profilePicture}
+          </LoginButton>
+        )}
+        <GiShoppingCart size={40} color="white" />
+      </ConteinerLogin>
       <SocialMedias>
-        <a href="https://www.instagram.com/prefeiturabd/">
-          <img src={Instagram} alt="Logo Instagram" width="75%"></img>
-        </a>
-        <a href="https://www.facebook.com/prefeiturabd/?locale=pt_BR">
-          <img src={Facebook} alt="Logo Facebook" width="75%"></img>
-        </a>{" "}
-        <a href="http://wa.me/+31992740294">
-          <img src={Whatsapp} alt="Logo Whatsapp" width="75%"></img>
-        </a>
+        <SocialImg>
+          <img src={BrazilFlag} alt="Bandeira Brasil" width="28px"></img>
+        </SocialImg>
+        <SocialImg href="https://www.instagram.com/prefeiturabd/">
+          <img src={Instagram} alt="Logo Instagram" width="60%"></img>
+        </SocialImg>
+        <SocialImg href="http://wa.me/+31992740294">
+          <img src={Whatsapp} alt="Logo Whatsapp" width="60%"></img>
+        </SocialImg>
       </SocialMedias>
       <ModalStyle
         open={modalLogOff}

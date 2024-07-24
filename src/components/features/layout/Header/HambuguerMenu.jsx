@@ -24,25 +24,22 @@ export default function HamburguerMenu() {
       "hamburger",
       <MenuOutlined style={{ color: "#BAFA53", fontSize: "25px" }} />,
       [
-        getItem(" Nossa História", "/historia"),
+        getItem("Home", "/"),
         getItem("Árvores", "/comprar-arvores"),
-        getItem("Quem somos", "/sobre"),
-        getItem("Apoiar e contribuir", "/suporte"),
+        getItem("Sobre", "/sobre"),
         ...(isAdmin
           ? [
-              getItem("Usuários", "/gerenciar-usuarios"),
-              getItem("Arquivos", "/gerenciar-arvores"),
+              getItem("Gerenciar Usuários", "/gerenciar-usuarios"),
+              getItem("Gerenciar Árvores", "/gerenciar-arvores"),
             ]
           : []),
-          ...(isLogged
-            ? [getItem("Minhas Árvores", "/minhas-arvores")]
-            : []),
-      ]
+        ...(isLogged ? [getItem("Minhas Árvores", "/minhas-arvores")] : []),
+      ],
     ),
   ];
 
   function onClick(key) {
-    if (key && key !== "login" && key !== "/story") {
+    if (key && key !== "login") {
       navigate(key);
     }
   }

@@ -10,14 +10,12 @@ import {
 
 import {
   Home,
-  Support,
   ManageCollection,
   ManageUsers,
-  Story,
   AboutUs,
   BuyTrees,
   MyTrees,
-  CartPage
+  CartPage,
 } from "@pages";
 import { AppLayout } from "@components";
 import useAuthStore from "@Stores/auth";
@@ -39,7 +37,6 @@ const router = createBrowserRouter(
     <Route>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path="historia" element={<Story />} />
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
         <Route path="carrinho" element={<CartPage />} />
@@ -47,10 +44,9 @@ const router = createBrowserRouter(
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
-        <Route element={<LoggegRoutes/>}>
-          <Route path="minhas-arvores" element={<MyTrees/>}/>
+        <Route element={<LoggegRoutes />}>
+          <Route path="minhas-arvores" element={<MyTrees />} />
         </Route>
-      <Route path="suporte" element={<Support />} />
       </Route>
     </Route>
   )

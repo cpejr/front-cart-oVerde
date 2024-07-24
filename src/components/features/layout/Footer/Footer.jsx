@@ -1,6 +1,13 @@
-import { Container, CityLogo, Info, SocialMedias, Column } from "./Styles";
 import {
-  LogoBranca,
+  Container,
+  Logo,
+  Info,
+  SocialMedias,
+  Column,
+  ContainerLogo,
+} from "./Styles";
+import {
+  LogoCartaoV,
   Instagram,
   Facebook,
   Whatsapp,
@@ -10,7 +17,9 @@ import {
 export default function Footer() {
   return (
     <Container>
-      <CityLogo src={LogoBranca} width="250px" height="140px"></CityLogo>
+      <ContainerLogo>
+        <Logo src={LogoCartaoV}></Logo>
+      </ContainerLogo>
       <Info>
         casatuetimbua@gmail.com <br />
         (37) 9 9634 9759{" "}

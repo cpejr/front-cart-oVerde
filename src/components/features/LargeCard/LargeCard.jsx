@@ -15,13 +15,14 @@ import {
   CardTitle,
   DivButton,
   CarouselStyles,
+  CarouselImg,
 } from "./Styles";
 import { TreeCertificatePDF } from "@components";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
 
 export default function LargeCard({ data, onBuy }) {
-  const { description, buttonText } = data;
+  const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
 
   // PDF Handling
@@ -74,7 +75,7 @@ export default function LargeCard({ data, onBuy }) {
                 {archiveData.map((file, index) => (
                   <div key={index}>
                     {file.startsWith("data:image") && (
-                      <img src={file} alt={`Imagem ${index}`} />
+                      <CarouselImg src={file} alt={`Imagem ${index}`} />
                     )}
                     {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
@@ -112,6 +113,9 @@ export default function LargeCard({ data, onBuy }) {
         <CardLine>
           <p>{description}</p>
         </CardLine>
+        <CardLine>
+          <p>R$ {price}</p>
+        </CardLine>
         <DivButton>
           {onBuy ? (
             <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
@@ -129,6 +133,7 @@ LargeCard.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    price: PropTypes.string,
     archive: PropTypes.array,
     id_tree: PropTypes.shape({
       name: PropTypes.string,

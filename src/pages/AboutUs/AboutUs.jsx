@@ -1,4 +1,4 @@
-import { Square } from "@assets/index";
+import { Icon } from "@assets/index";
 import { Title, Container, Image } from "./Styles";
 
 export default function AboutUs() {
@@ -6,7 +6,7 @@ export default function AboutUs() {
     <Container>
       <Title>SOBRE A EMPRESA</Title>
       <Image>
-        <img src={Square} alt="Imagem de decoração" />
+        <img src={Icon} alt="Imagem de decoração" />
       </Image>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et

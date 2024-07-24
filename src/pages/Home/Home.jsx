@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 // Components
 import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
-import { Square } from "@assets/index";
+import { Icon } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
 
 export default function Home() {
@@ -54,7 +54,7 @@ export default function Home() {
           </Button>
         </Column>
         <Image>
-          <img src={Square} alt="Imagem de decoração" />
+          <img src={Icon} alt="Imagem de decoração" />
         </Image>
       </Section>
     </Container>

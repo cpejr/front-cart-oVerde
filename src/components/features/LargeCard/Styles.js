@@ -86,6 +86,10 @@ export const StyledButton = styled(Button)`
     font-size: 18px;
     width: 180px;
   }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 4vw;
+    width: 100%;
+  }
 `;
 export const CarouselStyles = styled.div`
   .carousel .slide {
@@ -94,5 +98,17 @@ export const CarouselStyles = styled.div`
   }
   .carousel.carousel-slider .control-arrow {
     background: ${colors.background.primary};
+  }
+`;
+
+export const CarouselImg = styled.img`
+  width: 100%;
+  height: 435px;
+  object-fit: cover;
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 250px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 120px;
   }
 `;

@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { breakpoints, colors,fonts } from "../../styles/stylesVariables";
+import { breakpoints, colors, fonts } from "../../styles/stylesVariables";
 import { MultiSelect } from "primereact/multiselect";
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   padding: 3rem 0;
@@ -19,27 +20,38 @@ export const Title = styled.div`
     font-size: 34px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 28px;
-    margin-left: 8%;
+    font-size: 24px;
+    margin: 0;
+    padding-left: 8%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 5vw;
+    margin: 0;
+    padding-left: 8%;
   }
 `;
 export const SubTitle = styled.h2`
-  width: 100%;
   font-size: 36px;
   font-family: ${fonts.Cabin};
   color: ${colors.font.title};
-  margin-left:5%;
+  margin-left: 5%;
   text-decoration: underline ${colors.font.line};
   text-decoration-skip-ink: auto;
   text-underline-offset: 0.5rem;
   text-decoration-thickness: 3px;
 
   @media (max-width: ${breakpoints.tablet}) {
-    font-size: 32px;
-    text-underline-offset: 0.5rem;
+    font-size: 34px;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    font-size: 26px;
+    font-size: 24px;
+    margin: 0;
+    padding-left: 8%;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 5vw;
+    margin: 0;
+    padding-left: 8%;
   }
 `;
 export const LoadingStyles = styled.div`

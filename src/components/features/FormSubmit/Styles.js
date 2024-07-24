@@ -60,6 +60,12 @@ export const StyledNumber = styled(InputNumber)`
     text-align: left;
     &:hover {
       border-color: ${colors.accent.primary};
+      outline: none;
+      box-shadow: none;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: none;
     }
     @media (max-width: ${breakpoints.mobile}) {
       width: 80%;
