@@ -5,7 +5,7 @@ import { SubmitSpace, Button } from "./Styles";
 export default function SubmitButton({ children, relativeWidth }) {
   return (
     <SubmitSpace>
-      <Button type='submit' relativeWidth={relativeWidth}>
+      <Button type="submit" relativeWidth={relativeWidth}>
         {children}
       </Button>
     </SubmitSpace>

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { colors } from '../../../styles/stylesVariables';
+import styled from "styled-components";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { colors } from "../../../styles/stylesVariables";
 
 export const TableShape = styled(DataTable)`
   display: flex;

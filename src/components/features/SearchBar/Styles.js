@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { AutoComplete } from 'primereact/autocomplete';
-import { colors } from '../../../styles/stylesVariables';
+import styled from "styled-components";
+import { AutoComplete } from "primereact/autocomplete";
+import { colors } from "../../../styles/stylesVariables";
 
 export const Input = styled(AutoComplete)`
   margin-top: 30px;
-  width: ${(props) => (props.width ? props.width : '95%')};
+  width: ${(props) => (props.width ? props.width : "95%")};
   align-self: center;
   .p-autocomplete-input {
     display: flex;

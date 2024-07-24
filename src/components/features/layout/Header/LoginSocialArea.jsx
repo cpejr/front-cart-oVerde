@@ -2,15 +2,15 @@ import {
   CloseOutlined,
   LoadingOutlined,
   UserOutlined,
-} from '@ant-design/icons';
-import { GiShoppingCart } from 'react-icons/gi';
-import { signInWithGooglePopup } from '../../../../services/firebase';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { useLogin } from '../../../../hooks/querys/user';
-import useAuthStore from '../../../../Stores/auth';
-import { colors } from '../../../../styles/stylesVariables';
-import { ModalLogOff } from '../../..';
+} from "@ant-design/icons";
+import { GiShoppingCart } from "react-icons/gi";
+import { signInWithGooglePopup } from "../../../../services/firebase";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useLogin } from "../../../../hooks/querys/user";
+import useAuthStore from "../../../../Stores/auth";
+import { colors } from "../../../../styles/stylesVariables";
+import { ModalLogOff } from "../../..";
 import {
   LoadingStyles,
   LoginButton,
@@ -19,8 +19,8 @@ import {
   SocialMedias,
   ConteinerLogin,
   SocialImg,
-} from './Styles';
-import { Whatsapp, Instagram, BrazilFlag } from '../../../../assets/index';
+} from "./Styles";
+import { Whatsapp, Instagram, BrazilFlag } from "../../../../assets/index";
 
 export default function LoginSocialArea() {
   // Variables
@@ -29,15 +29,15 @@ export default function LoginSocialArea() {
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const user = useAuthStore((state) => state.auth?.user);
   const [loginLogoff, setLoginLogoff] = useState(
-    auth?.accessToken ? 'Fazer Logoff' : 'Fazer Login',
+    auth?.accessToken ? "Fazer Logoff" : "Fazer Login"
   );
   const isLogged = auth?.accessToken ? true : false;
   const [profilePicture, setProfilePicture] = useState(
-    loginLogoff === 'Fazer Login' ? (
+    loginLogoff === "Fazer Login" ? (
       <UserOutlined />
     ) : (
       <img src={user?.imageURL} alt="Profile" />
-    ),
+    )
   );
   const [modalLogOff, setModalLogOff] = useState(false);
   const openModalLogOff = () => setModalLogOff(true);
@@ -48,7 +48,7 @@ export default function LoginSocialArea() {
 
   const { mutate: login, isLoading } = useLogin({
     onSuccess: () => {
-      toast.success('Login Efetuado com Sucesso!');
+      toast.success("Login Efetuado com Sucesso!");
       setProfilePicture(<img src={user?.imageURL} alt="Profile" />);
     },
     onError: (err) => toast.error(err),
@@ -63,15 +63,15 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff('Fazer Logoff');
+        setLoginLogoff("Fazer Logoff");
       } else {
         clearAuth();
-        toast.success('Usuario Deslogado com Sucesso!');
-        setLoginLogoff('Fazer Login');
+        toast.success("Usuario Deslogado com Sucesso!");
+        setLoginLogoff("Fazer Login");
         setProfilePicture(<UserOutlined />);
       }
     } catch (error) {
-      toast.error('Error ao Fazer Login com o Google');
+      toast.error("Error ao Fazer Login com o Google");
     }
   };
 
