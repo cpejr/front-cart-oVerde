@@ -172,9 +172,6 @@ export const PrimereactStyles = createGlobalStyle`
     align-items: center;  
   }
   
-  .p-datatable-thead>tr>th{
-    padding: 0px;
-  }
 
   .p-dropdown{
     transition: none;
@@ -191,5 +188,13 @@ export const PrimereactStyles = createGlobalStyle`
     @media (max-width: 240px) {
       width: 15px;
     }
+  }
+  
+  .p-datatable .p-datatable-tbody>tr>td{
+    padding: 15px;
+  }
+
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight{
+    color: #4b5563;
   }
 `;
