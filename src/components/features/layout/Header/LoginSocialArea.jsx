@@ -25,12 +25,15 @@ import {
   LanguageSelector,
 } from './Styles';
 import { Whatsapp, Instagram, BrazilFlag, SpainFlag, USAFlag } from '../../../../assets/index';
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function LoginSocialArea() {
   // Translations
+  const { globalLanguage, setGlobalLanguage } = useGlobalLanguage();
   const [collapse, setCollapse] = useState(false);
-  const availableLanguages = {'EN' : USAFlag, 'PT' : BrazilFlag, 'ES' : SpainFlag};
-  const [globalLang, setGlobalLang] = useState('PT');
+  const availableLanguages = {'PT' : BrazilFlag, 'EN' : USAFlag};
+  const translations = TranslateTextHeader({ globalLanguage });
   
   // Variables
 
@@ -38,11 +41,11 @@ export default function LoginSocialArea() {
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const user = useAuthStore((state) => state.auth?.user);
   const [loginLogoff, setLoginLogoff] = useState(
-    auth?.accessToken ? 'Fazer Logoff' : 'Fazer Login',
+    auth?.accessToken ? 'Log Off' : 'Login',
   );
   const isLogged = auth?.accessToken ? true : false;
   const [profilePicture, setProfilePicture] = useState(
-    loginLogoff === 'Fazer Login' ? (
+    loginLogoff === 'Login' ? (
       <UserOutlined />
     ) : (
       <img src={user?.imageURL} alt="Profile" />
@@ -57,7 +60,7 @@ export default function LoginSocialArea() {
 
   const { mutate: login, isLoading } = useLogin({
     onSuccess: () => {
-      toast.success('Login Efetuado com Sucesso!');
+      toast.success(translations.toastLoginMessage);
       setProfilePicture(<img src={user?.imageURL} alt="Profile" />);
     },
     onError: (err) => toast.error(err),
@@ -72,15 +75,15 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff('Fazer Logoff');
+        setLoginLogoff('Login');
       } else {
         clearAuth();
-        toast.success('Usuario Deslogado com Sucesso!');
-        setLoginLogoff('Fazer Login');
+        toast.success(translations.toastLogoffMessage);
+        setLoginLogoff('Log Off');
         setProfilePicture(<UserOutlined />);
       }
     } catch (error) {
-      toast.error('Error ao Fazer Login com o Google');
+      toast.error(translations.toastErrorGoogleMessage);
     }
   };
 
@@ -103,7 +106,7 @@ export default function LoginSocialArea() {
         <Select>
           <Selected onClick={() => setCollapse((prev) => !prev)}>
             <SocialImg>
-              <img src={availableLanguages[globalLang]} width="28px"></img>
+              <img src={availableLanguages[globalLanguage]} width="28px"></img>
             </SocialImg>
             <IoIosArrowDown color='white'/>
           </Selected>
@@ -113,7 +116,7 @@ export default function LoginSocialArea() {
                 type="button"
                 key={lang}
                 onClick={() => {
-                  setGlobalLang(lang);
+                  setGlobalLanguage(lang);
                   setCollapse((prev) => !prev);
                 }}
                 style={{ display: collapse ? 'flex' : 'none' }}

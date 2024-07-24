@@ -2,6 +2,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Routes from "./routes";
 import { ConfigProvider } from "antd";
 import { colors, fonts } from "./styles/stylesVariables";
+import { LanguageProvider } from "./Stores/globalLanguage";
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
       }}
     >
       <GlobalStyles />
-      <Routes />
+      <LanguageProvider>
+        <Routes />
+      </LanguageProvider>
     </ConfigProvider>
   );
 }
