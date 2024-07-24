@@ -15,5 +15,9 @@ export { default as Twitter } from "./Header/Twitter.svg";
 export { default as Login } from "./Header/Login.svg";
 export { default as MenuLogo } from "./Header/Menu.svg";
 export { default as BrazilFlag } from "./Header/brazilflag.png";
+export { default as Delete } from "./CartPage/Delete.png";
+export { default as Tree } from "./CartPage/Tree.png";
+
+export { default as LogoVerde } from "./Logo/logo1-cor2.png";
 
 export { default as WhatsAppIcon } from "./Support/WhatsAppIcon.png";

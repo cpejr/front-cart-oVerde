@@ -37,9 +37,7 @@ export default function Home() {
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/comprar-arvores")}>
-            Saiba Mais
-          </Button>
+          <Button>Saiba Mais</Button>
         </Column>
       </Section>
 
@@ -51,7 +49,9 @@ export default function Home() {
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <Button onClick={() => navigate("/eventos")}>Saiba Mais</Button>
+          <Button onClick={() => navigate("/comprar-arvores")}>
+            Saiba Mais
+          </Button>
         </Column>
         <Image>
           <img src={Icon} alt="Imagem de decoração" />
