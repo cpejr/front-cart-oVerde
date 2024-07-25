@@ -24,7 +24,7 @@ import {
   Selected,
   LanguageSelector,
 } from './Styles';
-import { Whatsapp, Instagram, BrazilFlag, SpainFlag, USAFlag } from '../../../../assets/index';
+import { Whatsapp, Instagram, BrazilFlag, USAFlag } from '../../../../assets/index';
 import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 

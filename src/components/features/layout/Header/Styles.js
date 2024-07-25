@@ -100,6 +100,7 @@ export const ConteinerLogin = styled.div`
 
 export const LoginButton = styled.button`
   display: flex;
+  gap: 0.5rem;
   justify-content: space-around;
   align-items: center;
   padding: 0 1rem;
@@ -122,14 +123,17 @@ export const LoginButton = styled.button`
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 10rem;
+    gap: 0;
   }
   @media (max-width: ${breakpoints.mobile}) {
     width: 10rem;
     height: 40px;
+    gap: 0;
   }
   @media (max-width: ${breakpoints.smallMobile}) {
     width: 7rem;
     font-size: 0.8rem;
+    gap: 0;
   }
 `;
 export const ModalStyle = styled(Modal)`
