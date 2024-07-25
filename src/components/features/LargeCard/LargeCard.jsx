@@ -20,8 +20,14 @@ import {
 import { TreeCertificatePDF } from '@components';
 import { useGetArchives } from '@hooks/querys/archive';
 import { colors } from '@styles/stylesVariables';
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function LargeCard({ data, onBuy }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   console.log(data);
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
@@ -81,13 +87,13 @@ export default function LargeCard({ data, onBuy }) {
                     {file.startsWith('data:video') && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
-                        Seu navegador não suporta o elemento de vídeo.
+                        {translations.textVideo}
                       </video>
                     )}
                     {file.startsWith('data:audio') && (
                       <audio controls>
                         <source src={file} type="audio/mpeg" />
-                        Seu navegador não suporta o elemento de áudio.
+                        {translations.textAudio}
                       </audio>
                     )}
                     {file.startsWith('data:application/pdf') && (
@@ -97,8 +103,8 @@ export default function LargeCard({ data, onBuy }) {
                         width="100%"
                         height="400px"
                       >
-                        Seu navegador não suporta visualização de PDF. Você pode{' '}
-                        <a href={file}>baixá-lo aqui</a>.
+                        {translations.textPDF}
+                        <a href={file}>{translations.textDownload}</a>.
                       </object>
                     )}
                   </div>
