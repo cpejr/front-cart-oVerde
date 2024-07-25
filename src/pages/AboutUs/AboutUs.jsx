@@ -1,7 +1,7 @@
 import { Square } from "@assets/index";
 import { Title, Container, Image } from "./Styles";
 
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function AboutUs() {
@@ -11,7 +11,7 @@ export default function AboutUs() {
 
   return (
     <Container>
-      <Title>SOBRE A EMPRESA</Title>
+      <Title>{translations.title}</Title>
       <Image>
         <img src={Square} alt="Imagem de decoração" />
       </Image>

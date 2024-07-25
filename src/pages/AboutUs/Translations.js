@@ -1,7 +1,9 @@
 export function TranslateTextHeader({ globalLanguage }) {
     let text;
+    let title;
   
     if (globalLanguage === 'EN') {
+        title = 'ABOUT THE COMPANY';
         text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
         libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat.
         Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim.
@@ -18,6 +20,7 @@ export function TranslateTextHeader({ globalLanguage }) {
         laoreet et porta elit. EN`;
 
     } else if (globalLanguage === 'PT') {
+        title = 'SOBRE A EMPRESA';
         text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
         libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat.
         Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim.
@@ -36,5 +39,6 @@ export function TranslateTextHeader({ globalLanguage }) {
 
     return {
       text,
+      title,
     };
   }
