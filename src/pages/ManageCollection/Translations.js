@@ -1,62 +1,86 @@
 export function TranslateTextHeader({ globalLanguage }) {
-    let textColumn1;
-    let textColumn2;
-    let textColumn3;
-    let textColumn4;
-    let textAdmin;
-    let textUser;
-    let toastDeleteError;
-    let toastDeleteSucess;
-    let toastGetError;
-    let toastUpdateError;
-    let toastUpdateSucess;
+    let textName;
+    let textDescription;
+    let textLocation;
+    let textSpecie;
+    let textPrice;
+    let textArchive;
+    let textManage;
+    let textCategory;
+    let toastGetTreeError;
+    let toastGetCategoryError;
+    let toastPostTreeSucess;
+    let toastPostTreeError;
+    let toastDeleteTreeSucess;
+    let toastDeleteTreeError;
+    let toastUpdateTreeSucess;
+    let toastUpdateTreeError;
     let pageTitle;
-    let placeholderSearch;
+    let pageSubTitle;
+    let loading;
   
     if (globalLanguage === 'EN') {
-        textColumn1 = 'Photo';
-        textColumn2 = 'Name';
-        textColumn3 = 'Email';
-        textColumn4 = 'Type';
-        textAdmin = 'Administrator';
-        textUser = 'User';
-        toastDeleteSucess = 'User deleted successfully!';
-        toastDeleteError = 'Error deleting user.';
-        toastUpdateSucess = 'User updated successfully!';
-        toastUpdateError = 'Error updating user.';
-        toastGetError = 'Error picking up items';
-        pageTitle = 'MANAGE USERS';
-        placeholderSearch = 'Search user';
+      textName = 'Name';
+      textDescription = 'Description';
+      textLocation = 'Location';
+      textSpecie = 'Specie';
+      textPrice = 'Price';
+      textArchive = 'Add Photo';
+      textManage = 'Manage';
+      textCategory = 'Choose the category';
+      toastGetTreeError = 'Error picking up items';
+      toastGetCategoryError = 'Error when getting categories';
+      toastPostTreeSucess = 'Registered tree!';
+      toastPostTreeError = 'Error registering a tree.';
+      toastDeleteTreeSucess = 'Tree deleted successfully!';
+      toastDeleteTreeError = 'Error deleting tree.';
+      toastUpdateTreeSucess = 'Tree updated successfully!';
+      toastUpdateTreeError = 'Error updating tree.';
+      pageTitle = 'ADD NEW TREE';
+      pageSubTitle = 'MANAGE TREES';
+      loading = 'Loading';
 
     } else if (globalLanguage === 'PT') {
-        textColumn1 = 'Foto';
-        textColumn2 = 'Nome';
-        textColumn3 = 'Email';
-        textColumn4 = 'Tipo';
-        textAdmin = 'Administrador';
-        textUser = 'Usuário';
-        toastDeleteSucess = 'Usuario deletado com sucesso!';
-        toastDeleteError = 'Erro ao excluir usuário.';
-        toastUpdateSucess = 'Usuário atualizado com sucesso!';
-        toastUpdateError = 'Erro ao atualizar usuário.';
-        toastGetError = 'Erro ao pegar itens';
-        pageTitle = 'GERENCIAR USUÁRIOS';
-        placeholderSearch = 'Pesquisar usuário';
+        textName = 'Nome';
+        textDescription = 'Descrição';
+        textLocation = 'Localização';
+        textSpecie = 'Espécie';
+        textPrice = 'Valor';
+        textArchive = 'Adicionar Foto';
+        textManage = 'Gerenciar';
+        textCategory = 'Escolha a categoria';
+        toastGetTreeError = 'Erro ao pegar itens';
+        toastGetCategoryError = 'Erro ao pegar categorias';
+        toastPostTreeSucess = 'Árvore cadastrada!';
+        toastPostTreeError = 'Erro ao cadastrar uma árvore.';
+        toastDeleteTreeSucess = 'Árvore excluída com sucesso!';
+        toastDeleteTreeError = 'Erro ao excluir árvore.';
+        toastUpdateTreeSucess = 'Árvore atualizada com sucesso!';
+        toastUpdateTreeError = 'Erro ao atualizar árvore.';
+        pageTitle = 'ADICIONAR NOVA ÁRVORE';
+        pageSubTitle = 'GERENCIAR ÁRVORES';
+        loading = 'Carregando';
     }
 
     return {
-      textColumn1,
-      textColumn2,
-      textColumn3,
-      textColumn4,
-      textAdmin,
-      textUser,
-      toastDeleteSucess,
-      toastDeleteError,
-      toastGetError,
-      toastUpdateError,
-      toastUpdateSucess,
+      textName,
+      textDescription,
+      textLocation,
+      textSpecie,
+      textPrice,
+      textArchive,
+      textManage,
+      textCategory,
+      toastGetTreeError,
+      toastGetCategoryError,
+      toastPostTreeSucess,
+      toastPostTreeError,
+      toastDeleteTreeSucess,
+      toastDeleteTreeError,
+      toastUpdateTreeSucess,
+      toastUpdateTreeError,
       pageTitle,
-      placeholderSearch,
+      pageSubTitle,
+      loading,
     };
   }

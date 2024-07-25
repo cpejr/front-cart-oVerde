@@ -23,7 +23,7 @@ import {
   AiOutlineUpload,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function ManageCollection() {
@@ -52,41 +52,41 @@ export default function ManageCollection() {
     {
       type: "input",
       key: "name",
-      placeholder: "Nome",
+      placeholder: translations.textName,
     },
     {
       type: "input",
       key: "description",
-      placeholder: "Descrição",
+      placeholder: translations.textDescription,
     },
     {
       type: "input",
       key: "location",
-      placeholder: "Localização",
+      placeholder: translations.textLocation,
     },
     {
       type: "input",
       key: "specie",
-      placeholder: "Espécie",
+      placeholder: translations.textSpecie,
     },
     {
       type: "number",
       key: "price",
-      placeholder: "Valor",
+      placeholder: translations.textPrice,
     },
     {},
     {
       type: "archive",
       key: "archive",
-      placeholder: "Adicionar Foto",
+      placeholder: translations.textArchive,
       icon: AiOutlineUpload,
     },
   ]);
 
   const columns = [
-    { field: "name", header: "Nome" },
-    { field: "description", header: "Descrição" },
-    { field: "Manage", header: "Gerenciar" },
+    { field: "name", header: translations.textName },
+    { field: "description", header: translations.textDescription },
+    { field: "Manage", header: translations.textManage },
   ];
 
   const transformArrayItems = (OriginalArray) => {
@@ -149,7 +149,7 @@ export default function ManageCollection() {
   //backend calls
   const { data: collection, isLoading } = useGetTree({
     onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
+      toast.error(translations.toastGetTreeError, err);
     },
   });
 
@@ -162,7 +162,7 @@ export default function ManageCollection() {
         setSelectOptions(transformArrayItems(categoryTypes));
       },
       onError: (err) => {
-        toast.error("Erro ao pegar categorias", err);
+        toast.error(translations.toastGetCategoryError, err);
       },
     });
 
@@ -171,10 +171,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore cadastrada!");
+      toast.success(translations.toastPostTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao cadastrar uma árvore.", err);
+      toast.error(translations.toastPostTreeError, err);
     },
   });
   const { mutate: deleteTree, isPending: loadingDeleteTree } = useDeleteTree({
@@ -182,10 +182,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore excluída com sucesso!");
+      toast.success(translations.toastDeleteTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao excluir árvore.", err);
+      toast.error(translations.toastDeleteTreeError, err);
     },
   });
   const { mutate: updateTree, isPending: loadingEditTree } = useUpdateTree({
@@ -193,10 +193,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore atualizada com sucesso!");
+      toast.success(translations.toastUpdateTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao atualizar árvore.", err);
+      toast.error(translations.toastUpdateTreeError, err);
     },
   });
 
@@ -214,7 +214,7 @@ export default function ManageCollection() {
       inputs[5] = {
         type: "select",
         key: "id_categoryType",
-        placeholder: "Escolha a categoria",
+        placeholder: translations.textCategory,
         options: types,
       };
     }
@@ -224,7 +224,7 @@ export default function ManageCollection() {
   }, [categoryTypes, collection, isLoading, isLoadingCategories]);
   return (
     <Container>
-      <Title>ADICIONAR NOVA ÁRVORE </Title>
+      <Title>{translations.pageTitle}</Title>
       {!isLoadingCategories ? (
         <FormSubmit
           inputs={inputs}
@@ -234,9 +234,9 @@ export default function ManageCollection() {
           loading={loadingPostTree}
         />
       ) : (
-        <SubTitle>Carregando</SubTitle>
+        <SubTitle>{translations.loading}</SubTitle>
       )}
-      <SubTitle>GERENCIAR ÁRVORES</SubTitle>
+      <SubTitle>{translations.pageSubTitle}</SubTitle>
       {isLoading || loadingEditTree || loadingDeleteTree ? (
         <LoadingStyles>
           <LoadingOutlined />
