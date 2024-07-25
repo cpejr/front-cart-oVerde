@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
 import { Square } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function Home() {

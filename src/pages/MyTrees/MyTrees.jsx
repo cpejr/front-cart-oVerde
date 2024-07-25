@@ -14,7 +14,7 @@ import {
 import { SearchBar, LargeCard } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function MyTrees() {

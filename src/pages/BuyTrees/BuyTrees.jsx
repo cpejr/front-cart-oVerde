@@ -14,7 +14,7 @@ import {
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function BuyTrees() {

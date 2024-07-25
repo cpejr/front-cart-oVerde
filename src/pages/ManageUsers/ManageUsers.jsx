@@ -19,7 +19,7 @@ import {
   useGetUsers,
   useUpdateUsers,
 } from "@hooks/querys/user";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 
 export default function ManageUsers() {
