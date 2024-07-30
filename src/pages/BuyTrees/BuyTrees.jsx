@@ -16,9 +16,13 @@ import {
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
+import { useCart } from "../../Stores/CartContext";
 import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
-export default function BuyTrees() {
+export default function BuyTrees({ trees }) {
+  //Context
+  const { addToCart, isInCart } = useCart();
+
   // Select Data
   const filters = [
     { label: "Mais Recentes", value: "recent" },
@@ -59,7 +63,7 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: "Comprar Certificado",
+      buttonText: "Adicionar ao carrinho",
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
@@ -116,15 +120,15 @@ export default function BuyTrees() {
         />{" "}
         {loading && <LoadingSpinner />}
       </Filter>
-      {isLoading && collections ? (
+      {isLoading ? (
         <Title>Carregando</Title>
       ) : (
         <DivLine>
           {collections
+            .filter((card) => !isInCart(card._id))
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-
             .map((card, index) => (
               <Line key={index}>
                 <LargeCard data={card} onBuy={() => buyTree(card._id)} />

@@ -3,7 +3,7 @@ import { pdf } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import { ScaleLoader } from "react-spinners";
 import { ConfigProvider } from "antd";
 // Components
@@ -20,12 +20,21 @@ import {
 import { TreeCertificatePDF } from "@components";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
+import { useCart } from "../../../Stores/CartContext";
 
-export default function LargeCard({ data, onBuy }) {
+export default function LargeCard({ data }) {
+  //Context
+  const { addToCart } = useCart();
+  function buyTree() {
+    const { buttonText, link, ...tree } = data;
+    addToCart(tree);
+  }
+
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
 
   // PDF Handling
+
   function SaveFile() {
     pdf(<TreeCertificatePDF data={data} />)
       .toBlob()
@@ -117,11 +126,7 @@ export default function LargeCard({ data, onBuy }) {
           <p>R$ {price}</p>
         </CardLine>
         <DivButton>
-          {onBuy ? (
-            <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
-          ) : (
-            <StyledButton onClick={SaveFile}>{buttonText}</StyledButton>
-          )}
+          <StyledButton onClick={buyTree}>{buttonText}</StyledButton>
         </DivButton>
       </StyledCard>
     </ConfigProvider>
