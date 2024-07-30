@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
 import { Icon } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
+import { DemoCarousel } from "../../components";
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <Container>
+      <DemoCarousel />
       <Overlay>
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />

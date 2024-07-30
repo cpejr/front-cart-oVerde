@@ -22,7 +22,7 @@ export { default as LargeCard } from "./features/LargeCard/LargeCard.jsx";
 export { default as VideoLarger } from "./features/Video/VideoLarger/VideoLarger.jsx";
 export { default as VideoSmall } from "./features/Video/VideoSmall/VideoSmall.jsx";
 export { default as CartCard } from "./features/CartCard/CartCard.jsx";
-
+export { default as DemoCarousel } from "./features/Carousel/Carousel.jsx";
 // Modals
 
 export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
