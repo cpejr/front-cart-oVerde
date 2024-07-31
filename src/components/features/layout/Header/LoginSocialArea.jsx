@@ -41,7 +41,7 @@ export default function LoginSocialArea() {
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const user = useAuthStore((state) => state.auth?.user);
   const [loginLogoff, setLoginLogoff] = useState(
-    auth?.accessToken ? 'Log Off' : 'Login',
+    auth?.accessToken ? 'Logoff' : 'Login',
   );
   const isLogged = auth?.accessToken ? true : false;
   const [profilePicture, setProfilePicture] = useState(
@@ -75,7 +75,7 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff('Log Off');
+        setLoginLogoff('Logoff');
       } else {
         clearAuth();
         toast.success(translations.toastLogoffMessage);
