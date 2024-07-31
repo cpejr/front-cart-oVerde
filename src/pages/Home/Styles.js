@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 
+export const ContainerCarousel = styled.div`
+  width: 50%;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const Container = styled.div`
   font-size: 1.2rem;
 `;
@@ -82,7 +89,7 @@ export const Image = styled.div`
   width: 40%;
   align-items: center;
   justify-content: center;
-    > img {
+  > img {
     width: 20rem;
     @media (max-width: ${breakpoints.mobile}) {
       display: none;
