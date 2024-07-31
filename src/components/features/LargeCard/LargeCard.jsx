@@ -22,15 +22,21 @@ import { useGetArchives } from '@hooks/querys/archive';
 import { colors } from '@styles/stylesVariables';
 import { useGlobalLanguage } from '../../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
+import translateText from '../../../services/translateAPI';
+import { useState } from 'react';
 
 export default function LargeCard({ data, onBuy }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
   
   console.log(data);
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
+  const [nameText, setNameText] = useState('');
+  const [descriptionText, setDescriptionText] = useState('');
+  const [buttonTranslation, setButtonTranslation] = useState('');
 
   // PDF Handling
   function SaveFile() {
@@ -51,6 +57,30 @@ export default function LargeCard({ data, onBuy }) {
       console.error('Error ao pegar os arquivos', err);
     },
   });
+
+  translateText(name, translateLanguage)
+    .then((translate) => {
+      setNameText(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
+
+  translateText(description, translateLanguage)
+    .then((translate) => {
+      setDescriptionText(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
+
+  translateText(buttonText, translateLanguage)
+    .then((translate) => {
+      setButtonTranslation(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
 
   return (
     <ConfigProvider
@@ -115,19 +145,19 @@ export default function LargeCard({ data, onBuy }) {
         )}
 
         <Group>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle>{nameText}</CardTitle>
         </Group>
         <CardLine>
-          <p>{description}</p>
+          <p>{descriptionText}</p>
         </CardLine>
         <CardLine>
           <p>R$ {price}</p>
         </CardLine>
         <DivButton>
           {onBuy ? (
-            <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
+            <StyledButton onClick={onBuy}>{buttonTranslation}</StyledButton>
           ) : (
-            <StyledButton onClick={SaveFile}>{buttonText}</StyledButton>
+            <StyledButton onClick={SaveFile}>{buttonTranslation}</StyledButton>
           )}
         </DivButton>
       </StyledCard>

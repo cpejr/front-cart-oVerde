@@ -4,7 +4,6 @@ export function TranslateTextHeader({ globalLanguage }) {
     let labelCheap;
     let labelExpensive;
     let loadingErrorMessage;
-    let textButton;
     let pageTitle;
     let placeholderSearch;
     let placeholderFilter;
@@ -16,7 +15,6 @@ export function TranslateTextHeader({ globalLanguage }) {
         labelCheap = 'Cheaper';
         labelExpensive = 'More Expensive';
         loadingErrorMessage = 'Error Loading Items';
-        textButton = 'Buy Certificate';
         pageTitle = 'BUY TREES';
         placeholderSearch = 'Search';
         placeholderFilter = 'Filter by';
@@ -28,7 +26,6 @@ export function TranslateTextHeader({ globalLanguage }) {
         labelCheap = 'Mais Baratas';
         labelExpensive = 'Mais Caras';
         loadingErrorMessage = 'Erro ao carregar itens';
-        textButton = 'Comprar Certificado';
         pageTitle = 'COMPRAR ÁRVORES';
         placeholderSearch = 'Pesquisar';
         placeholderFilter = 'Filtrar por';
@@ -41,7 +38,6 @@ export function TranslateTextHeader({ globalLanguage }) {
       labelCheap,
       labelExpensive,
       loadingErrorMessage,
-      textButton,
       pageTitle,
       placeholderSearch,
       placeholderFilter,
