@@ -75,11 +75,11 @@ export default function LoginSocialArea() {
           email: googleResponse?.user?.email,
           imageURL: googleResponse?.user?.photoURL,
         });
-        setLoginLogoff('Login');
+        setLoginLogoff('Log Off');
       } else {
         clearAuth();
         toast.success(translations.toastLogoffMessage);
-        setLoginLogoff('Log Off');
+        setLoginLogoff('Login');
         setProfilePicture(<UserOutlined />);
       }
     } catch (error) {

@@ -1,4 +1,4 @@
-export function TranslateTextHeader({ globalLanguage }) {
+export function TranslateText({ globalLanguage }) {
     let textName;
     let textDescription;
     let textLocation;
