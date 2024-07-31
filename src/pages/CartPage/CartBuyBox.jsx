@@ -1,17 +1,22 @@
-import {Box, StyledButton, PriceLabel } from './Styles';
+import { Box, StyledButton, PriceLabel } from "./Styles";
+import { useState } from "react";
+import PropTypes from "prop-types";
+import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
-import PropTypes from 'prop-types';
+export default function CartBuyBox({ value }) {
+  const [modalAccept, setModalAccept] = useState(false);
 
-export default function CartBuyBox({value}) {
-
-    return (
-        <Box>
-            <PriceLabel>TOTAL: R$ {value}</PriceLabel>
-            <StyledButton>FECHAR COMPRA</StyledButton>
-        </Box>
-    );
+  const openModalAccept = () => setModalAccept(true);
+  const closeModalAccept = () => setModalAccept(false);
+  return (
+    <Box>
+      <PriceLabel>TOTAL: R$ {value}</PriceLabel>
+      <StyledButton onClick={openModalAccept}>FECHAR COMPRA</StyledButton>
+      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
+    </Box>
+  );
 }
 
 CartBuyBox.propTypes = {
-    value: PropTypes.double,
+  value: PropTypes.double,
 };

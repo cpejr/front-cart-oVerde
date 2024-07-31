@@ -5,13 +5,13 @@ import {
   DivButton,
   Header,
   Image,
-  ModalButton,
   Section,
   StyledCheckBox,
-} from "./Style";
+} from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
+import GoogleButton from "../../GooglePay/GooglePay";
 
 export default function ModalAcceptTerms({ modal, onClose }) {
   const [accept, setAccept] = useState(false);
@@ -43,13 +43,13 @@ export default function ModalAcceptTerms({ modal, onClose }) {
     <Modal
       open={modal}
       onCancel={handleCancel}
-      footer={[
-        <DivButton key="divButton">
-          <ModalButton key="submit" type="primary" onClick={handleSubmit}>
-            Confirmar
-          </ModalButton>
-        </DivButton>,
-      ]}
+      footer={
+        accept && (
+          <DivButton key="divButton">
+            <GoogleButton onClick={handleSubmit} />
+          </DivButton>
+        )
+      }
       width={"70%"}
     >
       <Container>
