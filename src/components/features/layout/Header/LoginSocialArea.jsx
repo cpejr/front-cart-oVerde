@@ -107,21 +107,22 @@ export default function LoginSocialArea() {
         <GiShoppingCart size={40} color="white" />
       </ConteinerLogin>
       <SocialMedias>
-        <Select>
-          <Selected onClick={() => setCollapse((prev) => !prev)}>
+        <Select 
+        onMouseLeave={() => setCollapse(false)}>
+          <Selected onClick={() => setCollapse(true)}>
             <SocialImg>
               <img src={availableLanguages[globalLanguage]} width="28px"></img>
             </SocialImg>
             <IoIosArrowDown color='white'/>
           </Selected>
-          <LanguageSelector collapse={+collapse}>
+          {collapse && <LanguageSelector collapse={+collapse}>
             {Object.entries(availableLanguages).map(([lang, flag]) => (
               <button
                 type="button"
                 key={lang}
                 onClick={() => {
                   setGlobalLanguage(lang);
-                  setCollapse((prev) => !prev);
+                  setCollapse(false);
                   if (location.pathname === "/gerenciar-arvores" || location.pathname === "/gerenciar-usuarios"){
                     window.location.reload();
                   }
@@ -133,7 +134,7 @@ export default function LoginSocialArea() {
                 </SocialImg>
               </button>
               ))}
-          </LanguageSelector>
+          </LanguageSelector>}
         </Select>
         <SocialImg href="https://www.instagram.com/prefeiturabd/">
           <img src={Instagram} alt="Logo Instagram" width="60%"></img>

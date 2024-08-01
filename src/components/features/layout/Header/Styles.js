@@ -182,7 +182,7 @@ export const LanguageSelector = styled.div`
   flex-direction: column;
   position: absolute;
   z-index: 200;
-  margin-top: 2rem;
+  margin-top: 1.9rem;
   transition: height 1s ease-in-out;
   height: ${(props) => (props.collapse ? 'auto' : '0rem')};
   overflow-y: hidden;
