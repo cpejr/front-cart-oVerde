@@ -46,7 +46,11 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       footer={
         accept && (
           <DivButton key="divButton">
-            <GoogleButton price={price} onClick={handleSubmit} />
+            <GoogleButton
+              price={price}
+              onClick={handleSubmit}
+              onClose={onClose}
+            />
           </DivButton>
         )
       }

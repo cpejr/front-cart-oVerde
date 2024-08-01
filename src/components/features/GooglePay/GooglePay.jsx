@@ -5,7 +5,8 @@ import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { useCart } from "../../../Stores/CartContext";
 
-const GoogleButton = ({ disabled, price }) => {
+const GoogleButton = ({ disabled, price, onClose }) => {
+  const { clearCart } = useCart();
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { cartItems: data } = useCart();
 
@@ -74,8 +75,9 @@ const GoogleButton = ({ disabled, price }) => {
             .then((paymentData) => {
               console.log("Payment Data:", paymentData);
               createCertificate({ id_user: id_user, tree: data });
-
               setIsPaymentSuccessful(true);
+              clearCart();
+              if (onClose) onClose();
             })
             .catch((error) => {
               console.error("Error:", error);
@@ -83,6 +85,7 @@ const GoogleButton = ({ disabled, price }) => {
             });
         },
       });
+
       const container = document.getElementById("google-pay-button");
       if (container && container.children.length === 0) {
         container.appendChild(button);

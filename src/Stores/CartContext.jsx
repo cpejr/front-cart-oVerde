@@ -9,6 +9,7 @@ export function CartProvider({ children }) {
     const storedCartItems = localStorage.getItem("cartItems");
     return storedCartItems ? JSON.parse(storedCartItems) : [];
   });
+
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -25,9 +26,13 @@ export function CartProvider({ children }) {
     return cartItems.some((tree) => tree._id === id);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, isInCart }}
+      value={{ cartItems, addToCart, removeFromCart, isInCart, clearCart }}
     >
       {children}
     </CartContext.Provider>
