@@ -34,7 +34,6 @@ export default function LargeCard({ data, onBuy }) {
   console.log(data);
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
-  const [nameText, setNameText] = useState('');
   const [descriptionText, setDescriptionText] = useState('');
   const [buttonTranslation, setButtonTranslation] = useState('');
 
@@ -57,14 +56,6 @@ export default function LargeCard({ data, onBuy }) {
       console.error('Error ao pegar os arquivos', err);
     },
   });
-
-  translateText(name, translateLanguage)
-    .then((translate) => {
-      setNameText(translate);
-    })
-    .catch((error) => {
-      return { error };
-    });
 
   translateText(description, translateLanguage)
     .then((translate) => {
@@ -145,7 +136,7 @@ export default function LargeCard({ data, onBuy }) {
         )}
 
         <Group>
-          <CardTitle>{nameText}</CardTitle>
+          <CardTitle>{name}</CardTitle>
         </Group>
         <CardLine>
           <p>{descriptionText}</p>
