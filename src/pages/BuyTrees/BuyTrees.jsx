@@ -16,11 +16,24 @@ import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
+import translateText from "../../services/translateAPI";
 
 export default function BuyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+
+  const [collections, setCollections] = useState([]);
+
+  async function translateCollections(cardContent){
+    if (globalLanguage != "PT"){
+      for (let card of cardContent){
+        card.name = await translateText(card.name, translateLanguage);
+      }
+    }
+    setCollections(cardContent);
+  }
 
   // Select Data
   const filters = [
@@ -44,7 +57,6 @@ export default function BuyTrees() {
       toast.error(translations.loadingErrorMessage, err);
     },
   });
-  const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
     setLoading(true);
@@ -62,11 +74,11 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: translations.textButton,
+      buttonText: "Comprar certificado",
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
-    setCollections(cardContent);
+    translateCollections(cardContent);
     setLoading(false);
   }
 
@@ -89,7 +101,7 @@ export default function BuyTrees() {
       formatAllCollection();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading, order]);
+  }, [collection, isLoading, order, globalLanguage]);
 
   return (
     <Container>
