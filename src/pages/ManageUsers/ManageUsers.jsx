@@ -136,11 +136,13 @@ export default function ManageUsers() {
   });
   //
   useEffect(() => {
+    console.log("Entrou")
     if (!isLoading && user) {
+      console.log("Entrou")
       formatAllUsers();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, isLoading, searchQuery]);
+  }, [user, isLoading, searchQuery, globalLanguage]);
 
   return (
     <Container>

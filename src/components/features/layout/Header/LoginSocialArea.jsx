@@ -27,6 +27,7 @@ import {
 import { Whatsapp, Instagram, BrazilFlag, USAFlag } from '../../../../assets/index';
 import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
+import { useLocation } from 'react-router-dom';
 
 export default function LoginSocialArea() {
   // Translations
@@ -34,6 +35,9 @@ export default function LoginSocialArea() {
   const [collapse, setCollapse] = useState(false);
   const availableLanguages = {'PT' : BrazilFlag, 'EN' : USAFlag};
   const translations = TranslateTextHeader({ globalLanguage });
+
+  // Refetch
+  const location = useLocation();
   
   // Variables
 
@@ -118,6 +122,9 @@ export default function LoginSocialArea() {
                 onClick={() => {
                   setGlobalLanguage(lang);
                   setCollapse((prev) => !prev);
+                  if (location.pathname === "/gerenciar-arvores" || location.pathname === "/gerenciar-usuarios"){
+                    window.location.reload();
+                  }
                 }}
                 style={{ display: collapse ? 'flex' : 'none' }}
                >

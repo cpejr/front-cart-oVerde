@@ -25,15 +25,28 @@ import {
 } from "react-icons/ai";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateText } from './Translations';
+import translateText from "../../services/translateAPI";
 
 export default function ManageCollection() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateText({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+
+  const [collections, setCollections] = useState([]);
+
+  async function translateCollections(trees){
+    for (let tree of trees){
+      tree.name = await translateText(tree.name, translateLanguage);
+      tree.description = await translateText(tree.description, translateLanguage);
+      tree.location = await translateText(tree.location, translateLanguage);
+      tree.specie = await translateText(tree.specie, translateLanguage);
+    }
+    return trees;
+  }
   
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
-  const [collections, setCollections] = useState([]);
 
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
@@ -112,7 +125,16 @@ export default function ManageCollection() {
   }
 
   async function formatAllCollection() {
-    const formattedCollection = await collection.map((collection) => ({
+    const collectionTree = await collection;
+    let collectionTreeTranslate;
+
+    if (globalLanguage == "PT"){
+      collectionTreeTranslate = collectionTree;
+    }else{
+      collectionTreeTranslate = await translateCollections(collectionTree);
+    }
+
+    const formattedCollection = collectionTreeTranslate.map((collection) => ({
       name: collection?.name,
       description: collection?.description,
       Manage: (
@@ -209,19 +231,32 @@ export default function ManageCollection() {
     let types = categories?.map((category) => {
       return category?.label;
     });
+    
+    let typesTranslate = [];
+    if (types){
 
-    if (types) {
+      if (globalLanguage == "PT"){
+        typesTranslate = types;
+      }else{
+        for (let type of types){
+          translateText(type, translateLanguage)
+            .then((translate) => {
+              typesTranslate.push(translate);
+          })
+        }
+      }
+    
       inputs[5] = {
         type: "select",
         key: "id_categoryType",
         placeholder: translations.textCategory,
-        options: types,
+        options: typesTranslate,
       };
     }
-    setSelectOptions(types);
+    setSelectOptions(typesTranslate);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryTypes, collection, isLoading, isLoadingCategories]);
+  }, [categoryTypes, collection, isLoading, isLoadingCategories, globalLanguage]);
   return (
     <Container>
       <Title>{translations.pageTitle}</Title>
