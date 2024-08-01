@@ -13,11 +13,11 @@ import { Modal } from "antd";
 import PropTypes from "prop-types";
 import GoogleButton from "../../GooglePay/GooglePay";
 
-export default function ModalAcceptTerms({ modal, onClose }) {
+export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [accept, setAccept] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-
+  console.log(price);
   const toggleAccept = () => {
     setAccept(!accept);
     setCheckBoxAlert(false);
@@ -46,7 +46,7 @@ export default function ModalAcceptTerms({ modal, onClose }) {
       footer={
         accept && (
           <DivButton key="divButton">
-            <GoogleButton onClick={handleSubmit} />
+            <GoogleButton price={price} onClick={handleSubmit} />
           </DivButton>
         )
       }

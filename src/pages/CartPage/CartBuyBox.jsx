@@ -12,7 +12,11 @@ export default function CartBuyBox({ value }) {
     <Box>
       <PriceLabel>TOTAL: R$ {value}</PriceLabel>
       <StyledButton onClick={openModalAccept}>FECHAR COMPRA</StyledButton>
-      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
+      <ModalAcceptTerms
+        price={value}
+        modal={modalAccept}
+        onClose={closeModalAccept}
+      />
     </Box>
   );
 }

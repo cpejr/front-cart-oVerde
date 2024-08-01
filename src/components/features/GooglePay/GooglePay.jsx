@@ -1,7 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { GooglePayButton } from "./Styles";
+import { useCreateCertificate } from "../../../hooks/querys/certificate";
+import { toast } from "react-toastify";
+import useAuthStore from "../../../Stores/auth";
+import { useCart } from "../../../Stores/CartContext";
 
-const GoogleButton = ({ disabled }) => {
+const GoogleButton = ({ disabled, price }) => {
+  const id_user = useAuthStore((state) => state?.auth?.user?._id);
+  const { cartItems: data } = useCart();
+
+  const { mutate: createCertificate, isPending: loading } =
+    useCreateCertificate({
+      onSuccess: () => {
+        toast.success("Arvore comprada com sucesso");
+      },
+    });
+
+  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   useEffect(() => {
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
@@ -15,10 +30,9 @@ const GoogleButton = ({ disabled }) => {
       });
     };
 
-    // Função para inicializar o Google Pay
     const initializeGooglePay = () => {
       const paymentsClient = new window.google.payments.api.PaymentsClient({
-        environment: "TEST", // LEMBRAR DE MUDAR PARA 'PRODUCTION' QUANDO ESTIVER PRONTO
+        environment: "TEST",
       });
 
       const paymentDataRequest = {
@@ -47,9 +61,9 @@ const GoogleButton = ({ disabled }) => {
         transactionInfo: {
           totalPriceStatus: "FINAL",
           totalPriceLabel: "Total",
-          totalPrice: "1.00",
-          currencyCode: "USD",
-          countryCode: "US",
+          totalPrice: price,
+          currencyCode: "BRL",
+          countryCode: "BR",
         },
       };
 
@@ -59,13 +73,16 @@ const GoogleButton = ({ disabled }) => {
             .loadPaymentData(paymentDataRequest)
             .then((paymentData) => {
               console.log("Payment Data:", paymentData);
+              createCertificate({ id_user: id_user, tree: data });
+
+              setIsPaymentSuccessful(true);
             })
             .catch((error) => {
               console.error("Error:", error);
+              setIsPaymentSuccessful(false);
             });
         },
       });
-
       const container = document.getElementById("google-pay-button");
       if (container && container.children.length === 0) {
         container.appendChild(button);
