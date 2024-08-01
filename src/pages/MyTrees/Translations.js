@@ -27,7 +27,18 @@ export function TranslateTextHeader({ globalLanguage }) {
         placeholderSearch = 'Pesquisar';
         placeholderOrder = 'Ordenar por';
         loading = 'Carregando';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      labelValid = 'Válido';
+      labelExpired = 'Venció';
+      toastLoadingItemsError = 'Error al cargar elementos';
+      buttonLoadCertificate = 'Descargar Certificado';
+      pageTitle = 'MIS ARBOLES';
+      placeholderSearch = 'Buscar';
+      placeholderOrder = 'Ordenar por';
+      loading = 'Cargando';
+      
+  }
 
     return {
       labelValid,

@@ -15,7 +15,14 @@ export function TranslateTextHeader({ globalLanguage }) {
         textAudio = 'Seu navegador não suporta o elemento de áudio.';
         textPDF = 'Seu navegador não suporta visualização de PDF. Você pode " "';
         textDownload = "Baixá-lo aqui";
-    }
+
+    } else if (globalLanguage === 'ES') {
+      textVideo = 'Su navegador no soporta el elemento de vídeo.';
+      textAudio = 'Su navegador no soporta el elemento de audio.';
+      textPDF = 'Su navegador no admite la visualización de PDF. Tu puedes " "';
+      textDownload = "Descarguelo aqui";
+      
+  }
 
     return {
       textVideo,

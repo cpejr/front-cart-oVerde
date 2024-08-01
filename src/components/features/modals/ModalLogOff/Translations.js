@@ -10,7 +10,11 @@ export function TranslateTextHeader({ globalLanguage }) {
         textMessage = 'Tem certeza que deseja sair?';
         textButton = 'Sair';
 
-    }
+    } else if (globalLanguage === 'ES') {
+      textMessage = '¿Seguro que quieres salir?';
+      textButton = 'Salir';
+
+  }
 
     return {
       textMessage,

@@ -30,7 +30,18 @@ export function TranslateTextHeader({ globalLanguage }) {
         placeholderSearch = 'Pesquisar';
         placeholderFilter = 'Filtrar por';
         loadingTitle = 'Carregando';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      labelRecent = 'Más Reciente';
+      labelOld = 'Más Antiguo';
+      labelCheap = 'Más Económico';
+      labelExpensive = 'Más Caras';
+      loadingErrorMessage = 'Error al cargar elementos';
+      pageTitle = 'COMPRAR ARBOLES';
+      placeholderSearch = 'Buscar';
+      placeholderFilter = 'Filtrado por';
+      loadingTitle = 'Cargando';
+  }
 
     return {
       labelRecent,

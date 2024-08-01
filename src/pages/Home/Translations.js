@@ -36,6 +36,21 @@ export function TranslateTextHeader({ globalLanguage }) {
         productsText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.`;
+
+    } else if (globalLanguage === 'ES') {
+        missionTitle = 'Misión';
+        missionText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+                        et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+                        volutpat. Duis dapibus nulla eu turpis aliquam ultricies.`;
+        buttonText = 'Sepa mas';
+        visionTitle = 'Visión y valores';
+        visionText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.`;
+        productsTitle = 'Nuestros productos';
+        productsText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
+            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.`;
     }
 
     return {

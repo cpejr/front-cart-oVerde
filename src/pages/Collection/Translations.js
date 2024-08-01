@@ -6,7 +6,10 @@ export function TranslateTextHeader({ globalLanguage }) {
 
     } else if (globalLanguage === 'PT') {
         text = 'teste';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      text = 'teste';
+  }
 
     return {
       text,

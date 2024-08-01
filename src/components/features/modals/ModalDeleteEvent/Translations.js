@@ -10,7 +10,11 @@ export function TranslateTextHeader({ globalLanguage }) {
         textMessage = 'Tem certeza que deseja excluir esse evento?';
         textButton = 'Excluir';
 
-    }
+    } else if (globalLanguage === 'ES') {
+      textMessage = '¿Estás seguro de que deseas eliminar este evento?';
+      textButton = 'Eliminar';
+
+  }
 
     return {
       textMessage,

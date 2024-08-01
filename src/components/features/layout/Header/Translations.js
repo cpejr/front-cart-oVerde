@@ -30,7 +30,18 @@ export function TranslateTextHeader({ globalLanguage }) {
         menuTitle5 = 'Gerenciar Árvores';
         menuTitle6 = 'Minhas Árvores';
         textAdmin = 'Administrador';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      toastLoginMessage = '¡Inicio de sesión correcto!';
+      toastLogoffMessage = '¡El usuario cerró sesión correctamente!';
+      toastErrorGoogleMessage = 'Error al iniciar sesión con Google';
+      menuTitle2 = 'Árboles';
+      menuTitle3 = 'Acerca de';
+      menuTitle4 = 'Administrar Usuarios';
+      menuTitle5 = 'Administrar Árboles';
+      menuTitle6 = 'Mis Arboles';
+      textAdmin = 'Administrador';
+  }
 
     return {
       toastLoginMessage,

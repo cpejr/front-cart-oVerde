@@ -22,7 +22,15 @@ export function TranslateTextHeader({ globalLanguage }) {
         textPrice = 'Mudar Preço';
         textArchive = 'Adicionar Foto';
 
-    }
+    } else if (globalLanguage === 'ES') {
+      textName = 'Cambiar nombre';
+      textLocation = 'Cambiar locación';
+      textDescription = 'Cambiar Descripción';
+      textSpecie = 'Cambiar especie';
+      textPrice = 'Cambio de precio';
+      textArchive = 'Añadir foto';
+
+  }
 
     return {
       textName,

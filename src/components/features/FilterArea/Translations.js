@@ -24,6 +24,15 @@ export function TranslateTextHeader({ globalLanguage }) {
         placeholderOlder = 'Ordenar Por';
         buttonFilter = 'Filtrar';
         buttonClear = 'Limpar Filtros';
+
+    }else if (globalLanguage === 'ES') {
+        textName = 'Nombre';
+        textDate = 'Fecha';
+        placeholderType = 'Elige el tipo';
+        placeholderPrice = 'Elige el precio';
+        placeholderOlder = 'Ordenar Por';
+        buttonFilter = 'Filtrar';
+        buttonClear = 'Borrar filtros';
     }
 
     return {

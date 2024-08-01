@@ -31,7 +31,18 @@ export function TranslateTextHeader({ globalLanguage }) {
         textCaracter = 'Escolha as características';
         textButton = 'Editar';
 
-    }
+    } else if (globalLanguage === 'ES') {
+      textName = 'Nombre del evento:';
+      textImage = 'Imagen del evento:';
+      textURL = 'URL de la imagen:';
+      textShortDescription = 'Breve descripción:';
+      textLongDescription = 'Descripción larga:';
+      textLink = 'Enlace del evento:';
+      textLink2 = 'Enlace:';
+      textCaracter = 'Elige las características';
+      textButton = 'Editar';
+
+  }
 
     return {
       textName,

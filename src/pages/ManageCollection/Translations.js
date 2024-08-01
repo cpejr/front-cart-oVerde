@@ -60,7 +60,28 @@ export function TranslateText({ globalLanguage }) {
         pageTitle = 'ADICIONAR NOVA ÁRVORE';
         pageSubTitle = 'GERENCIAR ÁRVORES';
         loading = 'Carregando';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      textName = 'Nombre';
+      textDescription = 'Descripción';
+      textLocation = 'Ubicación';
+      textSpecie = 'Especies';
+      textPrice = 'Valor';
+      textArchive = 'Añadir foto';
+      textManage = 'Administrar';
+      textCategory = 'Elige la categoría';
+      toastGetTreeError = 'Error al recoger artículos';
+      toastGetCategoryError = 'Error al obtener categorías';
+      toastPostTreeSucess = '¡Árbol registrado!';
+      toastPostTreeError = 'Error al registrar un árbol.';
+      toastDeleteTreeSucess = '¡Árbol eliminado con éxito!';
+      toastDeleteTreeError = 'Error al eliminar el árbol.';
+      toastUpdateTreeSucess = '¡Árbol actualizado exitosamente!';
+      toastUpdateTreeError = 'Error al actualizar el árbol.';
+      pageTitle = 'AÑADIR NUEVO ÁRBOL';
+      pageSubTitle = 'GESTIONAR ÁRBOLES';
+      loading = 'Cargando';
+  }
 
     return {
       textName,

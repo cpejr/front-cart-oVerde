@@ -10,7 +10,11 @@ export function TranslateTextHeader({ globalLanguage }) {
         textMessage = 'Tem certeza que deseja excluir o item?';
         textButton = 'Excluir';
 
-    }
+    } else if (globalLanguage === 'ES') {
+      textMessage = '¿Está seguro de que desea eliminar el elemento?';
+      textButton = 'Eliminar';
+
+  }
 
     return {
       textMessage,

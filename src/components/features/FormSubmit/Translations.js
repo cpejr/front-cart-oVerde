@@ -6,6 +6,9 @@ export function TranslateText({ globalLanguage }) {
 
     } else if (globalLanguage === 'PT') {
         button = 'Enviar';
+
+    } else if (globalLanguage === 'ES') {
+        button = 'Mandar';
     }
 
     return {

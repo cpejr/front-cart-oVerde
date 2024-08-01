@@ -12,6 +12,11 @@ export function TranslateText({ globalLanguage }) {
         remove = 'Remover';
         errorMessage = 'Pelo menos um arquivo deve ser enviado';
         addArchive = 'Adicionar arquivo';
+
+    } else if (globalLanguage === 'ES') {
+      remove = 'Eliminar';
+      errorMessage = 'Se debe enviar al menos un archivo';
+      addArchive = 'Agregar archivo';
     }
 
     return {

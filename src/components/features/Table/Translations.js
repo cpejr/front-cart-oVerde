@@ -6,7 +6,10 @@ export function TranslateText({ globalLanguage }) {
 
     } else if (globalLanguage === 'PT') {
         message = 'Nenhuma opção disponível';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      message = 'No hay opciones disponibles';
+  }
 
     return {
       message,

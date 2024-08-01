@@ -35,14 +35,30 @@ export function TranslateTextHeader({ globalLanguage }) {
         textColumn4 = 'Tipo';
         textAdmin = 'Administrador';
         textUser = 'Usuário';
-        toastDeleteSucess = 'Usuario deletado com sucesso!';
+        toastDeleteSucess = 'Usuário deletado com sucesso!';
         toastDeleteError = 'Erro ao excluir usuário.';
         toastUpdateSucess = 'Usuário atualizado com sucesso!';
         toastUpdateError = 'Erro ao atualizar usuário.';
         toastGetError = 'Erro ao pegar itens';
         pageTitle = 'GERENCIAR USUÁRIOS';
         placeholderSearch = 'Pesquisar usuário';
-    }
+
+    } else if (globalLanguage === 'ES') {
+      textColumn1 = 'Fotografía';
+      textColumn2 = 'Nombre';
+      textColumn3 = 'Correo electrónico';
+      textColumn4 = 'Tipo';
+      textAdmin = 'Administrador';
+      textUser = 'Usuario';
+      toastDeleteSucess = '¡Usuario eliminado exitosamente!';
+      toastDeleteError = 'Error al eliminar usuario.';
+      toastUpdateSucess = 'Usuario actualizado exitosamente!';
+      toastUpdateError = 'Error al actualizar el usuario.';
+      toastGetError = 'Error al recoger artículos';
+      pageTitle = 'GESTIONAR USUARIOS';
+      placeholderSearch = 'Buscar usuario';
+      
+  }
 
     return {
       textColumn1,
