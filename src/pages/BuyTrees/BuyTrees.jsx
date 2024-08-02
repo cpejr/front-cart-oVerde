@@ -136,14 +136,6 @@ export default function BuyTrees({ trees }) {
             ))}
         </DivLine>
       )}
-
-      <Terms>
-        <p>
-          Leia nosso termo de aceite clicando{" "}
-          <HighlightLink onClick={openModalAccept}>aqui!</HighlightLink>
-        </p>
-      </Terms>
-      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
     </Container>
   );
 }

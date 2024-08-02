@@ -120,4 +120,5 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
 ModalAcceptTerms.propTypes = {
   modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  price: PropTypes.string.isRequired,
 };

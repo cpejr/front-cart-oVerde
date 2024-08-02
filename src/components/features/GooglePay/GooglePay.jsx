@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GooglePayButton } from "./Styles";
 import { useCreateCertificate } from "../../../hooks/querys/certificate";
 import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { useCart } from "../../../Stores/CartContext";
+import PropTypes from "prop-types";
 
 const GoogleButton = ({ disabled, price, onClose }) => {
   const { clearCart } = useCart();
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { cartItems: data } = useCart();
-  const { mutate: createCertificate, isPending: loading } =
-    useCreateCertificate({
-      onSuccess: () => {
-        toast.success("Arvore comprada com sucesso");
-      },
-    });
-  const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+  const { mutate: createCertificate } = useCreateCertificate({
+    onSuccess: () => {
+      toast.success("Compra efetuada com sucesso");
+    },
+  });
   useEffect(() => {
     const loadScript = (src) => {
       return new Promise((resolve, reject) => {
@@ -73,13 +72,11 @@ const GoogleButton = ({ disabled, price, onClose }) => {
             .then((paymentData) => {
               console.log("Payment Data:", paymentData);
               createCertificate({ id_user: id_user, tree: data });
-              setIsPaymentSuccessful(true);
               clearCart();
               if (onClose) onClose();
             })
             .catch((error) => {
               console.error("Error:", error);
-              setIsPaymentSuccessful(false);
             });
         },
       });
@@ -104,5 +101,9 @@ const GoogleButton = ({ disabled, price, onClose }) => {
     ></GooglePayButton>
   );
 };
-
+GoogleButton.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  price: PropTypes.string.isRequired,
+  onClose: PropTypes.func,
+};
 export default GoogleButton;

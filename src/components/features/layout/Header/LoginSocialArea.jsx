@@ -90,6 +90,7 @@ export default function LoginSocialArea() {
           </LoginButton>
         )}
         <GiShoppingCart
+          style={{ cursor: "pointer" }}
           size={40}
           color="white"
           onClick={() => navigate("/carrinho")}

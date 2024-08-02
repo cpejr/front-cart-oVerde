@@ -4,17 +4,14 @@ import {
   Description,
   Name,
   Price,
-  Image,
   StyledImg,
 } from "./Styles";
-import { Delete, Tree } from "@assets/index";
+import { Delete } from "@assets/index";
 import PropTypes from "prop-types";
 import { useCart } from "../../../Stores/CartContext";
-import { useEffect, useState } from "react";
 import { useGetArchives } from "../../../hooks/querys/archive";
 
 export default function CartCard({ data }) {
-  const [archiveUrls, setArchiveUrls] = useState([]);
   const { removeFromCart } = useCart();
 
   const name = data?.name;

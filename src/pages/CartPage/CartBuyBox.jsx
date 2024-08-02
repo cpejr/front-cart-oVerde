@@ -11,7 +11,9 @@ export default function CartBuyBox({ value }) {
   return (
     <Box>
       <PriceLabel>TOTAL: R$ {value}</PriceLabel>
-      <StyledButton onClick={openModalAccept}>FECHAR COMPRA</StyledButton>
+      <StyledButton onClick={openModalAccept} disabled={value == "0.00"}>
+        FECHAR COMPRA
+      </StyledButton>
       <ModalAcceptTerms
         price={value}
         modal={modalAccept}
