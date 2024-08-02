@@ -10,12 +10,6 @@ const GoogleButton = ({ disabled, price, onClose }) => {
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { cartItems: data } = useCart();
 
-  const { mutate: createCertificate, isPending: loading } =
-    useCreateCertificate({
-      onSuccess: () => {
-        toast.success("Arvore comprada com sucesso");
-      },
-    });
 
   const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
   useEffect(() => {
