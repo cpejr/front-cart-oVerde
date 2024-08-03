@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 // Components
 import {
   Container,
-  Overlay,
   Section,
   Title,
   Column,
@@ -18,12 +17,10 @@ export default function Home() {
   const navigate = useNavigate();
   return (
     <Container>
-      <Overlay>
-        <ContainerCarousel>
-          <DemoCarousel />
-        </ContainerCarousel>
-        <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-      </Overlay>
+      <ContainerCarousel>
+        <DemoCarousel />
+      </ContainerCarousel>
+
       <Section>
         <Column>
           <Title>Missão</Title>

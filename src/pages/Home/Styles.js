@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
 
 export const ContainerCarousel = styled.div`
-  width: 50%;
-
+  padding-top: 20px;
+  width: auto;
   justify-content: space-between;
   align-items: center;
+  height: 50%;
 `;
 
 export const Container = styled.div`
