@@ -1,11 +1,11 @@
 // Libs
-import { pdf } from '@react-pdf/renderer';
-import { saveAs } from 'file-saver';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import PropTypes from 'prop-types';
-import { ScaleLoader } from 'react-spinners';
-import { ConfigProvider } from 'antd';
+import { pdf } from "@react-pdf/renderer";
+import { saveAs } from "file-saver";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import PropTypes from "prop-types";
+import { ScaleLoader } from "react-spinners";
+import { ConfigProvider } from "antd";
 // Components
 import {
   StyledCard,
@@ -47,13 +47,13 @@ export default function LargeCard({ data, onBuy }) {
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
-  const formattedArchives = archiveIDs?.join(', ') || IDs?.join(', ');
+  const formattedArchives = archiveIDs?.join(", ") || IDs?.join(", ");
 
   const { data: archiveData, isLoading: isImageLoading } = useGetArchives({
     id: formattedArchives,
     name: name,
     onError: (err) => {
-      console.error('Error ao pegar os arquivos', err);
+      console.error("Error ao pegar os arquivos", err);
     },
   });
 
@@ -89,7 +89,7 @@ export default function LargeCard({ data, onBuy }) {
     >
       <StyledCard>
         {isImageLoading || !archiveData ? (
-          <CardLine style={{ justifyContent: 'center' }}>
+          <CardLine style={{ justifyContent: "center" }}>
             <ScaleLoader color={colors.font.secondary} />
           </CardLine>
         ) : (
@@ -102,22 +102,22 @@ export default function LargeCard({ data, onBuy }) {
               >
                 {archiveData.map((file, index) => (
                   <div key={index}>
-                    {file.startsWith('data:image') && (
+                    {file.startsWith("data:image") && (
                       <CarouselImg src={file} alt={`Imagem ${index}`} />
                     )}
-                    {file.startsWith('data:video') && (
+                    {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
                         {translations.textVideo}
                       </video>
                     )}
-                    {file.startsWith('data:audio') && (
+                    {file.startsWith("data:audio") && (
                       <audio controls>
                         <source src={file} type="audio/mpeg" />
                         {translations.textAudio}
                       </audio>
                     )}
-                    {file.startsWith('data:application/pdf') && (
+                    {file.startsWith("data:application/pdf") && (
                       <object
                         data={file}
                         type="application/pdf"
@@ -161,6 +161,7 @@ LargeCard.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    price: PropTypes.string,
     archive: PropTypes.array,
     id_tree: PropTypes.shape({
       name: PropTypes.string,

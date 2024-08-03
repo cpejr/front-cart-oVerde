@@ -10,6 +10,8 @@ import {
   UniSelect,
   DivLine,
   Line,
+  Terms,
+  HighlightLink,
   LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
@@ -17,6 +19,7 @@ import { useGetTree } from "@hooks/querys/tree";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 import translateText from "../../services/translateAPI";
+import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
 export default function BuyTrees() {
   // Translations
@@ -103,6 +106,12 @@ export default function BuyTrees() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading, order, globalLanguage]);
 
+  //Modal Acceptance Term
+  const [modalAccept, setModalAccept] = useState(false);
+
+  const openModalAccept = () => setModalAccept(true);
+  const closeModalAccept = () => setModalAccept(false);
+
   return (
     <Container>
       <Title>{translations.pageTitle}</Title>
@@ -141,6 +150,14 @@ export default function BuyTrees() {
             ))}
         </DivLine>
       )}
+
+      <Terms>
+        <p>
+          Leia nosso termo de aceite clicando{" "}
+          <HighlightLink onClick={openModalAccept}>aqui!</HighlightLink>
+        </p>
+      </Terms>
+      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
     </Container>
   );
 }

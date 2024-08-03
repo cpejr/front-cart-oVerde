@@ -1,10 +1,10 @@
-export { default as Add } from './Add.svg';
-export { default as FirstStoryImage } from './FirstStoryImage.svg';
+export { default as Add } from "./Add.svg";
+export { default as FirstStoryImage } from "./FirstStoryImage.svg";
 
-export { default as background } from './Home/background.png';
-export { default as Square } from './Home/Square.svg';
+export { default as background } from "./Home/background.png";
+export { default as Icon } from "./Home/Icon.svg";
 
-export { default as LogoCartaoV } from './Footer/LogoCartaoVerde.svg';
+export { default as LogoCartaoV } from "./Footer/LogoCartaoVerde.svg";
 
 export { default as LogoCV } from './Header/LogoCartaoVerde.svg';
 export { default as LogoAntiga } from './Header/CityLogo.svg';
@@ -17,5 +17,9 @@ export { default as MenuLogo } from './Header/Menu.svg';
 export { default as BrazilFlag } from './Header/brazilflag.png';
 export { default as SpainFlag } from './Header/spainflag.png';
 export { default as USAFlag } from './Header/usaflag.png';
+export { default as Delete } from "./CartPage/Delete.png";
+export { default as Tree } from "./CartPage/Tree.png";
 
-export { default as WhatsAppIcon } from './Support/WhatsAppIcon.png';
+export { default as LogoVerde } from "./Logo/logo1-cor2.png";
+
+export { default as WhatsAppIcon } from "./Support/WhatsAppIcon.png";

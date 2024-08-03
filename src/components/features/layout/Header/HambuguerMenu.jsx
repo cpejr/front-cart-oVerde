@@ -26,9 +26,9 @@ export default function HamburguerMenu() {
 
   const menuItems = [
     getItem(
-      '',
-      'hamburger',
-      <MenuOutlined style={{ color: '#BAFA53', fontSize: '25px' }} />,
+      "",
+      "hamburger",
+      <MenuOutlined style={{ color: "#BAFA53", fontSize: "25px" }} />,
       [
         getItem('Home', '/'),
         getItem(translations.menuTitle2, '/comprar-arvores'),
@@ -45,7 +45,7 @@ export default function HamburguerMenu() {
   ];
 
   function onClick(key) {
-    if (key && key !== 'login') {
+    if (key && key !== "login") {
       navigate(key);
     }
   }

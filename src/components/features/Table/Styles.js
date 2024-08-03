@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { colors } from '../../../styles/stylesVariables';
+import styled from "styled-components";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { colors } from "../../../styles/stylesVariables";
 
 export const TableShape = styled(DataTable)`
   display: flex;
@@ -28,6 +28,6 @@ export const TableColumn = styled(Column)`
   color: ${colors.font.secondary};
   min-width: 200px;
   .p-bodycell {
-    align-itens: center;
+    align-items: center;
   }
 `;

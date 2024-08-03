@@ -2,10 +2,11 @@
 import { useNavigate } from "react-router-dom";
 // Components
 import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
-import { Square } from "@assets/index";
+import { Icon } from "@assets/index";
 import { Button, VideoLarger, VideoSmall } from "@components";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
+import { DemoCarousel } from "../../components";
 
 export default function Home() {
   // Translations
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <Container>
+      <DemoCarousel />
       <Overlay>
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
@@ -55,7 +57,7 @@ export default function Home() {
           <Button onClick={() => navigate("/eventos")}>{translations.buttonText}</Button>
         </Column>
         <Image>
-          <img src={Square} alt="Imagem de decoração" />
+          <img src={Icon} alt="Imagem de decoração" />
         </Image>
       </Section>
     </Container>

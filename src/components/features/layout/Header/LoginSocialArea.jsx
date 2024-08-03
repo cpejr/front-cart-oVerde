@@ -27,7 +27,7 @@ import {
 import { Whatsapp, Instagram, BrazilFlag, USAFlag, SpainFlag } from '../../../../assets/index';
 import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function LoginSocialArea() {
   // Translations
@@ -40,7 +40,7 @@ export default function LoginSocialArea() {
   const location = useLocation();
   
   // Variables
-
+  const navigate = useNavigate();
   const { auth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const user = useAuthStore((state) => state.auth?.user);
@@ -53,7 +53,7 @@ export default function LoginSocialArea() {
       <UserOutlined />
     ) : (
       <img src={user?.imageURL} alt="Profile" />
-    ),
+    )
   );
   const [modalLogOff, setModalLogOff] = useState(false);
   const openModalLogOff = () => setModalLogOff(true);
@@ -104,7 +104,11 @@ export default function LoginSocialArea() {
             {profilePicture}
           </LoginButton>
         )}
-        <GiShoppingCart size={40} color="white" />
+        <GiShoppingCart
+          size={40}
+          color="white"
+          onClick={() => navigate("/carrinho")}
+        />
       </ConteinerLogin>
       <SocialMedias>
         <Select 

@@ -1,6 +1,6 @@
 // Libs
-import { useNavigate } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 // Components
 import { Container, Logo, PrimeHeader } from './Styles';
 import { LogoCV } from '@assets/index';
@@ -20,8 +20,8 @@ export default function Header() {
 
   const items = [
     {
-      label: 'Home',
-      url: '/',
+      label: "Home",
+      url: "/",
     },
     {
       label: translations.menuTitle2,
@@ -60,7 +60,7 @@ export default function Header() {
 
   return (
     <Container>
-      <Logo src={LogoCV} onClick={() => navigate('/')}></Logo>
+      <Logo src={LogoCV} onClick={() => navigate("/")}></Logo>
       <PrimeHeader model={items} />
       <HamburgerMenu />
       <LoginSocialArea />

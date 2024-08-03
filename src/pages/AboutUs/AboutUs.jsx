@@ -1,4 +1,4 @@
-import { Square } from "@assets/index";
+import { Icon } from "@assets/index";
 import { Title, Container, Image } from "./Styles";
 
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
@@ -13,7 +13,7 @@ export default function AboutUs() {
     <Container>
       <Title>{translations.title}</Title>
       <Image>
-        <img src={Square} alt="Imagem de decoração" />
+        <img src={Icon} alt="Imagem de decoração" />
       </Image>
       <p>
         {translations.text}

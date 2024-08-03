@@ -4,7 +4,7 @@ import { Dropdown } from "primereact/dropdown";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const Container = styled.div`
-  display: flex;
+  display: ${(props) => (props.Modal ? "none" : "flex")};
   flex-direction: column;
   padding: 3rem 0;
 `;
@@ -117,4 +117,20 @@ export const UniSelect = styled(Dropdown)`
     outline: none;
     box-shadow: none;
   }
+`;
+
+export const Terms = styled.div`
+  display: flex;
+  margin-left: 5%;
+`;
+
+export const HighlightLink = styled.span`
+  color: ${colors.font.secondary};
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+=======
 `;

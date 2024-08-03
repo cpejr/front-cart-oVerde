@@ -11,9 +11,25 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 
-export const CityLogo = styled.img`
+export const ContainerLogo = styled.div`
+  display: flex;
+  max-width: 18%;
+  align-items: center;
+`;
+
+export const Logo = styled.img`
   margin-top: 0.5rem;
   align-self: flex-start;
+  width: 250px;
+  height: 140px;
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 200px;
+    height: 112px;
+  }
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 150px;
+    height: 84px;
+  }
 `;
 
 export const Info = styled.div`
@@ -25,6 +41,7 @@ export const Info = styled.div`
     display: none;
   }
 `;
+
 export const SocialMedias = styled.div`
   padding: 25px;
   border-left: 2px solid white;
