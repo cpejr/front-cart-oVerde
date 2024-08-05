@@ -1,19 +1,25 @@
 // Libs
 import { useNavigate } from "react-router-dom";
 // Components
-import { Container, Overlay, Section, Title, Column, Image } from "./Styles";
+import {
+  Container,
+  Section,
+  Title,
+  Column,
+  Image,
+  ContainerCarousel,
+} from "./Styles";
 import { Icon } from "@assets/index";
-import { Button, VideoLarger, VideoSmall } from "@components";
+import { Button, VideoLarger, VideoSmall, DemoCarousel } from "@components";
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <Container>
-      <Overlay>
-        <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
-        <VideoSmall videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
-        
-      </Overlay>
+      <ContainerCarousel>
+        <DemoCarousel />
+      </ContainerCarousel>
+
       <Section>
         <Column>
           <Title>Missão</Title>
@@ -37,11 +43,9 @@ export default function Home() {
             et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
             volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
           </p>
-          <VideoSmall videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
-          <Button>Saiba Mais</Button>
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         </Column>
       </Section>
-
       <Section>
         <Column>
           <Title>Nossos produtos</Title>
