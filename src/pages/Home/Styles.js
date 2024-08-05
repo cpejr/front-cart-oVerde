@@ -3,10 +3,10 @@ import { breakpoints, colors } from "../../styles/stylesVariables";
 
 export const ContainerCarousel = styled.div`
   padding-top: 20px;
-  width: auto;
-  justify-content: space-between;
+
+  width: 100%;
   align-items: center;
-  height: 50%;
+  justify-content: center;
 `;
 
 export const Container = styled.div`

@@ -10,8 +10,7 @@ import {
   ContainerCarousel,
 } from "./Styles";
 import { Icon } from "@assets/index";
-import { Button, VideoLarger, VideoSmall } from "@components";
-import { DemoCarousel } from "../../components";
+import { Button, VideoLarger, VideoSmall, DemoCarousel } from "@components";
 
 export default function Home() {
   const navigate = useNavigate();
