@@ -10,18 +10,15 @@ import {
   UniSelect,
   DivLine,
   Line,
-  Terms,
-  HighlightLink,
   LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
 import { useCart } from "../../Stores/CartContext";
-import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
 export default function BuyTrees({ trees }) {
   //Context
-  const { addToCart, isInCart } = useCart();
+  const { isInCart } = useCart();
 
   // Select Data
   const filters = [
@@ -93,10 +90,6 @@ export default function BuyTrees({ trees }) {
   }, [collection, isLoading, order]);
 
   //Modal Acceptance Term
-  const [modalAccept, setModalAccept] = useState(false);
-
-  const openModalAccept = () => setModalAccept(true);
-  const closeModalAccept = () => setModalAccept(false);
 
   return (
     <Container>
@@ -139,3 +132,12 @@ export default function BuyTrees({ trees }) {
     </Container>
   );
 }
+BuyTrees.propTypes = {
+  trees: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
