@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
 import { Container, DeleteButton, Message } from "./Styles";
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function ModalLogoff({ close, handleLogOff }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   return (
     <Container>
-      <Message>Tem certeza que deseja sair?</Message>
+      <Message>{translations.textMessage}</Message>
       <DeleteButton
         onClick={() => {
           handleLogOff();
@@ -12,7 +18,7 @@ export default function ModalLogoff({ close, handleLogOff }) {
         }}
         type="button"
       >
-        Sair
+        {translations.textButton}
       </DeleteButton>
     </Container>
   );

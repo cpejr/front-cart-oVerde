@@ -1,12 +1,14 @@
-import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Button from "../../common/Button/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
-import FormInput from "../../common/FormInput/FormInput";
-import UploadInput from "../../common/UploadInput/UploadInput";
-import { LoadingOutlined } from "@ant-design/icons";
+import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import Button from '../../common/Button/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from './Styles';
+import FormInput from '../../common/FormInput/FormInput';
+import UploadInput from '../../common/UploadInput/UploadInput';
+import { LoadingOutlined } from '@ant-design/icons';
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateText } from './Translations';
 
 export default function FormSubmit({
   inputs,
@@ -15,6 +17,10 @@ export default function FormSubmit({
   color,
   loading,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+
   const {
     handleSubmit,
     register,
@@ -129,7 +135,7 @@ export default function FormSubmit({
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        {loading ? <LoadingOutlined /> : "Enviar"}
+        {loading ? <LoadingOutlined /> : translations.button}
       </Button>
     </Form>
   );

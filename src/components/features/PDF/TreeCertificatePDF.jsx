@@ -11,6 +11,8 @@ import PropTypes from "prop-types";
 // Components
 import montserratLight from "./fonts/Montserrat-Light.ttf";
 import montserratSemiBold from "./fonts/Montserrat-SemiBold.ttf";
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 // Font Handling
 
@@ -121,16 +123,20 @@ const styles = StyleSheet.create({
 });
 
 export default function TreeCertificatePDF({ data }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   return (
     <Document
-      fileName="Certificado.pdf"
-      file="certificado.pdf"
-      download="certificado.pdf"
+      fileName={translations.fileName}
+      file={translations.fileName}
+      download={translations.fileName}
     >
       <Page size="A4" style={styles.page}>
         <div style={styles.header}>
           <Text style={styles.title} fixed>
-            Certificado de Posse de Árvore
+            {translations.title}
           </Text>
         </div>
         <View style={styles.hr} fixed />
@@ -138,14 +144,13 @@ export default function TreeCertificatePDF({ data }) {
           <div style={styles.collumn}>
             <div style={styles.space}>
               <Text style={styles.text}>
-                Este certificado confirma que {data?.id_user?.name} é o
-                proprietário da árvore {data?.id_tree?.name}.
+                {translations.textConfirmation}{data?.id_user?.name}{translations.textOwner}{data?.id_tree?.name}.
               </Text>
             </div>
 
             <div style={styles.space}>
               <Text style={styles.text}>
-                Data da Aquisição: {new Date().toLocaleDateString()}
+                {translations.textAcquisitionDate}{new Date().toLocaleDateString()}
               </Text>
             </div>
           </div>

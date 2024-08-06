@@ -3,6 +3,8 @@ import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { updateCollectionValidationSchema } from "./utils";
 import { AiOutlineUpload } from "react-icons/ai";
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function ModalUpdateTree({
   close,
@@ -13,41 +15,45 @@ export default function ModalUpdateTree({
   closeModal,
   modalCloseIcon,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   const inputs = [
     {
       type: "input",
       key: "name",
-      placeholder: "Mudar Nome",
+      placeholder: translations.textName,
       value: values.name,
     },
     {
       type: "input",
       key: "location",
-      placeholder: "Mudar Localização",
+      placeholder: translations.textLocation,
       value: values.location,
     },
     {
       type: "input",
       key: "description",
-      placeholder: "Mudar Descrição",
+      placeholder: translations.textDescription,
       value: values.description,
     },
     {
       type: "input",
       key: "specie",
-      placeholder: "Mudar Espécie",
+      placeholder: translations.textSpecie,
       value: values.specie,
     },
     {
       type: "number",
       key: "price",
-      placeholder: "Mudar preço",
+      placeholder: translations.textPrice,
       value: values.price,
     },
     {
       type: "archive",
       key: "archive",
-      placeholder: "Adicionar Foto",
+      placeholder: translations.textArchive,
       values: values.archive?.map((archive) => ({
         name: archive.name,
         base64: undefined,

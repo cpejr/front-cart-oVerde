@@ -23,11 +23,30 @@ import {
   AiOutlineUpload,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateText } from './Translations';
+import translateText from "../../services/translateAPI";
 
 export default function ManageCollection() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+
+  const [collections, setCollections] = useState([]);
+
+  async function translateCollections(trees){
+    for (let tree of trees){
+      tree.name = await translateText(tree.name, translateLanguage);
+      tree.description = await translateText(tree.description, translateLanguage);
+      tree.location = await translateText(tree.location, translateLanguage);
+      tree.specie = await translateText(tree.specie, translateLanguage);
+    }
+    return trees;
+  }
+  
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
-  const [collections, setCollections] = useState([]);
 
   const openModalDelete = () => setModalDelete(true);
   const closeModalDelete = () => setModalDelete(false);
@@ -46,41 +65,41 @@ export default function ManageCollection() {
     {
       type: "input",
       key: "name",
-      placeholder: "Nome",
+      placeholder: translations.textName,
     },
     {
       type: "input",
       key: "description",
-      placeholder: "Descrição",
+      placeholder: translations.textDescription,
     },
     {
       type: "input",
       key: "location",
-      placeholder: "Localização",
+      placeholder: translations.textLocation,
     },
     {
       type: "input",
       key: "specie",
-      placeholder: "Espécie",
+      placeholder: translations.textSpecie,
     },
     {
       type: "number",
       key: "price",
-      placeholder: "Valor",
+      placeholder: translations.textPrice,
     },
     {},
     {
       type: "archive",
       key: "archive",
-      placeholder: "Adicionar Foto",
+      placeholder: translations.textArchive,
       icon: AiOutlineUpload,
     },
   ]);
 
   const columns = [
-    { field: "name", header: "Nome" },
-    { field: "description", header: "Descrição" },
-    { field: "Manage", header: "Gerenciar" },
+    { field: "name", header: translations.textName },
+    { field: "description", header: translations.textDescription },
+    { field: "Manage", header: translations.textManage },
   ];
 
   const transformArrayItems = (OriginalArray) => {
@@ -106,7 +125,16 @@ export default function ManageCollection() {
   }
 
   async function formatAllCollection() {
-    const formattedCollection = await collection.map((collection) => ({
+    const collectionTree = await collection;
+    let collectionTreeTranslate;
+
+    if (globalLanguage == "PT"){
+      collectionTreeTranslate = collectionTree;
+    }else{
+      collectionTreeTranslate = await translateCollections(collectionTree);
+    }
+
+    const formattedCollection = collectionTreeTranslate.map((collection) => ({
       name: collection?.name,
       description: collection?.description,
       Manage: (
@@ -143,7 +171,7 @@ export default function ManageCollection() {
   //backend calls
   const { data: collection, isLoading } = useGetTree({
     onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
+      toast.error(translations.toastGetTreeError, err);
     },
   });
 
@@ -156,7 +184,7 @@ export default function ManageCollection() {
         setSelectOptions(transformArrayItems(categoryTypes));
       },
       onError: (err) => {
-        toast.error("Erro ao pegar categorias", err);
+        toast.error(translations.toastGetCategoryError, err);
       },
     });
 
@@ -165,10 +193,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore cadastrada!");
+      toast.success(translations.toastPostTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao cadastrar uma árvore.", err);
+      toast.error(translations.toastPostTreeError, err);
     },
   });
   const { mutate: deleteTree, isPending: loadingDeleteTree } = useDeleteTree({
@@ -176,10 +204,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore excluída com sucesso!");
+      toast.success(translations.toastDeleteTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao excluir árvore.", err);
+      toast.error(translations.toastDeleteTreeError, err);
     },
   });
   const { mutate: updateTree, isPending: loadingEditTree } = useUpdateTree({
@@ -187,10 +215,10 @@ export default function ManageCollection() {
       queryClient.invalidateQueries({
         queryKey: ["tree"],
       });
-      toast.success("Árvore atualizada com sucesso!");
+      toast.success(translations.toastUpdateTreeSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao atualizar árvore.", err);
+      toast.error(translations.toastUpdateTreeError, err);
     },
   });
 
@@ -203,22 +231,35 @@ export default function ManageCollection() {
     let types = categories?.map((category) => {
       return category?.label;
     });
+    
+    let typesTranslate = [];
+    if (types){
 
-    if (types) {
+      if (globalLanguage == "PT"){
+        typesTranslate = types;
+      }else{
+        for (let type of types){
+          translateText(type, translateLanguage)
+            .then((translate) => {
+              typesTranslate.push(translate);
+          })
+        }
+      }
+    
       inputs[5] = {
         type: "select",
         key: "id_categoryType",
-        placeholder: "Escolha a categoria",
-        options: types,
+        placeholder: translations.textCategory,
+        options: typesTranslate,
       };
     }
-    setSelectOptions(types);
+    setSelectOptions(typesTranslate);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryTypes, collection, isLoading, isLoadingCategories]);
+  }, [categoryTypes, collection, isLoading, isLoadingCategories, globalLanguage]);
   return (
     <Container>
-      <Title>ADICIONAR NOVA ÁRVORE </Title>
+      <Title>{translations.pageTitle}</Title>
       {!isLoadingCategories ? (
         <FormSubmit
           inputs={inputs}
@@ -228,9 +269,9 @@ export default function ManageCollection() {
           loading={loadingPostTree}
         />
       ) : (
-        <SubTitle>Carregando</SubTitle>
+        <SubTitle>{translations.loading}</SubTitle>
       )}
-      <SubTitle>GERENCIAR ÁRVORES</SubTitle>
+      <SubTitle>{translations.pageSubTitle}</SubTitle>
       {isLoading || loadingEditTree || loadingDeleteTree ? (
         <LoadingStyles>
           <LoadingOutlined />

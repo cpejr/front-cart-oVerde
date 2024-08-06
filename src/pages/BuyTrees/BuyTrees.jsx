@@ -16,15 +16,34 @@ import {
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
+import translateText from "../../services/translateAPI";
 import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 
 export default function BuyTrees() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+
+  const [collections, setCollections] = useState([]);
+
+  async function translateCollections(cardContent){
+    if (globalLanguage != "PT"){
+      for (let card of cardContent){
+        card.name = await translateText(card.name, translateLanguage);
+      }
+    }
+    setCollections(cardContent);
+  }
+
   // Select Data
   const filters = [
-    { label: "Mais Recentes", value: "recent" },
-    { label: "Mais Antigas", value: "older" },
-    { label: "Mais baratas", value: "lowPrice" },
-    { label: "Mais caras", value: "higherPrice" },
+    { label: translations.labelRecent, value: "recent" },
+    { label: translations.labelOld, value: "older" },
+    { label: translations.labelCheap, value: "lowPrice" },
+    { label: translations.labelExpensive, value: "higherPrice" },
   ];
 
   const [searchValue, setSearchValue] = useState("");
@@ -38,10 +57,9 @@ export default function BuyTrees() {
   const { data: collection, isLoading } = useGetTree({
     onSuccess: () => {},
     onError: (err) => {
-      toast.error("Erro ao carregar itens", err);
+      toast.error(translations.loadingErrorMessage, err);
     },
   });
-  const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
     setLoading(true);
@@ -59,11 +77,11 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: "Comprar Certificado",
+      buttonText: "Comprar certificado",
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
-    setCollections(cardContent);
+    translateCollections(cardContent);
     setLoading(false);
   }
 
@@ -86,7 +104,7 @@ export default function BuyTrees() {
       formatAllCollection();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading, order]);
+  }, [collection, isLoading, order, globalLanguage]);
 
   //Modal Acceptance Term
   const [modalAccept, setModalAccept] = useState(false);
@@ -96,12 +114,12 @@ export default function BuyTrees() {
 
   return (
     <Container>
-      <Title>COMPRAR ÁRVORES</Title>
+      <Title>{translations.pageTitle}</Title>
 
       <Filter>
         <DivSelect>
           <SearchBar
-            placeholder="Pesquisar"
+            placeholder={translations.placeholderSearch}
             value={searchValue}
             search={handleSearchChange}
           />
@@ -109,7 +127,7 @@ export default function BuyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Filtrar por"
+          placeholder={translations.placeholderFilter}
           onChange={(e) => {
             setOrder(e.value);
           }}
@@ -117,7 +135,7 @@ export default function BuyTrees() {
         {loading && <LoadingSpinner />}
       </Filter>
       {isLoading && collections ? (
-        <Title>Carregando</Title>
+        <Title>{translations.loadingTitle}</Title>
       ) : (
         <DivLine>
           {collections
