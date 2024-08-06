@@ -16,14 +16,26 @@ import {
   DivButton,
   CarouselStyles,
   CarouselImg,
-} from "./Styles";
-import { TreeCertificatePDF } from "@components";
-import { useGetArchives } from "@hooks/querys/archive";
-import { colors } from "@styles/stylesVariables";
+} from './Styles';
+import { TreeCertificatePDF } from '@components';
+import { useGetArchives } from '@hooks/querys/archive';
+import { colors } from '@styles/stylesVariables';
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
+import translateText from '../../../services/translateAPI';
+import { useState } from 'react';
 
 export default function LargeCard({ data, onBuy }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+  
+  console.log(data);
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
+  const [descriptionText, setDescriptionText] = useState('');
+  const [buttonTranslation, setButtonTranslation] = useState('');
 
   // PDF Handling
   function SaveFile() {
@@ -44,6 +56,22 @@ export default function LargeCard({ data, onBuy }) {
       console.error("Error ao pegar os arquivos", err);
     },
   });
+
+  translateText(description, translateLanguage)
+    .then((translate) => {
+      setDescriptionText(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
+
+  translateText(buttonText, translateLanguage)
+    .then((translate) => {
+      setButtonTranslation(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
 
   return (
     <ConfigProvider
@@ -80,13 +108,13 @@ export default function LargeCard({ data, onBuy }) {
                     {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
-                        Seu navegador não suporta o elemento de vídeo.
+                        {translations.textVideo}
                       </video>
                     )}
                     {file.startsWith("data:audio") && (
                       <audio controls>
                         <source src={file} type="audio/mpeg" />
-                        Seu navegador não suporta o elemento de áudio.
+                        {translations.textAudio}
                       </audio>
                     )}
                     {file.startsWith("data:application/pdf") && (
@@ -96,8 +124,8 @@ export default function LargeCard({ data, onBuy }) {
                         width="100%"
                         height="400px"
                       >
-                        Seu navegador não suporta visualização de PDF. Você pode{" "}
-                        <a href={file}>baixá-lo aqui</a>.
+                        {translations.textPDF}
+                        <a href={file}>{translations.textDownload}</a>.
                       </object>
                     )}
                   </div>
@@ -111,16 +139,16 @@ export default function LargeCard({ data, onBuy }) {
           <CardTitle>{name}</CardTitle>
         </Group>
         <CardLine>
-          <p>{description}</p>
+          <p>{descriptionText}</p>
         </CardLine>
         <CardLine>
           <p>R$ {price}</p>
         </CardLine>
         <DivButton>
           {onBuy ? (
-            <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
+            <StyledButton onClick={onBuy}>{buttonTranslation}</StyledButton>
           ) : (
-            <StyledButton onClick={SaveFile}>{buttonText}</StyledButton>
+            <StyledButton onClick={SaveFile}>{buttonTranslation}</StyledButton>
           )}
         </DivButton>
       </StyledCard>

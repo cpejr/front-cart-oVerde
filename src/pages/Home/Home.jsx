@@ -10,10 +10,18 @@ import {
   ContainerCarousel,
 } from "./Styles";
 import { Icon } from "@assets/index";
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 import { Button, VideoLarger, VideoSmall, DemoCarousel } from "@components";
 
+
 export default function Home() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   const navigate = useNavigate();
+
   return (
     <Container>
       <ContainerCarousel>
@@ -22,14 +30,12 @@ export default function Home() {
 
       <Section>
         <Column>
-          <Title>Missão</Title>
+          <Title>{translations.missionTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.missionText}
           </p>
-          <VideoSmall videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
-          <Button onClick={() => navigate("/sobre")}>Saiba Mais</Button>
+          <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+          <Button onClick={() => navigate("/sobre")}>{translations.buttonText}</Button>
         </Column>
         <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
       </Section>
@@ -37,26 +43,23 @@ export default function Home() {
       <Section>
         <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
         <Column>
-          <Title>Visão e valores</Title>
+          <Title>{translations.visionTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.visionText}
           </p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+          <Button onClick={() => navigate("/comprar-arvores")}>
+            {translations.buttonText}
+          </Button>
         </Column>
       </Section>
       <Section>
         <Column>
-          <Title>Nossos produtos</Title>
+          <Title>{translations.productsTitle}</Title>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies.
+            {translations.productsText}
           </p>
-          <Button onClick={() => navigate("/comprar-arvores")}>
-            Saiba Mais
-          </Button>
+          <Button onClick={() => navigate("/eventos")}>{translations.buttonText}</Button>
         </Column>
         <Image>
           <img src={Icon} alt="Imagem de decoração" />

@@ -10,6 +10,8 @@ import {
   ButtonsDiv,
   Buttons,
 } from "./Styles";
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function FilterArea({
   types,
@@ -21,6 +23,10 @@ export default function FilterArea({
   setArray,
   setNames,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   // Set variables
   const { data: categoryType } = useGetCategoryType({
     onError: (err) => {
@@ -33,8 +39,8 @@ export default function FilterArea({
     },
   });
   const filters = [
-    { label: "Data", value: "date" },
-    { label: "Nome", value: "name" },
+    { label: translations.textDate, value: "date" },
+    { label: translations.textName, value: "name" },
   ];
   const transformArrayItems = (OriginalArray) => {
     const newArray = OriginalArray?.map((item) => ({
@@ -63,7 +69,7 @@ export default function FilterArea({
           onChange={(e) => setTypes(e.value)}
           options={transformArrayItems(categoryType)}
           optionLabel="label"
-          placeholder="Escolha o tipo"
+          placeholder={translations.placeholderType}
           className="w-full md:w-20rem"
           filter
         />
@@ -72,7 +78,7 @@ export default function FilterArea({
           onChange={(e) => setPrices(e.value)}
           options={transformArrayItems(categoryPrice)}
           optionLabel="label"
-          placeholder="Escolha o preço"
+          placeholder={translations.placeholderPrice}
           className="w-full md:w-20rem"
           filter
         />
@@ -83,13 +89,13 @@ export default function FilterArea({
           options={filters}
           optionLabel="label"
           showClear
-          placeholder="Ordenar Por"
+          placeholder={translations.placeholderOrder}
           className="w-full md:w-14rem"
         ></UniSelect>
       </DivSelect>
       <ButtonsDiv>
-        <Buttons onClick={handleFilterChange}>Filtrar</Buttons>
-        <Buttons onClick={handleResetFilter}>Limpar Filtros</Buttons>
+        <Buttons onClick={handleFilterChange}>{translations.buttonFilter}</Buttons>
+        <Buttons onClick={handleResetFilter}>{translations.buttonClear}</Buttons>
       </ButtonsDiv>
     </ContainerFilter>
   );

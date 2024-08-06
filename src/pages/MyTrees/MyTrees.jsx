@@ -14,8 +14,14 @@ import {
 import { SearchBar, LargeCard } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function MyTrees() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   // States and Variables
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
@@ -29,8 +35,8 @@ export default function MyTrees() {
   // Select Data
 
   const filters = [
-    { label: "Válidos", value: "active" },
-    { label: "Expirados", value: "expirated" },
+    { label: translations.labelValid, value: "active" },
+    { label: translations.labelExpired, value: "expirated" },
   ];
 
   // Backend Calls
@@ -40,14 +46,14 @@ export default function MyTrees() {
       id: userID,
       type: order,
       onError: (err) => {
-        toast.error("Erro ao carregar itens", err);
+        toast.error(translations.toastLoadingItensError, err);
       },
     });
 
   async function formatAllCollection() {
     let cardContent = personalCertificates;
     for (let content of cardContent) {
-      content.buttonText = "Baixar Certificado";
+      content.buttonText = translations.buttonLoadCertificate;
     }
     setCertificateData(cardContent);
   }
@@ -62,12 +68,12 @@ export default function MyTrees() {
 
   return (
     <Container>
-      <Title>MINHAS ÁRVORES</Title>
+      <Title>{translations.pageTitle}</Title>
 
       <Filter>
         <DivSelect>
           <SearchBar
-            placeholder="Pesquisar"
+            placeholder={translations.placeholderSearch}
             value={searchValue}
             search={handleSearchChange}
           />
@@ -75,7 +81,7 @@ export default function MyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Ordenar Por"
+          placeholder={translations.placeholderOrder}
           value={order}
           onChange={(e) => {
             setOrder(e.value);
@@ -84,7 +90,7 @@ export default function MyTrees() {
         />
       </Filter>
       {isCertificatesLoading && certificateData ? (
-        <Title>Carregando</Title>
+        <Title>{translations.loading}</Title>
       ) : (
         <DivLine>
           {certificateData
