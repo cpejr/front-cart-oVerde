@@ -14,7 +14,6 @@ if (import.meta.env.VITE_NODE_ENV === "production") {
 }
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "react-toastify/dist/ReactToastify.css";
-import DemoCarousel from "./components/features/Carousel/Carousel.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
