@@ -19,18 +19,17 @@ import { useCart } from "../../Stores/CartContext";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 import translateText from "../../services/translateAPI";
+import PropTypes from "prop-types";
 
-
-export default function BuyTrees({ trees }) {
   //Context
-  const { isInCart } = useCart();
+
 
 export default function BuyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-
+  const { isInCart } = useCart();
   const [collections, setCollections] = useState([]);
 
   async function translateCollections(cardContent){
