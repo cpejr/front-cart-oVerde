@@ -93,6 +93,7 @@ export async function getAllCertificates() {
 
 export async function createCertificate(newCertificate) {
   const { data } = await api.post("/certificate", newCertificate);
+  console.log(data);
   return data;
 }
 

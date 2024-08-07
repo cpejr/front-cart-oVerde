@@ -10,23 +10,26 @@ import {
   UniSelect,
   DivLine,
   Line,
-  Terms,
-  HighlightLink,
   LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
+import { useCart } from "../../Stores/CartContext";
+
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 import translateText from "../../services/translateAPI";
-import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
+import PropTypes from "prop-types";
+
+  //Context
+
 
 export default function BuyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-
+  const { isInCart } = useCart();
   const [collections, setCollections] = useState([]);
 
   async function translateCollections(cardContent){
@@ -37,8 +40,6 @@ export default function BuyTrees() {
     }
     setCollections(cardContent);
   }
-
-  // Select Data
   const filters = [
     { label: translations.labelRecent, value: "recent" },
     { label: translations.labelOld, value: "older" },
@@ -77,7 +78,7 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: "Comprar certificado",
+      buttonText: "Adicionar ao carrinho",
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
@@ -107,10 +108,6 @@ export default function BuyTrees() {
   }, [collection, isLoading, order, globalLanguage]);
 
   //Modal Acceptance Term
-  const [modalAccept, setModalAccept] = useState(false);
-
-  const openModalAccept = () => setModalAccept(true);
-  const closeModalAccept = () => setModalAccept(false);
 
   return (
     <Container>
@@ -139,10 +136,10 @@ export default function BuyTrees() {
       ) : (
         <DivLine>
           {collections
+            .filter((card) => !isInCart(card._id))
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-
             .map((card, index) => (
               <Line key={index}>
                 <LargeCard data={card} onBuy={() => buyTree(card._id)} />
@@ -150,14 +147,15 @@ export default function BuyTrees() {
             ))}
         </DivLine>
       )}
-
-      <Terms>
-        <p>
-          Leia nosso termo de aceite clicando{" "}
-          <HighlightLink onClick={openModalAccept}>aqui!</HighlightLink>
-        </p>
-      </Terms>
-      <ModalAcceptTerms modal={modalAccept} onClose={closeModalAccept} />
     </Container>
   );
 }
+BuyTrees.propTypes = {
+  trees: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};

@@ -23,10 +23,9 @@ export function useGetAllCertificates({
 export function useCreateCertificate({
   onSuccess = () => {},
   onError = (err) => console.error(err),
-  newCertificate,
 } = {}) {
   return useMutation({
-    mutationFn: () => createCertificate(newCertificate),
+    mutationFn: createCertificate,
     onSuccess,
     onError,
   });
