@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import { PrimeReactProvider } from "primereact/api";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import { CartProvider } from "./Stores/CartContext.jsx";
 
 if (import.meta.env.VITE_NODE_ENV === "production") {
   disableReactDevTools();
@@ -25,14 +26,15 @@ const queryClient = new QueryClient({
 });
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <PrimeReactProvider></PrimeReactProvider>
-      <GlobalStyles />
-
-      <PrimereactStyles />
-      <AppProvider />
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <CartProvider>
+      <QueryClientProvider client={queryClient}>
+        <PrimeReactProvider></PrimeReactProvider>
+        <GlobalStyles />
+        <PrimereactStyles />
+        <AppProvider />
+        <ReactQueryDevtools />
+      </QueryClientProvider>
+    </CartProvider>
     <ToastContainer
       position="bottom-right"
       autoClose={2000}

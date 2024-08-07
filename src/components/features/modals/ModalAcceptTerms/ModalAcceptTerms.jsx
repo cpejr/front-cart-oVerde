@@ -5,19 +5,19 @@ import {
   DivButton,
   Header,
   Image,
-  ModalButton,
   Section,
   StyledCheckBox,
-} from "./Style";
+} from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
+import GoogleButton from "../../GooglePay/GooglePay";
 
-export default function ModalAcceptTerms({ modal, onClose }) {
+export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [accept, setAccept] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-
+  console.log(price);
   const toggleAccept = () => {
     setAccept(!accept);
     setCheckBoxAlert(false);
@@ -43,13 +43,17 @@ export default function ModalAcceptTerms({ modal, onClose }) {
     <Modal
       open={modal}
       onCancel={handleCancel}
-      footer={[
-        <DivButton key="divButton">
-          <ModalButton key="submit" type="primary" onClick={handleSubmit}>
-            Confirmar
-          </ModalButton>
-        </DivButton>,
-      ]}
+      footer={
+        accept && (
+          <DivButton key="divButton">
+            <GoogleButton
+              price={price}
+              onClick={handleSubmit}
+              onClose={onClose}
+            />
+          </DivButton>
+        )
+      }
       width={"70%"}
     >
       <Container>
@@ -116,4 +120,5 @@ export default function ModalAcceptTerms({ modal, onClose }) {
 ModalAcceptTerms.propTypes = {
   modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  price: PropTypes.string.isRequired,
 };
