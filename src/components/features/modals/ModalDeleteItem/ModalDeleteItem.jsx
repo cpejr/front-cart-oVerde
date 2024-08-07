@@ -4,6 +4,9 @@ import Button from "../../../common/Button/Button";
 
 import { colors } from "../../../../styles/stylesVariables";
 
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
+
 export default function ModalDeleteItem({
   close,
   handleItemDelete,
@@ -12,6 +15,10 @@ export default function ModalDeleteItem({
   closeModal,
   modalCloseIcon,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   return (
     <ModalStyle
       open={modal}
@@ -25,7 +32,7 @@ export default function ModalDeleteItem({
       destroyOnClose
     >
       <Container>
-        <Message>Tem certeza que deseja excluir o item?</Message>
+        <Message>{translations.textMessage}</Message>
         <Button
           onClick={() => {
             handleItemDelete(id);
@@ -40,7 +47,7 @@ export default function ModalDeleteItem({
           fontWeight="500"
           lineHeight="2.2rem"
         >
-          Excluir
+          {translations.textButton}
         </Button>
       </Container>
     </ModalStyle>

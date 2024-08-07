@@ -43,7 +43,7 @@ export const SocialMedias = styled.div`
   align-items: center;
   gap: 10px;
   justify-content: center;
-  @media (max-width: ${breakpoints.smallTablet}) {
+  @media (max-width: ${breakpoints.mediumMobile}) {
     display: none;
   }
 `;
@@ -100,6 +100,7 @@ export const ConteinerLogin = styled.div`
 
 export const LoginButton = styled.button`
   display: flex;
+  gap: 0.5rem;
   justify-content: space-around;
   align-items: center;
   padding: 0 1rem;
@@ -122,14 +123,17 @@ export const LoginButton = styled.button`
   }
   @media (max-width: ${breakpoints.tablet}) {
     width: 10rem;
+    gap: 0;
   }
   @media (max-width: ${breakpoints.mobile}) {
     width: 10rem;
     height: 40px;
+    gap: 0;
   }
-  @media (max-width: ${breakpoints.smallDevice}) {
+  @media (max-width: ${breakpoints.smallMobile}) {
     width: 7rem;
     font-size: 0.8rem;
+    gap: 0;
   }
 `;
 export const ModalStyle = styled(Modal)`
@@ -150,5 +154,60 @@ export const PrimeHeader = styled(Menubar)`
   width: 100%;
   @media (max-width: ${breakpoints.tablet}) {
     display: none;
+  }
+`;
+
+export const Select = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-weight: 700;
+  align-self: center;
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 0.2rem;
+  }
+`;
+
+export const Selected = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 12px;
+`;
+
+export const LanguageSelector = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 200;
+  margin-top: 1.9rem;
+  transition: height 1s ease-in-out;
+  height: ${(props) => (props.collapse ? 'auto' : '0rem')};
+  overflow-y: hidden;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 0.5rem;
+  gap: 0.3rem;
+  button {
+    border: none;
+    background-color: white;
+    width: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+    :hover {
+      cursor: pointer;
+    }
+    p {
+      font-weight: 700;
+      :hover {
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-thickness: 0.2rem;
+      }
+    }
   }
 `;

@@ -1,7 +1,13 @@
 import PropTypes from "prop-types";
 import { TableShape, TableColumn } from "./Styles";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateText } from './Translations';
 
 export default function Table({ columns, data }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+
   return (
     <TableShape
       value={data}
@@ -10,6 +16,7 @@ export default function Table({ columns, data }) {
       removableSort
       scrollable
       scrollHeight="1000px"
+      emptyMessage={translations.message}
     >
       {columns.map((data) => (
         <TableColumn
