@@ -152,7 +152,7 @@ export default function LargeCard({ data, onBuy }) {
           <p>R$ {price}</p>
         </CardLine>
         <DivButton>
-          <StyledButton onClick={buyTree}>{buttonText}</StyledButton>
+          <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
         </DivButton>
       </StyledCard>
     </ConfigProvider>

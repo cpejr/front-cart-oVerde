@@ -11,11 +11,13 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar, LargeCard, DownloadButton } from "@components";
+import { SearchBar, LargeCard} from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
+import generateCertificate from '../../services/generateCertificate';
+import { Certificate } from "../../components";
 
 export default function MyTrees() {
   // Translations
@@ -26,10 +28,20 @@ export default function MyTrees() {
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
   const [order, setOrder] = useState("active");
+  const [loading, setLoading] = useState(false);
   const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   function handleSearchChange(e) {
     setSearchValue(e.target.value);
+  }
+
+  async function translateCollections(cardContent){
+    if (globalLanguage != "PT"){
+      for (let card of cardContent){
+        card.name = await translateText(card.name, translateLanguage);
+      }
+    }
+    setCertificateData(cardContent);
   }
 
   // Select Data
@@ -51,11 +63,36 @@ export default function MyTrees() {
     });
 
   async function formatAllCollection() {
-    let cardContent = personalCertificates;
-    for (let content of cardContent) {
-      content.buttonText = translations.buttonLoadCertificate;
+    setLoading(true);
+    let cardContent = [...personalCertificates];
+    console.log(cardContent);
+    console.log(cardContent);
+    let cardContent2 = personalCertificates;
+    console.log(cardContent2);
+    if (order === "recent") {
+      cardContent = cardContent.reverse();
+    } else if (order === "older") {
+      cardContent;
+    } else {
+      cardContent.sort(orderBy);
     }
-    setCertificateData(cardContent);
+
+    cardContent = cardContent.map((content) => ({
+      ...content,
+      buttonText: "Baixar certificado",
+      link: "EDITE EM MyTrees.jsx" + content._id,
+    }));
+
+    translateCollections(cardContent);
+    setLoading(false);
+  }
+
+  function orderBy(a, b) {
+    if (order === "active") {
+      return a.price - b.price;
+    } else if (order === "expired") {
+      return b.price - a.price;
+    }
   }
 
   useEffect(() => {
@@ -102,14 +139,16 @@ export default function MyTrees() {
             .map((card, index) => (
               <>
               <Line onClick={() => card} key={index}>
-                <LargeCard data={card} />
+                <Certificate name={card?.id_tree?.name} description={card?.id_tree?.description}/>
+                <LargeCard id="card" data={card} onBuy={ () => generateCertificate() }/>
               </Line>
               
               </>
             ))}
         </DivLine>
       )}
-      <DownloadButton />
+      <button onClick={() => console.log(userID)}></button>
     </Container>
   );
 }
+
