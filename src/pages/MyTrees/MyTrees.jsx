@@ -11,7 +11,7 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar, LargeCard } from "@components";
+import { SearchBar, LargeCard, DownloadButton } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
 import { useGlobalLanguage } from '../../Stores/globalLanguage';
@@ -100,12 +100,16 @@ export default function MyTrees() {
                 ?.includes(searchValue?.toLowerCase())
             )
             .map((card, index) => (
+              <>
               <Line onClick={() => card} key={index}>
                 <LargeCard data={card} />
               </Line>
+              
+              </>
             ))}
         </DivLine>
       )}
+      <DownloadButton />
     </Container>
   );
 }

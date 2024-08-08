@@ -27,3 +27,5 @@ export { default as DemoCarousel } from "./features/Carousel/Carousel.jsx";
 
 export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
 export { default as ModalLogOff } from "./features/modals/ModalLogOff/ModalLogoff.jsx";
+
+export { default as DownloadButton } from './features/DownloadButton/DownloadButton.jsx';
