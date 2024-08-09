@@ -147,7 +147,6 @@ export default function MyTrees() {
             ))}
         </DivLine>
       )}
-      <button onClick={() => console.log(userID)}></button>
     </Container>
   );
 }

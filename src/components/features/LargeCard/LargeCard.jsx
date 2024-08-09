@@ -149,7 +149,7 @@ export default function LargeCard({ data, onBuy }) {
           <p>{descriptionText}</p>
         </CardLine>
         <CardLine>
-          <p>R$ {price}</p>
+        {price && <p>R$ {price}</p> }
         </CardLine>
         <DivButton>
           <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
