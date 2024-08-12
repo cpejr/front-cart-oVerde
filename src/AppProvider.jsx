@@ -26,7 +26,9 @@ function App() {
     >
       <GlobalStyles />
       <LanguageProvider>
-        <Routes />
+        <CartProvider>
+          <Routes />
+        </CartProvider>
       </LanguageProvider>
     </ConfigProvider>
   );
