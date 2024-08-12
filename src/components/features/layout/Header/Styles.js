@@ -104,7 +104,7 @@ export const LoginButton = styled.button`
   justify-content: space-around;
   align-items: center;
   padding: 0 1rem;
-  height: 45px;
+  height: 30px;
   border: 1px solid;
   border-radius: 10px;
   color: ${colors.accent.primary};
@@ -114,7 +114,7 @@ export const LoginButton = styled.button`
   word-wrap: break-word;
   font-size: 1rem;
   img {
-    width: 20%;
+    width: 25%;
     border-radius: 50%;
   }
 
@@ -136,6 +136,7 @@ export const LoginButton = styled.button`
     gap: 0;
   }
 `;
+
 export const ModalStyle = styled(Modal)`
   .ant-modal-content {
     background-color: ${colors.background.primary};
@@ -148,6 +149,7 @@ export const ModalStyle = styled(Modal)`
     border-radius: none;
   }
 `;
+
 export const PrimeHeader = styled(Menubar)`
   display: flex;
   justify-content: space-around;
@@ -184,7 +186,7 @@ export const LanguageSelector = styled.div`
   z-index: 200;
   margin-top: 1.9rem;
   transition: height 1s ease-in-out;
-  height: ${(props) => (props.collapse ? 'auto' : '0rem')};
+  height: ${(props) => (props.collapse ? "auto" : "0rem")};
   overflow-y: hidden;
   font-weight: 700;
   background-color: white;
