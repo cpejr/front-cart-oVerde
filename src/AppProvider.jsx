@@ -3,7 +3,6 @@ import Routes from "./routes";
 import { ConfigProvider } from "antd";
 import { colors, fonts } from "./styles/stylesVariables";
 import { LanguageProvider } from "./Stores/globalLanguage";
-import { CartProvider } from "./Stores/CartContext.jsx"; // Adicionei isso
 
 function App() {
   return (
@@ -27,9 +26,7 @@ function App() {
     >
       <GlobalStyles />
       <LanguageProvider>
-        <CartProvider>
-          <Routes />
-        </CartProvider>
+        <Routes />
       </LanguageProvider>
     </ConfigProvider>
   );
