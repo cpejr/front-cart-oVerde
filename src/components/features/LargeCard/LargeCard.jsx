@@ -16,26 +16,26 @@ import {
   DivButton,
   CarouselStyles,
   CarouselImg,
-} from './Styles';
-import { TreeCertificatePDF } from '@components';
-import { useGetArchives } from '@hooks/querys/archive';
-import { colors } from '@styles/stylesVariables';
-import { useGlobalLanguage } from '../../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
-import translateText from '../../../services/translateAPI';
-  import { useCart } from "../../../Stores/CartContext";
-import { useState } from 'react';
+} from "./Styles";
+import { TreeCertificatePDF } from "@components";
+import { useGetArchives } from "@hooks/querys/archive";
+import { colors } from "@styles/stylesVariables";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import translateText from "../../../services/translateAPI";
+import { useCart } from "../../../Stores/CartContext";
+import { useState } from "react";
 
 export default function LargeCard({ data, onBuy }) {
   // Translations
-  
+
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
   const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
-  const [descriptionText, setDescriptionText] = useState('');
-  const [buttonTranslation, setButtonTranslation] = useState('');
+  const [descriptionText, setDescriptionText] = useState("");
+  const [buttonTranslation, setButtonTranslation] = useState("");
 
   // PDF Handling
 
@@ -44,13 +44,13 @@ export default function LargeCard({ data, onBuy }) {
       .toBlob()
       .then((blob) => saveAs(blob, `${data?.id_tree?.name}.pdf`));
   }
-  
+
   const { addToCart } = useCart();
   function buyTree() {
     const { buttonText, link, ...tree } = data;
     addToCart(tree);
   }
-  
+
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
@@ -148,11 +148,11 @@ export default function LargeCard({ data, onBuy }) {
         <CardLine>
           <p>{descriptionText}</p>
         </CardLine>
-        <CardLine>
-        {price && <p>R$ {price}</p> }
-        </CardLine>
+        <CardLine>{price && <p>R$ {price}</p>}</CardLine>
         <DivButton>
-          <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
+          <StyledButton onClick={onBuy ? onBuy : buyTree}>
+            {buttonText}
+          </StyledButton>
         </DivButton>
       </StyledCard>
     </ConfigProvider>
