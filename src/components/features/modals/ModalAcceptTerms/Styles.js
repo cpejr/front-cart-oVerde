@@ -96,7 +96,7 @@ export const CheckboxLabel = styled.label`
 
 export const DivButton = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -104,11 +104,9 @@ export const DivButton = styled.div`
   gap: 25px;
   @media (max-width: ${breakpoints.tablet}) {
     padding: 10px;
-    gap: 15px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     padding: 10px;
-    gap: 10px;
   }
 `;
 

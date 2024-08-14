@@ -12,9 +12,12 @@ import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 import GoogleButton from "../../GooglePay/GooglePay";
+import PixButton from "../../PixButton/PixButton";
+import FormSubmit from "../../FormSubmit/FormSubmit";
 
 export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [accept, setAccept] = useState(false);
+  const [isPix, setIsPix] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
   console.log(price);
@@ -39,19 +42,47 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
     setAccept(false);
   };
 
+  const closePix = () => setIsPix(false);
+
+  const inputs = [
+    {
+      type: "input",
+      key: "email",
+      placeholder: "Digite seu email",
+      value: "",
+    },
+    {
+      type: "input",
+      key: "cpf",
+      placeholder: "Digite seu cpf",
+      value: "",
+    },
+  ];
+
   return (
     <Modal
       open={modal}
       onCancel={handleCancel}
       footer={
         accept && (
-          <DivButton key="divButton">
-            <GoogleButton
-              price={price}
-              onClick={handleSubmit}
-              onClose={onClose}
-            />
-          </DivButton>
+          <>
+            <DivButton key="divButton">
+              <GoogleButton
+                price={price}
+                onClick={handleSubmit}
+                onClose={onClose}
+              />
+              <PixButton boll={isPix} />
+            </DivButton>
+            {isPix && (
+              <FormSubmit
+                inputs={inputs}
+                onSubmit={handleCancel}
+                schema={closePix}
+                color={"#33603F"}
+              ></FormSubmit>
+            )}
+          </>
         )
       }
       width={"70%"}
