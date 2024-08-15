@@ -23,8 +23,8 @@ import {
   AiOutlineUpload,
   AiOutlineCloseCircle,
 } from "react-icons/ai";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateText } from './Translations';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateText } from "./Translations";
 import translateText from "../../services/translateAPI";
 
 export default function ManageCollection() {
@@ -35,16 +35,19 @@ export default function ManageCollection() {
 
   const [collections, setCollections] = useState([]);
 
-  async function translateCollections(trees){
-    for (let tree of trees){
+  async function translateCollections(trees) {
+    for (let tree of trees) {
       tree.name = await translateText(tree.name, translateLanguage);
-      tree.description = await translateText(tree.description, translateLanguage);
+      tree.description = await translateText(
+        tree.description,
+        translateLanguage
+      );
       tree.location = await translateText(tree.location, translateLanguage);
       tree.specie = await translateText(tree.specie, translateLanguage);
     }
     return trees;
   }
-  
+
   const [modalDelete, setModalDelete] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
 
@@ -128,9 +131,9 @@ export default function ManageCollection() {
     const collectionTree = await collection;
     let collectionTreeTranslate;
 
-    if (globalLanguage == "PT"){
+    if (globalLanguage == "PT") {
       collectionTreeTranslate = collectionTree;
-    }else{
+    } else {
       collectionTreeTranslate = await translateCollections(collectionTree);
     }
 
@@ -231,21 +234,19 @@ export default function ManageCollection() {
     let types = categories?.map((category) => {
       return category?.label;
     });
-    
-    let typesTranslate = [];
-    if (types){
 
-      if (globalLanguage == "PT"){
+    let typesTranslate = [];
+    if (types) {
+      if (globalLanguage == "PT") {
         typesTranslate = types;
-      }else{
-        for (let type of types){
-          translateText(type, translateLanguage)
-            .then((translate) => {
-              typesTranslate.push(translate);
-          })
+      } else {
+        for (let type of types) {
+          translateText(type, translateLanguage).then((translate) => {
+            typesTranslate.push(translate);
+          });
         }
       }
-    
+
       inputs[5] = {
         type: "select",
         key: "id_categoryType",
@@ -256,7 +257,13 @@ export default function ManageCollection() {
     setSelectOptions(typesTranslate);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryTypes, collection, isLoading, isLoadingCategories, globalLanguage]);
+  }, [
+    categoryTypes,
+    collection,
+    isLoading,
+    isLoadingCategories,
+    globalLanguage,
+  ]);
   return (
     <Container>
       <Title>{translations.pageTitle}</Title>
@@ -264,7 +271,7 @@ export default function ManageCollection() {
         <FormSubmit
           inputs={inputs}
           onSubmit={handlesubmit}
-          schema={newCollectionValidationSchema}
+          schema={newCollectionValidationSchema()}
           color={"#33603F"}
           loading={loadingPostTree}
         />
