@@ -136,7 +136,7 @@ export default function MyTrees() {
             .map((card, index) => (
               <>
               <Line onClick={() => card} key={index}>
-                <Certificate name={card?.id_tree?.name} description={card?.id_tree?.description}/>
+                <Certificate name={card?.id_tree?.name} tree_description={card?.id_tree?.description} certificate_description={card?.description}/>
                 <LargeCard id="card" data={card} onBuy={ () => generateCertificate() }/>
               </Line>
               
