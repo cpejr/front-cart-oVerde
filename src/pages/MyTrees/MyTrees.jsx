@@ -65,10 +65,7 @@ export default function MyTrees() {
   async function formatAllCollection() {
     setLoading(true);
     let cardContent = [...personalCertificates];
-    console.log(cardContent);
-    console.log(cardContent);
     let cardContent2 = personalCertificates;
-    console.log(cardContent2);
     if (order === "recent") {
       cardContent = cardContent.reverse();
     } else if (order === "older") {

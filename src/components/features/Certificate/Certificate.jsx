@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 
 import {Certificated, Description, Name, Title} from './Styles'
 
 const Certificate = ({ name, description }) => {
-
-  console.log(description);
   return (
       <Certificated id="certificated">
         <Title>CERTIFICADO DE POSSE DE ÁRVORE</Title>
@@ -18,6 +16,6 @@ const Certificate = ({ name, description }) => {
 export default Certificate;
 
 Certificate.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string
 };
