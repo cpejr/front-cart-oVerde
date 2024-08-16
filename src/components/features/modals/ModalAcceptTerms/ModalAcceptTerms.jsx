@@ -134,9 +134,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
 
               {isPix && (
                 <ConteinerPixForms>
-                  <FormsText>
-                    Preencha o formulário para gerar o QR Code
-                  </FormsText>
+                  <FormsText>{translations.formsTitle}</FormsText>
                   <FormSubmit
                     inputs={inputs}
                     onSubmit={onFormsSubmit}
