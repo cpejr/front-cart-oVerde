@@ -10,12 +10,8 @@ export default function PixButton({ func }) {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
 
-  const onSubmit = () => {
-    func();
-  };
-
   return (
-    <ButtonPix onClick={onSubmit}>
+    <ButtonPix onClick={() => func()}>
       {translations.textButton}
       <img src={PixIcon} alt="PixIcon" />
     </ButtonPix>

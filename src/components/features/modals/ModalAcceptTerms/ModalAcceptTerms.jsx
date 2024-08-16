@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   CheckboxLabel,
   Container,
@@ -7,6 +8,8 @@ import {
   Image,
   Section,
   StyledCheckBox,
+  ConteinerPixForms,
+  FormsText,
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -14,16 +17,26 @@ import PropTypes from "prop-types";
 import GoogleButton from "../../GooglePay/GooglePay";
 import PixButton from "../../PixButton/PixButton";
 import FormSubmit from "../../FormSubmit/FormSubmit";
+import { pixPaymentRequireSchema } from "./utils";
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
+import { useCart } from "../../../../Stores/CartContext";
 
 export default function ModalAcceptTerms({ modal, onClose, price }) {
+  //Tradução
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   const [accept, setAccept] = useState(false);
   const [isPix, setIsPix] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-  console.log(price);
+
   const toggleAccept = () => {
     setAccept(!accept);
     setCheckBoxAlert(false);
+    setIsPix(false);
   };
 
   const handleSubmit = () => {
@@ -42,22 +55,45 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
     setAccept(false);
   };
 
-  const closePix = () => setIsPix(false);
+  const openPix = () => setIsPix(true);
 
   const inputs = [
     {
       type: "input",
       key: "email",
-      placeholder: "Digite seu email",
+      placeholder: translations.placeholderEmail,
       value: "",
     },
     {
       type: "input",
       key: "cpf",
-      placeholder: "Digite seu cpf",
+      placeholder: translations.placeholderCPF,
       value: "",
     },
   ];
+
+  const { mutate: postPixLink } = usePostPixPayment({
+    onSuccess: () => {
+      toast.success(translations.toastPostPixPayment);
+    },
+    onError: (err) => {
+      toast.error(translations.toastPostPixPaymentError, err);
+    },
+  });
+
+  const { cartItens } = useCart();
+
+  function onFormsSubmit(data) {
+    const body = {
+      transaction_amount: price,
+      email: data.email,
+      number: data.cpf,
+      description: `Compra de 10 no valor de R$ ${price}`,
+    };
+
+    //console.log(body);
+    postPixLink(body);
+  }
 
   return (
     <Modal
@@ -72,23 +108,29 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
                 onClick={handleSubmit}
                 onClose={onClose}
               />
-              <PixButton boll={isPix} />
+              <PixButton func={openPix} />
+
+              {isPix && (
+                <ConteinerPixForms>
+                  <FormsText>
+                    Preencha o formulário para gerar o QR Code
+                  </FormsText>
+                  <FormSubmit
+                    inputs={inputs}
+                    onSubmit={onFormsSubmit}
+                    schema={pixPaymentRequireSchema}
+                    color={"#33603F"}
+                  ></FormSubmit>
+                </ConteinerPixForms>
+              )}
             </DivButton>
-            {isPix && (
-              <FormSubmit
-                inputs={inputs}
-                onSubmit={handleCancel}
-                schema={closePix}
-                color={"#33603F"}
-              ></FormSubmit>
-            )}
           </>
         )
       }
       width={"70%"}
     >
       <Container>
-        <Header>Termo de Aceite e privacidade</Header>
+        <Header>{translations.termsAcceptText}</Header>
         <Section>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -140,7 +182,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
             onChange={toggleAccept}
             checked={accept}
           />
-          Eu concordo com os termos descritos acima
+          {translations.checkboxText}.
         </CheckboxLabel>
       </Container>
     </Modal>

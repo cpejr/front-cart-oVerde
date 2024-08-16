@@ -122,3 +122,15 @@ export async function getArchives(archives) {
   const { data } = await api.get(`/archive`, { params: { archive: archives } });
   return data;
 }
+
+/**************************
+ *                        *
+ *       PixPayment       *
+ *                        *
+ **************************/
+
+export async function createPixPayment(newPixPayment) {
+  console.log(newPixPayment);
+  const { data } = await api.post("/pixpayment", newPixPayment);
+  return data;
+}
