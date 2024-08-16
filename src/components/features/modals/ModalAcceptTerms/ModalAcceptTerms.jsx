@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import {
   CheckboxLabel,
@@ -22,6 +22,8 @@ import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
 import { TranslateTextHeader } from "./Translations";
 import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
 import { useCart } from "../../../../Stores/CartContext";
+import { useCreateCertificate } from "../../../../hooks/querys/certificate";
+import useAuthStore from "../../../../Stores/auth";
 
 export default function ModalAcceptTerms({ modal, onClose, price }) {
   //Tradução
@@ -72,7 +74,11 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
     },
   ];
 
-  const { mutate: postPixLink } = usePostPixPayment({
+  const {
+    mutate: postPixPayment,
+    isPending: loadingPostPix,
+    data: res,
+  } = usePostPixPayment({
     onSuccess: () => {
       toast.success(translations.toastPostPixPayment);
     },
@@ -81,19 +87,35 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
     },
   });
 
-  const { cartItens } = useCart();
+  const { cartItems: cartTress } = useCart();
 
   function onFormsSubmit(data) {
     const body = {
-      transaction_amount: price,
+      transaction_amount: Number(price),
       email: data.email,
       number: data.cpf,
-      description: `Compra de 10 no valor de R$ ${price}`,
+      description: `Compra de ${cartTress.length} árvore(s) no valor de R$ ${price}`,
     };
-
-    //console.log(body);
-    postPixLink(body);
+    postPixPayment(body);
   }
+
+  const { clearCart } = useCart();
+  const id_user = useAuthStore((state) => state?.auth?.user?._id);
+  const { mutate: createCertificate } = useCreateCertificate({
+    onSuccess: () => {
+      toast.success("Compra efetuada com sucesso");
+    },
+  });
+
+  useEffect(() => {
+    if (res?.link) {
+      window.open(res.link);
+    }
+    if (res?.status === "approved") {
+      createCertificate({ id_user: id_user, tree: cartTress });
+      clearCart();
+    }
+  }, [res]);
 
   return (
     <Modal
@@ -120,6 +142,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
                     onSubmit={onFormsSubmit}
                     schema={pixPaymentRequireSchema}
                     color={"#33603F"}
+                    loading={loadingPostPix}
                   ></FormSubmit>
                 </ConteinerPixForms>
               )}
