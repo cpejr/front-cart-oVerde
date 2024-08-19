@@ -3,7 +3,7 @@ import { pdf } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import { ScaleLoader } from "react-spinners";
 import { ConfigProvider } from "antd";
 // Components
@@ -15,20 +15,40 @@ import {
   CardTitle,
   DivButton,
   CarouselStyles,
+  CarouselImg,
 } from "./Styles";
 import { TreeCertificatePDF } from "@components";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import translateText from "../../../services/translateAPI";
+import { useCart } from "../../../Stores/CartContext";
+import { useState } from "react";
 
 export default function LargeCard({ data, onBuy }) {
-  const { description, buttonText } = data;
+  // Translations
+
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+  const { description, buttonText, price } = data;
   const name = data?.id_tree?.name || data?.name;
+  const [descriptionText, setDescriptionText] = useState("");
+  const [buttonTranslation, setButtonTranslation] = useState("");
 
   // PDF Handling
+
   function SaveFile() {
     pdf(<TreeCertificatePDF data={data} />)
       .toBlob()
       .then((blob) => saveAs(blob, `${data?.id_tree?.name}.pdf`));
+  }
+
+  const { addToCart } = useCart();
+  function buyTree() {
+    const { buttonText, link, ...tree } = data;
+    addToCart(tree);
   }
 
   // BackEnd Calls
@@ -43,6 +63,22 @@ export default function LargeCard({ data, onBuy }) {
       console.error("Error ao pegar os arquivos", err);
     },
   });
+
+  translateText(description, translateLanguage)
+    .then((translate) => {
+      setDescriptionText(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
+
+  translateText(buttonText, translateLanguage)
+    .then((translate) => {
+      setButtonTranslation(translate);
+    })
+    .catch((error) => {
+      return { error };
+    });
 
   return (
     <ConfigProvider
@@ -74,18 +110,18 @@ export default function LargeCard({ data, onBuy }) {
                 {archiveData.map((file, index) => (
                   <div key={index}>
                     {file.startsWith("data:image") && (
-                      <img src={file} alt={`Imagem ${index}`} />
+                      <CarouselImg src={file} alt={`Imagem ${index}`} />
                     )}
                     {file.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
                         <source src={file} type="video/mp4" />
-                        Seu navegador não suporta o elemento de vídeo.
+                        {translations.textVideo}
                       </video>
                     )}
                     {file.startsWith("data:audio") && (
                       <audio controls>
                         <source src={file} type="audio/mpeg" />
-                        Seu navegador não suporta o elemento de áudio.
+                        {translations.textAudio}
                       </audio>
                     )}
                     {file.startsWith("data:application/pdf") && (
@@ -95,8 +131,8 @@ export default function LargeCard({ data, onBuy }) {
                         width="100%"
                         height="400px"
                       >
-                        Seu navegador não suporta visualização de PDF. Você pode{" "}
-                        <a href={file}>baixá-lo aqui</a>.
+                        {translations.textPDF}
+                        <a href={file}>{translations.textDownload}</a>.
                       </object>
                     )}
                   </div>
@@ -110,14 +146,13 @@ export default function LargeCard({ data, onBuy }) {
           <CardTitle>{name}</CardTitle>
         </Group>
         <CardLine>
-          <p>{description}</p>
+          <p>{descriptionText}</p>
         </CardLine>
+        <CardLine>{price && <p>R$ {price}</p>}</CardLine>
         <DivButton>
-          {onBuy ? (
-            <StyledButton onClick={onBuy}>{buttonText}</StyledButton>
-          ) : (
-            <StyledButton onClick={SaveFile}>{buttonText}</StyledButton>
-          )}
+          <StyledButton onClick={onBuy ? onBuy : buyTree}>
+            {buttonText}
+          </StyledButton>
         </DivButton>
       </StyledCard>
     </ConfigProvider>
@@ -129,6 +164,7 @@ LargeCard.propTypes = {
     name: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    price: PropTypes.string,
     archive: PropTypes.array,
     id_tree: PropTypes.shape({
       name: PropTypes.string,

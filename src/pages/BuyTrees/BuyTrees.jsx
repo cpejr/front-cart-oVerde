@@ -10,19 +10,45 @@ import {
   UniSelect,
   DivLine,
   Line,
+  LoadingSpinner,
 } from "./Styles";
 import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
+import { useCart } from "../../Stores/CartContext";
+
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import translateText from "../../services/translateAPI";
+import PropTypes from "prop-types";
+
+//Context
 
 export default function BuyTrees() {
-  // Select Data
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+  const { isInCart } = useCart();
+  const [collections, setCollections] = useState([]);
+
+  async function translateCollections(cardContent) {
+    if (globalLanguage != "PT") {
+      for (let card of cardContent) {
+        card.name = await translateText(card.name, translateLanguage);
+      }
+    }
+    setCollections(cardContent);
+  }
   const filters = [
-    { label: "Mais Recentes", value: "data" },
-    { label: "Preço", value: "price" },
+    { label: translations.labelRecent, value: "recent" },
+    { label: translations.labelOld, value: "older" },
+    { label: translations.labelCheap, value: "lowPrice" },
+    { label: translations.labelExpensive, value: "higherPrice" },
   ];
 
   const [searchValue, setSearchValue] = useState("");
-  const [order, setOrder] = useState("data");
+  const [order, setOrder] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -31,28 +57,39 @@ export default function BuyTrees() {
   const { data: collection, isLoading } = useGetTree({
     onSuccess: () => {},
     onError: (err) => {
-      toast.error("Erro ao carregar itens", err);
+      toast.error(translations.loadingErrorMessage, err);
     },
   });
-  const [collections, setCollections] = useState([]);
 
   async function formatAllCollection() {
-    let cardContent = collection;
-    cardContent.sort(orderBy);
-    for (let content of cardContent) {
-      content.buttonText = "Comprar Certificado";
-      content.link = "EDITE EM MyTrees.jsx " + content._id;
+    setLoading(true);
+    let cardContent = [...collection];
+    console.log(cardContent);
+    let cardContent2 = collection;
+    console.log(cardContent2);
+    if (order === "recent") {
+      cardContent = cardContent.reverse();
+    } else if (order === "older") {
+      cardContent;
+    } else {
+      cardContent.sort(orderBy);
     }
-    setCollections(cardContent);
+
+    cardContent = cardContent.map((content) => ({
+      ...content,
+      buttonText: "Adicionar ao carrinho",
+      link: "EDITE EM MyTrees.jsx " + content._id,
+    }));
+
+    translateCollections(cardContent);
+    setLoading(false);
   }
 
-  async function orderBy(a, b) {
-    if (order == "price") {
-      if (a.price >= b.price) {
-        return -1;
-      } else {
-        return 1;
-      }
+  function orderBy(a, b) {
+    if (order === "lowPrice") {
+      return a.price - b.price;
+    } else if (order === "higherPrice") {
+      return b.price - a.price;
     }
   }
 
@@ -62,21 +99,23 @@ export default function BuyTrees() {
   }
 
   useEffect(() => {
+    console.log("Loading State:", loading);
     if (!isLoading && collection) {
       formatAllCollection();
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [collection, isLoading]);
+  }, [collection, isLoading, order, globalLanguage]);
+
+  //Modal Acceptance Term
 
   return (
     <Container>
-      <Title>COMPRAR ÁRVORES</Title>
+      <Title>{translations.pageTitle}</Title>
 
       <Filter>
         <DivSelect>
           <SearchBar
-            placeholder="Pesquisar"
+            placeholder={translations.placeholderSearch}
             value={searchValue}
             search={handleSearchChange}
           />
@@ -84,25 +123,25 @@ export default function BuyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Ordenar Por"
+          placeholder={translations.placeholderFilter}
           onChange={(e) => {
             setOrder(e.value);
-            formatAllCollection();
           }}
-        />
+        />{" "}
+        {loading && <LoadingSpinner />}
       </Filter>
       {isLoading && collections ? (
-        <Title>Carregando</Title>
+        <Title>{translations.loadingTitle}</Title>
       ) : (
         <DivLine>
           {collections
+            .filter((card) => !isInCart(card._id))
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-            .sort(orderBy)
             .map((card, index) => (
               <Line key={index}>
-                <LargeCard data={card} onBuy={() => buyTree(card._id)} />
+                <LargeCard data={card} />
               </Line>
             ))}
         </DivLine>
@@ -110,3 +149,12 @@ export default function BuyTrees() {
     </Container>
   );
 }
+BuyTrees.propTypes = {
+  trees: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};

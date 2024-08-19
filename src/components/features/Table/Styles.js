@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { colors } from "../../../styles/stylesVariables";
+
 export const TableShape = styled(DataTable)`
   display: flex;
   flex-direction: column;
@@ -26,5 +27,7 @@ export const TableColumn = styled(Column)`
   background-color: ${colors.font.secondary};
   color: ${colors.font.secondary};
   min-width: 200px;
-
+  .p-bodycell {
+    align-items: center;
+  }
 `;

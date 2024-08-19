@@ -21,8 +21,11 @@ export { default as TreeCertificatePDF } from "./features/PDF/TreeCertificatePDF
 export { default as LargeCard } from "./features/LargeCard/LargeCard.jsx";
 export { default as VideoLarger } from "./features/Video/VideoLarger/VideoLarger.jsx";
 export { default as VideoSmall } from "./features/Video/VideoSmall/VideoSmall.jsx";
-
+export { default as CartCard } from "./features/CartCard/CartCard.jsx";
+export { default as DemoCarousel } from "./features/Carousel/Carousel.jsx";
 // Modals
 
 export { default as ModalDeleteItem } from "./features/modals/ModalDeleteItem/ModalDeleteItem.jsx";
 export { default as ModalLogOff } from "./features/modals/ModalLogOff/ModalLogoff.jsx";
+
+export { default as Certificate } from './features/Certificate/Certificate.jsx';

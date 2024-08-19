@@ -1,28 +1,22 @@
-import { Square } from "@assets/index";
+import { Icon } from "@assets/index";
 import { Title, Container, Image } from "./Styles";
 
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
+
 export default function AboutUs() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   return (
     <Container>
-      <Title>SOBRE A EMPRESA</Title>
+      <Title>{translations.title}</Title>
       <Image>
-        <img src={Square} alt="Imagem de decoração" />
+        <img src={Icon} alt="Imagem de decoração" />
       </Image>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
-        libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat.
-        Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim.
-        Pellentesque viverra tristique nisi ut suscipit. Proin augue nulla,
-        maximus ullamcorper tincidunt non, consectetur non tellus. Phasellus
-        ullamcorper pellentesque lectus vel egestas. Vestibulum eu ex sit amet
-        leo dignissim laoreet et porta elit. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Curabitur et libero ligula. Aliquam
-        pharetra suscipit euismod. Aliquam erat volutpat. Duis dapibus nulla eu
-        turpis aliquam ultricies. Duis sed consequat enim. Pellentesque viverra
-        tristique nisi ut suscipit. Proin augue nulla, maximus ullamcorper
-        tincidunt non, consectetur non tellus. Phasellus ullamcorper
-        pellentesque lectus vel egestas. Vestibulum eu ex sit amet leo dignissim
-        laoreet et porta elit.
+        {translations.text}
       </p>
     </Container>
   );

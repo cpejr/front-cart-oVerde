@@ -19,8 +19,14 @@ import {
   useGetUsers,
   useUpdateUsers,
 } from "@hooks/querys/user";
+import { useGlobalLanguage } from '../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function ManageUsers() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  
   // States and Variables
 
   const [userID, setUserID] = useState("");
@@ -38,16 +44,16 @@ export default function ManageUsers() {
   // Table Handling
 
   const columns = [
-    { field: "imageURL", header: "Foto" },
-    { field: "name", header: "Nome" },
-    { field: "email", header: "Email" },
-    { field: "type", header: "Tipo" },
+    { field: "imageURL", header: translations.textColumn1 },
+    { field: "name", header: translations.textColumn2 },
+    { field: "email", header: translations.textColumn3 },
+    { field: "type", header: translations.textColumn4 },
     { field: "manage", header: "" },
   ];
 
   const selectOptions = [
-    { label: "Administrador", value: true },
-    { label: "Usuário", value: false },
+    { label: translations.textAdmin, value: true },
+    { label: translations.textUser, value: false },
   ];
 
   function handleSearchChange(e) {
@@ -58,7 +64,7 @@ export default function ManageUsers() {
 
   async function formatAllUsers() {
     const filteredUsers = user.filter((user) =>
-      user?.name.toLowerCase().includes(searchQuery.toLowerCase())
+      user?.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );
     const formattedUsers = await filteredUsers.map((user) => ({
       imageURL: <ProfilePic src={user?.imageURL} alt={user?.name} />,
@@ -68,8 +74,8 @@ export default function ManageUsers() {
         <TypeSelect
           defaultValue={
             user?.type
-              ? { label: "Administrador", value: true }
-              : { label: "Usuário", value: false }
+              ? { label: translations.textAdmin, value: true }
+              : { label: translations.textUser, value: false }
           }
           onChange={(value) => handleTypeChange(user?._id, value)}
           options={selectOptions}
@@ -104,10 +110,10 @@ export default function ManageUsers() {
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
-      toast.success("Usuario deletado com sucesso!");
+      toast.success(translations.toastDeleteSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao excluir usuário.", err);
+      toast.error(translations.toastDeleteError, err);
     },
   });
 
@@ -116,31 +122,33 @@ export default function ManageUsers() {
       queryClient.invalidateQueries({
         queryKey: ["users"],
       });
-      toast.success("Usuário atualizado com sucesso!");
+      toast.success(translations.toastUpdateSucess);
     },
     onError: (err) => {
-      toast.error("Erro ao atualizar usuário.", err);
+      toast.error(translations.toastUpdateError, err);
     },
   });
 
   const { data: user, isLoading } = useGetUsers({
     onError: (err) => {
-      toast.error("Erro ao pegar itens", err);
+      toast.error(translations.toastGetError, err);
     },
   });
   //
   useEffect(() => {
+    console.log("Entrou")
     if (!isLoading && user) {
+      console.log("Entrou")
       formatAllUsers();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, isLoading, searchQuery]);
+  }, [user, isLoading, searchQuery, globalLanguage]);
 
   return (
     <Container>
-      <Title>GERENCIAR USUÁRIOS</Title>
+      <Title>{translations.pageTitle}</Title>
       <SearchBar
-        placeholder={"Pesquisar usuário"}
+        placeholder={translations.placeholderSearch}
         value={searchQuery}
         search={handleSearchChange}
         width="90%"

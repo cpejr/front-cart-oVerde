@@ -100,11 +100,12 @@ export async function getAllCertificates() {
 
 export async function createCertificate(newCertificate) {
   const { data } = await api.post("/certificate", newCertificate);
+  console.log(data);
   return data;
 }
 
 export async function getCertificateByUser({ id, type }) {
-  const { data } = await api.get(`/certificate/${id}`, { params: { type } });
+  const { data } = await api.get(`/certificate/${id}`, { "type": { type } });
   return data;
 }
 

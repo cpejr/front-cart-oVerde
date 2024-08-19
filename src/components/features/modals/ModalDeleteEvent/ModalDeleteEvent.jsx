@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import Button from "../../../common/Button/Button";
 import { colors } from "../../../../styles/stylesVariables";
 import { Container, Message, ModalStyle } from "./Styles";
+import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 export default function ModalDeleteEvent({
   handleEventDelete,
@@ -10,6 +12,10 @@ export default function ModalDeleteEvent({
   closeModal,
   modalCloseIcon,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   return (
     <ModalStyle
       open={modal}
@@ -23,7 +29,7 @@ export default function ModalDeleteEvent({
       destroyOnClose
     >
       <Container>
-        <Message>Tem certeza que deseja excluir esse evento?</Message>
+        <Message>{translations.textMessage}</Message>
         <Button
           onClick={() => {
             handleEventDelete(id);
@@ -42,7 +48,7 @@ export default function ModalDeleteEvent({
           hoverColor={colors.font.secondary}
           borderColor={colors.modals.modalButton}
         >
-          Excluir
+          {translations.textButton}
         </Button>
       </Container>
     </ModalStyle>

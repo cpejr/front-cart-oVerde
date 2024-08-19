@@ -167,4 +167,34 @@ export const PrimereactStyles = createGlobalStyle`
     cursor: pointer;
   }
 
+  .p-multiselect-label-container{
+    display: flex;
+    align-items: center;  
+  }
+  
+
+  .p-dropdown{
+    transition: none;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .p-paginator .p-paginator-first, .p-paginator .p-paginator-prev, .p-paginator .p-paginator-next, .p-paginator .p-paginator-last{
+    min-width: 0;
+    width: 45px;
+    @media (max-width: 320px) {
+      width: 25px;
+    }
+    @media (max-width: 240px) {
+      width: 15px;
+    }
+  }
+  
+  .p-datatable .p-datatable-tbody>tr>td{
+    padding: 15px;
+  }
+
+  .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight{
+    color: #4b5563;
+  }
 `;
