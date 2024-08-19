@@ -6,7 +6,7 @@ const useAuthStore = create(
     auth: null,
     setAuth: (accessToken) => {
       const { user, exp } = jwtDecode(accessToken);
-      console.log(jwtDecode(accessToken));
+      console.log("oi", exp);
       set({ auth: { accessToken, user, expireIn: exp } });
     },
     getToken: () => {

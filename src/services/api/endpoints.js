@@ -16,13 +16,12 @@ export async function deleteUser(_id) {
 
   return data;
 }
-export const login = async (credentials) => {
-  const { setAuth, setUser } = useAuthStore.getState();
+export async function login(credentials) {
+  const { setAuth } = useAuthStore.getState();
   const { data } = await api.post("/user", credentials);
-  setAuth(data.token);
-  setUser(data.user);
+  setAuth(data.accessToken);
   return data;
-};
+}
 
 export async function updateUser({ _id, newUserData }) {
   const { data } = await api.put(`/user/${_id}`, newUserData);
@@ -33,8 +32,12 @@ export async function updateUser({ _id, newUserData }) {
 export async function refresh() {
   const { setAuth } = useAuthStore.getState();
   const { data } = await api.get("/refresh");
-  
   setAuth(data.accessToken);
+  return data;
+}
+
+export async function logout() {
+  const { data } = await api.delete("/refresh");
   return data;
 }
 
@@ -100,12 +103,11 @@ export async function getAllCertificates() {
 
 export async function createCertificate(newCertificate) {
   const { data } = await api.post("/certificate", newCertificate);
-  console.log(data);
   return data;
 }
 
 export async function getCertificateByUser({ id, type }) {
-  const { data } = await api.get(`/certificate/${id}`, { "type": { type } });
+  const { data } = await api.get(`/certificate/${id}`, { type: { type } });
   return data;
 }
 

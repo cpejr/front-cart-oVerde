@@ -70,7 +70,6 @@ const GoogleButton = ({ disabled, price, onClose }) => {
           paymentsClient
             .loadPaymentData(paymentDataRequest)
             .then((paymentData) => {
-              console.log("Payment Data:", paymentData);
               createCertificate({ id_user: id_user, tree: data });
               clearCart();
               if (onClose) onClose();

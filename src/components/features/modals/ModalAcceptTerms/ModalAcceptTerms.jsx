@@ -17,7 +17,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [accept, setAccept] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-  console.log(price);
+
   const toggleAccept = () => {
     setAccept(!accept);
     setCheckBoxAlert(false);
