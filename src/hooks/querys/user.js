@@ -41,7 +41,7 @@ export function useUpdateUsers({
 }
 
 export function useLogin({ onSuccess = () => {} } = {}) {
-  const onError = (err) => {};
+  const onError = () => {};
   return useMutation({
     mutationFn: login,
     onError,
@@ -53,7 +53,7 @@ export function useRefreshToken({ onSuccess = () => {} } = {}) {
   const expireIn = useAuthStore((state) => state.auth?.expireIn);
 
   const clearAuth = useAuthStore((state) => state.clearAuth);
-  const onError = (err) => {
+  const onError = () => {
     clearAuth();
   };
 
@@ -62,12 +62,12 @@ export function useRefreshToken({ onSuccess = () => {} } = {}) {
     queryFn: refresh,
     onError,
     onSuccess,
-    refetchInterval: expireIn, // Milliseconds
+    refetchInterval: expireIn * 1000, // Milliseconds
   });
 }
 
 export function useLogout({ onSuccess = () => {} } = {}) {
-  const onError = (err) => {};
+  const onError = () => {};
   return useMutation({
     mutationFn: logout,
     onError,
