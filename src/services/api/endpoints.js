@@ -98,7 +98,7 @@ export async function createCertificate(newCertificate) {
 }
 
 export async function getCertificateByUser({ id, type }) {
-  const { data } = await api.get(`/certificate/${id}`, { params: { type } });
+  const { data } = await api.get(`/certificate/${id}`, { "type": { type } });
   return data;
 }
 
@@ -120,5 +120,17 @@ export async function updateCertificate({ _id, newCertificateData }) {
 
 export async function getArchives(archives) {
   const { data } = await api.get(`/archive`, { params: { archive: archives } });
+  return data;
+}
+
+/**************************
+ *                        *
+ *       PixPayment       *
+ *                        *
+ **************************/
+
+export async function createPixPayment(newPixPayment) {
+  const { data } = await api.post("/pixpayment", newPixPayment);
+  console.log(data);
   return data;
 }

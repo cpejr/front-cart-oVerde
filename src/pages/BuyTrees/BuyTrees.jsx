@@ -141,7 +141,7 @@ export default function BuyTrees() {
             )
             .map((card, index) => (
               <Line key={index}>
-                <LargeCard data={card} onBuy={() => buyTree(card._id)} />
+                <LargeCard data={card} />
               </Line>
             ))}
         </DivLine>
