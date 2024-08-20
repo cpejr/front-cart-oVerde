@@ -1,5 +1,4 @@
 import PropTypes, { bool } from "prop-types";
-import { useState } from "react";
 import { ButtonPix } from "./Styles";
 import { PixIcon } from "@assets/index";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
