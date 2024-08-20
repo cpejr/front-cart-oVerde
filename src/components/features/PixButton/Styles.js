@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../../styles/stylesVariables";
 
 export const ButtonPix = styled.button`
   display: flex;

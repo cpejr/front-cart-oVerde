@@ -64,13 +64,11 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       type: "input",
       key: "email",
       placeholder: translations.placeholderEmail,
-      value: "",
     },
     {
       type: "input",
       key: "cpf",
       placeholder: translations.placeholderCPF,
-      value: "",
     },
   ];
 
@@ -109,7 +107,9 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
 
   useEffect(() => {
     if (res?.link) {
-      window.open(res.link);
+      setTimeout(() => {
+        window.open(res.link);
+      }, 3000);
     }
     if (res?.status === "approved") {
       createCertificate({ id_user: id_user, tree: cartTress });

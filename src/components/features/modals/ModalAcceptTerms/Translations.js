@@ -12,7 +12,8 @@ export function TranslateTextHeader({ globalLanguage }) {
     termsAcceptText = "Terms of Acceptance and privacy";
     placeholderEmail = "Enter your email";
     placeholderCPF = "Enter your CPF";
-    toastPostPixPayment = "Payment link generated successfully!";
+    toastPostPixPayment =
+      "Payment link generated successfully, it will open automatically!";
     toastPostPixPaymentError = "Error generating payment link..";
     formsTitle = "Fill in the form to generate the QR Code";
   } else if (globalLanguage === "PT") {
@@ -20,7 +21,8 @@ export function TranslateTextHeader({ globalLanguage }) {
     termsAcceptText = "Termo de Aceite e privacidade";
     placeholderEmail = "Digite seu email";
     placeholderCPF = "Digite seu CPF";
-    toastPostPixPayment = "Link pagamento gerado com sucesso!";
+    toastPostPixPayment =
+      "Link pagamento gerado com sucesso, ele abrirá automaticamente!";
     toastPostPixPaymentError = "Erro ao gerar link de pagamento.";
     formsTitle = "Preencha o formulário para gerar o QR Code";
   } else if (globalLanguage === "ES") {
@@ -28,7 +30,8 @@ export function TranslateTextHeader({ globalLanguage }) {
     termsAcceptText = "Términos de Aceptación y privacidad";
     placeholderEmail = "Introduzca su email";
     placeholderCPF = "Introduzca su CPF";
-    toastPostPixPayment = "¡Enlace de pago generado exitosamente!";
+    toastPostPixPayment =
+      "Enlace de pago generado exitosamente, ¡se abrirá automáticamente!";
     toastPostPixPaymentError = "Error al generar el enlace de pago.";
     formsTitle = "Rellena el formulario para generar el Código QR";
   }
