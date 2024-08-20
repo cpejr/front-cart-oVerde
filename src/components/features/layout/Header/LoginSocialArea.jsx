@@ -79,7 +79,7 @@ export default function LoginSocialArea() {
     onError: (err) => toast.error(err),
   });
 
-  const { mutate: logout, isPending } = useLogout({
+  const { mutate: logout } = useLogout({
     onSuccess: () => {
       toast.success(translations.toastLogoffMessage);
       navigate("/");
