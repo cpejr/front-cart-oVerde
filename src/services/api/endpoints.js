@@ -18,8 +18,10 @@ export async function deleteUser(_id) {
 }
 export async function login(credentials) {
   const { setAuth } = useAuthStore.getState();
+
   const { data } = await api.post("/user", credentials);
   setAuth(data.accessToken);
+
   return data;
 }
 
