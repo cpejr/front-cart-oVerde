@@ -1,18 +1,17 @@
-import {
-  Box,
-  DeleteIcon,
-  Description,
-  Name,
-  Price,
-  StyledImg,
-} from "./Styles";
+import { Box, DeleteIcon, Description, Name, Price, StyledImg } from "./Styles";
 import { Delete } from "@assets/index";
 import PropTypes from "prop-types";
 import { useCart } from "../../../Stores/CartContext";
 import { useGetArchives } from "../../../hooks/querys/archive";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateTextCart } from "./Translation";
 
 export default function CartCard({ data }) {
   const { removeFromCart } = useCart();
+
+  //translation
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextCart({ globalLanguage });
 
   const name = data?.name;
   const IDs = data?.archive;
@@ -23,7 +22,7 @@ export default function CartCard({ data }) {
     id: formattedArchives,
     name: name,
     onError: (err) => {
-      console.error("Error ao pegar os arquivos", err);
+      console.error(translations.error, err);
     },
   });
 
@@ -35,7 +34,7 @@ export default function CartCard({ data }) {
     <Box>
       <DeleteIcon src={Delete} onClick={removeTree} />
       {isImageLoading || !archiveData ? (
-        <p>Loading images...</p>
+        <p>{translations.loading}</p>
       ) : (
         archiveData && (
           <div>
@@ -47,13 +46,13 @@ export default function CartCard({ data }) {
                 {file.startsWith("data:video") && (
                   <video controls width="100%" height="auto">
                     <source src={file} type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
+                    {translations.unsupportedVideo}
                   </video>
                 )}
                 {file.startsWith("data:audio") && (
                   <audio controls>
                     <source src={file} type="audio/mpeg" />
-                    Seu navegador não suporta o elemento de áudio.
+                    {translations.unsupportedAudio}
                   </audio>
                 )}
                 {file.startsWith("data:application/pdf") && (
@@ -63,8 +62,8 @@ export default function CartCard({ data }) {
                     width="100%"
                     height="400px"
                   >
-                    Seu navegador não suporta visualização de PDF. Você pode{" "}
-                    <a href={file}>baixá-lo aqui</a>.
+                    {translations.unsupportedPDF}{" "}
+                    <a href={file}>{translations.clickHere}</a>.
                   </object>
                 )}
               </div>
@@ -72,9 +71,13 @@ export default function CartCard({ data }) {
           </div>
         )
       )}
-      <Name>{data?.name || "No Name"}</Name>
-      <Description>{data?.description || "No Description"}</Description>
-      <Price>R$ {data?.price || "0.00"}</Price>
+      <Name>{data?.name || translations.noName}</Name>
+      <Description>
+        {data?.description || translations.noDescription}
+      </Description>
+      <Price>
+        {translations.currency} {data?.price || "0.00"}
+      </Price>
     </Box>
   );
 }
