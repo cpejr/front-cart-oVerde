@@ -15,6 +15,7 @@ import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 import GoogleButton from "../../GooglePay/GooglePay";
+import { TranslateTextModal } from "./Translation";
 import PixButton from "../../PixButton/PixButton";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { pixPaymentRequireSchema } from "./utils";
@@ -25,6 +26,7 @@ import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
 
+
 export default function ModalAcceptTerms({ modal, onClose, price }) {
   //Tradução
   const { globalLanguage } = useGlobalLanguage();
@@ -34,6 +36,10 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [isPix, setIsPix] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
+  //translate
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextModal({ globalLanguage });
+
 
   const toggleAccept = () => {
     setAccept(!accept);
@@ -151,26 +157,10 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       width={"70%"}
     >
       <Container>
-        <Header>{translations.termsAcceptText}</Header>
+        <Header>{translations.Title}</Header>
         <Section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
+          <p>{translations.paragraph1}</p>
+          <p>{translations.paragraph2}</p>
         </Section>
 
         <Image>
@@ -178,24 +168,8 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
         </Image>
 
         <Section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
+          <p>{translations.paragraph3}</p>
+          <p>{translations.paragraph4}</p>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
@@ -203,7 +177,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
             onChange={toggleAccept}
             checked={accept}
           />
-          {translations.checkboxText}.
+          {translations.select}
         </CheckboxLabel>
       </Container>
     </Modal>

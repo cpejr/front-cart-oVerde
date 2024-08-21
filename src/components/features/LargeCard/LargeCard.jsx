@@ -1,12 +1,10 @@
-// Libs
 import { pdf } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import PropTypes, { func } from "prop-types";
+import PropTypes from "prop-types";
 import { ScaleLoader } from "react-spinners";
 import { ConfigProvider } from "antd";
-// Components
 import {
   StyledCard,
   StyledButton,
@@ -38,7 +36,6 @@ export default function LargeCard({ data, onBuy }) {
   const [buttonTranslation, setButtonTranslation] = useState("");
 
   // PDF Handling
-
   function SaveFile() {
     pdf(<TreeCertificatePDF data={data} />)
       .toBlob()
@@ -60,7 +57,7 @@ export default function LargeCard({ data, onBuy }) {
     id: formattedArchives,
     name: name,
     onError: (err) => {
-      console.error("Error ao pegar os arquivos", err);
+      console.error(translations.error, err);
     },
   });
 
@@ -69,7 +66,7 @@ export default function LargeCard({ data, onBuy }) {
       setDescriptionText(translate);
     })
     .catch((error) => {
-      return { error };
+      console.error("Translation error:", error);
     });
 
   translateText(buttonText, translateLanguage)
@@ -77,7 +74,7 @@ export default function LargeCard({ data, onBuy }) {
       setButtonTranslation(translate);
     })
     .catch((error) => {
-      return { error };
+      console.error("Translation error:", error);
     });
 
   return (
@@ -100,46 +97,49 @@ export default function LargeCard({ data, onBuy }) {
             <ScaleLoader color={colors.font.secondary} />
           </CardLine>
         ) : (
-          archiveData && (
-            <CarouselStyles>
-              <Carousel
-                showStatus={false}
-                showIndicators={false}
-                showThumbs={false}
-              >
-                {archiveData.map((file, index) => (
+          <CarouselStyles>
+            <Carousel
+              showStatus={false}
+              showIndicators={false}
+              showThumbs={false}
+            >
+              {archiveData.map((file, index) => {
+                // Verifique se 'file' é uma string antes de usar 'startsWith'
+                const fileSrc = typeof file === "string" ? file : "";
+
+                return (
                   <div key={index}>
-                    {file.startsWith("data:image") && (
-                      <CarouselImg src={file} alt={`Imagem ${index}`} />
+                    {fileSrc.startsWith("data:image") && (
+                      <CarouselImg src={fileSrc} alt={`Imagem ${index}`} />
                     )}
-                    {file.startsWith("data:video") && (
+                    {fileSrc.startsWith("data:video") && (
                       <video controls width="100%" height="auto">
-                        <source src={file} type="video/mp4" />
+                        <source src={fileSrc} type="video/mp4" />
                         {translations.textVideo}
                       </video>
                     )}
-                    {file.startsWith("data:audio") && (
+                    {fileSrc.startsWith("data:audio") && (
                       <audio controls>
-                        <source src={file} type="audio/mpeg" />
+                        <source src={fileSrc} type="audio/mpeg" />
                         {translations.textAudio}
                       </audio>
                     )}
-                    {file.startsWith("data:application/pdf") && (
+                    {fileSrc.startsWith("data:application/pdf") && (
                       <object
-                        data={file}
+                        data={fileSrc}
                         type="application/pdf"
                         width="100%"
                         height="400px"
                       >
                         {translations.textPDF}
-                        <a href={file}>{translations.textDownload}</a>.
+                        <a href={fileSrc}>{translations.textDownload}</a>.
                       </object>
                     )}
                   </div>
-                ))}
-              </Carousel>
-            </CarouselStyles>
-          )
+                );
+              })}
+            </Carousel>
+          </CarouselStyles>
         )}
 
         <Group>
@@ -150,8 +150,9 @@ export default function LargeCard({ data, onBuy }) {
         </CardLine>
         <CardLine>{price && <p>R$ {price}</p>}</CardLine>
         <DivButton>
+
           <StyledButton onClick={onBuy ? onBuy : buyTree}>
-            {buttonText}
+            {buttonTranslation || buttonText}
           </StyledButton>
         </DivButton>
       </StyledCard>

@@ -77,7 +77,7 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: "Adicionar ao carrinho",
+      buttonText: translations.buttonText,
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
