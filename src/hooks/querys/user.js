@@ -4,8 +4,10 @@ import {
   deleteUser,
   updateUser,
   login,
+  refresh,
+  logout,
 } from "../../services/api/endpoints";
-
+import useAuthStore from "../../Stores/auth";
 export function useGetUsers({
   onSuccess = () => {},
   onError = (err) => console.error(err),
@@ -38,12 +40,36 @@ export function useUpdateUsers({
   });
 }
 
-export function useLogin({
-  onSuccess = () => {},
-  onError = (err) => console.error(err),
-} = {}) {
+export function useLogin({ onSuccess = () => {} } = {}) {
+  const onError = () => {};
   return useMutation({
     mutationFn: login,
+    onError,
+    onSuccess,
+  });
+}
+
+export function useRefreshToken({ onSuccess = () => {} } = {}) {
+  const expireIn = useAuthStore((state) => state.auth?.expireIn);
+
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+  const onError = () => {
+    clearAuth();
+  };
+
+  return useQuery({
+    queryKey: ["refresh"],
+    queryFn: refresh,
+    onError,
+    onSuccess,
+    refetchInterval: expireIn * 1000, // Milliseconds
+  });
+}
+
+export function useLogout({ onSuccess = () => {} } = {}) {
+  const onError = () => {};
+  return useMutation({
+    mutationFn: logout,
     onError,
     onSuccess,
   });

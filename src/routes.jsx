@@ -45,7 +45,6 @@ const router = createBrowserRouter(
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
         </Route>
-        
       </Route>
     </Route>
   )

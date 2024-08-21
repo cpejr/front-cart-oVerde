@@ -7,7 +7,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import { signInWithGooglePopup } from "../../../../services/firebase";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useLogin } from "../../../../hooks/querys/user";
+import { useLogin, useLogout } from "../../../../hooks/querys/user";
 import useAuthStore from "../../../../Stores/auth";
 import { colors } from "../../../../styles/stylesVariables";
 import { ModalLogOff } from "../../..";
@@ -56,6 +56,7 @@ export default function LoginSocialArea() {
     auth?.accessToken ? "Logoff" : "Login"
   );
   const isLogged = auth?.accessToken ? true : false;
+
   const [profilePicture, setProfilePicture] = useState(
     loginLogoff === "Login" ? (
       <UserOutlined />
@@ -78,6 +79,14 @@ export default function LoginSocialArea() {
     onError: (err) => toast.error(err),
   });
 
+  const { mutate: logout } = useLogout({
+    onSuccess: () => {
+      toast.success(translations.toastLogoffMessage);
+      navigate("/");
+    },
+    onError: (err) => toast.error(err),
+  });
+
   const logGoogleUser = async () => {
     try {
       if (auth === null || auth.accessToken === null) {
@@ -89,9 +98,9 @@ export default function LoginSocialArea() {
         });
         setLoginLogoff("Logoff");
       } else {
-        clearAuth();
-        toast.success(translations.toastLogoffMessage);
+        logout();
         setLoginLogoff("Login");
+        clearAuth();
         setProfilePicture(<UserOutlined />);
       }
     } catch (error) {

@@ -64,9 +64,9 @@ export default function BuyTrees() {
   async function formatAllCollection() {
     setLoading(true);
     let cardContent = [...collection];
-    console.log(cardContent);
+
     let cardContent2 = collection;
-    console.log(cardContent2);
+
     if (order === "recent") {
       cardContent = cardContent.reverse();
     } else if (order === "older") {
@@ -93,13 +93,7 @@ export default function BuyTrees() {
     }
   }
 
-  async function buyTree(treeId) {
-    // Buy Function needs to be implemented
-    console.log(treeId);
-  }
-
   useEffect(() => {
-    console.log("Loading State:", loading);
     if (!isLoading && collection) {
       formatAllCollection();
     }

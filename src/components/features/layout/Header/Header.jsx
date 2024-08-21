@@ -2,13 +2,13 @@
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 // Components
-import { Container, Logo, PrimeHeader } from './Styles';
-import { LogoCV } from '@assets/index';
-import useAuthStore from '@Stores/auth';
-import { LoginSocialArea } from '@components';
-import { HamburgerMenu } from '../../../index';
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { Container, Logo, PrimeHeader } from "./Styles";
+import { LogoCV } from "@assets/index";
+import useAuthStore from "@Stores/auth";
+import { LoginSocialArea } from "@components";
+import { HamburgerMenu } from "../../../index";
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 export default function Header() {
   // Translations
@@ -25,11 +25,11 @@ export default function Header() {
     },
     {
       label: translations.menuTitle2,
-      url: '/comprar-arvores',
+      url: "/comprar-arvores",
     },
     {
       label: translations.menuTitle3,
-      url: '/sobre',
+      url: "/sobre",
     },
     ...(user?.type
       ? [
@@ -38,11 +38,11 @@ export default function Header() {
             items: [
               {
                 label: translations.menuTitle4,
-                url: '/gerenciar-usuarios',
+                url: "/gerenciar-usuarios",
               },
               {
                 label: translations.menuTitle5,
-                url: '/gerenciar-arvores',
+                url: "/gerenciar-arvores",
               },
             ],
           },
@@ -52,7 +52,7 @@ export default function Header() {
       ? [
           {
             label: translations.menuTitle6,
-            url: '/minhas-arvores',
+            url: "/minhas-arvores",
           },
         ]
       : []),

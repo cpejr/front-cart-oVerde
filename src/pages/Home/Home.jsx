@@ -10,16 +10,15 @@ import {
   ContainerCarousel,
 } from "./Styles";
 import { Icon } from "@assets/index";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 import { Button, VideoLarger, VideoSmall, DemoCarousel } from "@components";
-
 
 export default function Home() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
-  
+
   const navigate = useNavigate();
 
   return (
@@ -31,11 +30,11 @@ export default function Home() {
       <Section>
         <Column>
           <Title>{translations.missionTitle}</Title>
-          <p>
-            {translations.missionText}
-          </p>
+          <p>{translations.missionText}</p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/sobre")}>{translations.buttonText}</Button>
+          <Button onClick={() => navigate("/sobre")}>
+            {translations.buttonText}
+          </Button>
         </Column>
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
       </Section>
@@ -44,9 +43,7 @@ export default function Home() {
         <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
         <Column>
           <Title>{translations.visionTitle}</Title>
-          <p>
-            {translations.visionText}
-          </p>
+          <p>{translations.visionText}</p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
           <Button onClick={() => navigate("/comprar-arvores")}>
             {translations.buttonText}
@@ -56,10 +53,10 @@ export default function Home() {
       <Section>
         <Column>
           <Title>{translations.productsTitle}</Title>
-          <p>
-            {translations.productsText}
-          </p>
-          <Button onClick={() => navigate("/eventos")}>{translations.buttonText}</Button>
+          <p>{translations.productsText}</p>
+          <Button onClick={() => navigate("/eventos")}>
+            {translations.buttonText}
+          </Button>
         </Column>
         <Image>
           <img src={Icon} alt="Imagem de decoração" />

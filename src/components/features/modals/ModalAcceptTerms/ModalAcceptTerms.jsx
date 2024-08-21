@@ -36,10 +36,8 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
   const [isPix, setIsPix] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-  //translate
-  const { globalLanguage } = useGlobalLanguage();
-  const translations = TranslateTextModal({ globalLanguage });
 
+  const translations = TranslateTextModal({ globalLanguage });
 
   const toggleAccept = () => {
     setAccept(!accept);
