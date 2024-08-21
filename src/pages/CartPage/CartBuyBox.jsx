@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 import { useGlobalLanguage } from "../../Stores/globalLanguage";
-import { TranslateTextCart } from "./translation";
+import { TranslateTextCart } from "./Translation";
 export default function CartBuyBox({ value }) {
   const [modalAccept, setModalAccept] = useState(false);
 

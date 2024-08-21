@@ -4,7 +4,7 @@ import { CartCard } from "@components";
 import CartBuyBox from "./CartBuyBox";
 import { useCart } from "../../Stores/CartContext";
 import { useGlobalLanguage } from "../../Stores/globalLanguage";
-import { TranslateTextCart } from "./translation";
+import { TranslateTextCart } from "./Translation";
 
 export default function CartPage() {
   const { cartItems: data } = useCart();

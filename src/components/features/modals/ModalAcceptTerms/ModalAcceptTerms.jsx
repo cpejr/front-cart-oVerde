@@ -20,17 +20,14 @@ import PixButton from "../../PixButton/PixButton";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { pixPaymentRequireSchema } from "./utils";
 import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
-import { TranslateTextHeader } from "./Translations";
 import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
 import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
 
-
 export default function ModalAcceptTerms({ modal, onClose, price }) {
   //Tradução
   const { globalLanguage } = useGlobalLanguage();
-  const translations = TranslateTextHeader({ globalLanguage });
 
   const [accept, setAccept] = useState(false);
   const [isPix, setIsPix] = useState(false);
