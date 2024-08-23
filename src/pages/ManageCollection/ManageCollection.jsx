@@ -90,7 +90,6 @@ export default function ManageCollection() {
       key: "price",
       placeholder: translations.textPrice,
     },
-    {},
     {
       type: "archive",
       key: "archive",
