@@ -40,10 +40,12 @@ const router = createBrowserRouter(
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
         <Route path="carrinho" element={<CartPage />} />
-        <Route path="minhas-arvores" element={<MyTrees />} />
         <Route element={<PrivateAdminRoutes />}>
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
+        </Route>
+        <Route element={<LoggegRoutes />}>
+          <Route path="minhas-arvores" element={<MyTrees />} />
         </Route>
       </Route>
     </Route>
@@ -52,7 +54,3 @@ const router = createBrowserRouter(
 export default function Routes() {
   return <RouterProvider router={router} />;
 }
-
-/*<Route element={<LoggegRoutes />}>
-          <Route path="minhas-arvores" element={<MyTrees />} />
-        </Route>*/

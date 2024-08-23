@@ -26,11 +26,11 @@ export const CardsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  max-height: 320px;
+  max-height: 345px;
   height:auto;
   border-radius: 12px; 
   overflow-y: auto;  
-  border: 1px solid black;  
+  border: none;  
   width: 84vw;
   align-self: center;
 `;

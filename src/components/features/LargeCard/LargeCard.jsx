@@ -24,9 +24,9 @@ import translateText from "../../../services/translateAPI";
 import { useCart } from "../../../Stores/CartContext";
 import { useState } from "react";
 
+
 export default function LargeCard({ data, onBuy }) {
   // Translations
-
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
@@ -151,7 +151,7 @@ export default function LargeCard({ data, onBuy }) {
         <CardLine>{price && <p>R$ {price}</p>}</CardLine>
         <DivButton>
 
-          <StyledButton onClick={onBuy ? onBuy : buyTree}>
+          <StyledButton onClick={onBuy ? onBuy : buyTree }>
             {buttonTranslation || buttonText}
           </StyledButton>
         </DivButton>

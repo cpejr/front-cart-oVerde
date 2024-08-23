@@ -37,7 +37,6 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     setCartItems([]);
-    toast.success(translations.toastCleanedMessage);
   };
 
   return (
