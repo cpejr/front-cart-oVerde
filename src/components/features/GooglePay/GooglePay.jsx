@@ -5,14 +5,20 @@ import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { useCart } from "../../../Stores/CartContext";
 import PropTypes from "prop-types";
+import { useGlobalLanguage } from '../../../Stores/globalLanguage';
+import { TranslateTextHeader } from './Translations';
 
 const GoogleButton = ({ disabled, price, onClose }) => {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   const { clearCart } = useCart();
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { cartItems: data } = useCart();
   const { mutate: createCertificate } = useCreateCertificate({
     onSuccess: () => {
-      toast.success("Compra efetuada com sucesso");
+      toast.success(translations.successMessage);
     },
   });
   useEffect(() => {

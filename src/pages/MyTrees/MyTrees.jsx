@@ -23,6 +23,7 @@ export default function MyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
   
   // States and Variables
 
@@ -64,24 +65,28 @@ export default function MyTrees() {
 
   async function formatAllCollection() {
     setLoading(true);
-    let cardContent = [...personalCertificates];
-    let cardContent2 = personalCertificates;
-    if (order === "recent") {
-      cardContent = cardContent.reverse();
-    } else if (order === "older") {
-      cardContent;
-    } else {
-      cardContent.sort(orderBy);
+    try {
+      let cardContent = [...personalCertificates];
+      if (order === "recent") {
+        cardContent = cardContent.reverse();
+      } else if (order === "older") {
+        cardContent;
+      } else {
+        cardContent.sort(orderBy);
+      }
+  
+      cardContent = cardContent.map((content) => ({
+        ...content,
+        buttonText: "Baixar certificado",
+        link: "EDITE EM MyTrees.jsx" + content._id,
+      }));
+  
+      await translateCollections(cardContent);
+    } catch (error) {
+      toast.error(translations.toastLoadingItensError);
+    } finally {
+      setLoading(false);
     }
-
-    cardContent = cardContent.map((content) => ({
-      ...content,
-      buttonText: "Baixar certificado",
-      link: "EDITE EM MyTrees.jsx" + content._id,
-    }));
-
-    translateCollections(cardContent);
-    setLoading(false);
   }
 
   function orderBy(a, b) {
