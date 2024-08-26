@@ -74,6 +74,7 @@ export async function getTree() {
 
 export async function deleteTree(_id) {
   const { data } = await api.delete(`/tree/${_id}`);
+
   return data;
 }
 
@@ -81,6 +82,7 @@ export async function updateTree({ _id, newData }) {
   const newPrice = parseFloat(newData?.price);
   const newTree = { ...newData, price: newPrice };
   const { data } = await api.put(`/tree/${_id}`, newTree);
+
   return data;
 }
 
