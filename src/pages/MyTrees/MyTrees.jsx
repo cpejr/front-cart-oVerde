@@ -1,4 +1,5 @@
 // Libs
+import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 // Components
@@ -18,6 +19,7 @@ import { useGlobalLanguage } from '../../Stores/globalLanguage';
 import { TranslateTextHeader } from './Translations';
 import generateCertificate from '../../services/generateCertificate';
 import { Certificate } from "../../components";
+import translateText from "../../services/translateAPI";
 
 export default function MyTrees() {
   // Translations
@@ -141,7 +143,7 @@ export default function MyTrees() {
             .map((card, index) => (
               <>
               <Line onClick={() => card} key={index}>
-                <Certificate name={card?.id_tree?.name} tree_description={card?.id_tree?.description} certificate_description={card?.description}/>
+                <Certificate card={card} />
                 <LargeCard id="card" data={card} onBuy={ () => generateCertificate() }/>
               </Line>
               
@@ -153,3 +155,4 @@ export default function MyTrees() {
   );
 }
 
+//name={card?.id_tree?.name} tree_description={card?.id_tree?.description} certificate_description={card?.description}
