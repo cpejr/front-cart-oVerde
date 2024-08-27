@@ -46,6 +46,20 @@ export const Select = styled(MultiSelect)`
   &:hover {
     border-color: ${colors.accent.primary};
   }
+  .p-multiselect .p-multiselect-item .p-checkbox .p-checkbox-box {
+  background-color: #yourColor !important; /* Cor de fundo do checkbox */
+  border: 1px solid #yourBorderColor !important; /* Cor da borda do checkbox */
+}
+
+.p-multiselect .p-multiselect-item .p-checkbox .p-checkbox-box.p-highlight {
+  background-color: #yourCheckedColor !important; /* Cor de fundo quando o checkbox está marcado */
+  border-color: #yourCheckedBorderColor !important; /* Cor da borda quando o checkbox está marcado */
+}
+
+.p-multiselect .p-multiselect-item .p-checkbox .p-checkbox-icon {
+  color: #yourIconColor !important; /* Cor do ícone dentro do checkbox */
+}
+
 `;
 
 export const StyledNumber = styled(InputNumber)`

@@ -5,13 +5,18 @@ import { useCart } from "../../../Stores/CartContext";
 import { useGetArchives } from "../../../hooks/querys/archive";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateTextCart } from "./Translation";
+import translateText from "../../../services/translateAPI"; // Certifique-se de que o caminho está correto
+import { useState, useEffect } from "react";
 
 export default function CartCard({ data }) {
   const { removeFromCart } = useCart();
 
-  //translation
+  // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextCart({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+  const [descriptionText, setDescriptionText] = useState("");
+  const [nameText, setNameText] = useState("");
 
   const name = data?.name;
   const IDs = data?.archive;
@@ -25,6 +30,24 @@ export default function CartCard({ data }) {
       console.error(translations.error, err);
     },
   });
+
+  useEffect(() => {
+    if (data?.description) {
+      translateText(data.description, translateLanguage)
+        .then((translation) => setDescriptionText(translation))
+        .catch((error) => {
+          console.error("Translation error:", error);
+        });
+    }
+    
+    if (data?.name) {
+      translateText(data.name, translateLanguage)
+        .then((translation) => setNameText(translation))
+        .catch((error) => {
+          console.error("Translation error:", error);
+        });
+    }
+  }, [data, translateLanguage]);
 
   function removeTree() {
     removeFromCart(data._id);
@@ -71,9 +94,9 @@ export default function CartCard({ data }) {
           </div>
         )
       )}
-      <Name>{data?.name || translations.noName}</Name>
+      <Name>{nameText || translations.noName}</Name>
       <Description>
-        {data?.description || translations.noDescription}
+        {descriptionText || translations.noDescription}
       </Description>
       <Price>
         {translations.currency} {data?.price || "0.00"}
