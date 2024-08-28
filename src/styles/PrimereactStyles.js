@@ -73,7 +73,6 @@ export const PrimereactStyles = createGlobalStyle`
   }
 
   .p-checkbox-box {
-    background-color: ${colors.background.primary};
     width: 20px;
     height: 20px;
     border: 2px solid ${colors.font.title};
