@@ -52,8 +52,11 @@ export default function Home() {
       </Section>
       <Section>
         <Column>
-          <Title>{translations.productsTitle}</Title>
-          <p>{translations.productsText}</p>
+          <Title>{translations.valuesTitle}</Title>
+          <p>{translations.valuesText}</p>
+          <p>{translations.valuesTextPt2}</p>
+          <p>{translations.valuesTextPt3}</p>
+          <p>{translations.valuesTextPt4}</p>
           <Button onClick={() => navigate("/eventos")}>
             {translations.buttonText}
           </Button>
