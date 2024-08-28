@@ -116,6 +116,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       createCertificate({ id_user: id_user, tree: cartTress });
       clearCart();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [res]);
 
   return (

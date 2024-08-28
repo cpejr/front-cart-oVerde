@@ -12,8 +12,8 @@ import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 export default function ModalEditEvent({
   event,
@@ -57,6 +57,7 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
 
   // On Submit

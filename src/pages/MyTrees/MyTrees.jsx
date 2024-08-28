@@ -11,33 +11,33 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar, LargeCard} from "@components";
+import { SearchBar, LargeCard } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
-import generateCertificate from '../../services/generateCertificate';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import generateCertificate from "../../services/generateCertificate";
 import { Certificate } from "../../components";
 
 export default function MyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
-  
+
   // States and Variables
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
   const [order, setOrder] = useState("active");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   function handleSearchChange(e) {
     setSearchValue(e.target.value);
   }
 
-  async function translateCollections(cardContent){
-    if (globalLanguage != "PT"){
-      for (let card of cardContent){
+  async function translateCollections(cardContent) {
+    if (globalLanguage != "PT") {
+      for (let card of cardContent) {
         card.name = await translateText(card.name, translateLanguage);
       }
     }
@@ -65,7 +65,7 @@ export default function MyTrees() {
   async function formatAllCollection() {
     setLoading(true);
     let cardContent = [...personalCertificates];
-    let cardContent2 = personalCertificates;
+
     if (order === "recent") {
       cardContent = cardContent.reverse();
     } else if (order === "older") {
@@ -135,11 +135,18 @@ export default function MyTrees() {
             )
             .map((card, index) => (
               <>
-              <Line onClick={() => card} key={index}>
-                <Certificate name={card?.id_tree?.name} tree_description={card?.id_tree?.description} certificate_description={card?.description}/>
-                <LargeCard id="card" data={card} onBuy={ () => generateCertificate() }/>
-              </Line>
-              
+                <Line onClick={() => card} key={index}>
+                  <Certificate
+                    name={card?.id_tree?.name}
+                    tree_description={card?.id_tree?.description}
+                    certificate_description={card?.description}
+                  />
+                  <LargeCard
+                    id="card"
+                    data={card}
+                    onBuy={() => generateCertificate()}
+                  />
+                </Line>
               </>
             ))}
         </DivLine>
@@ -147,4 +154,3 @@ export default function MyTrees() {
     </Container>
   );
 }
-

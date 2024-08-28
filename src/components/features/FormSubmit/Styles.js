@@ -40,6 +40,7 @@ export const Select = styled(MultiSelect)`
     width: 215px;
     overflow-x: hidden;
   }
+
   .p-placeholder {
     color: ${(props) => props?.selectColor};
   }
