@@ -171,10 +171,18 @@ export default function LoginSocialArea() {
             </LanguageSelector>
           )}
         </Select>
-        <SocialImg href="https://www.instagram.com/prefeiturabd/">
+        <SocialImg
+          href="https://www.instagram.com/prefeiturabd/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={Instagram} alt="Logo Instagram" width="60%"></img>
         </SocialImg>
-        <SocialImg href="http://wa.me/+31992740294">
+        <SocialImg
+          href="http://wa.me/+31992740294"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={Whatsapp} alt="Logo Whatsapp" width="60%"></img>
         </SocialImg>
       </SocialMedias>

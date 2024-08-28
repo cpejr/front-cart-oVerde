@@ -12,12 +12,12 @@ import {
   DivLine,
   Line,
 } from "./Styles";
-import { SearchBar, LargeCard} from "@components";
+import { SearchBar, LargeCard } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
-import generateCertificate from '../../services/generateCertificate';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import generateCertificate from "../../services/generateCertificate";
 import { Certificate } from "../../components";
 import translateText from "../../services/translateAPI";
 
@@ -31,16 +31,16 @@ export default function MyTrees() {
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
   const [order, setOrder] = useState("active");
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   function handleSearchChange(e) {
     setSearchValue(e.target.value);
   }
 
-  async function translateCollections(cardContent){
-    if (globalLanguage != "PT"){
-      for (let card of cardContent){
+  async function translateCollections(cardContent) {
+    if (globalLanguage != "PT") {
+      for (let card of cardContent) {
         card.name = await translateText(card.name, translateLanguage);
       }
     }
