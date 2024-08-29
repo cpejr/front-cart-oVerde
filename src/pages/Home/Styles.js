@@ -49,17 +49,20 @@ export const Button = styled.button`
 
 export const Title = styled.h1`
   color: ${colors.font.title};
-  /* border-bottom: 2px solid ${colors.font.title}; */
   border-bottom: 2px solid ${colors.font.title};
   padding-bottom: 10px;
   margin: 0;
-  width: 100%;
+  width: 55%;
+  justify-content: center;
   /* text-align: ${(props) => (props.align === "right" ? "right" : "left")}; */
 `;
 
 export const Column = styled.div`
   display: flex;
+
   flex-direction: column;
+  padding-left: 40px;
+  padding-right: 40px;
   gap: 10px;
   justify-content: center;
   text-align: center;
