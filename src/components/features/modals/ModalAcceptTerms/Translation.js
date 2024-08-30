@@ -12,8 +12,10 @@ export function TranslateTextModal({ globalLanguage }) {
   let toastPostPixPayment;
   let toastPostPixPaymentError;
   let formsTitle;
+  let toastSuccessPurchase;
 
   if (globalLanguage == "EN") {
+    toastSuccessPurchase = "Purchase completed successfully";
     Title = "Terms of Acceptance and Privacy";
     paragraph1 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim. Pellentesque viverra tristique nisi ut suscipit. Proin augue nulla, maximus ullamcorper tincidunt non, consectetur non tellus. Phasellus ullamcorper pellentesque lectus vel egestas. Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.";
@@ -33,6 +35,7 @@ export function TranslateTextModal({ globalLanguage }) {
     toastPostPixPaymentError = "Error generating payment link..";
     formsTitle = "Fill in the form to generate the QR Code";
   } else if (globalLanguage == "PT") {
+    toastSuccessPurchase = "Compra efetuada com sucesso";
     Title = "Termo de Aceite e privacidade";
     paragraph1 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim. Pellentesque viverra tristique nisi ut suscipit. Proin augue nulla, maximus ullamcorper tincidunt non, consectetur non tellus. Phasellus ullamcorper pellentesque lectus vel egestas. Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.";
@@ -52,6 +55,7 @@ export function TranslateTextModal({ globalLanguage }) {
     toastPostPixPaymentError = "Erro ao gerar link de pagamento.";
     formsTitle = "Preencha o formulário para gerar o QR Code";
   } else if (globalLanguage == "ES") {
+    toastSuccessPurchase = "Compra realizada con éxito.";
     Title = "Términos de Aceptación y privacidad";
     paragraph1 =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed consequat enim. Pellentesque viverra tristique nisi ut suscipit. Proin augue nulla, maximus ullamcorper tincidunt non, consectetur non tellus. Phasellus ullamcorper pellentesque lectus vel egestas. Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.";
@@ -86,5 +90,6 @@ export function TranslateTextModal({ globalLanguage }) {
     toastPostPixPayment,
     toastPostPixPaymentError,
     formsTitle,
+    toastSuccessPurchase,
   };
 }

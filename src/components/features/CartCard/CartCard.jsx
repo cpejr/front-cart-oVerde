@@ -5,7 +5,7 @@ import { useCart } from "../../../Stores/CartContext";
 import { useGetArchives } from "../../../hooks/querys/archive";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateTextCart } from "./Translation";
-import translateText from "../../../services/translateAPI"; // Certifique-se de que o caminho está correto
+import translateText from "../../../services/translateAPI";
 import { useState, useEffect } from "react";
 
 export default function CartCard({ data }) {

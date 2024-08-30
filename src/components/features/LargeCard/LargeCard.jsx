@@ -15,7 +15,6 @@ import {
   CarouselStyles,
   CarouselImg,
 } from "./Styles";
-import { TreeCertificatePDF } from "@components";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
@@ -34,13 +33,6 @@ export default function LargeCard({ data, onBuy }) {
   const name = data?.id_tree?.name || data?.name;
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
-
-  // PDF Handling
-  function SaveFile() {
-    pdf(<TreeCertificatePDF data={data} />)
-      .toBlob()
-      .then((blob) => saveAs(blob, `${data?.id_tree?.name}.pdf`));
-  }
 
   const { addToCart } = useCart();
   function buyTree() {
@@ -104,7 +96,6 @@ export default function LargeCard({ data, onBuy }) {
               showThumbs={false}
             >
               {archiveData.map((file, index) => {
-                // Verifique se 'file' é uma string antes de usar 'startsWith'
                 const fileSrc = typeof file === "string" ? file : "";
 
                 return (

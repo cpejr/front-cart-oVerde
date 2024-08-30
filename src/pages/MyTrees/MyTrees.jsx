@@ -1,5 +1,4 @@
 // Libs
-import React from "react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 // Components
@@ -31,7 +30,6 @@ export default function MyTrees() {
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
   const [order, setOrder] = useState("active");
-  const [, setLoading] = useState(false);
   const [certificateData, setCertificateData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   function handleSearchChange(e) {
@@ -66,7 +64,7 @@ export default function MyTrees() {
     });
 
   async function formatAllCollection() {
-    setLoading(true);
+
     try {
       let cardContent = [...personalCertificates];
       if (order === "recent") {
@@ -87,7 +85,6 @@ export default function MyTrees() {
     } catch (error) {
       toast.error(translations.toastLoadingItensError);
     } finally {
-      setLoading(false);
     }
   }
 

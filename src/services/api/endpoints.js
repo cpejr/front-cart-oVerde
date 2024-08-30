@@ -144,6 +144,5 @@ export async function getArchives(archives) {
 
 export async function createPixPayment(newPixPayment) {
   const { data } = await api.post("/pixpayment", newPixPayment);
-  console.log(data);
   return data;
 }

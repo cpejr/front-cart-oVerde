@@ -3,24 +3,31 @@ import { useLogin, useLogout } from "../hooks/querys/user";
 import useAuthStore from "../Stores/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { TranslateTextModal } from "./Translation";
+import { useGlobalLanguage } from "../Stores/globalLanguage";
 
 export const useGoogleLogin = () => {
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextModal({ globalLanguage });
+
   const { auth } = useAuthStore();
   const clearAuth = useAuthStore((state) => state.clearAuth);
   const navigate = useNavigate();
   const { mutate: login } = useLogin({
     onSuccess: () => {
-      toast.success("Login realizado com sucesso");
+      toast.success(translations.toastLogin);
     },
     onError: (err) => toast.error(err),
   });
   const { mutate: logout } = useLogout({
     onSuccess: () => {
-      toast.success("Logoff realizado com sucesso");
+      toast.success(translations.toastLogoff);
       navigate("/");
     },
     onError: (err) => toast.error(err),
   });
+
+  
 
   const logGoogleUser = async () => {
     try {

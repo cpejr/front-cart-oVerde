@@ -36,6 +36,7 @@ import { TranslateTextHeader } from "./Translations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Badge } from "primereact/badge";
 import { useCart } from "../../../../Stores/CartContext";
+import { useGoogleLogin } from "../../../../services/useGoogleLogin";
 
 export default function LoginSocialArea() {
   // Translations
@@ -87,26 +88,7 @@ export default function LoginSocialArea() {
     onError: (err) => toast.error(err),
   });
 
-  const logGoogleUser = async () => {
-    try {
-      if (auth === null || auth.accessToken === null) {
-        const googleResponse = await signInWithGooglePopup();
-        login({
-          name: googleResponse?.user?.displayName,
-          email: googleResponse?.user?.email,
-          imageURL: googleResponse?.user?.photoURL,
-        });
-        setLoginLogoff("Logoff");
-      } else {
-        logout();
-        setLoginLogoff("Login");
-        clearAuth();
-        setProfilePicture(<UserOutlined />);
-      }
-    } catch (error) {
-      toast.error(translations.toastErrorGoogleMessage);
-    }
-  };
+  const { logGoogleUser } = useGoogleLogin();
 
   const { cartItems } = useCart();
 

@@ -102,7 +102,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { mutate: createCertificate } = useCreateCertificate({
     onSuccess: () => {
-      toast.success("Compra efetuada com sucesso");
+      toast.success(translations.toastSuccessPurchase);
     },
   });
 
