@@ -25,7 +25,7 @@ export default function MyTrees() {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-  
+
   // States and Variables
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
@@ -64,7 +64,6 @@ export default function MyTrees() {
     });
 
   async function formatAllCollection() {
-
     try {
       let cardContent = [...personalCertificates];
       if (order === "recent") {
@@ -74,13 +73,13 @@ export default function MyTrees() {
       } else {
         cardContent.sort(orderBy);
       }
-  
+
       cardContent = cardContent.map((content) => ({
         ...content,
         buttonText: "Baixar certificado",
         link: "EDITE EM MyTrees.jsx" + content._id,
       }));
-  
+
       await translateCollections(cardContent);
     } catch (error) {
       toast.error(translations.toastLoadingItensError);
@@ -139,11 +138,14 @@ export default function MyTrees() {
             )
             .map((card, index) => (
               <>
-              <Line onClick={() => card} key={index}>
-                <Certificate card={card} />
-                <LargeCard id="card" data={card} onBuy={ () => generateCertificate() }/>
-              </Line>
-              
+                <Line onClick={() => card} key={index}>
+                  <Certificate card={card} />
+                  <LargeCard
+                    id="card"
+                    data={card}
+                    onBuy={() => generateCertificate()}
+                  />
+                </Line>
               </>
             ))}
         </DivLine>

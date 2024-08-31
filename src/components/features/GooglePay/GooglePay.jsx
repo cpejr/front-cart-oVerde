@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { useCart } from "../../../Stores/CartContext";
 import PropTypes from "prop-types";
-import { useGlobalLanguage } from '../../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 const GoogleButton = ({ disabled, price, onClose }) => {
   // Translations
@@ -75,7 +75,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
         onClick: () => {
           paymentsClient
             .loadPaymentData(paymentDataRequest)
-            .then((paymentData) => {
+            .then(() => {
               createCertificate({ id_user: id_user, tree: data });
               clearCart();
               if (onClose) onClose();
@@ -97,6 +97,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
       .catch((error) => {
         console.error("Failed to load Google Pay script:", error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
