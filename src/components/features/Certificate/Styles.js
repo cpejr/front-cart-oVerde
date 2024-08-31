@@ -6,7 +6,7 @@ export const Title = styled.h1`
   font-size: 2.5em;
   color: #2e7d32;
   margin-bottom: 0.5em;
-  font-family: 'Georgia', serif;
+  font-family: "Georgia", serif;
 `;
 
 export const Name = styled.h2`
@@ -14,7 +14,7 @@ export const Name = styled.h2`
   font-size: 2em;
   color: #1b5e20;
   margin: 0.5em 0;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 `;
 
 export const Description = styled.p`
@@ -23,7 +23,7 @@ export const Description = styled.p`
   color: #555555;
   margin: 0.5em 0;
   line-height: 1.5;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 `;
 
 export const Heading = styled.p`
@@ -31,7 +31,7 @@ export const Heading = styled.p`
   color: #333333;
   margin: 1em 0;
   line-height: 1.5;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding: 0 2em;
   border-top: 1px solid #4caf50;
   border-bottom: 1px solid #4caf50;
@@ -42,7 +42,7 @@ export const Text = styled.p`
   color: #333333;
   margin: 1em 0;
   line-height: 1.5;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding: 0 2em;
 `;
 
@@ -50,7 +50,7 @@ export const Footer = styled.div`
   font-size: 1em;
   color: #333333;
   margin: 1em 0;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding: 0 2em;
   border-top: 1px solid #4caf50;
   text-align: left;
@@ -59,13 +59,14 @@ export const Footer = styled.div`
 export const Certificated = styled.div`
   display: none;
   width: 100%;
-  height: auto;
+  height: 100%;
   max-width: 21cm; /* Tamanho A4 */
-  max-height: 29.7cm; /* Tamanho A4 */
+  min-height: 100vh;
+  box-sizing: border-box;
   border: 8px solid #4caf50;
-  border-radius: 10px;
+
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  padding: 2em;
+  /* padding: 3.73em; */
 
   @media ${breakpoints.tablet} {
     padding: 2.5em;

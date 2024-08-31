@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { breakpoints } from "../../../styles/stylesVariables";
 export const ButtonPix = styled.button`
   display: flex;
   justify-content: center;
@@ -13,6 +13,10 @@ export const ButtonPix = styled.button`
   cursor: pointer;
   font-weight: bold;
   gap: 7px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 180px;
+  }
   &:hover {
     background-color: rgba(51, 96, 63, 0.8);
   }

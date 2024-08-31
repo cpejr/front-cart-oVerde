@@ -53,11 +53,11 @@ export const SocialMedias = styled.div`
 
     margin-left: 10px;
   }
-  @media (${breakpoints.smallDevice}) {
+  @media (${breakpoints.mobile}) {
     margin-left: 5px;
-    border-left: 0px;
+    border-left: 0%;
 
-    gap: 5px;
+    gap: 20px;
   }
 `;
 

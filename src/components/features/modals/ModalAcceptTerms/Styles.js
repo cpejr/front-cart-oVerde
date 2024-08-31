@@ -50,7 +50,7 @@ export const Image = styled.div`
   > img {
     width: 25rem;
     @media (max-width: ${breakpoints.mobile}) {
-      width: 15rem;
+      width: 10rem;
     }
   }
 `;
@@ -134,10 +134,14 @@ export const ConteinerPixForms = styled.div`
   align-items: center;
   text-align: center;
   text-align: justify;
-  width: 50%;
+  width: 100%;
   border: solid 1px #33603f;
   border-radius: 10px;
   padding: 15px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 5px;
+  }
 `;
 
 export const FormsText = styled.h1`

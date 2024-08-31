@@ -52,8 +52,13 @@ export const Title = styled.h1`
   border-bottom: 2px solid ${colors.font.title};
   padding-bottom: 10px;
   margin: 0;
-  width: 55%;
-  justify-content: center;
+  width: 51%;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.7em;
+    width: 80%;
+  }
+
   /* text-align: ${(props) => (props.align === "right" ? "right" : "left")}; */
 `;
 
