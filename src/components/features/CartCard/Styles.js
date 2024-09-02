@@ -104,10 +104,11 @@ export const Image = styled.img`
   }
 `;
 export const StyledImg = styled.img`
-  width: 100%;
-  height: auto;
+  width: 70%;
+  height: 70%;
   max-height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  margin-top: 10px;
+  margin: 10px auto 0;
+  display: block;
 `;

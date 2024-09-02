@@ -1,6 +1,5 @@
 import useAuthStore from "../../Stores/auth";
 import api from "./api";
-
 /**************************
  *                        *
  *         User           *
@@ -17,17 +16,30 @@ export async function deleteUser(_id) {
 
   return data;
 }
-export const login = async (credentials) => {
-  const { setAuth, setUser } = useAuthStore.getState();
+export async function login(credentials) {
+  const { setAuth } = useAuthStore.getState();
+
   const { data } = await api.post("/user", credentials);
-  setAuth(data.token);
-  setUser(data.user);
+  setAuth(data.accessToken);
+
   return data;
-};
+}
 
 export async function updateUser({ _id, newUserData }) {
   const { data } = await api.put(`/user/${_id}`, newUserData);
 
+  return data;
+}
+
+export async function refresh() {
+  const { setAuth } = useAuthStore.getState();
+  const { data } = await api.get("/refresh");
+  setAuth(data.accessToken);
+  return data;
+}
+
+export async function logout() {
+  const { data } = await api.delete("/refresh");
   return data;
 }
 
@@ -62,6 +74,7 @@ export async function getTree() {
 
 export async function deleteTree(_id) {
   const { data } = await api.delete(`/tree/${_id}`);
+
   return data;
 }
 
@@ -69,6 +82,7 @@ export async function updateTree({ _id, newData }) {
   const newPrice = parseFloat(newData?.price);
   const newTree = { ...newData, price: newPrice };
   const { data } = await api.put(`/tree/${_id}`, newTree);
+
   return data;
 }
 
@@ -93,12 +107,11 @@ export async function getAllCertificates() {
 
 export async function createCertificate(newCertificate) {
   const { data } = await api.post("/certificate", newCertificate);
-  console.log(data);
   return data;
 }
 
 export async function getCertificateByUser({ id, type }) {
-  const { data } = await api.get(`/certificate/${id}`, { params: { type } });
+  const { data } = await api.get(`/certificate/${id}`, { type: { type } });
   return data;
 }
 
@@ -120,5 +133,16 @@ export async function updateCertificate({ _id, newCertificateData }) {
 
 export async function getArchives(archives) {
   const { data } = await api.get(`/archive`, { params: { archive: archives } });
+  return data;
+}
+
+/**************************
+ *                        *
+ *       PixPayment       *
+ *                        *
+ **************************/
+
+export async function createPixPayment(newPixPayment) {
+  const { data } = await api.post("/pixpayment", newPixPayment);
   return data;
 }

@@ -16,13 +16,12 @@ import { SearchBar, LargeCard } from "@components";
 import { useGetTree } from "@hooks/querys/tree";
 import { useCart } from "../../Stores/CartContext";
 
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 import translateText from "../../services/translateAPI";
 import PropTypes from "prop-types";
 
-  //Context
-
+//Context
 
 export default function BuyTrees() {
   // Translations
@@ -32,9 +31,9 @@ export default function BuyTrees() {
   const { isInCart } = useCart();
   const [collections, setCollections] = useState([]);
 
-  async function translateCollections(cardContent){
-    if (globalLanguage != "PT"){
-      for (let card of cardContent){
+  async function translateCollections(cardContent) {
+    if (globalLanguage != "PT") {
+      for (let card of cardContent) {
         card.name = await translateText(card.name, translateLanguage);
       }
     }
@@ -65,9 +64,7 @@ export default function BuyTrees() {
   async function formatAllCollection() {
     setLoading(true);
     let cardContent = [...collection];
-    console.log(cardContent);
-    let cardContent2 = collection;
-    console.log(cardContent2);
+
     if (order === "recent") {
       cardContent = cardContent.reverse();
     } else if (order === "older") {
@@ -78,7 +75,7 @@ export default function BuyTrees() {
 
     cardContent = cardContent.map((content) => ({
       ...content,
-      buttonText: "Adicionar ao carrinho",
+      buttonText: translations.buttonText,
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
@@ -94,13 +91,7 @@ export default function BuyTrees() {
     }
   }
 
-  async function buyTree(treeId) {
-    // Buy Function needs to be implemented
-    console.log(treeId);
-  }
-
   useEffect(() => {
-    console.log("Loading State:", loading);
     if (!isLoading && collection) {
       formatAllCollection();
     }
@@ -142,7 +133,7 @@ export default function BuyTrees() {
             )
             .map((card, index) => (
               <Line key={index}>
-                <LargeCard data={card} onBuy={() => buyTree(card._id)} />
+                <LargeCard data={card} />
               </Line>
             ))}
         </DivLine>

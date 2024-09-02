@@ -3,17 +3,24 @@ import { Container, Title, CardsContainer } from "./Styles";
 import { CartCard } from "@components";
 import CartBuyBox from "./CartBuyBox";
 import { useCart } from "../../Stores/CartContext";
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextCart } from "./Translation";
+
 export default function CartPage() {
   const { cartItems: data } = useCart();
 
+  //translation
+  const globalLanguage = useGlobalLanguage();
+  const translations = TranslateTextCart(globalLanguage);
+
   const calculateTotalPrice = (data) => {
     const total = data.reduce((total, tree) => total + tree.price, 0);
-    return total.toFixed(2); 
+    return total.toFixed(2);
   };
 
   return (
     <Container>
-      <Title>CARRINHO DE COMPRAS</Title>
+      <Title>{translations.title}</Title>
       <CartBuyBox value={calculateTotalPrice(data)} />
       <CardsContainer>
         {data.map((tree, index) => (

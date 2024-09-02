@@ -1,9 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Container } from "./Styles";
 import { Header, Footer } from "../../../../components";
-
+import { useRefreshToken } from "../../../../hooks/querys/user";
 export default function AppLayout() {
-  return (
+  const { isLoading } = useRefreshToken();
+  return isLoading ? (
+    <div />
+  ) : (
     <Container>
       <Header />
       <main>

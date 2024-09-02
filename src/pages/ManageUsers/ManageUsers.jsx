@@ -19,14 +19,14 @@ import {
   useGetUsers,
   useUpdateUsers,
 } from "@hooks/querys/user";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 export default function ManageUsers() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
-  
+
   // States and Variables
 
   const [userID, setUserID] = useState("");
@@ -64,7 +64,7 @@ export default function ManageUsers() {
 
   async function formatAllUsers() {
     const filteredUsers = user.filter((user) =>
-      user?.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      user?.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     const formattedUsers = await filteredUsers.map((user) => ({
       imageURL: <ProfilePic src={user?.imageURL} alt={user?.name} />,
@@ -136,9 +136,7 @@ export default function ManageUsers() {
   });
   //
   useEffect(() => {
-    console.log("Entrou")
     if (!isLoading && user) {
-      console.log("Entrou")
       formatAllUsers();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

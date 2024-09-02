@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import {
   CheckboxLabel,
   Container,
@@ -7,20 +8,38 @@ import {
   Image,
   Section,
   StyledCheckBox,
+  ConteinerPixForms,
+  FormsText,
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
 import PropTypes from "prop-types";
 import GoogleButton from "../../GooglePay/GooglePay";
+import { TranslateTextModal } from "./Translation";
+import PixButton from "../../PixButton/PixButton";
+import FormSubmit from "../../FormSubmit/FormSubmit";
+import { pixPaymentRequireSchema } from "./utils";
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
+import { useCart } from "../../../../Stores/CartContext";
+import { useCreateCertificate } from "../../../../hooks/querys/certificate";
+import useAuthStore from "../../../../Stores/auth";
 
 export default function ModalAcceptTerms({ modal, onClose, price }) {
+  //Tradução
+  const { globalLanguage } = useGlobalLanguage();
+
   const [accept, setAccept] = useState(false);
+  const [isPix, setIsPix] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
-  console.log(price);
+
+  const translations = TranslateTextModal({ globalLanguage });
+
   const toggleAccept = () => {
     setAccept(!accept);
     setCheckBoxAlert(false);
+    setIsPix(false);
   };
 
   const handleSubmit = () => {
@@ -39,44 +58,115 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
     setAccept(false);
   };
 
+  const openPix = () => setIsPix(true);
+
+  const inputs = [
+    {
+      type: "input",
+      key: "email",
+      placeholder: translations.placeholderEmail,
+    },
+    {
+      type: "input",
+      key: "cpf",
+      placeholder: translations.placeholderCPF,
+    },
+  ];
+
+  const {
+    mutate: postPixPayment,
+    isPending: loadingPostPix,
+    data: res,
+  } = usePostPixPayment({
+    onSuccess: () => {
+      toast.success(translations.toastPostPixPayment);
+    },
+    onError: (err) => {
+      toast.error(translations.toastPostPixPaymentError, err);
+    },
+  });
+
+  const { cartItems: cartTress } = useCart();
+
+  function onFormsSubmit(data) {
+    const body = {
+      transaction_amount: Number(price),
+      email: data.email,
+      number: data.cpf,
+      description: `Compra de ${cartTress.length} árvore(s) no valor de R$ ${price}`,
+    };
+    postPixPayment(body);
+  }
+
+  const { clearCart } = useCart();
+  const id_user = useAuthStore((state) => state?.auth?.user?._id);
+  const { mutate: createCertificate } = useCreateCertificate({
+    onSuccess: () => {
+      toast.success(translations.toastSuccessPurchase);
+    },
+  });
+
+  useEffect(() => {
+    if (res?.link) {
+      setTimeout(() => {
+        window.open(res.link);
+      }, 3000);
+    }
+    if (res?.status === "approved") {
+      createCertificate({ id_user: id_user, tree: cartTress });
+      clearCart();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [res]);
+
   return (
     <Modal
       open={modal}
       onCancel={handleCancel}
       footer={
         accept && (
-          <DivButton key="divButton">
-            <GoogleButton
-              price={price}
-              onClick={handleSubmit}
-              onClose={onClose}
-            />
-          </DivButton>
+          <>
+            <DivButton key="divButton">
+              <GoogleButton
+                price={price}
+                onClick={handleSubmit}
+                onClose={onClose}
+              />
+              <PixButton func={openPix} />
+
+              {isPix && (
+                <ConteinerPixForms>
+                  <FormsText>{translations.formsTitle}</FormsText>
+                  <FormSubmit
+                    inputs={inputs}
+                    onSubmit={onFormsSubmit}
+                    schema={pixPaymentRequireSchema}
+                    color={"#33603F"}
+                    loading={loadingPostPix}
+                  ></FormSubmit>
+                </ConteinerPixForms>
+              )}
+            </DivButton>
+          </>
         )
       }
       width={"70%"}
     >
       <Container>
-        <Header>Termo de Aceite e privacidade</Header>
+        <Header>{translations.Title}</Header>
         <Section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
+          <p>{translations.WelcomeTitle}</p>
+          <p>{translations.WelcomeText}</p>
+          <p>{translations.Acceptance1}</p>
+          <p>{translations.Acceptance1Text}</p>
+          <p>{translations.UseofSite}</p>
+          <p>{translations.UseofSiteText}</p>
+          <p>{translations.IntellectualPropery}</p>
+          <p>{translations.IntellectualPropertyText}</p>
+          <p>{translations.Privacy}</p>
+          <p>{translations.PrivacyText}</p>
+          <p>{translations.LimitationofLiability}</p>
+          <p>{translations.LimitationofLiabilityText}</p>
         </Section>
 
         <Image>
@@ -84,24 +174,14 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
         </Image>
 
         <Section>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            et libero ligula. Aliquam pharetra suscipit euismod. Aliquam erat
-            volutpat. Duis dapibus nulla eu turpis aliquam ultricies. Duis sed
-            consequat enim. Pellentesque viverra tristique nisi ut suscipit.
-            Proin augue nulla, maximus ullamcorper tincidunt non, consectetur
-            non tellus. Phasellus ullamcorper pellentesque lectus vel egestas.
-            Vestibulum eu ex sit amet leo dignissim laoreet et porta elit.
-          </p>
+          <p>{translations.LinkstoThirdPartySites}</p>
+          <p>{translations.LinkstoThirdPartySitesText}</p>
+          <p>{translations.GoverningLaw}</p>
+          <p>{translations.GoverningLawText}</p>
+          <p>{translations.Contact}</p>
+          <p>{translations.ContactText}</p>
+          <p>{translations.Acceptance2}</p>
+          <p>{translations.Acceptance2Text}</p>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
@@ -109,7 +189,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
             onChange={toggleAccept}
             checked={accept}
           />
-          Eu concordo com os termos descritos acima
+          {translations.select}
         </CheckboxLabel>
       </Container>
     </Modal>

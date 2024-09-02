@@ -10,16 +10,15 @@ import {
   ContainerCarousel,
 } from "./Styles";
 import { Icon } from "@assets/index";
-import { useGlobalLanguage } from '../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 import { Button, VideoLarger, VideoSmall, DemoCarousel } from "@components";
-
 
 export default function Home() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
-  
+
   const navigate = useNavigate();
 
   return (
@@ -27,15 +26,28 @@ export default function Home() {
       <ContainerCarousel>
         <DemoCarousel />
       </ContainerCarousel>
-
+      <Section>
+        <Title> {translations.whyChooseTitle} </Title>
+      </Section>
+      <Section>
+        <Column>
+          <p>{translations.whyChooseText1}</p>
+        </Column>
+        <Column>
+          <p>{translations.whyChooseText2}</p>
+        </Column>
+        <Column>
+          <p>{translations.whyChooseText3}</p>
+        </Column>
+      </Section>
       <Section>
         <Column>
           <Title>{translations.missionTitle}</Title>
-          <p>
-            {translations.missionText}
-          </p>
+          <p>{translations.missionText}</p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/sobre")}>{translations.buttonText}</Button>
+          <Button onClick={() => navigate("/sobre")}>
+            {translations.buttonText}
+          </Button>
         </Column>
         <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
       </Section>
@@ -44,22 +56,18 @@ export default function Home() {
         <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
         <Column>
           <Title>{translations.visionTitle}</Title>
-          <p>
-            {translations.visionText}
-          </p>
+          <p>{translations.visionText}</p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/comprar-arvores")}>
-            {translations.buttonText}
-          </Button>
         </Column>
       </Section>
+
       <Section>
         <Column>
-          <Title>{translations.productsTitle}</Title>
-          <p>
-            {translations.productsText}
-          </p>
-          <Button onClick={() => navigate("/eventos")}>{translations.buttonText}</Button>
+          <Title>{translations.valuesTitle}</Title>
+          <p>{translations.valuesText}</p>
+          <p>{translations.valuesTextPt2}</p>
+          <p>{translations.valuesTextPt3}</p>
+          <p>{translations.valuesTextPt4}</p>
         </Column>
         <Image>
           <img src={Icon} alt="Imagem de decoração" />
