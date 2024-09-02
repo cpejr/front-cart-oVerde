@@ -81,6 +81,10 @@ export const PrimereactStyles = createGlobalStyle`
     &:hover &:active{
       border: 2px solid ${colors.accent.primary};    
     }
+    input[type='checkbox']:checked + & {
+    background-color: ${colors.accent.primary};
+    border-color: ${colors.accent.primary};
+  }
   }
 
   .p-inputtext{

@@ -57,16 +57,14 @@ export const Footer = styled.div`
 `;
 
 export const Certificated = styled.div`
-  display: none;
+  position: absolute;
+  visibility: hidden;
   width: 100%;
-  height: 100%;
-  max-width: 21cm; /* Tamanho A4 */
-  min-height: 100vh;
+  max-width: 21cm; /* Largura A4 */
+  height: 297mm; /* Altura A4 */
   box-sizing: border-box;
   border: 8px solid #4caf50;
-
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  /* padding: 3.73em; */
 
   @media ${breakpoints.tablet} {
     padding: 2.5em;
@@ -76,3 +74,5 @@ export const Certificated = styled.div`
     padding: 3em;
   }
 `;
+
+

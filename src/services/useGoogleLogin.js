@@ -41,6 +41,7 @@ export const useGoogleLogin = () => {
       } else {
         logout();
         clearAuth();
+        navigate("/");
       }
     } catch (error) {
       toast.error("Erro ao tentar fazer login com o Google");

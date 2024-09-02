@@ -36,7 +36,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
 
     const initializeGooglePay = () => {
       const paymentsClient = new window.google.payments.api.PaymentsClient({
-        environment: "TEST",
+        environment: "TEST", 
       });
 
       const paymentDataRequest = {
@@ -84,7 +84,22 @@ const GoogleButton = ({ disabled, price, onClose }) => {
               console.error("Error:", error);
             });
         },
+        buttonSizeMode: 'fill',  
+        buttonType: 'short',
       });
+
+      if (window.innerWidth <= 480) {
+        button.style.width = "70px";
+        button.style.height = "40px";
+      } else if (window.innerWidth <= 768) {
+        button.style.width = "120px";
+        button.style.height = "45px";
+      } else {
+        button.style.width = "150px";
+        button.style.height = "50px";
+      }
+      button.classList.add("custom-google-pay-button");
+      
 
       const container = document.getElementById("google-pay-button");
       if (container && container.children.length === 0) {
@@ -104,6 +119,8 @@ const GoogleButton = ({ disabled, price, onClose }) => {
     <GooglePayButton
       disabled={disabled}
       id="google-pay-button"
+      radius={4}
+      buttonSizeMode="fill"
     ></GooglePayButton>
   );
 };

@@ -36,7 +36,6 @@ import { TranslateTextHeader } from "./Translations";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Badge } from "primereact/badge";
 import { useCart } from "../../../../Stores/CartContext";
-import { useGoogleLogin } from "../../../../services/useGoogleLogin";
 
 export default function LoginSocialArea() {
   // Translations
@@ -88,7 +87,26 @@ export default function LoginSocialArea() {
     onError: (err) => toast.error(err),
   });
 
-  const { logGoogleUser } = useGoogleLogin();
+  const logGoogleUser = async () => {
+    try {
+      if (auth === null || auth.accessToken === null) {
+        const googleResponse = await signInWithGooglePopup();
+        login({
+          name: googleResponse?.user?.displayName,
+          email: googleResponse?.user?.email,
+          imageURL: googleResponse?.user?.photoURL,
+        });
+        setLoginLogoff("Logoff");
+      } else {
+        logout();
+        setLoginLogoff("Login");
+        clearAuth();
+        setProfilePicture(<UserOutlined />);
+      }
+    } catch (error) {
+      toast.error(translations.toastErrorGoogleMessage);
+    }
+  };
 
   const { cartItems } = useCart();
 
@@ -153,18 +171,10 @@ export default function LoginSocialArea() {
             </LanguageSelector>
           )}
         </Select>
-        <SocialImg
-          href="https://www.instagram.com/prefeiturabd/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <SocialImg href="https://www.instagram.com/prefeiturabd/">
           <img src={Instagram} alt="Logo Instagram" width="60%"></img>
         </SocialImg>
-        <SocialImg
-          href="http://wa.me/+31992740294"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <SocialImg href="http://wa.me/+31992740294">
           <img src={Whatsapp} alt="Logo Whatsapp" width="60%"></img>
         </SocialImg>
       </SocialMedias>

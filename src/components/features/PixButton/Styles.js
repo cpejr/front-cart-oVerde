@@ -15,7 +15,9 @@ export const ButtonPix = styled.button`
   gap: 7px;
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 180px;
+    margin: 0.7em;
+    width: 120px;
+    font-size: 0.8em;
   }
   &:hover {
     background-color: rgba(51, 96, 63, 0.8);
