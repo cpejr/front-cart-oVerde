@@ -1,5 +1,3 @@
-import { pdf } from "@react-pdf/renderer";
-import { saveAs } from "file-saver";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import PropTypes from "prop-types";
@@ -15,7 +13,6 @@ import {
   CarouselStyles,
   CarouselImg,
 } from "./Styles";
-import { TreeCertificatePDF } from "@components";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
@@ -26,7 +23,6 @@ import { useState } from "react";
 
 export default function LargeCard({ data, onBuy }) {
   // Translations
-
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
@@ -35,16 +31,9 @@ export default function LargeCard({ data, onBuy }) {
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
 
-  // PDF Handling
-  function SaveFile() {
-    pdf(<TreeCertificatePDF data={data} />)
-      .toBlob()
-      .then((blob) => saveAs(blob, `${data?.id_tree?.name}.pdf`));
-  }
-
   const { addToCart } = useCart();
   function buyTree() {
-    const { buttonText, link, ...tree } = data;
+    const { ...tree } = data;
     addToCart(tree);
   }
 
@@ -104,7 +93,6 @@ export default function LargeCard({ data, onBuy }) {
               showThumbs={false}
             >
               {archiveData.map((file, index) => {
-                // Verifique se 'file' é uma string antes de usar 'startsWith'
                 const fileSrc = typeof file === "string" ? file : "";
 
                 return (
@@ -150,7 +138,6 @@ export default function LargeCard({ data, onBuy }) {
         </CardLine>
         <CardLine>{price && <p>R$ {price}</p>}</CardLine>
         <DivButton>
-
           <StyledButton onClick={onBuy ? onBuy : buyTree}>
             {buttonTranslation || buttonText}
           </StyledButton>
@@ -163,6 +150,7 @@ export default function LargeCard({ data, onBuy }) {
 LargeCard.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string,
+    link: PropTypes.string.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
     price: PropTypes.string,

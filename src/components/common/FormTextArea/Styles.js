@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { Input } from "antd";
+
 import { colors } from "../../../styles/stylesVariables";
-const { TextArea } = Input;
 
 export const Container = styled.div`
   display: flex;

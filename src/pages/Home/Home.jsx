@@ -26,7 +26,20 @@ export default function Home() {
       <ContainerCarousel>
         <DemoCarousel />
       </ContainerCarousel>
-
+      <Section>
+        <Title> {translations.whyChooseTitle} </Title>
+      </Section>
+      <Section>
+        <Column>
+          <p>{translations.whyChooseText1}</p>
+        </Column>
+        <Column>
+          <p>{translations.whyChooseText2}</p>
+        </Column>
+        <Column>
+          <p>{translations.whyChooseText3}</p>
+        </Column>
+      </Section>
       <Section>
         <Column>
           <Title>{translations.missionTitle}</Title>
@@ -45,18 +58,16 @@ export default function Home() {
           <Title>{translations.visionTitle}</Title>
           <p>{translations.visionText}</p>
           <VideoSmall videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
-          <Button onClick={() => navigate("/comprar-arvores")}>
-            {translations.buttonText}
-          </Button>
         </Column>
       </Section>
+
       <Section>
         <Column>
-          <Title>{translations.productsTitle}</Title>
-          <p>{translations.productsText}</p>
-          <Button onClick={() => navigate("/eventos")}>
-            {translations.buttonText}
-          </Button>
+          <Title>{translations.valuesTitle}</Title>
+          <p>{translations.valuesText}</p>
+          <p>{translations.valuesTextPt2}</p>
+          <p>{translations.valuesTextPt3}</p>
+          <p>{translations.valuesTextPt4}</p>
         </Column>
         <Image>
           <img src={Icon} alt="Imagem de decoração" />

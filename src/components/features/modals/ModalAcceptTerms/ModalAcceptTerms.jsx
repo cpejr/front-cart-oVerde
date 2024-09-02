@@ -102,7 +102,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { mutate: createCertificate } = useCreateCertificate({
     onSuccess: () => {
-      toast.success("Compra efetuada com sucesso");
+      toast.success(translations.toastSuccessPurchase);
     },
   });
 
@@ -116,6 +116,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       createCertificate({ id_user: id_user, tree: cartTress });
       clearCart();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [res]);
 
   return (
@@ -154,8 +155,18 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       <Container>
         <Header>{translations.Title}</Header>
         <Section>
-          <p>{translations.paragraph1}</p>
-          <p>{translations.paragraph2}</p>
+          <p>{translations.WelcomeTitle}</p>
+          <p>{translations.WelcomeText}</p>
+          <p>{translations.Acceptance1}</p>
+          <p>{translations.Acceptance1Text}</p>
+          <p>{translations.UseofSite}</p>
+          <p>{translations.UseofSiteText}</p>
+          <p>{translations.IntellectualPropery}</p>
+          <p>{translations.IntellectualPropertyText}</p>
+          <p>{translations.Privacy}</p>
+          <p>{translations.PrivacyText}</p>
+          <p>{translations.LimitationofLiability}</p>
+          <p>{translations.LimitationofLiabilityText}</p>
         </Section>
 
         <Image>
@@ -163,8 +174,14 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
         </Image>
 
         <Section>
-          <p>{translations.paragraph3}</p>
-          <p>{translations.paragraph4}</p>
+          <p>{translations.LinkstoThirdPartySites}</p>
+          <p>{translations.LinkstoThirdPartySitesText}</p>
+          <p>{translations.GoverningLaw}</p>
+          <p>{translations.GoverningLawText}</p>
+          <p>{translations.Contact}</p>
+          <p>{translations.ContactText}</p>
+          <p>{translations.Acceptance2}</p>
+          <p>{translations.Acceptance2Text}</p>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox

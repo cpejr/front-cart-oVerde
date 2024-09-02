@@ -20,6 +20,6 @@ export const newCollectionValidationSchema = () => {
     specie: z
       .string({ required_error: translations.specieRequired })
       .min(1, { message: translations.shortSpecie }),
-    price: z.number({ required_error: translations.priceRequired }),
+    price: z.any({ required_error: translations.priceRequired }),
   });
 };

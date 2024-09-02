@@ -14,7 +14,7 @@ export function TranslateTextCart({ globalLanguage }) {
   } else if (globalLanguage === "ES") {
     title = "CARRITO DE COMPRAS";
     value = "TOTAL: €";
-    purchase = "FECHAR COMPRA";
+    purchase = "COMPLETAR COMPRA";
   }
 
   return {

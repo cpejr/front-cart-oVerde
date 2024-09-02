@@ -1,18 +1,25 @@
-import React from 'react';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
 export default function generateCertificate() {
-    
     const input = document.getElementById('certificated');
-    input.style.display = 'grid';
-    html2canvas(input)
-        .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF();
-        pdf.addImage(imgData, 'PNG', 0, 0);
-        pdf.save("tree_certificate.pdf");
-        });
-        input.style.display = 'none';
 
+    
+    input.style.visibility = 'visible';
+
+    html2canvas(input, { scale: 2 }) 
+        .then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgWidth = 210; 
+            const imgHeight = 297; 
+            
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+            pdf.save("tree_certificate.pdf");
+        })
+        .finally(() => {
+            
+            input.style.visibility = 'hidden';
+        });
 }
+

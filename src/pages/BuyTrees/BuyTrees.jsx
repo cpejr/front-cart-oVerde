@@ -65,8 +65,6 @@ export default function BuyTrees() {
     setLoading(true);
     let cardContent = [...collection];
 
-    let cardContent2 = collection;
-
     if (order === "recent") {
       cardContent = cardContent.reverse();
     } else if (order === "older") {

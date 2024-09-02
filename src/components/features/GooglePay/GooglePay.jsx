@@ -5,14 +5,20 @@ import { toast } from "react-toastify";
 import useAuthStore from "../../../Stores/auth";
 import { useCart } from "../../../Stores/CartContext";
 import PropTypes from "prop-types";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 const GoogleButton = ({ disabled, price, onClose }) => {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   const { clearCart } = useCart();
   const id_user = useAuthStore((state) => state?.auth?.user?._id);
   const { cartItems: data } = useCart();
   const { mutate: createCertificate } = useCreateCertificate({
     onSuccess: () => {
-      toast.success("Compra efetuada com sucesso");
+      toast.success(translations.successMessage);
     },
   });
   useEffect(() => {
@@ -30,7 +36,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
 
     const initializeGooglePay = () => {
       const paymentsClient = new window.google.payments.api.PaymentsClient({
-        environment: "TEST",
+        environment: "TEST", 
       });
 
       const paymentDataRequest = {
@@ -69,7 +75,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
         onClick: () => {
           paymentsClient
             .loadPaymentData(paymentDataRequest)
-            .then((paymentData) => {
+            .then(() => {
               createCertificate({ id_user: id_user, tree: data });
               clearCart();
               if (onClose) onClose();
@@ -78,7 +84,22 @@ const GoogleButton = ({ disabled, price, onClose }) => {
               console.error("Error:", error);
             });
         },
+        buttonSizeMode: 'fill',  
+        buttonType: 'short',
       });
+
+      if (window.innerWidth <= 480) {
+        button.style.width = "70px";
+        button.style.height = "40px";
+      } else if (window.innerWidth <= 768) {
+        button.style.width = "120px";
+        button.style.height = "45px";
+      } else {
+        button.style.width = "150px";
+        button.style.height = "50px";
+      }
+      button.classList.add("custom-google-pay-button");
+      
 
       const container = document.getElementById("google-pay-button");
       if (container && container.children.length === 0) {
@@ -91,12 +112,15 @@ const GoogleButton = ({ disabled, price, onClose }) => {
       .catch((error) => {
         console.error("Failed to load Google Pay script:", error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <GooglePayButton
       disabled={disabled}
       id="google-pay-button"
+      radius={4}
+      buttonSizeMode="fill"
     ></GooglePayButton>
   );
 };

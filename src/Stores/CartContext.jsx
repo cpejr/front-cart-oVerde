@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useGlobalLanguage } from "./globalLanguage";
@@ -37,7 +37,6 @@ export function CartProvider({ children }) {
 
   const clearCart = () => {
     setCartItems([]);
-    toast.success(translations.toastCleanedMessage);
   };
 
   return (

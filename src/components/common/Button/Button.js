@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors, fonts } from "../../../styles/stylesVariables";
+import { breakpoints, colors, fonts } from "../../../styles/stylesVariables";
 
 const Button = styled.button`
   /*Posição */
@@ -37,6 +37,10 @@ const Button = styled.button`
   text-decoration: ${(props) => props.textDecoration ?? "none"};
   text-align: center;
   font-weight: ${(props) => props.fontWeight};
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100px;
+    font-size: 1.6rem;
+  }
   &:hover {
     background-color: ${(props) =>
       props.hoverBackgroundColor ?? colors.accent.hover};

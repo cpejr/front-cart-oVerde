@@ -4,7 +4,7 @@ export function TranslateTextHeader({ globalLanguage }) {
   
     if (globalLanguage === 'EN') {
         textMessage = 'Are you sure you want to quit?';
-        textButton = 'Log Off';
+        textButton = 'Logoff';
 
     } else if (globalLanguage === 'PT') {
         textMessage = 'Tem certeza que deseja sair?';

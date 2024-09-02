@@ -40,13 +40,30 @@ export const Select = styled(MultiSelect)`
     width: 215px;
     overflow-x: hidden;
   }
+
   .p-placeholder {
     color: ${(props) => props?.selectColor};
   }
   &:hover {
     border-color: ${colors.accent.primary};
   }
+
+  /* Estilizando o checkbox */
+  .p-checkbox .p-checkbox-box {
+    border-color: ${(props) => props?.selectColor} !important;
+  }
+  .p-checkbox-input{
+    display: none;
+  }
+
+  .p-checkbox-box {
+    background-color: green;
+    
+  }
+
+  
 `;
+
 
 export const StyledNumber = styled(InputNumber)`
   width: 70%;

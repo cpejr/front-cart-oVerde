@@ -9,10 +9,14 @@ export const Container = styled.div`
   background-color: ${colors.background.secondary};
   align-items: center;
   justify-content: space-evenly;
-  padding: 0 3rem;
+  padding: 0 1rem;
 
   @media (max-width: ${breakpoints.smallTablet}) {
-    padding: 0 1rem;
+    padding: 0 1 rem;
+    width: auto;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    padding: 0rem;
   }
 `;
 
@@ -35,16 +39,25 @@ export const Column = styled.div`
 `;
 
 export const SocialMedias = styled.div`
-  margin-left: 5px;
-  padding-left: 15px;
+  margin-left: 15px;
+  width: 100%;
+
   border-left: 2px solid white;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   justify-content: center;
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    display: none;
+  @media (${breakpoints.smallTablet}) {
+    width: 50%;
+
+    margin-left: 10px;
+  }
+  @media (${breakpoints.mobile}) {
+    margin-left: 5px;
+    border-left: 0%;
+
+    gap: 20px;
   }
 `;
 
@@ -52,6 +65,10 @@ export const SocialImg = styled.a`
   display: flex;
   justify-content: center; /* Alinha horizontalmente ao centro */
   align-items: center;
+  width: auto;
+  @media (max-width: 300px) {
+    width: auto;
+  }
 `;
 
 export const Hamburguer = styled(Menu)`
@@ -79,11 +96,13 @@ export const LoadingStyles = styled.div`
 
 export const LoginSocial = styled.div`
   display: flex;
+  width: auto;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   @media (max-width: ${breakpoints.tablet}) {
     min-width: 0;
+    width: auto;
   }
 `;
 
@@ -122,16 +141,23 @@ export const LoginButton = styled.button`
     cursor: pointer;
   }
   @media (max-width: ${breakpoints.tablet}) {
-    width: 10rem;
+    width: auto;
+    height: 20px;
     gap: 0;
+    padding: auto;
+    font-size: 0.99rem;
   }
   @media (max-width: ${breakpoints.mobile}) {
-    width: 10rem;
-    height: 40px;
+    width: auto;
+    height: 20px;
+    padding: auto;
+    font-size: 1rem;
     gap: 0;
   }
   @media (max-width: ${breakpoints.smallMobile}) {
-    width: 7rem;
+    width: auto;
+    padding: auto;
+    height: 15px;
     font-size: 0.8rem;
     gap: 0;
   }
@@ -192,6 +218,7 @@ export const LanguageSelector = styled.div`
   background-color: white;
   border-radius: 0.5rem;
   gap: 0.3rem;
+
   button {
     border: none;
     background-color: white;

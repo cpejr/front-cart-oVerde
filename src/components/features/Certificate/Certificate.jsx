@@ -1,24 +1,73 @@
-import React from 'react';
 import PropTypes from "prop-types";
-
-import {Certificated, Description, Name, Title} from './Styles'
-
-const Certificate = ({ name, tree_description, certificate_description }) => {
+import { TranslateCertificate } from "./Translations";
+import { Certificated, Title, Text, Heading, Footer } from "./Styles";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+const Certificate = ({ card }) => {
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateCertificate({ globalLanguage });
 
   return (
-      <Certificated id="certificated">
-        <Title>CERTIFICADO DE POSSE DE ÁRVORE</Title>
-        <Name>{ name }</Name>
-        <Description>{ tree_description }</Description>
-	<Description> { certificate_description }</Description>
-      </Certificated>
-  );
-}
+    <Certificated id="certificated">
+      <Title>{translations.CertificateTitle1}</Title>
+      <Title>{translations.CertificateTitle2}</Title>
 
+      <Heading>
+        <Text>
+          {translations.ClientName}
+          {card?.id_user?.name}
+        </Text>
+        <Text>
+          {translations.CertificateNumber}
+          {card?._id}
+        </Text>
+        <Text>
+          {translations.EmissionDate}
+          {card?.createdAt}
+        </Text>
+        <Text>
+          {translations.TreeLocation}
+          {card?.id_tree?.location}
+        </Text>
+      </Heading>
+
+      <Text>
+        {translations.Text1Pt1}
+        {card?.id_user?.name}
+        {translations.Text1Pt2}
+        {card?.id_tree?._id}
+        {translations.Text1Pt3}
+      </Text>
+      <Text>{translations.Text2}</Text>
+      <Text>{translations.Concession}</Text>
+      <Text>{translations.ConcessionText}</Text>
+
+      <Footer>
+        <Text>{translations.Signature}</Text>
+        <Text>{translations.Representant}</Text>
+        <Text>{translations.Contact}</Text>
+        <Text>{translations.Email}</Text>
+        <Text>{translations.PhoneNumber}</Text>
+        <Text>{translations.Website}</Text>
+      </Footer>
+    </Certificated>
+  );
+};
 export default Certificate;
 
 Certificate.propTypes = {
-  name: PropTypes.string.isRequired,
-  tree_description: PropTypes.string.isRequired,
-  certificate_description: PropTypes.string.isRequired,
+  card: PropTypes.shape({
+    _id: PropTypes.string,
+    createdAt: PropTypes.string,
+    id_user: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    id_tree: PropTypes.shape({
+      _id: PropTypes.string,
+      location: PropTypes.string,
+    }),
+  }),
+};
+
+Certificate.defaultProps = {
+  card: null,
 };
