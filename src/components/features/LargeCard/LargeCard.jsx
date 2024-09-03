@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import PropTypes from "prop-types";
@@ -12,6 +13,7 @@ import {
   DivButton,
   CarouselStyles,
   CarouselImg,
+  StyledInput,
 } from "./Styles";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
@@ -20,21 +22,28 @@ import { TranslateTextHeader } from "./Translations";
 import translateText from "../../../services/translateAPI";
 import { useCart } from "../../../Stores/CartContext";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function LargeCard({ data, onBuy }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-  const { description, buttonText, price } = data;
+  const { description, buttonText, price, total_quantity } = data;
   const name = data?.id_tree?.name || data?.name;
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   const { addToCart } = useCart();
   function buyTree() {
-    const { ...tree } = data;
-    addToCart(tree);
+    console.log(quantity);
+    if (quantity > 0 || quantity > total_quantity) {
+      const tree = { ...data, quantity: Number(quantity) };
+      addToCart(tree);
+    } else {
+      toast.error(translations.toastInvalidNumber);
+    }
   }
 
   // BackEnd Calls
@@ -133,11 +142,23 @@ export default function LargeCard({ data, onBuy }) {
         <Group>
           <CardTitle>{name}</CardTitle>
         </Group>
+        <CardLine>{descriptionText}</CardLine>
         <CardLine>
-          <p>{descriptionText}</p>
+          {total_quantity && <p>Quantidade de arvores : {total_quantity}</p>}
         </CardLine>
-        <CardLine>{price && <p>R$ {price}</p>}</CardLine>
+        <CardLine>{price && <>1 ano R$ {price[0]}</>}</CardLine>
+        <CardLine>{price && <>2 anos R$ {price[1]}</>}</CardLine>
+        <CardLine>{price && <>3 anos R$ {price[2]}</>}</CardLine>
         <DivButton>
+          {price && (
+            <StyledInput
+              type="number"
+              placeholder="Quantidade de arvores"
+              min={0}
+              max={total_quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          )}
           <StyledButton onClick={onBuy ? onBuy : buyTree}>
             {buttonTranslation || buttonText}
           </StyledButton>
@@ -155,6 +176,7 @@ LargeCard.propTypes = {
     description: PropTypes.string,
     price: PropTypes.string,
     archive: PropTypes.array,
+    total_quantity: PropTypes.number,
     id_tree: PropTypes.shape({
       name: PropTypes.string,
       archive: PropTypes.arrayOf(PropTypes.string),

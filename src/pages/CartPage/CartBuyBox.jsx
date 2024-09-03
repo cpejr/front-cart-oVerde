@@ -1,14 +1,13 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Box, StyledButton, PriceLabel } from "./Styles";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/ModalAcceptTerms";
 import { useGlobalLanguage } from "../../Stores/globalLanguage";
 import { TranslateTextCart } from "./Translation";
-import useAuthStore from '../../Stores/auth';
-
+import useAuthStore from "../../Stores/auth";
 
 import { useGoogleLogin } from "../../services/useGoogleLogin";
-
 
 export default function CartBuyBox({ value }) {
   const [modalAccept, setModalAccept] = useState(false);
@@ -23,13 +22,15 @@ export default function CartBuyBox({ value }) {
 
   const { logGoogleUser } = useGoogleLogin();
 
-
   return (
     <Box>
       <PriceLabel>
         {translations.value} {value}
       </PriceLabel>
-      <StyledButton onClick={isLogged ? openModalAccept : logGoogleUser} disabled={value == "0.00"}>
+      <StyledButton
+        onClick={isLogged ? openModalAccept : logGoogleUser}
+        disabled={value == "0.00"}
+      >
         {translations.purchase}
       </StyledButton>
       <ModalAcceptTerms

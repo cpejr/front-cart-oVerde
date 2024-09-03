@@ -1,10 +1,11 @@
+/* eslint-disable react/react-in-jsx-scope */
 import PropTypes from "prop-types";
 import { ModalStyle } from "./Styles";
 import FormSubmit from "../../FormSubmit/FormSubmit";
 import { updateCollectionValidationSchema } from "./utils";
 import { AiOutlineUpload } from "react-icons/ai";
-import { useGlobalLanguage } from '../../../../Stores/globalLanguage';
-import { TranslateTextHeader } from './Translations';
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 export default function ModalUpdateTree({
   close,
@@ -39,16 +40,31 @@ export default function ModalUpdateTree({
       value: values.description,
     },
     {
-      type: "input",
-      key: "specie",
-      placeholder: translations.textSpecie,
-      value: values.specie,
+      type: "number",
+      key: "total_quantity",
+      placeholder: translations.textQuantity,
+      decimal: 0,
     },
     {
       type: "number",
-      key: "price",
+      key: "price1",
       placeholder: translations.textPrice,
-      value: values.price,
+      decimal: 2,
+      value: values.price?.[0],
+    },
+    {
+      type: "number",
+      key: "price2",
+      decimal: 2,
+      placeholder: translations.textPrice,
+      value: values.price?.[1],
+    },
+    {
+      type: "number",
+      key: "price3",
+      decimal: 2,
+      placeholder: translations.textPrice,
+      value: values.price?.[2],
     },
     {
       type: "archive",

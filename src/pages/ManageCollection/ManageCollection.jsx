@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -43,7 +44,6 @@ export default function ManageCollection() {
         translateLanguage
       );
       tree.location = await translateText(tree.location, translateLanguage);
-      tree.specie = await translateText(tree.specie, translateLanguage);
     }
     return trees;
   }
@@ -81,14 +81,28 @@ export default function ManageCollection() {
       placeholder: translations.textLocation,
     },
     {
-      type: "input",
-      key: "specie",
-      placeholder: translations.textSpecie,
+      type: "number",
+      key: "total_quantity",
+      placeholder: translations.textQuantity,
+      decimal: 0,
     },
     {
       type: "number",
-      key: "price",
-      placeholder: translations.textPrice,
+      key: "price1",
+      decimal: 2,
+      placeholder: translations.textPrice1Year,
+    },
+    {
+      type: "number",
+      key: "price2",
+      decimal: 2,
+      placeholder: translations.textPrice2Years,
+    },
+    {
+      type: "number",
+      key: "price3",
+      decimal: 2,
+      placeholder: translations.textPrice3Years,
     },
     {},
     {
@@ -153,7 +167,7 @@ export default function ManageCollection() {
                 location: collection.location,
                 price: collection.price,
                 archive: collection.archive,
-                specie: collection.specie,
+                total_quantity: collection.total_quantity,
                 id_category: collection?.id_category,
               });
             }}
@@ -247,7 +261,7 @@ export default function ManageCollection() {
         }
       }
 
-      inputs[5] = {
+      inputs[7] = {
         type: "select",
         key: "id_categoryType",
         placeholder: translations.textCategory,
@@ -255,8 +269,6 @@ export default function ManageCollection() {
       };
     }
     setSelectOptions(typesTranslate);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     categoryTypes,
     collection,

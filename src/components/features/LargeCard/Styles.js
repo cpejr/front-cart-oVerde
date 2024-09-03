@@ -72,7 +72,7 @@ export const DivButton = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 
 export const StyledButton = styled(Button)`
@@ -110,5 +110,18 @@ export const CarouselImg = styled.img`
   }
   @media (max-width: ${breakpoints.mobile}) {
     height: 120px;
+  }
+`;
+export const StyledInput = styled.input`
+  width: 250px;
+  font-size: 24px;
+  border-radius: 20px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 18px;
+    width: 180px;
+  }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    font-size: 4vw;
+    width: 100%;
   }
 `;

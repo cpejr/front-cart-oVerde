@@ -2,8 +2,7 @@ export function TranslateText({ globalLanguage }) {
   let textName;
   let textDescription;
   let textLocation;
-  let textSpecie;
-  let textPrice;
+  let textQuantity;
   let textArchive;
   let textManage;
   let textCategory;
@@ -18,6 +17,9 @@ export function TranslateText({ globalLanguage }) {
   let pageTitle;
   let pageSubTitle;
   let loading;
+  let textPrice1Year;
+  let textPrice2Years;
+  let textPrice3Years;
 
   //utils
   let nameRequired;
@@ -27,16 +29,18 @@ export function TranslateText({ globalLanguage }) {
   let shortDescription;
   let locationRequired;
   let shortLocation;
-  let specieRequired;
-  let shortSpecie;
+  let quantityRequired;
+
   let priceRequired;
 
   if (globalLanguage === "EN") {
     textName = "Name";
     textDescription = "Description";
     textLocation = "Location";
-    textSpecie = "Specie";
-    textPrice = "Price";
+    textQuantity = "Número de árboles";
+    textPrice1Year = "Price 1 year";
+    textPrice2Years = "Price 2 years";
+    textPrice3Years = "Price 2 years";
     textArchive = "Add Photo";
     textManage = "Manage";
     textCategory = "Choose the category";
@@ -60,15 +64,17 @@ export function TranslateText({ globalLanguage }) {
     shortDescription = "required field";
     locationRequired = "location is required";
     shortLocation = "required field";
-    specieRequired = "specie is required";
-    shortSpecie = "required field";
+    quantityRequired = "number is required";
+
     priceRequired = "price is required";
   } else if (globalLanguage === "PT") {
     textName = "Nome";
     textDescription = "Descrição";
     textLocation = "Localização";
-    textSpecie = "Espécie";
-    textPrice = "Valor";
+    textQuantity = "Numero de arvores";
+    textPrice1Year = "Valor 1 ano";
+    textPrice2Years = "Valor 2 anos";
+    textPrice3Years = "Valor 3 anos";
     textArchive = "Adicionar Foto";
     textManage = "Gerenciar";
     textCategory = "Escolha a categoria";
@@ -92,15 +98,16 @@ export function TranslateText({ globalLanguage }) {
     shortDescription = "campo obrigatório";
     locationRequired = "localização é obrigatória";
     shortLocation = "campo obrigatório";
-    specieRequired = "espécie é obrigatória";
-    shortSpecie = "campo obrigatório";
+    quantityRequired = "numero é obrigatório";
     priceRequired = "preço é obrigatório";
   } else if (globalLanguage === "ES") {
     textName = "Nombre";
     textDescription = "Descripción";
     textLocation = "Ubicación";
-    textSpecie = "Especies";
-    textPrice = "Valor";
+    textQuantity = "Number of trees";
+    textPrice1Year = "Valor 1 año";
+    textPrice2Years = "Valor 2 años";
+    textPrice3Years = "Valor 3 años";
     textArchive = "Añadir foto";
     textManage = "Administrar";
     textCategory = "Elige la categoría";
@@ -124,8 +131,7 @@ export function TranslateText({ globalLanguage }) {
     shortDescription = "campo obligatorio";
     locationRequired = "la ubicación es obligatoria";
     shortLocation = "campo obligatorio";
-    specieRequired = "especie es obligatoria";
-    shortSpecie = "campo obligatorio";
+    quantityRequired = "El número es obligatorio";
     priceRequired = "el precio es obligatorio";
   }
 
@@ -133,8 +139,10 @@ export function TranslateText({ globalLanguage }) {
     textName,
     textDescription,
     textLocation,
-    textSpecie,
-    textPrice,
+    textQuantity,
+    textPrice1Year,
+    textPrice2Years,
+    textPrice3Years,
     textArchive,
     textManage,
     textCategory,
@@ -156,8 +164,7 @@ export function TranslateText({ globalLanguage }) {
     shortDescription,
     locationRequired,
     shortLocation,
-    specieRequired,
-    shortSpecie,
+    quantityRequired,
     priceRequired,
   };
 }

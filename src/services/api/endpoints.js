@@ -87,8 +87,15 @@ export async function updateTree({ _id, newData }) {
 }
 
 export async function postTree(newTrees) {
-  const newprice = parseFloat(newTrees?.price);
-  const tree = { ...newTrees, price: newprice };
+  const price = [
+    parseFloat(newTrees?.price1),
+    parseFloat(newTrees?.price2),
+    parseFloat(newTrees?.price3),
+  ];
+
+  const tree = { ...newTrees, price: price };
+  delete tree.price1, delete tree.price2, delete tree.price3;
+  console.log(tree);
   const { data } = await api.post(`/tree`, tree);
 
   return data;

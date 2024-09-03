@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 // Libs
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -95,7 +96,6 @@ export default function BuyTrees() {
     if (!isLoading && collection) {
       formatAllCollection();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading, order, globalLanguage]);
 
   //Modal Acceptance Term
