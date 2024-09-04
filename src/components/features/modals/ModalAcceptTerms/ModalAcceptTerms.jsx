@@ -25,7 +25,7 @@ import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
 
-export default function ModalAcceptTerms({ modal, onClose, price }) {
+export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   //Tradução
   const { globalLanguage } = useGlobalLanguage();
 
@@ -113,10 +113,9 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
       }, 3000);
     }
     if (res?.status === "approved") {
-      createCertificate({ id_user: id_user, tree: cartTress });
+      createCertificate({ id_user: id_user, tree: cartTress, years: years });
       clearCart();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [res]);
 
   return (
@@ -131,6 +130,7 @@ export default function ModalAcceptTerms({ modal, onClose, price }) {
                 price={price}
                 onClick={handleSubmit}
                 onClose={onClose}
+                years={years}
               />
               <PixButton func={openPix} />
 
@@ -201,4 +201,5 @@ ModalAcceptTerms.propTypes = {
   modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   price: PropTypes.string.isRequired,
+  years: PropTypes.number,
 };

@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateTextHeader } from "./Translations";
 
-const GoogleButton = ({ disabled, price, onClose }) => {
+const GoogleButton = ({ disabled, price, onClose, years }) => {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
@@ -36,7 +36,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
 
     const initializeGooglePay = () => {
       const paymentsClient = new window.google.payments.api.PaymentsClient({
-        environment: "TEST", 
+        environment: "TEST",
       });
 
       const paymentDataRequest = {
@@ -76,7 +76,7 @@ const GoogleButton = ({ disabled, price, onClose }) => {
           paymentsClient
             .loadPaymentData(paymentDataRequest)
             .then(() => {
-              createCertificate({ id_user: id_user, tree: data });
+              createCertificate({ id_user: id_user, tree: data, years: years });
               clearCart();
               if (onClose) onClose();
             })
@@ -84,8 +84,8 @@ const GoogleButton = ({ disabled, price, onClose }) => {
               console.error("Error:", error);
             });
         },
-        buttonSizeMode: 'fill',  
-        buttonType: 'short',
+        buttonSizeMode: "fill",
+        buttonType: "short",
       });
 
       if (window.innerWidth <= 480) {
@@ -99,7 +99,6 @@ const GoogleButton = ({ disabled, price, onClose }) => {
         button.style.height = "50px";
       }
       button.classList.add("custom-google-pay-button");
-      
 
       const container = document.getElementById("google-pay-button");
       if (container && container.children.length === 0) {
@@ -128,5 +127,6 @@ GoogleButton.propTypes = {
   disabled: PropTypes.bool.isRequired,
   price: PropTypes.string.isRequired,
   onClose: PropTypes.func,
+  years: PropTypes.number,
 };
 export default GoogleButton;

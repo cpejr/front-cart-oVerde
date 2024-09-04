@@ -36,6 +36,8 @@ const Certificate = ({ card }) => {
         {translations.Text1Pt2}
         {card?.id_tree?._id}
         {translations.Text1Pt3}
+        {card?.years}
+        {translations.Text1Pt4}
       </Text>
       <Text>{translations.Text2}</Text>
       <Text>{translations.Concession}</Text>
@@ -57,6 +59,7 @@ export default Certificate;
 Certificate.propTypes = {
   card: PropTypes.shape({
     _id: PropTypes.string,
+    years: PropTypes.number,
     createdAt: PropTypes.string,
     id_user: PropTypes.shape({
       name: PropTypes.string,

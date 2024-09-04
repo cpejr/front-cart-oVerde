@@ -14,7 +14,6 @@ export default function CartPage() {
   //translation
   const globalLanguage = useGlobalLanguage();
   const translations = TranslateTextCart(globalLanguage);
-  console.log(year);
   const calculateTotalPrice = (data) => {
     const total = data.reduce(
       (total, tree) => total + tree.price[year] * tree.quantity,
@@ -32,7 +31,7 @@ export default function CartPage() {
     <Container>
       <Title>{translations.title}</Title>
 
-      <CartBuyBox value={calculateTotalPrice(data)} />
+      <CartBuyBox value={calculateTotalPrice(data)} year={year} />
       <StyledSelect
         options={options}
         onChange={(e) => setYear(e)}

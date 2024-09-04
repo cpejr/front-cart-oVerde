@@ -127,15 +127,18 @@ export default function BuyTrees() {
       ) : (
         <DivLine>
           {collections
-            .filter((card) => !isInCart(card._id))
             .filter((card) =>
               card.name.toLowerCase().includes(searchValue.toLowerCase())
             )
-            .map((card, index) => (
-              <Line key={index}>
-                <LargeCard data={card} />
-              </Line>
-            ))}
+            .map((card, index) => {
+              const adjustedCard = isInCart(card);
+
+              return (
+                <Line key={index}>
+                  <LargeCard data={adjustedCard} />
+                </Line>
+              );
+            })}
         </DivLine>
       )}
     </Container>

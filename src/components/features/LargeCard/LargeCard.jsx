@@ -29,17 +29,17 @@ export default function LargeCard({ data, onBuy }) {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-  const { description, buttonText, price, total_quantity } = data;
+  const { description, buttonText, price, available_quantity } = data;
   const name = data?.id_tree?.name || data?.name;
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
   const [quantity, setQuantity] = useState(0);
-
   const { addToCart } = useCart();
+
   function buyTree() {
-    console.log(quantity);
-    if (quantity > 0 || quantity > total_quantity) {
+    if (quantity > 0 || quantity > available_quantity) {
       const tree = { ...data, quantity: Number(quantity) };
+
       addToCart(tree);
     } else {
       toast.error(translations.toastInvalidNumber);
@@ -144,7 +144,9 @@ export default function LargeCard({ data, onBuy }) {
         </Group>
         <CardLine>{descriptionText}</CardLine>
         <CardLine>
-          {total_quantity && <p>Quantidade de arvores : {total_quantity}</p>}
+          {available_quantity && (
+            <p>Quantidade de arvores : {available_quantity}</p>
+          )}
         </CardLine>
         <CardLine>{price && <>1 ano R$ {price[0]}</>}</CardLine>
         <CardLine>{price && <>2 anos R$ {price[1]}</>}</CardLine>
@@ -155,7 +157,7 @@ export default function LargeCard({ data, onBuy }) {
               type="number"
               placeholder="Quantidade de arvores"
               min={0}
-              max={total_quantity}
+              max={available_quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
           )}
@@ -176,7 +178,7 @@ LargeCard.propTypes = {
     description: PropTypes.string,
     price: PropTypes.string,
     archive: PropTypes.array,
-    total_quantity: PropTypes.number,
+    available_quantity: PropTypes.number,
     id_tree: PropTypes.shape({
       name: PropTypes.string,
       archive: PropTypes.arrayOf(PropTypes.string),

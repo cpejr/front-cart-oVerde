@@ -95,7 +95,7 @@ export async function postTree(newTrees) {
 
   const tree = { ...newTrees, price: price };
   delete tree.price1, delete tree.price2, delete tree.price3;
-  console.log(tree);
+
   const { data } = await api.post(`/tree`, tree);
 
   return data;

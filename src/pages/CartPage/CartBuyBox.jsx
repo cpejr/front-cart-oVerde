@@ -9,7 +9,7 @@ import useAuthStore from "../../Stores/auth";
 
 import { useGoogleLogin } from "../../services/useGoogleLogin";
 
-export default function CartBuyBox({ value }) {
+export default function CartBuyBox({ value, year }) {
   const [modalAccept, setModalAccept] = useState(false);
   const isLogged = useAuthStore((state) => state?.auth);
 
@@ -37,6 +37,7 @@ export default function CartBuyBox({ value }) {
         price={value}
         modal={modalAccept}
         onClose={closeModalAccept}
+        years={year + 1}
       />
     </Box>
   );
@@ -44,4 +45,5 @@ export default function CartBuyBox({ value }) {
 
 CartBuyBox.propTypes = {
   value: PropTypes.double,
+  year: PropTypes.number,
 };
