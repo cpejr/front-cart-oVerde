@@ -39,12 +39,7 @@ export default function ModalUpdateTree({
       placeholder: translations.textDescription,
       value: values.description,
     },
-    {
-      type: "number",
-      key: "total_quantity",
-      placeholder: translations.textQuantity,
-      decimal: 0,
-    },
+
     {
       type: "number",
       key: "price1",
@@ -65,6 +60,13 @@ export default function ModalUpdateTree({
       decimal: 2,
       placeholder: translations.textPrice,
       value: values.price?.[2],
+    },
+    {
+      type: "number",
+      key: "total_quantity",
+      placeholder: translations.textQuantity,
+      value: values.total_quantity,
+      decimal: 0,
     },
     {
       type: "archive",

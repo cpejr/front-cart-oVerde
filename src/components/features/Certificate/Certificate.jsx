@@ -5,7 +5,7 @@ import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 const Certificate = ({ card }) => {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateCertificate({ globalLanguage });
-
+  console.log(card?.years);
   return (
     <Certificated id="certificated">
       <Title>{translations.CertificateTitle1}</Title>
