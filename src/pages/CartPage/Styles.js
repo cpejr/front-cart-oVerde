@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../styles/stylesVariables";
+import { Select } from "antd";
 
 export const Container = styled.div`
   display: flex;
@@ -27,10 +28,10 @@ export const CardsContainer = styled.div`
   justify-content: center;
   gap: 10px;
   max-height: 345px;
-  height:auto;
-  border-radius: 12px; 
-  overflow-y: auto;  
-  border: none;  
+  height: auto;
+  border-radius: 12px;
+  overflow-y: auto;
+  border: none;
   width: 84vw;
   align-self: center;
 `;
@@ -55,8 +56,6 @@ export const Box = styled.div`
   }
 `;
 
-
-
 export const Group = styled.div`
   display: flex;
   flex-direction: row;
@@ -75,7 +74,7 @@ export const PriceLabel = styled.h1`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 1em;
   }
-`
+`;
 
 export const StyledButton = styled.button`
   justify-self: center;
@@ -89,14 +88,25 @@ export const StyledButton = styled.button`
   margin-bottom: 5px;
   margin-left: 40px;
   margin-right: 10px;
-  cursor:pointer;
+  cursor: pointer;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 0.8em;
     width: 180px;
   }
-  &:hover{
+  &:hover {
     color: white;
     background-color: ${colors.accent.hover};
   }
 `;
-
+export const StyledSelect = styled(Select)`
+  width: 20%;
+  align-self: center;
+  border .ant-select-arrow {
+    display: none;
+  }
+  .ant-select-selector {
+    border-width: 2px !important;
+    border-color: ${colors.background.secondary} !important;
+    border-radius: 10px;
+  }
+`;

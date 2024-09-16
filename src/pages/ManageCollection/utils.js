@@ -17,9 +17,9 @@ export const newCollectionValidationSchema = () => {
     location: z
       .string({ required_error: translations.locationRequired })
       .min(1, { message: translations.shortLocation }),
-    specie: z
-      .string({ required_error: translations.specieRequired })
-      .min(1, { message: translations.shortSpecie }),
-    price: z.any({ required_error: translations.priceRequired }),
+    total_quantity: z.any({ required_error: translations.quantityRequired }),
+    price1: z.any({ required_error: translations.priceRequired }),
+    price2: z.any({ required_error: translations.priceRequired }),
+    price3: z.any({ required_error: translations.priceRequired }),
   });
 };

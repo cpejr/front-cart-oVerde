@@ -79,16 +79,30 @@ export async function deleteTree(_id) {
 }
 
 export async function updateTree({ _id, newData }) {
-  const newPrice = parseFloat(newData?.price);
-  const newTree = { ...newData, price: newPrice };
+  console.log(newData);
+  const price = [
+    parseFloat(newData?.price1),
+    parseFloat(newData?.price2),
+    parseFloat(newData?.price3),
+  ];
+  const newTree = { ...newData, price: price };
+  console.log(newTree?.total_quantity);
+  delete newTree.price1, delete newTree.price2, delete newTree.price3;
   const { data } = await api.put(`/tree/${_id}`, newTree);
 
   return data;
 }
 
 export async function postTree(newTrees) {
-  const newprice = parseFloat(newTrees?.price);
-  const tree = { ...newTrees, price: newprice };
+  const price = [
+    parseFloat(newTrees?.price1),
+    parseFloat(newTrees?.price2),
+    parseFloat(newTrees?.price3),
+  ];
+
+  const tree = { ...newTrees, price: price };
+  delete tree.price1, delete tree.price2, delete tree.price3;
+
   const { data } = await api.post(`/tree`, tree);
 
   return data;

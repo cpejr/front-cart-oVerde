@@ -22,7 +22,18 @@ export function CartProvider({ children }) {
   }, [cartItems]);
 
   const addToCart = (tree) => {
-    setCartItems((prevCart) => [...prevCart, tree]);
+    setCartItems((prevCart) => {
+      const existingTree = prevCart.find((item) => item._id === tree._id);
+      if (existingTree) {
+        return prevCart.map((item) =>
+          item._id === tree._id
+            ? { ...item, quantity: item.quantity + tree.quantity }
+            : item
+        );
+      } else {
+        return [...prevCart, tree];
+      }
+    });
     toast.success(translations.toastAddedMessage);
   };
 
@@ -31,8 +42,16 @@ export function CartProvider({ children }) {
     toast.success(translations.toastRemovedMessage);
   };
 
-  const isInCart = (id) => {
-    return cartItems.some((tree) => tree._id === id);
+  const isInCart = (tree) => {
+    const cartItem = cartItems.find((item) => item._id === tree._id);
+
+    if (cartItem) {
+      const adjustedTree = { ...tree };
+      adjustedTree.available_quantity -= cartItem.quantity;
+
+      return adjustedTree;
+    }
+    return tree;
   };
 
   const clearCart = () => {

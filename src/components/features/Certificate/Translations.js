@@ -10,6 +10,7 @@ export function TranslateCertificate({ globalLanguage }) {
   let Text1Pt1;
   let Text1Pt2;
   let Text1Pt3;
+  let Text1Pt4;
   let Text2;
   let Concession;
   let ConcessionText;
@@ -32,8 +33,9 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1 = "We certify that ";
     Text1Pt2 =
       "is the holder of the temporary concession of a tree located in the environmental reserve area [Reserve Name] [Block Number] ";
-    Text1Pt3 =
-      ". It will remain under your protection for a period of [Concession Period] months/years. During this period, the tree will remain standing, contributing to the preservation of the local ecosystem.";
+    Text1Pt3 = ". It will remain under your protection for a period of  ";
+    Text1Pt4 =
+      "year(s). During this period, the tree will remain standing, contributing to the preservation of the local ecosystem.";
     Text2 =
       "This certificate is proof of the client's commitment to sustainability and biodiversity conservation.";
     Concession = "Concession Terms:";
@@ -58,8 +60,9 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1 = "Certificamos que ";
     Text1Pt2 =
       " é o detentor da concessão temporária de uma árvore localizada na área de reserva ambiental [Nomeda Reserva] [Número da Quadra] ";
-    Text1Pt3 =
-      ". Ela estará sob sua proteção pelo período de [Período de Concessão] meses/anos. Durante este período, a árvore permanecerá em pé, contribuindo para a preservação do ecossistema local.";
+    Text1Pt3 = ". Ela estará sob sua proteção pelo período de  ";
+    Text1Pt4 =
+      "ano(s). Durante este período, a árvore permanecerá em pé, contribuindo para a preservação do ecossistema local.";
     Text2 =
       "Este certificado é uma prova do compromisso do cliente com a sustentabilidade e a conservação da biodiversidade.";
     Concession = "Termos da Concessão:";
@@ -84,8 +87,9 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1 = "Certificamos que ";
     Text1Pt2 =
       " es el titular de la concesión temporal de un árbol ubicado en el área de reserva ambiental [Nombre de la Reserva] [Número de la Cuadra] ";
-    Text1Pt3 =
-      ". Estará bajo su protección por un período de [Período de Concesión] meses/años. Durante este período, el árbol permanecerá en pie, contribuyendo a la preservación del ecosistema local.";
+    Text1Pt3 = ". Estará bajo su protección por un período de ";
+    Text1Pt4 =
+      "año(s). Durante este período, el árbol permanecerá en pie, contribuyendo a la preservación del ecosistema local.";
     Text2 =
       "Este certificado es una prueba del compromiso del cliente con la sostenibilidad y la conservación de la biodiversidad.";
     Concession = "Términos de la Concesión:";
@@ -111,6 +115,7 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1,
     Text1Pt2,
     Text1Pt3,
+    Text1Pt4,
     Text2,
     Concession,
     ConcessionText,

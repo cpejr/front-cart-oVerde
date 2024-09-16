@@ -8,7 +8,7 @@ import { TranslateTextCart } from "./Translation";
 import translateText from "../../../services/translateAPI";
 import { useState, useEffect } from "react";
 
-export default function CartCard({ data }) {
+export default function CartCard({ data, index }) {
   const { removeFromCart } = useCart();
 
   // Translations
@@ -17,7 +17,6 @@ export default function CartCard({ data }) {
   const translateLanguage = globalLanguage.toLowerCase();
   const [descriptionText, setDescriptionText] = useState("");
   const [nameText, setNameText] = useState("");
-
   const name = data?.name;
   const IDs = data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
@@ -39,7 +38,7 @@ export default function CartCard({ data }) {
           console.error("Translation error:", error);
         });
     }
-    
+
     if (data?.name) {
       translateText(data.name, translateLanguage)
         .then((translation) => setNameText(translation))
@@ -95,11 +94,9 @@ export default function CartCard({ data }) {
         )
       )}
       <Name>{nameText || translations.noName}</Name>
-      <Description>
-        {descriptionText || translations.noDescription}
-      </Description>
+      <Description>{descriptionText || translations.noDescription}</Description>
       <Price>
-        {translations.currency} {data?.price || "0.00"}
+        {translations.currency} {data?.price[index] || "0.00"}
       </Price>
     </Box>
   );
@@ -117,4 +114,5 @@ CartCard.propTypes = {
       })
     ),
   }).isRequired,
+  index: PropTypes.number,
 };
