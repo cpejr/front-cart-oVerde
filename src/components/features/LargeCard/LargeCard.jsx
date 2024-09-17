@@ -37,7 +37,7 @@ export default function LargeCard({ data, onBuy }) {
   const { addToCart } = useCart();
 
   function buyTree() {
-    if (quantity > 0 || quantity > available_quantity) {
+    if (quantity > 0 && quantity <= available_quantity) {
       const tree = { ...data, quantity: Number(quantity) };
 
       addToCart(tree);
