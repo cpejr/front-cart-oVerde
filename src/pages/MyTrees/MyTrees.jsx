@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 // Libs
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -14,8 +15,18 @@ import {
 import { SearchBar, LargeCard } from "@components";
 import useAuthStore from "../../Stores/auth";
 import { useGetCertificateByUser } from "@hooks/querys/certificate";
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
+import generateCertificate from "../../services/generateCertificate";
+import { Certificate } from "../../components";
+import translateText from "../../services/translateAPI";
 
 export default function MyTrees() {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+  const translateLanguage = globalLanguage.toLowerCase();
+
   // States and Variables
 
   const userID = useAuthStore((state) => state?.auth?.user?._id);
@@ -26,11 +37,20 @@ export default function MyTrees() {
     setSearchValue(e.target.value);
   }
 
+  async function translateCollections(cardContent) {
+    if (globalLanguage != "PT") {
+      for (let card of cardContent) {
+        card.name = await translateText(card.name, translateLanguage);
+      }
+    }
+    setCertificateData(cardContent);
+  }
+
   // Select Data
 
   const filters = [
-    { label: "Válidos", value: "active" },
-    { label: "Expirados", value: "expirated" },
+    { label: translations.labelValid, value: "active" },
+    { label: translations.labelExpired, value: "expirated" },
   ];
 
   // Backend Calls
@@ -40,16 +60,40 @@ export default function MyTrees() {
       id: userID,
       type: order,
       onError: (err) => {
-        toast.error("Erro ao carregar itens", err);
+        toast.error(translations.toastLoadingItensError, err);
       },
     });
 
   async function formatAllCollection() {
-    let cardContent = personalCertificates;
-    for (let content of cardContent) {
-      content.buttonText = "Baixar Certificado";
+    try {
+      let cardContent = [...personalCertificates];
+      if (order === "recent") {
+        cardContent = cardContent.reverse();
+      } else if (order === "older") {
+        cardContent;
+      } else {
+        cardContent.sort(orderBy);
+      }
+
+      cardContent = cardContent.map((content) => ({
+        ...content,
+        buttonText: "Baixar certificado",
+        link: "EDITE EM MyTrees.jsx" + content._id,
+      }));
+
+      await translateCollections(cardContent);
+    } catch (error) {
+      toast.error(translations.toastLoadingItensError);
+    } finally {
     }
-    setCertificateData(cardContent);
+  }
+
+  function orderBy(a, b) {
+    if (order === "active") {
+      return a.price - b.price;
+    } else if (order === "expired") {
+      return b.price - a.price;
+    }
   }
 
   useEffect(() => {
@@ -62,12 +106,12 @@ export default function MyTrees() {
 
   return (
     <Container>
-      <Title>MINHAS ÁRVORES</Title>
+      <Title>{translations.pageTitle}</Title>
 
       <Filter>
         <DivSelect>
           <SearchBar
-            placeholder="Pesquisar"
+            placeholder={translations.placeholderSearch}
             value={searchValue}
             search={handleSearchChange}
           />
@@ -75,7 +119,7 @@ export default function MyTrees() {
         <UniSelect
           options={filters}
           optionLabel="label"
-          placeholder="Ordenar Por"
+          placeholder={translations.placeholderOrder}
           value={order}
           onChange={(e) => {
             setOrder(e.value);
@@ -84,7 +128,7 @@ export default function MyTrees() {
         />
       </Filter>
       {isCertificatesLoading && certificateData ? (
-        <Title>Carregando</Title>
+        <Title>{translations.loading}</Title>
       ) : (
         <DivLine>
           {certificateData
@@ -94,12 +138,21 @@ export default function MyTrees() {
                 ?.includes(searchValue?.toLowerCase())
             )
             .map((card, index) => (
-              <Line onClick={() => card} key={index}>
-                <LargeCard data={card} />
-              </Line>
+              <>
+                <Line onClick={() => card} key={index}>
+                  <Certificate card={card} />
+                  <LargeCard
+                    id="card"
+                    data={card}
+                    onBuy={() => generateCertificate()}
+                  />
+                </Line>
+              </>
             ))}
         </DivLine>
       )}
     </Container>
   );
 }
+
+//name={card?.id_tree?.name} tree_description={card?.id_tree?.description} certificate_description={card?.description}

@@ -12,6 +12,8 @@ import { useState, useEffect } from "react";
 import { useUpdateEvents } from "../../../../hooks/querys/events";
 import { useGetCategoryPrice } from "../../../../hooks/querys/categoryPrice";
 import { useGetCategoryType } from "../../../../hooks/querys/categoryType";
+import { useGlobalLanguage } from "../../../../Stores/globalLanguage";
+import { TranslateTextHeader } from "./Translations";
 
 export default function ModalEditEvent({
   event,
@@ -20,6 +22,10 @@ export default function ModalEditEvent({
   modal,
   transformArrayItems,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateTextHeader({ globalLanguage });
+
   const [idsCategoryType, setIdsCategoryType] = useState([]);
   const [idsCategoryPrice, setIdsCategoryPrice] = useState([]);
   const queryClient = useQueryClient();
@@ -51,6 +57,7 @@ export default function ModalEditEvent({
     if (modal) {
       setCategories();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modal]);
 
   // On Submit
@@ -86,42 +93,42 @@ export default function ModalEditEvent({
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             name="name"
-            label="Nome do evento:"
+            label={translations.textName}
             defaultValue={event.name}
             register={register}
-            placeholder="Nome do evento:"
+            placeholder={translations.textName}
             errors={errors}
           />
           <FormInput
             name="eventUpload"
-            label="Imagem do evento:"
+            label={translations.textImage}
             defaultValue={event.eventUpload}
             register={register}
-            placeholder="URL da imagem:"
+            placeholder={translations.textURL}
             errors={errors}
           />
           <FormInput
             name="shortDescription"
-            label="Descrição curta:"
+            label={translations.textShortDescription}
             defaultValue={event.shortDescription}
             register={register}
-            placeholder="Descrição curta:"
+            placeholder={translations.textShortDescription}
             errors={errors}
           />
           <FormInput
             name="longDescription"
-            label="Descrição longa:"
+            label={translations.textLongDescription}
             defaultValue={event.longDescription}
             register={register}
-            placeholder="Descrição longa:"
+            placeholder={translations.textLongDescription}
             errors={errors}
           />
           <FormInput
             name="link"
-            label="Link:"
+            label={translations.textLink2}
             defaultValue={event.link}
             register={register}
-            placeholder="Link do evento:"
+            placeholder={translations.textLink}
             errors={errors}
           />
           <MultipleSelect
@@ -129,7 +136,7 @@ export default function ModalEditEvent({
             name="id_categoryPrice"
             options={transformArrayItems(categoryPrice)}
             optionLabel="label"
-            placeholder="Escolha as características"
+            placeholder={translations.textCaracter}
             className="w-full md:w-20rem"
             filter
           />
@@ -138,7 +145,7 @@ export default function ModalEditEvent({
             name="id_categoryType"
             options={transformArrayItems(categoryType)}
             optionLabel="label"
-            placeholder="Escolha as características"
+            placeholder={translations.textCaracter}
             className="w-full md:w-20rem"
             filter
           />
@@ -156,7 +163,7 @@ export default function ModalEditEvent({
             hoverColor={colors.font.secondary}
             borderColor={colors.modals.modalButton}
           >
-            Editar
+            {translations.textButton}
           </Button>
         </Form>
       </ModalStyle>

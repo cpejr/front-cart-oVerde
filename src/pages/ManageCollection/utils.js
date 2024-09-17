@@ -1,18 +1,25 @@
 import { z } from "zod";
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateText } from "./Translations";
 
-export const newCollectionValidationSchema = z.object({
-  name: z
-    .string({ required_error: "O nome é obrigatório" })
-    .min(2, { message: "O nome deve ter pelo menos 2 caracteres" })
-    .max(60, { message: "O nome não pode exceder 60 caracteres" }),
-  description: z
-    .string({ required_error: "A descrição é obrigatória" })
-    .min(1, { message: "Campo obrigatório" }),
-  location: z
-    .string({ required_error: "A localização é obrigatória" })
-    .min(1, { message: "Campo obrigatório" }),
-  specie: z
-    .string({ required_error: "A espécie é obrigatória" })
-    .min(1, { message: "Campo obrigatório" }),
-  price: z.any({ required_error: "O preço é obrigatório" }),
-});
+export const newCollectionValidationSchema = () => {
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+
+  return z.object({
+    name: z
+      .string({ required_error: translations.nameRequired })
+      .min(2, { message: translations.shortName })
+      .max(60, { message: translations.longName }),
+    description: z
+      .string({ required_error: translations.descriptionRequired })
+      .min(1, { message: translations.shortDescription }),
+    location: z
+      .string({ required_error: translations.locationRequired })
+      .min(1, { message: translations.shortLocation }),
+    total_quantity: z.any({ required_error: translations.quantityRequired }),
+    price1: z.any({ required_error: translations.priceRequired }),
+    price2: z.any({ required_error: translations.priceRequired }),
+    price3: z.any({ required_error: translations.priceRequired }),
+  });
+};

@@ -37,6 +37,7 @@ export const Header = styled.h1`
   text-transform: uppercase;
   text-decoration: underline;
   text-align: center;
+  padding: 15px;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1.5rem;
   }
@@ -49,7 +50,7 @@ export const Image = styled.div`
   > img {
     width: 25rem;
     @media (max-width: ${breakpoints.mobile}) {
-      width: 15rem;
+      width: 10rem;
     }
   }
 `;
@@ -96,7 +97,7 @@ export const CheckboxLabel = styled.label`
 
 export const DivButton = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -104,11 +105,9 @@ export const DivButton = styled.div`
   gap: 25px;
   @media (max-width: ${breakpoints.tablet}) {
     padding: 10px;
-    gap: 15px;
   }
   @media (max-width: ${breakpoints.mobile}) {
     padding: 10px;
-    gap: 10px;
   }
 `;
 
@@ -126,5 +125,29 @@ export const ModalButton = styled(Button)`
     font-size: 0.8rem;
     padding: 10px;
     gap: 5px;
+  }
+`;
+
+export const ConteinerPixForms = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-align: justify;
+  width: 100%;
+  border: solid 1px #33603f;
+  border-radius: 10px;
+  padding: 15px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 5px;
+  }
+`;
+
+export const FormsText = styled.h1`
+  text-decoration: underline;
+  text-align: center;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.5rem;
   }
 `;

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
@@ -7,6 +8,8 @@ import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+import { TranslateText } from "./Translations";
 
 export default function FormSubmit({
   inputs,
@@ -15,6 +18,10 @@ export default function FormSubmit({
   color,
   loading,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+
   const {
     handleSubmit,
     register,
@@ -25,12 +32,24 @@ export default function FormSubmit({
   });
 
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [newPrice, setPrice] = useState();
+  const [prices, setPrices] = useState({ price1: 0, price2: 0, price3: 0 });
+  const [totalQuantity, setTotalQuantity] = useState(0);
 
   useEffect(() => {
-    const priceInput = inputs.find((input) => input.key === "price");
-    if (priceInput) {
-      setPrice(priceInput.value || 0);
+    if (inputs) {
+      const priceInputs = inputs.filter(
+        (input) => input.key && input.key.startsWith("price")
+      );
+      if (priceInputs.length > 0) {
+        setPrices({
+          price1:
+            priceInputs.find((input) => input.key === "price1")?.value || 0,
+          price2:
+            priceInputs.find((input) => input.key === "price2")?.value || 0,
+          price3:
+            priceInputs.find((input) => input.key === "price3")?.value || 0,
+        });
+      }
     }
   }, [inputs]);
 
@@ -38,8 +57,12 @@ export default function FormSubmit({
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
 
-  function handlePriceChange(e) {
-    setPrice(e.value);
+  function handlePriceChange(key, value) {
+    if (key.startsWith("price")) {
+      setPrices((prevPrices) => ({ ...prevPrices, [key]: value }));
+    } else {
+      setTotalQuantity(value);
+    }
   }
 
   const [archivesArray, setArchivesArray] = useState([]);
@@ -54,12 +77,23 @@ export default function FormSubmit({
       onSubmit({
         ...data,
         id_category: selectedOptions.id_categoryType,
-        price: newPrice,
+        total_quantity: totalQuantity,
+        price1: prices.price1,
+        price2: prices.price2,
+        price3: prices.price3,
+
         archive: archivesArray,
       });
       setArchivesArray([]);
     } else {
-      onSubmit({ ...data, id_category: selectedOptions, price: newPrice });
+      onSubmit({
+        ...data,
+        id_category: selectedOptions,
+        total_quantity: totalQuantity,
+        price1: prices.price1,
+        price2: prices.price2,
+        price3: prices.price3,
+      });
     }
     reset();
   }
@@ -103,11 +137,11 @@ export default function FormSubmit({
             <StyledNumber
               key={input.key}
               value={input.value}
-              minFractionDigits={2}
-              maxFractionDigits={2}
+              minFractionDigits={input.decimal}
+              maxFractionDigits={input.decimal}
               placeholder={input.placeholder}
               error={errors[input.key] ? true : false}
-              onValueChange={handlePriceChange}
+              onValueChange={(e) => handlePriceChange(input.key, e.value)}
             />
           );
         } else if (input.type === "archive") {
@@ -129,7 +163,7 @@ export default function FormSubmit({
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        {loading ? <LoadingOutlined /> : "Enviar"}
+        {loading ? <LoadingOutlined /> : translations.button}
       </Button>
     </Form>
   );

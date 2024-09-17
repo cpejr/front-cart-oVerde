@@ -1,78 +1,47 @@
+/* eslint-disable react/react-in-jsx-scope */
 // Components
-import {
-  Container,
-  Title,
-  CardsContainer,
-} from "./Styles";
-import { CartCard  } from "@components";
-import CartBuyBox from './CartBuyBox';
-
+import { Container, Title, CardsContainer, StyledSelect } from "./Styles";
+import { CartCard } from "@components";
+import CartBuyBox from "./CartBuyBox";
+import { useCart } from "../../Stores/CartContext";
+import { useGlobalLanguage } from "../../Stores/globalLanguage";
+import { TranslateTextCart } from "./Translation";
+import { useState } from "react";
 
 export default function CartPage() {
-
-  const data = [
-    {
-      name: "Test Tree 1",
-      location: "Test Location 1",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
-      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
-      price: 99.99,
-      specie: "Test Specie 1",
-      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
-    },
-    {
-      name: "Test Tree 2",
-      location: "Test Location 2",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
-      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
-      price: 109.99,
-      specie: "Test Specie 2",
-      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
-    },
-    {
-      name: "Test Tree 3",
-      location: "Test Location 3",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
-      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
-      price: 119.99,
-      specie: "Test Specie 3",
-      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
-    },
-    {
-      name: "Test Tree 4",
-      location: "Test Location 4",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
-      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
-      price: 129.99,
-      specie: "Test Specie 4",
-      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
-    },
-    {
-      name: "Test Tree 5",
-      location: "Test Location 5",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet est mauris.",
-      archive: ["60d21b4667d0d8992e610c85", "60d21b4967d0d8992e610c86"],
-      price: 139.99,
-      specie: "Test Specie 5",
-      id_category: ["60d21b5567d0d8992e610c87", "60d21b5767d0d8992e610c88"]
-    }
-  ];
-
+  const { cartItems: data } = useCart();
+  const [year, setYear] = useState(0);
+  //translation
+  const globalLanguage = useGlobalLanguage();
+  const translations = TranslateTextCart(globalLanguage);
   const calculateTotalPrice = (data) => {
-    return data.reduce((total, tree) => total + tree.price, 0);
+    const total = data.reduce(
+      (total, tree) => total + tree.price[year] * tree.quantity,
+      0
+    );
+    return total.toFixed(2);
   };
-  
+
+  let options = [
+    { value: 0, label: "1" },
+    { value: 1, label: "2" },
+    { value: 2, label: "3" },
+  ];
   return (
     <Container>
-      <Title>CARRINHO DE COMPRAS</Title>
-      <CartBuyBox value={calculateTotalPrice(data)}/>
+      <Title>{translations.title}</Title>
 
+      <CartBuyBox value={calculateTotalPrice(data)} year={year} />
+      <StyledSelect
+        options={options}
+        onChange={(e) => setYear(e)}
+        placeholder="Quantidade de anos que quer a arvore"
+      ></StyledSelect>
       <CardsContainer>
-      {data.map((tree, index) => (
-        <CartCard key={index} data={tree}/>
-      ))}
+        {data.map((tree, index) => (
+          <CartCard key={index} data={tree} index={year} />
+        ))}
       </CardsContainer>
-
     </Container>
   );
 }

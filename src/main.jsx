@@ -28,7 +28,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <PrimeReactProvider></PrimeReactProvider>
       <GlobalStyles />
-
       <PrimereactStyles />
       <AppProvider />
       <ReactQueryDevtools />

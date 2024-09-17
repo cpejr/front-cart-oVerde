@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { breakpoints, colors } from "../../../styles/stylesVariables";
 
-
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,28 +30,38 @@ export const DeleteIcon = styled.img`
   transition: filter 0.3s;
   cursor: pointer;
   @keyframes shake {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-    75% { transform: rotate(-5deg); }
-    100% { transform: rotate(0deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+    75% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
   }
-  &:hover{
+  &:hover {
     animation: shake 0.5s ease-in-out infinite;
   }
-`
+`;
 
 export const Name = styled.h3`
-    align-self: left;
-    margin: 5px;
-`
+  align-self: left;
+  margin: 5px;
+`;
 
 export const Description = styled.p`
-    margin: 5px;
-    @media (max-width: ${breakpoints.tablet}) {
-      font-size: 0.9em;
-    }
-`
+  margin: 5px;
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 0.9em;
+  }
+`;
 
 export const Price = styled.div`
   justify-self: center;
@@ -64,7 +73,7 @@ export const Price = styled.div`
   background-color: ${colors.accent.primary};
   margin-bottom: 10px;
   margin-left: 5px;
-  &:hover{
+  &:hover {
     background-color: ${colors.accent.hover};
     color: white;
   }
@@ -93,4 +102,13 @@ export const Image = styled.img`
       height: 12rem;
     }
   }
+`;
+export const StyledImg = styled.img`
+  width: 70%;
+  height: 70%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 10px auto 0;
+  display: block;
 `;

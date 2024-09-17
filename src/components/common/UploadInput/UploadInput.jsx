@@ -3,6 +3,8 @@ import { AddArchive, RemoveArchive, Upload, ErrorMessage } from "./styles";
 import FormInput from "../FormInput/FormInput";
 import { useEffect, useState } from "react";
 import { AiOutlinePlusCircle, AiOutlineDelete } from "react-icons/ai";
+import { TranslateText } from './Translations';
+import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 
 export default function UploadInput({
   inputKey,
@@ -14,6 +16,10 @@ export default function UploadInput({
   archivesArray,
   values,
 }) {
+  // Translations
+  const { globalLanguage } = useGlobalLanguage();
+  const translations = TranslateText({ globalLanguage });
+
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => callback(reader.result));
@@ -132,11 +138,11 @@ export default function UploadInput({
                 cursor: "pointer",
               }}
             />
-            Remover
+            {translations.remove}
           </RemoveArchive>
           {error && (
             <ErrorMessage color={color}>
-              Pelo menos um arquivo deve ser enviado
+              {translations.errorMessage}
             </ErrorMessage>
           )}
         </div>
@@ -149,7 +155,7 @@ export default function UploadInput({
             cursor: "pointer",
           }}
         />
-        Adicionar arquivo
+        {translations.addArchive}
       </AddArchive>
     </>
   );

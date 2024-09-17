@@ -31,4 +31,5 @@ FormsTextArea.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   errors: PropTypes.object,
+  register: PropTypes.func,
 };
