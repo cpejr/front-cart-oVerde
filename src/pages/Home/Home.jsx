@@ -49,11 +49,11 @@ export default function Home() {
             {translations.buttonText}
           </Button>
         </Column>
-        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
       </Section>
 
       <Section>
-        <VideoLarger videoUrl="https://www.youtube.com/embed/RkzvCixHOVw" />
+        <VideoLarger videoUrl="https://www.youtube.com/embed/DcvvWjExea4?si=iN7cYZE3LSZBIxpM" />
         <Column>
           <Title>{translations.visionTitle}</Title>
           <p>{translations.visionText}</p>
