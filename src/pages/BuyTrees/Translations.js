@@ -16,7 +16,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     labelCheap = "Cheaper";
     labelExpensive = "More Expensive";
     loadingErrorMessage = "Error Loading Items";
-    pageTitle = "ADOPT A TREE";
+    pageTitle = "BUY TREES";
     placeholderSearch = "Search";
     placeholderFilter = "Filter by";
     loadingTitle = "Loading";
@@ -27,7 +27,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     labelCheap = "Mais Baratas";
     labelExpensive = "Mais Caras";
     loadingErrorMessage = "Erro ao carregar itens";
-    pageTitle = "ADOTAR UMA ÁRVORE";
+    pageTitle = "COMPRAR ÁRVORES";
     placeholderSearch = "Pesquisar";
     placeholderFilter = "Filtrar por";
     loadingTitle = "Carregando";
@@ -38,7 +38,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     labelCheap = "Más Económico";
     labelExpensive = "Más Caras";
     loadingErrorMessage = "Error al cargar elementos";
-    pageTitle = "ADOPTA UN ÁRBOL";
+    pageTitle = "COMPRAR ARBOLES";
     placeholderSearch = "Buscar";
     placeholderFilter = "Filtrado por";
     loadingTitle = "Cargando";
