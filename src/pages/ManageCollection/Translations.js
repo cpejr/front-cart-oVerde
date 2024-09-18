@@ -52,7 +52,7 @@ export function TranslateText({ globalLanguage }) {
     toastDeleteTreeError = "Error deleting tree.";
     toastUpdateTreeSucess = "Tree updated successfully!";
     toastUpdateTreeError = "Error updating tree.";
-    pageTitle = "ADD NEW TREE";
+    pageTitle = "ADD NEW RESERVED AREA";
     pageSubTitle = "MANAGE TREES";
     loading = "Loading";
 
@@ -86,7 +86,7 @@ export function TranslateText({ globalLanguage }) {
     toastDeleteTreeError = "Erro ao excluir árvore.";
     toastUpdateTreeSucess = "Árvore atualizada com sucesso!";
     toastUpdateTreeError = "Erro ao atualizar árvore.";
-    pageTitle = "ADICIONAR NOVA ÁRVORE";
+    pageTitle = "ADICIONAR NOVA ÁREA RESERVADA";
     pageSubTitle = "GERENCIAR ÁRVORES";
     loading = "Carregando";
 
@@ -119,7 +119,7 @@ export function TranslateText({ globalLanguage }) {
     toastDeleteTreeError = "Error al eliminar el árbol.";
     toastUpdateTreeSucess = "¡Árbol actualizado exitosamente!";
     toastUpdateTreeError = "Error al actualizar el árbol.";
-    pageTitle = "AÑADIR NUEVO ÁRBOL";
+    pageTitle = "AÑADIR NUEVA ÁREA RESERVADA";
     pageSubTitle = "GESTIONAR ÁRBOLES";
     loading = "Cargando";
 

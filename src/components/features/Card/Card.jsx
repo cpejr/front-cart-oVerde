@@ -30,7 +30,6 @@ export default function Card({ data }) {
           <Tag key={index}>{category?.name}</Tag>
         ))}
       </Tags>
-
       <ButtonDiv>
         <OrangeButton
           onClick={(event) => {
