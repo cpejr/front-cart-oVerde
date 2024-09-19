@@ -2,12 +2,14 @@ import PropTypes from "prop-types";
 import { TranslateCertificate } from "./Translations";
 import { Certificated, Title, Text, Heading, Footer } from "./Styles";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+
 const Certificate = ({ card }) => {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateCertificate({ globalLanguage });
-  console.log(card?.years);
+  const dateCertificate = new Date(card.createdAt);
+
   return (
-    <Certificated id="certificated">
+    <Certificated id={`certificated-${card?._id}`}>
       <Title>{translations.CertificateTitle1}</Title>
       <Title>{translations.CertificateTitle2}</Title>
 
@@ -22,7 +24,7 @@ const Certificate = ({ card }) => {
         </Text>
         <Text>
           {translations.EmissionDate}
-          {card?.createdAt}
+          {dateCertificate.toLocaleDateString()}
         </Text>
         <Text>
           {translations.TreeLocation}

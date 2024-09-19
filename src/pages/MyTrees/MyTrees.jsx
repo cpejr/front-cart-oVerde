@@ -144,7 +144,7 @@ export default function MyTrees() {
                   <LargeCard
                     id="card"
                     data={card}
-                    onBuy={() => generateCertificate()}
+                    onBuy={() => generateCertificate(card._id)}
                   />
                 </Line>
               </>

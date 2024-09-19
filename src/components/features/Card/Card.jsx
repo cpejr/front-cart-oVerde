@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
+  console.log("DATA", data);
   return (
     <StyledCard>
       <Image>
