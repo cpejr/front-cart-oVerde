@@ -122,7 +122,7 @@ export const CarouselImg = styled.img`
   }
 `;
 export const StyledInput = styled.input`
-  padding-left: 15px;
+  text-align: center;
   width: 250px;
   font-size: 20px;
   border-radius: 20px;

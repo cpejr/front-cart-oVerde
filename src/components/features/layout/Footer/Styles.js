@@ -9,6 +9,7 @@ export const Container = styled.div`
   align-items: center;
   text-align: center;
   justify-content: space-between;
+  margin-bottom: 0;
 `;
 
 export const ContainerLogo = styled.div`

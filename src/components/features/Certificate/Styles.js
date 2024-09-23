@@ -65,6 +65,7 @@ export const Certificated = styled.div`
   box-sizing: border-box;
   border: 8px solid #4caf50;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  margin-top: -260px;
 
   @media ${breakpoints.tablet} {
     padding: 2.5em;
@@ -74,5 +75,3 @@ export const Certificated = styled.div`
     padding: 3em;
   }
 `;
-
-

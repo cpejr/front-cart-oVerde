@@ -35,7 +35,7 @@ export default function CartPage() {
       <StyledSelect
         options={options}
         onChange={(e) => setYear(e)}
-        placeholder="Quantidade de anos que quer a arvore"
+        placeholder="Selecione o período de tempo"
       ></StyledSelect>
       <CardsContainer>
         {data.map((tree, index) => (
