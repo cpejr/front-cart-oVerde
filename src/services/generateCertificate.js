@@ -2,10 +2,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
 export default function generateCertificate(cardId) {
-  console.log("Gerando certificado para cardId:", cardId);
-
   const input = document.getElementById(`certificated-${cardId}`);
-  console.log("Elemento do certificado:", input);
 
   input.style.visibility = "visible";
 
