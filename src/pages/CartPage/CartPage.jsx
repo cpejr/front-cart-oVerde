@@ -35,7 +35,7 @@ export default function CartPage() {
       <StyledSelect
         options={options}
         onChange={(e) => setYear(e)}
-        placeholder="Selecione o período de tempo"
+        placeholder={translations.placeholder}
       ></StyledSelect>
       <CardsContainer>
         {data.map((tree, index) => (
