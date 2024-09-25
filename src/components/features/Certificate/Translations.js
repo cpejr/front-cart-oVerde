@@ -34,8 +34,7 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1 = "We certify that ";
     Text1Pt2 = "is the holder of the temporary concession of ";
 
-    Text1Pt22 =
-      " tree(s) located in the environmental reserve area [Tree Name] [Block Number] ";
+    Text1Pt22 = " tree(s) located in the environmental reserve area ";
     Text1Pt3 = ". It will remain under your protection for a period of  ";
     Text1Pt4 =
       " year(s). During this period, the tree will remain standing, contributing to the preservation of the local ecosystem.";
@@ -63,8 +62,7 @@ export function TranslateCertificate({ globalLanguage }) {
     Text1Pt1 = "Certificamos que ";
     Text1Pt2 = " é o detentor da concessão temporária de ";
 
-    Text1Pt22 =
-      " árvore(s) localizada na área de reserva ambiental [Nome da árvore] [Número da Quadra] ";
+    Text1Pt22 = " árvore(s) localizada(s) na área de reserva ambiental ";
     Text1Pt3 = ". Ela estará sob sua proteção pelo período de  ";
     Text1Pt4 =
       " ano(s). Durante este período, a árvore permanecerá em pé, contribuindo para a preservação do ecossistema local.";
@@ -91,8 +89,7 @@ export function TranslateCertificate({ globalLanguage }) {
 
     Text1Pt1 = "Certificamos que ";
     Text1Pt2 = " es el titular de la concesión temporal de ";
-    Text1Pt22 =
-      " árboles ubicado en el área de reserva ambiental [Nombre del árbol ] [Número de la Cuadra] ";
+    Text1Pt22 = " árboles ubicado(s) en el área de reserva ambiental ";
     Text1Pt3 = ". Estará bajo su protección por un período de ";
     Text1Pt4 =
       " año(s). Durante este período, el árbol permanecerá en pie, contribuyendo a la preservación del ecosistema local.";
