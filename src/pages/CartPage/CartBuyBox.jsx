@@ -9,7 +9,7 @@ import useAuthStore from "../../Stores/auth";
 
 import { useGoogleLogin } from "../../services/useGoogleLogin";
 
-export default function CartBuyBox({ value, year, disabled }) {
+export default function CartBuyBox({ value, year }) {
   const [modalAccept, setModalAccept] = useState(false);
   const isLogged = useAuthStore((state) => state?.auth);
 
@@ -29,7 +29,7 @@ export default function CartBuyBox({ value, year, disabled }) {
       </PriceLabel>
       <StyledButton
         onClick={isLogged ? openModalAccept : logGoogleUser}
-        disabled={disabled}
+        disabled={value == "0.00"}
       >
         {translations.purchase}
       </StyledButton>
