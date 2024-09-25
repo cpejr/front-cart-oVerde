@@ -119,8 +119,10 @@ export function TranslateText({ globalLanguage }) {
     toastDeleteTreeError = "Error al eliminar el árbol.";
     toastUpdateTreeSucess = "¡Árbol actualizado exitosamente!";
     toastUpdateTreeError = "Error al actualizar el árbol.";
+
     pageTitle = "AÑADIR NUEVA ÁREA CONSERVADA";
     pageSubTitle = "GESTIONAR ÁREAS";
+
     loading = "Cargando";
 
     //utils

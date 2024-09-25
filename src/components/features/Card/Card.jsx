@@ -12,6 +12,7 @@ import {
 import PropTypes from "prop-types";
 export default function Card({ data }) {
   let categories = [...data.id_categoryPrice, ...data.id_categoryType];
+
   return (
     <StyledCard>
       <Image>
@@ -30,6 +31,7 @@ export default function Card({ data }) {
           <Tag key={index}>{category?.name}</Tag>
         ))}
       </Tags>
+
       <ButtonDiv>
         <OrangeButton
           onClick={(event) => {

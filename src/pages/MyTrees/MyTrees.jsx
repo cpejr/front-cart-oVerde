@@ -116,6 +116,16 @@ export default function MyTrees() {
             search={handleSearchChange}
           />
         </DivSelect>
+        <UniSelect
+          options={filters}
+          optionLabel="label"
+          placeholder={translations.placeholderOrder}
+          value={order}
+          onChange={(e) => {
+            setOrder(e.value);
+            formatAllCollection();
+          }}
+        />
       </Filter>
       {isCertificatesLoading && certificateData ? (
         <Title>{translations.loading}</Title>
@@ -135,7 +145,7 @@ export default function MyTrees() {
                     pageType="mytrees"
                     id="card"
                     data={card}
-                    onBuy={() => generateCertificate()}
+                    onBuy={() => generateCertificate(card._id)}
                   />
                 </Line>
               </>

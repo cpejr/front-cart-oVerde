@@ -2,12 +2,14 @@ import PropTypes from "prop-types";
 import { TranslateCertificate } from "./Translations";
 import { Certificated, Title, Text, Heading, Footer } from "./Styles";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
+
 const Certificate = ({ card }) => {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateCertificate({ globalLanguage });
-  console.log(card?.years);
+  const dateCertificate = new Date(card.createdAt);
+
   return (
-    <Certificated id="certificated">
+    <Certificated id={`certificated-${card?._id}`}>
       <Title>{translations.CertificateTitle1}</Title>
       <Title>{translations.CertificateTitle2}</Title>
 
@@ -22,7 +24,7 @@ const Certificate = ({ card }) => {
         </Text>
         <Text>
           {translations.EmissionDate}
-          {card?.createdAt}
+          {dateCertificate.toLocaleDateString()}
         </Text>
         <Text>
           {translations.TreeLocation}
@@ -34,7 +36,10 @@ const Certificate = ({ card }) => {
         {translations.Text1Pt1}
         {card?.id_user?.name}
         {translations.Text1Pt2}
-        {card?.id_tree?._id}
+        {card?.quantity}
+        {translations.Text1Pt22}
+        {card?.id_tree.name}
+
         {translations.Text1Pt3}
         {card?.years}
         {translations.Text1Pt4}
@@ -61,12 +66,14 @@ Certificate.propTypes = {
     _id: PropTypes.string,
     years: PropTypes.number,
     createdAt: PropTypes.string,
+    quantity: PropTypes.number,
     id_user: PropTypes.shape({
       name: PropTypes.string,
     }),
     id_tree: PropTypes.shape({
       _id: PropTypes.string,
       location: PropTypes.string,
+      name: PropTypes.string,
     }),
   }),
 };

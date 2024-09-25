@@ -3,8 +3,6 @@ import { breakpoints, colors } from "../../../styles/stylesVariables";
 
 export const Box = styled.div`
   display: flex;
-  padding-left: 10px;
-  padding-top: 10px;
   flex-direction: column;
   width: 360px;
   margin-top: 1rem;
