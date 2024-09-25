@@ -35,7 +35,7 @@ export default function CartBuyBox({ value, year, disabled }) {
       <PriceLabel>
         {translations.value} {value}
       </PriceLabel>
-      <StyledButton onClick={handleButtonClick} disabled={disabled}>
+      <StyledButton onClick={handleButtonClick}>
         {translations.purchase}
       </StyledButton>
       <ModalAcceptTerms

@@ -126,3 +126,44 @@ export const StyledInput = styled.input`
     width: 100%;
   }
 `;
+export const CardLineDate = styled.ul`
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding padrão */
+  margin: 20px 0; /* Margem para espaçamento */
+  font-family: "Roboto", sans-serif; /* Fonte moderna */
+  font-size: 18px; /* Tamanho da fonte */
+  color: #333333; /* Cor do texto */
+`;
+export const CardLineList = styled.li`
+  margin-bottom: 10px; /* Espaço entre os itens */
+  flex-direction: column;
+  display: flex; /* Usa flexbox para alinhamento */
+  &::before {
+    margin-right: 10px;
+    color: #4caf50;
+  }
+`;
+export const CardLineTitle = styled.h1`
+  color: ${colors.font.primary};
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 24px;
+  }
+  @media (max-width: ${breakpoints.mediumMobile}) {
+    font-size: 5vw;
+  }
+`;
+export const CardLineDesc = styled.div`
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+  color: ${colors.font.secondary};
+  @media (max-width: ${breakpoints.miniTablet}) {
+    font-size: 16px;
+  }
+  @media (max-width: ${breakpoints.mediumMobile}) {
+    font-size: 3.7vw;
+  }
+`;

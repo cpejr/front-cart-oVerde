@@ -14,6 +14,10 @@ import {
   CarouselStyles,
   CarouselImg,
   StyledInput,
+  CardLineList,
+  CardLineTitle,
+  CardLineDesc,
+  CardLineDate,
 } from "./Styles";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
@@ -29,7 +33,8 @@ export default function LargeCard({ data, onBuy, pageType }) {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-  const { description, buttonText, price, available_quantity } = data;
+  const { description, buttonText, price, available_quantity, total_quantity } =
+    data;
   const name = data?.id_tree?.name || data?.name;
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
@@ -39,13 +44,12 @@ export default function LargeCard({ data, onBuy, pageType }) {
   function buyTree() {
     if (quantity > 0 && quantity <= available_quantity) {
       const tree = { ...data, quantity: Number(quantity) };
-
       addToCart(tree);
     } else {
       toast.error(translations.toastInvalidNumber);
     }
   }
-
+  const boughtTrees = total_quantity - available_quantity;
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
@@ -140,9 +144,10 @@ export default function LargeCard({ data, onBuy, pageType }) {
         )}
 
         <Group>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle>
+            <strong>{name}</strong>
+          </CardTitle>
         </Group>
-
         <CardLineDesc>{descriptionText}</CardLineDesc>
         {pageType === "buytrees" && (
           <>
@@ -177,7 +182,7 @@ export default function LargeCard({ data, onBuy, pageType }) {
           {price && (
             <StyledInput
               type="number"
-              placeholder="Quantidade de arvores"
+              placeholder="Árvores desejadas"
               min={0}
               max={available_quantity}
               onChange={(e) => setQuantity(e.target.value)}

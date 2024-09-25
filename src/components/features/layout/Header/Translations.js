@@ -1,14 +1,13 @@
 export function TranslateTextHeader({ globalLanguage }) {
-    let toastLoginMessage;
-    let toastLogoffMessage;
-    let toastErrorGoogleMessage;
-    let menuTitle2;
-    let menuTitle3;
-    let menuTitle4;
-    let menuTitle5;
-    let menuTitle6;
-    let textAdmin;
-  
+  let toastLoginMessage;
+  let toastLogoffMessage;
+  let toastErrorGoogleMessage;
+  let menuTitle2;
+  let menuTitle3;
+  let menuTitle4;
+  let menuTitle5;
+  let menuTitle6;
+  let textAdmin;
 
   if (globalLanguage === "EN") {
     toastLoginMessage = "Login Successful!";
@@ -40,17 +39,16 @@ export function TranslateTextHeader({ globalLanguage }) {
     menuTitle5 = "Administrar Áreas";
     menuTitle6 = "Mis Arboles";
     textAdmin = "Administrador";
-
-    return {
-      toastLoginMessage,
-      toastLogoffMessage,
-      toastErrorGoogleMessage,
-      menuTitle2,
-      menuTitle3,
-      menuTitle4,
-      menuTitle5,
-      menuTitle6,
-      textAdmin,
-    };
   }
-
+  return {
+    toastLoginMessage,
+    toastLogoffMessage,
+    toastErrorGoogleMessage,
+    menuTitle2,
+    menuTitle3,
+    menuTitle4,
+    menuTitle5,
+    menuTitle6,
+    textAdmin,
+  };
+}
