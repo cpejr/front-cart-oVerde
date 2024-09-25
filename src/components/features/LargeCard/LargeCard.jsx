@@ -24,7 +24,7 @@ import { useCart } from "../../../Stores/CartContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function LargeCard({ data, onBuy }) {
+export default function LargeCard({ data, onBuy, pageType }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
@@ -142,15 +142,37 @@ export default function LargeCard({ data, onBuy }) {
         <Group>
           <CardTitle>{name}</CardTitle>
         </Group>
-        <CardLine>{descriptionText}</CardLine>
-        <CardLine>
-          {available_quantity && (
-            <p>Quantidade de arvores : {available_quantity}</p>
-          )}
-        </CardLine>
-        <CardLine>{price && <>1 ano R$ {price[0]}</>}</CardLine>
-        <CardLine>{price && <>2 anos R$ {price[1]}</>}</CardLine>
-        <CardLine>{price && <>3 anos R$ {price[2]}</>}</CardLine>
+
+        <CardLineDesc>{descriptionText}</CardLineDesc>
+        {pageType === "buytrees" && (
+          <>
+            <CardLine>
+              {available_quantity && (
+                <p>🌳 Árvores disponíveis: {available_quantity}</p>
+              )}
+            </CardLine>
+            <CardLine>
+              {available_quantity && <p>🌳 Árvores compradas: {boughtTrees}</p>}
+            </CardLine>
+            <CardLineList>
+              <CardLineTitle>Plano de preços</CardLineTitle>
+              <CardLineDate>
+                {price && <> 💰 1 ano: R${price[0]}</>}
+              </CardLineDate>
+              <CardLineDate>
+                {price && <>💰 2 anos: R${price[1]}</>}
+              </CardLineDate>
+              <CardLineDate>
+                {price && <>💰 3 anos: R${price[2]}</>}
+              </CardLineDate>
+            </CardLineList>
+          </>
+        )}
+        {pageType === "mytrees" && (
+          <>
+            <CardLine></CardLine>
+          </>
+        )}
         <DivButton>
           {price && (
             <StyledInput
