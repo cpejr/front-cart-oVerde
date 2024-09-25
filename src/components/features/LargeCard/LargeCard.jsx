@@ -28,7 +28,7 @@ import { useCart } from "../../../Stores/CartContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function LargeCard({ data, onBuy, pageType }) {
+export default function LargeCard({ data, onBuy }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
@@ -148,6 +148,7 @@ export default function LargeCard({ data, onBuy, pageType }) {
             <strong>{name}</strong>
           </CardTitle>
         </Group>
+
         <CardLineDesc>{descriptionText}</CardLineDesc>
         {pageType === "buytrees" && (
           <>

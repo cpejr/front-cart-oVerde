@@ -113,7 +113,6 @@ export const CarouselImg = styled.img`
   }
 `;
 export const StyledInput = styled.input`
-  text-align: center;
   width: 250px;
   font-size: 24px;
   border-radius: 20px;

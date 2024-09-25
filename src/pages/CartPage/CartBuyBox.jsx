@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 import { useGoogleLogin } from "../../services/useGoogleLogin";
 
-export default function CartBuyBox({ value, year, disabled }) {
+export default function CartBuyBox({ value, year }) {
   const [modalAccept, setModalAccept] = useState(false);
   const isLogged = useAuthStore((state) => state?.auth);
 
@@ -35,7 +35,9 @@ export default function CartBuyBox({ value, year, disabled }) {
       <PriceLabel>
         {translations.value} {value}
       </PriceLabel>
+
       <StyledButton onClick={handleButtonClick}>
+
         {translations.purchase}
       </StyledButton>
       <ModalAcceptTerms

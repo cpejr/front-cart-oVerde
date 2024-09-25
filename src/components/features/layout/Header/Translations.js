@@ -1,4 +1,5 @@
 export function TranslateTextHeader({ globalLanguage }) {
+
   let toastLoginMessage;
   let toastLogoffMessage;
   let toastErrorGoogleMessage;
@@ -39,6 +40,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     menuTitle5 = "Administrar Áreas";
     menuTitle6 = "Mis Arboles";
     textAdmin = "Administrador";
+
   }
   return {
     toastLoginMessage,
