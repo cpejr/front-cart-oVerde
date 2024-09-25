@@ -15,10 +15,11 @@ export default function CartPage() {
   const globalLanguage = useGlobalLanguage();
   const translations = TranslateTextCart(globalLanguage);
   const calculateTotalPrice = (data) => {
-    const total = data.reduce(
-      (total, tree) => total + tree.price[year] * tree.quantity,
-      0
-    );
+    if (year === null || data.length === 0) return "0.00";
+    const total = data.reduce((total, tree) => {
+      const price = tree.price[year] || 0;
+      return total + price * (tree.quantity || 0);
+    }, 0);
     return total.toFixed(2);
   };
 
