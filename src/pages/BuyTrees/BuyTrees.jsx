@@ -135,7 +135,7 @@ export default function BuyTrees() {
 
               return (
                 <Line key={index}>
-                  <LargeCard pageType="buytrees" data={adjustedCard} />
+                  <LargeCard data={adjustedCard} />
                 </Line>
               );
             })}

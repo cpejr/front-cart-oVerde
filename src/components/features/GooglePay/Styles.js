@@ -7,7 +7,7 @@ export const GooglePayButton = styled.div`
   align-items: center;
   height: 1vh;
   background-color: #f0f0f0;
-  max-width: 2vh;
+  max-width: 1vh;
   @media (max-width: ${breakpoints.mobile}) {
     width: 180px;
   }
