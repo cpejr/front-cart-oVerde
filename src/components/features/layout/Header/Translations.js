@@ -16,7 +16,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     menuTitle2 = "Trees";
     menuTitle3 = "About";
     menuTitle4 = "Manage Users";
-    menuTitle5 = "Manage Trees";
+    menuTitle5 = "Manage Areas";
     menuTitle6 = "My Trees";
     textAdmin = "Administrator";
   } else if (globalLanguage === "PT") {
@@ -26,7 +26,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     menuTitle2 = "Árvores";
     menuTitle3 = "Sobre";
     menuTitle4 = "Gerenciar Usuários";
-    menuTitle5 = "Gerenciar Árvores";
+    menuTitle5 = "Gerenciar Áreas";
     menuTitle6 = "Minhas Árvores";
     textAdmin = "Administrador";
   } else if (globalLanguage === "ES") {
@@ -36,7 +36,7 @@ export function TranslateTextHeader({ globalLanguage }) {
     menuTitle2 = "Árboles";
     menuTitle3 = "Acerca de";
     menuTitle4 = "Administrar Usuarios";
-    menuTitle5 = "Administrar Árboles";
+    menuTitle5 = "Administrar Áreas";
     menuTitle6 = "Mis Arboles";
     textAdmin = "Administrador";
   }
