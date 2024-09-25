@@ -21,6 +21,8 @@ export const Box = styled.div`
   }
 `;
 
+
+
 export const Group = styled.div`
   display: flex;
   flex-direction: row;
@@ -39,7 +41,7 @@ export const PriceLabel = styled.h1`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 1em;
   }
-`;
+`
 
 export const StyledButton = styled.button`
   justify-self: center;
@@ -53,13 +55,14 @@ export const StyledButton = styled.button`
   margin-bottom: 5px;
   margin-left: 40px;
   margin-right: 10px;
-  cursor: pointer;
+  cursor:pointer;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 0.8em;
     width: 180px;
   }
-  &:hover {
+  &:hover{
     color: white;
     background-color: ${colors.accent.hover};
   }
 `;
+

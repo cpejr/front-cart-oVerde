@@ -42,12 +42,12 @@ export const Line = styled.div`
 `;
 
 export const Filter = styled.div`
-  margin-left: 3%;
   display: flex;
   width: 100%;
   align-items: center;
+  justify-content: space-around;
   @media (max-width: ${breakpoints.tablet}) {
-    justify-content: space-evenly;
+    justify-content:space-evenly
   }
 `;
 
@@ -55,6 +55,7 @@ export const VerticalLine = styled.div`
   border-left: 2px solid white;
   height: 10rem;
 `;
+
 
 export const DivSelect = styled.div`
   display: flex;
@@ -82,6 +83,7 @@ export const UniSelect = styled(Dropdown)`
     white-space: nowrap;
     overflow: hidden;
   }
+
 `;
 
 export const Content = styled.div`
