@@ -16,7 +16,6 @@ export default function CartPage() {
   const translations = TranslateTextCart(globalLanguage);
   const calculateTotalPrice = (data) => {
     if (year === null || data.length === 0) return "0.00";
-
     const total = data.reduce((total, tree) => {
       const price = tree.price[year] || 0;
       return total + price * (tree.quantity || 0);

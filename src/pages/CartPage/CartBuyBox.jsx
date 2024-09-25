@@ -6,6 +6,7 @@ import ModalAcceptTerms from "../../components/features/modals/ModalAcceptTerms/
 import { useGlobalLanguage } from "../../Stores/globalLanguage";
 import { TranslateTextCart } from "./Translation";
 import useAuthStore from "../../Stores/auth";
+import { toast } from "react-toastify";
 
 import { useGoogleLogin } from "../../services/useGoogleLogin";
 
@@ -17,6 +18,13 @@ export default function CartBuyBox({ value, year, disabled }) {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextCart({ globalLanguage });
 
+  const handleButtonClick = () => {
+    if (disabled) {
+      toast.error(translations.selectPeriodWarning);
+    } else {
+      isLogged ? openModalAccept() : logGoogleUser();
+    }
+  };
   const openModalAccept = () => setModalAccept(true);
   const closeModalAccept = () => setModalAccept(false);
 
@@ -27,10 +35,7 @@ export default function CartBuyBox({ value, year, disabled }) {
       <PriceLabel>
         {translations.value} {value}
       </PriceLabel>
-      <StyledButton
-        onClick={isLogged ? openModalAccept : logGoogleUser}
-        disabled={disabled}
-      >
+      <StyledButton onClick={handleButtonClick} disabled={disabled}>
         {translations.purchase}
       </StyledButton>
       <ModalAcceptTerms
