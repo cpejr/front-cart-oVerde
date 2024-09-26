@@ -38,25 +38,20 @@ export const Image = styled.div`
 
 export const CardTitle = styled.div`
   display: flex;
-  text-align: center;
   flex-direction: row;
   width: 100%;
   align-items: center;
   justify-content: space-between;
   height: auto;
   font-size: 30px;
-  color: ${colors.font.primary};
+  color: ${colors.font.secondary};
   margin-top: 1rem;
   @media (max-width: ${breakpoints.miniTablet}) {
     font-size: 24px;
   }
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    font-size: 5vw;
-  }
 `;
 
 export const CardLine = styled.div`
-  padding-top: 10px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -74,14 +69,10 @@ export const Group = styled.div`
 `;
 
 export const DivButton = styled.div`
-  padding-top: 10px;
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  @media (max-width: ${breakpoints.miniTablet}) {
-    flex-direction: column;
-  }
 `;
 
 export const StyledButton = styled(Button)`
@@ -95,7 +86,7 @@ export const StyledButton = styled(Button)`
     font-size: 18px;
     width: 180px;
   }
-  @media (max-width: ${breakpoints.med}) {
+  @media (max-width: ${breakpoints.smallDevice}) {
     font-size: 4vw;
     width: 100%;
   }
@@ -122,60 +113,15 @@ export const CarouselImg = styled.img`
   }
 `;
 export const StyledInput = styled.input`
-  text-align: center;
   width: 250px;
-  font-size: 20px;
+  font-size: 24px;
   border-radius: 20px;
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 18px;
     width: 180px;
   }
-  @media (max-width: ${breakpoints.miniTablet}) {
-    margin-bottom: 10px;
-  }
   @media (max-width: ${breakpoints.smallDevice}) {
     font-size: 4vw;
     width: 100%;
-  }
-`;
-export const CardLineDate = styled.ul`
-  list-style-type: none; /* Remove bullets */
-  padding: 0; /* Remove padding padrão */
-  margin: 20px 0; /* Margem para espaçamento */
-  font-family: "Roboto", sans-serif; /* Fonte moderna */
-  font-size: 18px; /* Tamanho da fonte */
-  color: #333333; /* Cor do texto */
-`;
-export const CardLineList = styled.li`
-  margin-bottom: 10px; /* Espaço entre os itens */
-  flex-direction: column;
-  display: flex; /* Usa flexbox para alinhamento */
-  &::before {
-    margin-right: 10px;
-    color: #4caf50;
-  }
-`;
-export const CardLineTitle = styled.h1`
-  color: ${colors.font.primary};
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 24px;
-  }
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    font-size: 5vw;
-  }
-`;
-export const CardLineDesc = styled.div`
-  padding-top: 10px;
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: auto;
-  font-size: 20px;
-  color: ${colors.font.secondary};
-  @media (max-width: ${breakpoints.miniTablet}) {
-    font-size: 16px;
-  }
-  @media (max-width: ${breakpoints.mediumMobile}) {
-    font-size: 3.7vw;
   }
 `;
