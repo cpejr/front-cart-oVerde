@@ -10,6 +10,6 @@ export default async function translateText(text, language) {
   
       return translation;
     } catch (error) {
-      return null;
+      
     }
   }
