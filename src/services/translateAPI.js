@@ -5,10 +5,7 @@ export default async function translateText(text, language) {
           text
         )}`
       );
-      const data = await response.json();
-      const translation = data[0][0][0];
-  
-      return translation;
+
     } catch (error) {
       
     }
