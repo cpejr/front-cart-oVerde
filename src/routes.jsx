@@ -16,6 +16,7 @@ import {
   BuyTrees,
   MyTrees,
   CartPage,
+  LoginPage,
 } from "@pages";
 import { AppLayout } from "@components";
 import useAuthStore from "@Stores/auth";
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         <Route path="sobre" element={<AboutUs />} />
         <Route path="comprar-arvores" element={<BuyTrees />} />
         <Route path="carrinho" element={<CartPage />} />
+        <Route path="login" element={<LoginPage />} />
         <Route element={<PrivateAdminRoutes />}>
           <Route path="gerenciar-arvores" element={<ManageCollection />} />
           <Route path="gerenciar-usuarios" element={<ManageUsers />} />
