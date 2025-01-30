@@ -2,6 +2,7 @@
 // Libs
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+
 // Components
 import {
   Container,
@@ -22,24 +23,31 @@ import { TranslateTextHeader } from "./Translations";
 import translateText from "../../services/translateAPI";
 import PropTypes from "prop-types";
 
-//Context
+// Context
 
 export default function BuyTrees() {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
+
+  // Transformamos a linguagem para minúscula para a função de tradução
   const translateLanguage = globalLanguage.toLowerCase();
+
   const { isInCart } = useCart();
   const [collections, setCollections] = useState([]);
 
   async function translateCollections(cardContent) {
-    if (globalLanguage != "PT") {
+    if (globalLanguage !== "PT") {
       for (let card of cardContent) {
-        card.name = await translateText(card.name, translateLanguage);
+        // Garante que `card.name` exista antes de traduzir
+        if (card?.name) {
+          card.name = await translateText(card.name, translateLanguage);
+        }
       }
     }
     setCollections(cardContent);
   }
+
   const filters = [
     { label: translations.labelRecent, value: "recent" },
     { label: translations.labelOld, value: "older" },
@@ -50,6 +58,7 @@ export default function BuyTrees() {
   const [searchValue, setSearchValue] = useState("");
   const [order, setOrder] = useState("");
   const [loading, setLoading] = useState(false);
+
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -64,23 +73,28 @@ export default function BuyTrees() {
 
   async function formatAllCollection() {
     setLoading(true);
-    let cardContent = [...collection];
+    let cardContent = [...(collection || [])];
 
     if (order === "recent") {
+      // Inverte a ordem, exibindo mais recentes primeiro
       cardContent = cardContent.reverse();
     } else if (order === "older") {
+      // Mantém a ordem original
       cardContent;
     } else {
+      // Ordena por preço (crescente ou decrescente)
       cardContent.sort(orderBy);
     }
 
+    // Adiciona dados extras nos cards
     cardContent = cardContent.map((content) => ({
       ...content,
       buttonText: translations.buttonText,
       link: "EDITE EM MyTrees.jsx " + content._id,
     }));
 
-    translateCollections(cardContent);
+    // Traduz os campos, se necessário
+    await translateCollections(cardContent);
     setLoading(false);
   }
 
@@ -96,9 +110,8 @@ export default function BuyTrees() {
     if (!isLoading && collection) {
       formatAllCollection();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [collection, isLoading, order, globalLanguage]);
-
-  //Modal Acceptance Term
 
   return (
     <Container>
@@ -119,18 +132,25 @@ export default function BuyTrees() {
           onChange={(e) => {
             setOrder(e.value);
           }}
-        />{" "}
+        />
         {loading && <LoadingSpinner />}
       </Filter>
+
       {isLoading && collections ? (
         <Title>{translations.loadingTitle}</Title>
       ) : (
         <DivLine>
           {collections
-            .filter((card) =>
-              card.name.toLowerCase().includes(searchValue.toLowerCase())
-            )
+            .filter((card) => {
+              // 1) Garante que 'card?.name' seja uma string
+              const cardName = card?.name ?? "";
+              // 2) Garante que 'searchValue' seja string (já inicializamos com "")
+              const searchStr = searchValue ?? "";
+              // 3) Faz o filtro sem erro, usando toLowerCase() em strings válidas
+              return cardName.toLowerCase().includes(searchStr.toLowerCase());
+            })
             .map((card, index) => {
+              // Ajusta card se já está no carrinho
               const adjustedCard = isInCart(card);
 
               return (
@@ -144,6 +164,7 @@ export default function BuyTrees() {
     </Container>
   );
 }
+
 BuyTrees.propTypes = {
   trees: PropTypes.arrayOf(
     PropTypes.shape({
@@ -151,5 +172,5 @@ BuyTrees.propTypes = {
       name: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
     })
-  ).isRequired,
+  ),
 };

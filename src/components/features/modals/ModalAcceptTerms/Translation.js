@@ -35,32 +35,32 @@ export function TranslateTextModal({ globalLanguage }) {
     Title = "Terms of Acceptance and Privacy";
     WelcomeTitle = "Welcome to the Standing Forest Green Card website.";
     WelcomeText =
-      "By accessing and using this website, you agree to the terms and conditions described below. If you do not agree with any of these terms, please do not use this website.";
-    Acceptance1 = "Acceptance of Terms";
+      "By accessing and using this website, you agree to the terms and conditions described below:";
+    Acceptance1 = "1.Acceptance of Terms:";
     Acceptance1Text =
       "By using the Standing Forest Green Card website, you agree to comply with all the terms and conditions set forth in this acceptance of terms. These terms may be periodically modified, and continued use of the site will imply acceptance of the changes made.";
-    UseofSite = "Use of the Site";
+    UseofSite = "2.Use of the Site:";
     UseofSiteText =
       "This site is intended for personal and informational use. Any commercial use of the content presented here, without proper authorization, is strictly prohibited. You agree not to modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any information, software, products, or services obtained from this site.";
-    IntellectualProperty = "Intellectual Property";
+    IntellectualProperty = "3.Personal Data:";
     IntellectualPropertyText =
       "All content on this site, including text, images, graphics, logos, icons, videos, audios, and other materials, is protected by copyright laws and other intellectual property laws. Unauthorized use of the content may violate these laws and result in civil and criminal penalties.";
-    Privacy = "Privacy";
+    Privacy = "3.Personal Data:";
     PrivacyText =
       "Standing Forest Green Card values your privacy. Information collected during site navigation or interactions will be treated according to our Privacy Policy, available on the website.";
-    LimitationofLiability = "Limitation of Liability";
+    LimitationofLiability = "4.Limitation of Liability";
     LimitationofLiabilityText =
       "Standing Forest Green Card is not responsible for direct, indirect, incidental, consequential, or punitive damages resulting from the use or inability to use this site. The company does not guarantee that the site will be error-free or uninterrupted, nor that any information provided will be accurate or complete.";
-    LinkstoThirdPartySites = "Links to Third-Party Sites";
+    LinkstoThirdPartySites = "5. Application Low:";
     LinkstoThirdPartySitesText =
       "This site may contain links to third-party websites, which are provided solely for the convenience of the user. Standing Forest Green Card does not endorse or is responsible for the content of these sites, nor for any damages or losses resulting from their use.";
     GoverningLaw = "Governing Law";
     GoverningLawText =
       "This acceptance of terms is governed by the laws of the Federative Republic of Brazil. Any disputes arising from the use of the site will be submitted to the competent courts of Brazil.";
-    Contact = "Contact";
+    Contact = "6.Privacy and Contact";
     ContactText =
       "If you have any questions about this acceptance of terms or about the Standing Forest Green Card website, please contact us via email [Contact Email] or phone [Contact Phone Number].";
-    Acceptance2 = "Acceptance of Terms";
+    Acceptance2 = "6. Privacy and Contact";
     Acceptance2Text =
       "By clicking 'I Accept' or continuing to use this website, you acknowledge that you have read, understood, and agree to be bound by all the terms and conditions set forth in this acceptance of terms.";
     select = "I agree to the terms described above";
@@ -74,7 +74,7 @@ export function TranslateTextModal({ globalLanguage }) {
     formsTitle = "Fill in the form to generate the QR Code";
   } else if (globalLanguage == "PT") {
     toastSuccessPurchase = "Compra efetuada com sucesso";
-    Title = "Termo de Aceite e privacidade";
+    Title = "Termo de Aceite e Privacidade";
 
     WelcomeTitle = "Bem-vindo ao site da Cartão Verde Floresta em Pé.";
     WelcomeText =

@@ -10,6 +10,9 @@ import {
   StyledCheckBox,
   ConteinerPixForms,
   FormsText,
+  Estilo,
+  Icones,
+  GlobalStyle
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -24,6 +27,7 @@ import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
 import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
+import loguinho from "../../../../assets/loguinho/real.png";
 
 export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   //Tradução
@@ -119,6 +123,8 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   }, [res]);
 
   return (
+    <>
+    <GlobalStyle />
     <Modal
       open={modal}
       onCancel={handleCancel}
@@ -152,14 +158,22 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
       }
       width={"70%"}
     >
+    <Icones style={{ display: "flex"}} >
+    <Image>
+    <img src={LogoVerde} alt="Logo Verde" />
+    </Image>
+     <Estilo>
+    <img src={loguinho} alt="Loguinho"  />
+      </Estilo>
+     </Icones>
       <Container>
         <Header>{translations.Title}</Header>
         <Section>
-          <p>{translations.WelcomeTitle}</p>
+          <p style={{ fontWeight: 'bold' }}>{translations.WelcomeTitle}</p>
           <p>{translations.WelcomeText}</p>
-          <p>{translations.Acceptance1}</p>
+          <p style={{ fontWeight: 'bold' }}>{translations.Acceptance1}</p>
           <p>{translations.Acceptance1Text}</p>
-          <p>{translations.UseofSite}</p>
+          <p style={{ fontWeight: 'bold' }}>{translations.UseofSite}</p>
           <p>{translations.UseofSiteText}</p>
           <p>{translations.IntellectualPropery}</p>
           <p>{translations.IntellectualPropertyText}</p>
@@ -168,10 +182,6 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
           <p>{translations.LimitationofLiability}</p>
           <p>{translations.LimitationofLiabilityText}</p>
         </Section>
-
-        <Image>
-          <img src={LogoVerde} alt="Logo" />
-        </Image>
 
         <Section>
           <p>{translations.LinkstoThirdPartySites}</p>
@@ -193,6 +203,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
         </CheckboxLabel>
       </Container>
     </Modal>
+    </>
   );
 }
 
