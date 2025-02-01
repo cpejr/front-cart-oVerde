@@ -4,17 +4,25 @@ import { Checkbox as AntCheckbox } from "antd";
 import { Button } from "@components";
 import { createGlobalStyle } from "styled-components";
 
+export const Paragraph = styled.p`
+align-items: center;
+justify-content:center;
+margin-left: 5%;
+color:black;
+`
  export const GlobalStyle = createGlobalStyle`
   .ant-modal {
     border-radius: 0 !important;
     margin-top:none;
     padding:none;
+    overflow: auto;
   }
 
   .ant-modal-content {
     border-radius: 0 !important;
     margin-top: 0 !important;
     padding: 0 !important;
+    overflow: auto;
   }
 `;
 
@@ -86,10 +94,19 @@ export const Image = styled.div`
 `;
 
 export const Estilo = styled.div`
-position: absolute;
-left: 73.4%;
+  position: absolute;
+  left: 73.4%; 
+  max-width: 100%;
+  height: auto;
+  @media(max-width: 768px) {
+    left: 70%;
+    max-width: 80%;
+  }
 `;
+
 export const StyledCheckBox = styled(AntCheckbox)`
+align-items: center;
+justify-content:center;
   &.custom-checkbox {
     .ant-checkbox-checked .ant-checkbox-inner {
       background-color: ${colors.background.secondary};
@@ -98,6 +115,13 @@ export const StyledCheckBox = styled(AntCheckbox)`
   }
 `;
 
+export const Bottomimage = styled.div`
+position: absolute;
+right: 73.4%;
+top: 80%;
+display:flex;
+justify-content: flex-start;
+`; 
 
 const slideAnimation = keyframes`
   0% {
@@ -113,6 +137,7 @@ export const CheckboxLabel = styled.label`
   font-size: 1.5rem;
   display: flex;
   align-items: center;
+  justify-content:center;
   gap: 17px;
   color: ${(props) => (props.alert ? "red" : colors.font.primary)};
   ${(props) =>
@@ -187,25 +212,7 @@ export const FormsText = styled.h1`
   }
 `;
 
-export const BackgroundShapes = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30%; 
-  height: 10rem; 
-  background:rgb(64, 68, 64); 
-  clip-path: polygon(0 4%, 100% 0%, 100% 100%);
-`;
 
-export const Triangulo = styled.div`
-  position: absolute;
-  top: 0.5rem;
-  left: 68%;
-  width: 32%; 
-  height: 10rem; 
-  background:rgb(43, 231, 6); 
-  clip-path: polygon(0 0, 100% 50%, 100% 100%);
-`;
 
 
 

@@ -12,7 +12,9 @@ import {
   FormsText,
   Estilo,
   Icones,
-  GlobalStyle
+  GlobalStyle,
+  Bottomimage,
+  Paragraph
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -28,6 +30,7 @@ import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
 import loguinho from "../../../../assets/loguinho/real.png";
+import debaixo from  "../../../../assets/loguinho/debaixo.png";
 
 export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   //Tradução
@@ -169,29 +172,26 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
       <Container>
         <Header>{translations.Title}</Header>
         <Section>
-          <p style={{ fontWeight: 'bold' }}>{translations.WelcomeTitle}</p>
-          <p>{translations.WelcomeText}</p>
-          <p style={{ fontWeight: 'bold' }}>{translations.Acceptance1}</p>
-          <p>{translations.Acceptance1Text}</p>
-          <p style={{ fontWeight: 'bold' }}>{translations.UseofSite}</p>
-          <p>{translations.UseofSiteText}</p>
-          <p>{translations.IntellectualPropery}</p>
-          <p>{translations.IntellectualPropertyText}</p>
-          <p>{translations.Privacy}</p>
-          <p>{translations.PrivacyText}</p>
-          <p>{translations.LimitationofLiability}</p>
-          <p>{translations.LimitationofLiabilityText}</p>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.WelcomeTitle}</Paragraph>
+          <Paragraph>{translations.WelcomeText}</Paragraph>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Acceptance1}</Paragraph>
+          <Paragraph>{translations.Acceptance1Text}</Paragraph>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.UseofSite}</Paragraph>
+          <Paragraph>{translations.UseofSiteText}</Paragraph>
+          <Paragraph>{translations.IntellectualPropery }</Paragraph>
+          <Paragraph>{translations.IntellectualPropertyText}</Paragraph>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Privacy}</Paragraph>
+          <Paragraph>{translations.PrivacyText}</Paragraph>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.LimitationofLiability}</Paragraph>
+          <Paragraph>{translations.LimitationofLiabilityText}</Paragraph>
         </Section>
 
         <Section>
-          <p>{translations.LinkstoThirdPartySites}</p>
-          <p>{translations.LinkstoThirdPartySitesText}</p>
-          <p>{translations.GoverningLaw}</p>
-          <p>{translations.GoverningLawText}</p>
-          <p>{translations.Contact}</p>
-          <p>{translations.ContactText}</p>
-          <p>{translations.Acceptance2}</p>
-          <p>{translations.Acceptance2Text}</p>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.LinkstoThirdPartySites}</Paragraph>
+          <Paragraph>{translations.LinkstoThirdPartySitesText}</Paragraph>
+          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Contact}</Paragraph>
+          <Paragraph>{translations.ContactText}</Paragraph>
+          <Paragraph>{translations.Acceptance2Text}</Paragraph>
         </Section>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
@@ -201,6 +201,9 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
           />
           {translations.select}
         </CheckboxLabel>
+      <Bottomimage>
+        <img src={debaixo} alt="De baixo" />
+      </Bottomimage>
       </Container>
     </Modal>
     </>

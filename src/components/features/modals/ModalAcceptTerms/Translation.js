@@ -38,28 +38,28 @@ export function TranslateTextModal({ globalLanguage }) {
       "By accessing and using this website, you agree to the terms and conditions described below:";
     Acceptance1 = "1.Acceptance of Terms:";
     Acceptance1Text =
-      "By using the Standing Forest Green Card website, you agree to comply with all the terms and conditions set forth in this acceptance of terms. These terms may be periodically modified, and continued use of the site will imply acceptance of the changes made.";
+      "By financially collaborating with the project through the site, you fully accept the terms of this document. These terms may be updated periodically, and we will notify you of significant changes via the website or the registered e-mail. Continued use of the site after changes implies your acceptance.";
     UseofSite = "2.Use of the Site:";
     UseofSiteText =
-      "This site is intended for personal and informational use. Any commercial use of the content presented here, without proper authorization, is strictly prohibited. You agree not to modify, copy, distribute, transmit, display, perform, reproduce, publish, license, create derivative works from, transfer, or sell any information, software, products, or services obtained from this site.";
+      "The site is a private initiative that promotes environmental preservation through trees adoption. It Is Intended for personal use and collaboration with the project.";
     IntellectualProperty = "3.Personal Data:";
     IntellectualPropertyText =
-      "All content on this site, including text, images, graphics, logos, icons, videos, audios, and other materials, is protected by copyright laws and other intellectual property laws. Unauthorized use of the content may violate these laws and result in civil and criminal penalties.";
+      "All content on this site, including texts, images, graphics, videos, and other materials, Is protected by copyright and intellectual property laws. Any unauthorized use may result in legal penalties.";
     Privacy = "3.Personal Data:";
     PrivacyText =
-      "Standing Forest Green Card values your privacy. Information collected during site navigation or interactions will be treated according to our Privacy Policy, available on the website.";
+      "We collect data such as Passport Number, e-mal and address for Issuing the adoption contract and sending the Environmental Preservation Certificate. Data will be handled in accordance with the Braziian General Personal Data Protection Law LGPD - Lei Geral de Proteção de Dados) - Law No. 13,709/2018, and wil be used exclusively for project purposes,";
     LimitationofLiability = "4.Limitation of Liability";
     LimitationofLiabilityText =
-      "Standing Forest Green Card is not responsible for direct, indirect, incidental, consequential, or punitive damages resulting from the use or inability to use this site. The company does not guarantee that the site will be error-free or uninterrupted, nor that any information provided will be accurate or complete.";
+      "Carto Verde Floresta em Pé (Green Card Standing Forest) Is committed to providing accurate information and correcting identified Inconsistencies. However, we are not responsible for website interruptions or failures resulting from third-party services, such as internet providers, hosting, or your bank's payment services.";
     LinkstoThirdPartySites = "5. Application Low:";
     LinkstoThirdPartySitesText =
-      "This site may contain links to third-party websites, which are provided solely for the convenience of the user. Standing Forest Green Card does not endorse or is responsible for the content of these sites, nor for any damages or losses resulting from their use.";
+      "This acceptance term is governed by the laws of the Federative Republic of Bradl. Any disputes related to the use of this website will be submitted to the competent courts in Brazil";
     GoverningLaw = "Governing Law";
     GoverningLawText =
       "This acceptance of terms is governed by the laws of the Federative Republic of Brazil. Any disputes arising from the use of the site will be submitted to the competent courts of Brazil.";
     Contact = "6.Privacy and Contact";
     ContactText =
-      "If you have any questions about this acceptance of terms or about the Standing Forest Green Card website, please contact us via email [Contact Email] or phone [Contact Phone Number].";
+      "Your support for the initiative is protected by our Privacy Pofcy. For any questions, contact us at carlaoverde7@gmail.com.";
     Acceptance2 = "6. Privacy and Contact";
     Acceptance2Text =
       "By clicking 'I Accept' or continuing to use this website, you acknowledge that you have read, understood, and agree to be bound by all the terms and conditions set forth in this acceptance of terms.";
