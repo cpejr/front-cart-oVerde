@@ -26,13 +26,19 @@ export const InputsDiv = styled.div`
 export const InputDefault = styled.input`
   width: 650px;
   height: 6vh;
-  margin: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
   padding-left: 15px;
   border-radius: 15px;
   font-size: 140%;
   border: 1px solid black;
   @media (max-width: ${breakpoints.mobile}) {
     width: 90vw;
+  }
+  &&:focus {
+    border: 1px solid black;
+    outline: none;
   }
 `;
 export const GoogleButton = styled.button`
@@ -55,6 +61,8 @@ export const GoogleIcon = styled(BsGoogle)`
 `;
 export const DivRegister = styled.div`
   display: flex;
+
+  justify-content: center;
 `;
 export const Register = styled.div`
   font-size: 20px;
@@ -73,6 +81,7 @@ export const RegisterLink = styled.a`
   }
 `;
 export const DivPassword = styled.div`
+  margin-top: 20px;
   position: relative;
   width: 650px;
   height: 6vh;
@@ -85,6 +94,12 @@ export const DivPassword = styled.div`
     width: 90vw;
   }
 `;
+export const DivButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+`;
 export const InputPassword = styled.input`
   width: 100%;
   height: 100%;
@@ -92,7 +107,7 @@ export const InputPassword = styled.input`
   border: none;
   outline: none;
   border-radius: 15px;
-  font-size: 16px;
+  font-size: 140%;
 
   &::placeholder {
     color: #aaa;
@@ -102,6 +117,7 @@ export const Icon = styled.div`
   display: flex;
   align-items: center;
 `;
+export const DivEmail = styled.div``;
 export const ModalStyle = styled(Modal)`
   .ant-modal-content {
     background-color: ${colors.background.primary};
