@@ -13,8 +13,12 @@ import {
   Estilo,
   Icones,
   GlobalStyle,
-  Bottomimage,
-  Paragraph
+  Paragraph,
+  Picture,
+  Picture2,
+  Last,
+  Picture3,
+  Final
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -41,6 +45,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
 
+  const showWarningImage = !accept;
   const translations = TranslateTextModal({ globalLanguage });
 
   const toggleAccept = () => {
@@ -128,13 +133,14 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   return (
     <>
     <GlobalStyle />
-    <Modal
+    <Modal 
       open={modal}
       onCancel={handleCancel}
       footer={
         accept && (
           <>
             <DivButton key="divButton">
+            <Picture2 src={debaixo} alt="De baixo" />
               <GoogleButton
                 price={price}
                 onClick={handleSubmit}
@@ -156,18 +162,19 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
                 </ConteinerPixForms>
               )}
             </DivButton>
+            
           </>
         )
       }
       width={"70%"}
     >
-    <Icones style={{ display: "flex"}} >
+    <Icones>
     <Image>
     <img src={LogoVerde} alt="Logo Verde" />
     </Image>
      <Estilo>
-    <img src={loguinho} alt="Loguinho"  />
-      </Estilo>
+     <Picture src={loguinho} alt="Loguinho" />
+    </Estilo>
      </Icones>
       <Container>
         <Header>{translations.Title}</Header>
@@ -193,6 +200,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
           <Paragraph>{translations.ContactText}</Paragraph>
           <Paragraph>{translations.Acceptance2Text}</Paragraph>
         </Section>
+        <Last>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
             className="custom-checkbox"
@@ -201,9 +209,12 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
           />
           {translations.select}
         </CheckboxLabel>
-      <Bottomimage>
-        <img src={debaixo} alt="De baixo" />
-      </Bottomimage>
+        {showWarningImage && (
+          <Final>
+              <Picture3 src={debaixo} alt="De baixo" />
+          </Final>
+            )}
+        </Last>
       </Container>
     </Modal>
     </>

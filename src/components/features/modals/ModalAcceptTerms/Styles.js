@@ -4,6 +4,8 @@ import { Checkbox as AntCheckbox } from "antd";
 import { Button } from "@components";
 import { createGlobalStyle } from "styled-components";
 
+
+
 export const Paragraph = styled.p`
 align-items: center;
 justify-content:center;
@@ -11,18 +13,17 @@ margin-left: 5%;
 color:black;
 `
  export const GlobalStyle = createGlobalStyle`
+   height: 100%;
   .ant-modal {
     border-radius: 0 !important;
     margin-top:none;
     padding:none;
-    overflow: auto;
   }
 
   .ant-modal-content {
     border-radius: 0 !important;
     margin-top: 0 !important;
     padding: 0 !important;
-    overflow: auto;
   }
 `;
 
@@ -33,7 +34,6 @@ font-weight:bold;
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   p {
     font-size: 1.5rem;
     width: 75%;
@@ -48,9 +48,39 @@ export const Container = styled.div`
   }
 `
 
+export const Picture2 = styled.img`
+width: 18%;
+margin-bottom: none;
+right: 82.3%;
+overflow-y:hidden;
+position:absolute;
+height:15.7rem;
+`;
+
+export const Picture3 = styled.img`
+width: 18%;
+margin-bottom: none;
+right: 82.3%;
+overflow-x:hidden;
+height:15.7rem;
+position:absolute;
+`;
+
+export const Final = styled.div`
+height:15.7rem;
+background-color:white;
+`
+export const Picture = styled.img`
+position:absolute;
+margin-top:none;
+left: 82.3%;
+width: 18%;
+overflow-x:hidden;
+`;
+
 export const Icones = styled.div`
   display: flex;
-  margin-right:0;
+  overflow-x:hidden;
 `;
 export const Section = styled.div`
   display: flex;
@@ -94,14 +124,6 @@ export const Image = styled.div`
 `;
 
 export const Estilo = styled.div`
-  position: absolute;
-  left: 73.4%; 
-  max-width: 100%;
-  height: auto;
-  @media(max-width: 768px) {
-    left: 70%;
-    max-width: 80%;
-  }
 `;
 
 export const StyledCheckBox = styled(AntCheckbox)`
@@ -115,13 +137,7 @@ justify-content:center;
   }
 `;
 
-export const Bottomimage = styled.div`
-position: absolute;
-right: 73.4%;
-top: 80%;
-display:flex;
-justify-content: flex-start;
-`; 
+
 
 const slideAnimation = keyframes`
   0% {
@@ -138,7 +154,6 @@ export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
   justify-content:center;
-  gap: 17px;
   color: ${(props) => (props.alert ? "red" : colors.font.primary)};
   ${(props) =>
     props.alert &&
@@ -160,9 +175,7 @@ export const DivButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  padding-top: 0px;
-  gap: 25px;
+  height: 15.7rem;
   @media (max-width: ${breakpoints.tablet}) {
     padding: 10px;
   }
@@ -198,7 +211,6 @@ export const ConteinerPixForms = styled.div`
   border: solid 1px #33603f;
   border-radius: 10px;
   padding: 15px;
-
   @media (max-width: ${breakpoints.mobile}) {
     padding: 5px;
   }
@@ -211,7 +223,10 @@ export const FormsText = styled.h1`
     font-size: 1.5rem;
   }
 `;
-
+ 
+export const Last = styled.div`
+position:relative;
+`;
 
 
 
