@@ -10,7 +10,7 @@ import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateText } from "./Translations";
-
+import FormLogin from "../../common/FormLogin/FormLogin";
 export default function FormSubmit({
   inputs,
   onSubmit,
@@ -157,6 +157,18 @@ export default function FormSubmit({
               archivesArray={archivesArray}
               icon={input.icon}
               color={color}
+            />
+          );
+        } else if (input.type === "login") {
+          return (
+            <FormLogin
+              key={input.key}
+              inputKey={input.key}
+              placeholder={input.placeholder}
+              type={input.type !== "password" ? input.type : "text"}
+              showEyeIcon={
+                input.showEyeIcon !== undefined ? input.showEyeIcon : true
+              }
             />
           );
         }
