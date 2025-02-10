@@ -10,7 +10,6 @@ import {
   StyledCheckBox,
   ConteinerPixForms,
   FormsText,
-  Estilo,
   Icones,
   GlobalStyle,
   Paragraph,
@@ -18,7 +17,9 @@ import {
   Picture2,
   Last,
   Picture3,
-  Final
+  Final,
+  ParagraphBLACK,
+  Logo
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -33,11 +34,11 @@ import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
 import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
-import loguinho from "../../../../assets/loguinho/real.png";
-import debaixo from  "../../../../assets/loguinho/debaixo.png";
+import bottomimage from "../../../../assets/images/bottomimage.png";
+import topimage from  "../../../../assets/images/topimage.png";
 
 export default function ModalAcceptTerms({ modal, onClose, price, years }) {
-  //Tradução
+  
   const { globalLanguage } = useGlobalLanguage();
 
   const [accept, setAccept] = useState(false);
@@ -140,7 +141,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
         accept && (
           <>
             <DivButton key="divButton">
-            <Picture2 src={debaixo} alt="De baixo" />
+            <Picture2 src={bottomimage} alt="Bottomimage" />
               <GoogleButton
                 price={price}
                 onClick={handleSubmit}
@@ -170,33 +171,33 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
     >
     <Icones>
     <Image>
-    <img src={LogoVerde} alt="Logo Verde" />
+    <Logo src={LogoVerde} alt="Logo" />
     </Image>
-     <Estilo>
-     <Picture src={loguinho} alt="Loguinho" />
-    </Estilo>
+     <div>
+     <Picture src={topimage} alt="topimage" />
+    </div>
      </Icones>
       <Container>
         <Header>{translations.Title}</Header>
         <Section>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.WelcomeTitle}</Paragraph>
+          <ParagraphBLACK>{translations.WelcomeTitle}</ParagraphBLACK>
           <Paragraph>{translations.WelcomeText}</Paragraph>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Acceptance1}</Paragraph>
+          <ParagraphBLACK>{translations.Acceptance1}</ParagraphBLACK>
           <Paragraph>{translations.Acceptance1Text}</Paragraph>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.UseofSite}</Paragraph>
+          <ParagraphBLACK>{translations.UseofSite}</ParagraphBLACK>
           <Paragraph>{translations.UseofSiteText}</Paragraph>
           <Paragraph>{translations.IntellectualPropery }</Paragraph>
           <Paragraph>{translations.IntellectualPropertyText}</Paragraph>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Privacy}</Paragraph>
+          <ParagraphBLACK>{translations.Privacy}</ParagraphBLACK>
           <Paragraph>{translations.PrivacyText}</Paragraph>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.LimitationofLiability}</Paragraph>
+          <ParagraphBLACK>{translations.LimitationofLiability}</ParagraphBLACK>
           <Paragraph>{translations.LimitationofLiabilityText}</Paragraph>
         </Section>
 
         <Section>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.LinkstoThirdPartySites}</Paragraph>
+          <ParagraphBLACK>{translations.LinkstoThirdPartySites}</ParagraphBLACK>
           <Paragraph>{translations.LinkstoThirdPartySitesText}</Paragraph>
-          <Paragraph style={{ fontWeight: 'bold' }}>{translations.Contact}</Paragraph>
+          <ParagraphBLACK>{translations.Contact}</ParagraphBLACK>
           <Paragraph>{translations.ContactText}</Paragraph>
           <Paragraph>{translations.Acceptance2Text}</Paragraph>
         </Section>
@@ -211,7 +212,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
         </CheckboxLabel>
         {showWarningImage && (
           <Final>
-              <Picture3 src={debaixo} alt="De baixo" />
+              <Picture3 src={bottomimage} alt="bottoimage" />
           </Final>
             )}
         </Last>
@@ -221,7 +222,6 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   );
 }
 
-//props validation
 ModalAcceptTerms.propTypes = {
   modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

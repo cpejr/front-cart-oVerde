@@ -6,6 +6,13 @@ import { createGlobalStyle } from "styled-components";
 
 
 
+export const ParagraphBLACK = styled.p`
+align-items: center;
+font-weight:bold;
+justify-content:center;
+margin-left: 5%;
+color:black;
+`
 export const Paragraph = styled.p`
 align-items: center;
 justify-content:center;
@@ -54,7 +61,7 @@ margin-bottom: none;
 right: 82.3%;
 overflow-y:hidden;
 position:absolute;
-height:15.7rem;
+height:12rem;
 `;
 
 export const Picture3 = styled.img`
@@ -62,14 +69,21 @@ width: 18%;
 margin-bottom: none;
 right: 82.3%;
 overflow-x:hidden;
-height:15.7rem;
+height:12rem;
 position:absolute;
 `;
 
 export const Final = styled.div`
-height:15.7rem;
+height:12rem;
 background-color:white;
 `
+export const Logo = styled.img`
+margin-top:25%;
+height:14vh;
+width:auto;
+margin-bottom:none;
+`;
+
 export const Picture = styled.img`
 position:absolute;
 margin-top:none;
@@ -92,9 +106,9 @@ export const Section = styled.div`
 export const Header = styled.h1`
   border: 5px solid black;
   letter-spacing: 5px;
-  word-spacing: 25px;
-  text-align: left;
-  justify-content:flex-start;
+  word-spacing: 20px;
+  align-items:center;
+  justify-content:center;
   padding: 5px;
   margin-bottom:0px;
   color: black;  
@@ -103,17 +117,18 @@ export const Header = styled.h1`
   margin-right:10%;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1.5rem;
-
+    word-spacing:none;
+    width: 80%;
   }
 `;
 
 export const Image = styled.div`
   display: flex;
   justify-content: flex-start;
-  height: 5rem;
+  height: 17vh;
   width: 10%;
   margin-left:5%;
-  margin-bottom: 0;
+  margin-bottom:none;
   border:none;
   > img {
     width: 25rem;
@@ -123,8 +138,6 @@ export const Image = styled.div`
   }
 `;
 
-export const Estilo = styled.div`
-`;
 
 export const StyledCheckBox = styled(AntCheckbox)`
 align-items: center;
@@ -149,6 +162,7 @@ const slideAnimation = keyframes`
 `;
 
 export const CheckboxLabel = styled.label`
+  margin-top:6%;
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
@@ -175,7 +189,7 @@ export const DivButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 15.7rem;
+  height: 12rem;
   @media (max-width: ${breakpoints.tablet}) {
     padding: 10px;
   }
