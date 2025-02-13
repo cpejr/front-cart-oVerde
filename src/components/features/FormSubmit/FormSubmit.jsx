@@ -10,6 +10,7 @@ import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateText } from "./Translations";
+import FormRegister from "../../common/FormRegister/FormRegister";
 
 export default function FormSubmit({
   inputs,
@@ -159,7 +160,20 @@ export default function FormSubmit({
               color={color}
             />
           );
+        } else if (input.type === "register") {
+          return (
+            <FormRegister
+            key={input.key}
+            inputKey={input.key}
+            placeholder={input.placeholder}
+            type={input.type !== "password" ? input.type : "text"}
+            showEyeIcon={
+                input.showEyeIcon !== undefined ? input.showEyeIcon : true}
+            />
+          );
         }
+        
+        
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
