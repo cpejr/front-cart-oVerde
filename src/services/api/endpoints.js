@@ -16,6 +16,7 @@ export async function deleteUser(_id) {
 
   return data;
 }
+
 export async function login(credentials) {
   const { setAuth } = useAuthStore.getState();
 

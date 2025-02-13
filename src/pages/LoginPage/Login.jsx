@@ -26,6 +26,10 @@ import { useGlobalLanguage } from "../../Stores/globalLanguage";
 import { FaEyeSlash, FaEye } from "react-icons/fa6";
 import { validador } from "./Utils";
 import { Alert } from "../../components/common/Alert";
+import api from "../../services/api/api.js";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../../Stores/auth.js";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -33,18 +37,67 @@ export default function LoginPage() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const navigate = useNavigate();
+  const setAuth = useAuthStore((state) => state.setAuth);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: zodResolver(validador) });
+
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextLogin({ globalLanguage });
+
+  const handleLogin = async (data) => {
+    try {
+      const res = await api.post("/login", {
+        email: data.email,
+        senha: data.senha,
+      });
+  
+      console.log("Resposta da API:", res);
+  
+      if (!res.data || !res.data.token) {
+        alert("Nenhum token recebido.");
+        return;
+      }
+  
+      const { token } = res.data;
+  
+
+      setAuth(token);
+      console.log("Token salvo no Zustand:", token);
+  
+    
+      setTimeout(() => {
+        console.log("Estado atualizado do Auth:", useAuthStore.getState());
+        
+        if (useAuthStore.getState().auth) {
+          console.log("Navegando para home...");
+          navigate("/");
+        } else {
+          alert("Falha ao salvar autenticação.");
+        }
+      }, 500);
+    } catch (erro) {
+      console.error("Erro na requisição:", erro);
+      
+      if (erro.response) {
+        alert(erro.response.data?.message || "Erro no servidor.");
+      } else if (erro.request) {
+        alert("Servidor não respondeu. Verifique sua conexão.");
+      } else {
+        alert("Erro desconhecido ao fazer login.");
+      }
+    }
+  };
 
   return (
     <Container>
       <Title>{translations.title}</Title>
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit(handleLogin)}>
         <InputsDiv>
           <DivEmail>
             <InputDefault
