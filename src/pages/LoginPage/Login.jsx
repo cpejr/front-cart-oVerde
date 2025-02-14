@@ -4,6 +4,8 @@ import {
   Register,
   DivRegister,
   RegisterLink,
+  GoogleButton,
+  GoogleIcon,
 } from "./Styles";
 import FormSubmit from "../../components/features/FormSubmit/FormSubmit";
 import { TranslateTextLogin } from "./Translations";
@@ -31,11 +33,17 @@ export default function LoginPage() {
             showEyeIcon: true,
           },
         ]}
+        buttons={[
+          {
+            type: "google",
+          },
+        ]}
         onSubmit={(data) => console.log("Dados enviados:", data)}
         schema={null}
         color="blue"
         loading={false}
-      />
+        alternativeText={translations.text}
+      ></FormSubmit>
       <DivRegister>
         <Register>{translations.register}</Register>
         <RegisterLink href="/cadastro">{translations.sign}</RegisterLink>
