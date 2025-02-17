@@ -13,7 +13,6 @@ export const ErrorMessage = styled.p`
   padding-left: 10px; 
 `;
 
-
 export const PasswordErrorMessage = styled.p`
   color: red;
   font-size: 0.9rem;
@@ -49,7 +48,7 @@ export const InputsDiv = styled.div`
 export const InputDefault = styled.input`
   width: 650px;
   height: 6vh;
-  margin: 10px;
+  margin: 5px; /* Reduzido de 10px para 5px */
   padding-left: 15px;
   border-radius: 15px;
   font-size: 140%;
@@ -76,7 +75,7 @@ export const GoogleButton = styled.button`
   font-size: 2rem;
   padding: 0.7rem 3rem 0.7rem 3rem;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 40px;
   cursor: pointer;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 5vw;
@@ -120,7 +119,7 @@ export const DivPassword = styled.div`
   display: flex;
   position: relative;
   width: 650px;
-  margin: 10px;
+  margin: -5px; /* Reduzido de 10px para 5px */
   
   @media (max-width: ${breakpoints.mobile}) {
     width: 90vw;
@@ -128,34 +127,41 @@ export const DivPassword = styled.div`
 `;
 
 export const InputPassword = styled.input`
-width: 100%;
-height: 6vh;
-padding-left: 15px;
-border-radius: 15px;
-font-size: 140%;
-border: 1px solid black;
-padding-right: 30px;
+  width: 100%;
+  height: 6vh;
+  padding-left: 15px;
+  border-radius: 15px;
+  font-size: 140%;
+  border: 1px solid black;
+  padding-right: 30px;
 
+  &::-ms-reveal, 
+  &::-ms-clear, 
+  &::-webkit-textfield-decoration-container { 
+    display: none;
+  }
 
-&::-ms-reveal, 
-&::-ms-clear, 
-&::-webkit-textfield-decoration-container { 
-  display: none;
-}
+  &::-webkit-clear-button,
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+`;
 
-&::-webkit-clear-button,
-&::-webkit-inner-spin-button,
-&::-webkit-outer-spin-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
+export const InputRegister = styled.input`
+  width: 100%;
+  height: 6vh;
+  padding-left: 15px;
+  border-radius: 15px;
+  font-size: 140%;
+  border: 1px solid black;
+  padding-right: 30px;
 `;
 
 export const Icon = styled.div`
   display: flex;
   align-items: center;
-
 `;
 
 export const ClosedEye = styled(FaEyeSlash)`

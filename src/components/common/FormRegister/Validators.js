@@ -9,7 +9,7 @@ export const validationSchemaRegister = () => {
 
   return z.object({
     
-    name: z
+    nome: z
       .string({ required_error: translation.nameStringError })
       .min(1, { message: translation.nameMinError }),
 
@@ -19,7 +19,7 @@ export const validationSchemaRegister = () => {
       .email({ message: translation.emailError }),
 
     
-    password: z
+    senha: z
       .string({ required_error: translation.passwordStringError })
       .min(5, { message: translation.passwordMinError }), 
      

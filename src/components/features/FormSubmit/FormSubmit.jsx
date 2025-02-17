@@ -18,6 +18,7 @@ export default function FormSubmit({
   schema,
   color,
   loading,
+  alternativeText,
 }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
@@ -163,22 +164,23 @@ export default function FormSubmit({
         } else if (input.type === "register") {
           return (
             <FormRegister
-            key={input.key}
-            inputKey={input.key}
-            placeholder={input.placeholder}
-            type={input.type !== "password" ? input.type : "text"}
-            showEyeIcon={
-                input.showEyeIcon !== undefined ? input.showEyeIcon : true}
+              inputKey={input.key}
+              placeholder={input.placeholder}
+              type={input.key === "senha" || input.key === "confirmarSenha" ? "password" : "text"}
+              showEyeIcon={input.showEyeIcon !== undefined ? input.showEyeIcon : true}
+              showGoogleButton={input.showGoogleButton !== undefined ? input.showGoogleButton : true} 
             />
           );
         }
         
         
+        
         return null;
       })}
       <Button type="submit" width="200px" height="50px">
-        {loading ? <LoadingOutlined /> : translations.button}
+  {loading ? <LoadingOutlined /> : alternativeText || translations.button}
       </Button>
+
     </Form>
   );
 }

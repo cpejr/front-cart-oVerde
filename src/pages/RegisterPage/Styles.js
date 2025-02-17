@@ -76,7 +76,7 @@ export const GoogleButton = styled.button`
   font-size: 2rem;
   padding: 0.7rem 3rem 0.7rem 3rem;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: -10px;
   cursor: pointer;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 5vw;
