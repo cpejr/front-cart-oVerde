@@ -109,7 +109,9 @@ export default function LoginSocialArea() {
   };
 
   const { cartItems } = useCart();
-
+  const handleRedirect = () => {
+    navigate("/login");
+  };
   return (
     <LoginSocial>
       <ConteinerLogin>
@@ -118,7 +120,7 @@ export default function LoginSocialArea() {
             <LoadingOutlined />
           </LoadingStyles>
         ) : (
-          <LoginButton onClick={isLogged ? openModalLogOff : logGoogleUser}>
+          <LoginButton onClick={handleRedirect}>
             {loginLogoff}
             {profilePicture}
           </LoginButton>
