@@ -25,6 +25,7 @@ export const Title = styled.div`
   font-size: 30px;
   margin-left: 5%;
   width: fit-content;
+  white-space: nowrap;
   border-bottom: 2px solid ${colors.font.primary};
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 27px;

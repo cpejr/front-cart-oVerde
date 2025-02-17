@@ -10,15 +10,17 @@ import { useState } from "react";
 
 export default function CartPage() {
   const { cartItems: data } = useCart();
-  const [year, setYear] = useState(0);
+  const [year, setYear] = useState(null);
   //translation
   const globalLanguage = useGlobalLanguage();
   const translations = TranslateTextCart(globalLanguage);
   const calculateTotalPrice = (data) => {
-    const total = data.reduce(
-      (total, tree) => total + tree.price[year] * tree.quantity,
-      0
-    );
+    if (year === null || data.length === 0) return "0.00";
+    const total = data.reduce((total, tree) => {
+      const price = tree.price[year] || 0;
+      return total + price * (tree.quantity || 0);
+    }, 0);
+
     return total.toFixed(2);
   };
 
@@ -31,11 +33,15 @@ export default function CartPage() {
     <Container>
       <Title>{translations.title}</Title>
 
-      <CartBuyBox value={calculateTotalPrice(data)} year={year} />
+      <CartBuyBox
+        value={calculateTotalPrice(data)}
+        year={year}
+        disabled={year == null}
+      />
       <StyledSelect
         options={options}
         onChange={(e) => setYear(e)}
-        placeholder="Quantidade de anos que quer a arvore"
+        placeholder={translations.placeholder}
       ></StyledSelect>
       <CardsContainer>
         {data.map((tree, index) => (

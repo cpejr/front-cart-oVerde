@@ -14,6 +14,10 @@ import {
   CarouselStyles,
   CarouselImg,
   StyledInput,
+  CardLineList,
+  CardLineTitle,
+  CardLineDesc,
+  CardLineDate,
 } from "./Styles";
 import { useGetArchives } from "@hooks/querys/archive";
 import { colors } from "@styles/stylesVariables";
@@ -24,12 +28,13 @@ import { useCart } from "../../../Stores/CartContext";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function LargeCard({ data, onBuy }) {
+export default function LargeCard({ data, onBuy, pageType }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
   const translateLanguage = globalLanguage.toLowerCase();
-  const { description, buttonText, price, available_quantity } = data;
+  const { description, buttonText, price, available_quantity, total_quantity } =
+    data;
   const name = data?.id_tree?.name || data?.name;
   const [descriptionText, setDescriptionText] = useState("");
   const [buttonTranslation, setButtonTranslation] = useState("");
@@ -39,13 +44,12 @@ export default function LargeCard({ data, onBuy }) {
   function buyTree() {
     if (quantity > 0 && quantity <= available_quantity) {
       const tree = { ...data, quantity: Number(quantity) };
-
       addToCart(tree);
     } else {
       toast.error(translations.toastInvalidNumber);
     }
   }
-
+  const boughtTrees = total_quantity - available_quantity;
   // BackEnd Calls
   const IDs = data?.id_tree?.archive || data?.archive;
   const archiveIDs = IDs?.map((archive) => archive?._id);
@@ -140,28 +144,51 @@ export default function LargeCard({ data, onBuy }) {
         )}
 
         <Group>
-          <CardTitle>{name}</CardTitle>
+          <CardTitle>
+            <strong>{name}</strong>
+          </CardTitle>
         </Group>
-        <CardLine>{descriptionText}</CardLine>
-        <CardLine>
-          {available_quantity && (
-            <p>Quantidade de arvores : {available_quantity}</p>
-          )}
-        </CardLine>
-        <CardLine>{price && <>1 ano R$ {price[0]}</>}</CardLine>
-        <CardLine>{price && <>2 anos R$ {price[1]}</>}</CardLine>
-        <CardLine>{price && <>3 anos R$ {price[2]}</>}</CardLine>
+        <CardLineDesc>{descriptionText}</CardLineDesc>
+        {pageType === "buytrees" && (
+          <>
+            <CardLine>
+              {available_quantity && (
+                <p>🌳 Árvores disponíveis: {available_quantity}</p>
+              )}
+            </CardLine>
+            <CardLine>
+              {available_quantity && <p>🌳 Árvores compradas: {boughtTrees}</p>}
+            </CardLine>
+            <CardLineList>
+              <CardLineTitle>Plano de preços</CardLineTitle>
+              <CardLineDate>
+                {price && <> 💰 1 ano: R${price[0]}</>}
+              </CardLineDate>
+              <CardLineDate>
+                {price && <>💰 2 anos: R${price[1]}</>}
+              </CardLineDate>
+              <CardLineDate>
+                {price && <>💰 3 anos: R${price[2]}</>}
+              </CardLineDate>
+            </CardLineList>
+          </>
+        )}
+        {pageType === "mytrees" && (
+          <>
+            <CardLine></CardLine>
+          </>
+        )}
         <DivButton>
           {price && (
             <StyledInput
               type="number"
-              placeholder="Quantidade de arvores"
+              placeholder="Árvores desejadas"
               min={0}
               max={available_quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
           )}
-          <StyledButton onClick={onBuy ? onBuy : buyTree}>
+          <StyledButton onClick={onBuy || buyTree}>
             {buttonTranslation || buttonText}
           </StyledButton>
         </DivButton>
