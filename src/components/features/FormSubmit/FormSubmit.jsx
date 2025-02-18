@@ -11,6 +11,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateText } from "./Translations";
 import FormRegister from "../../common/FormRegister/FormRegister";
+import { validationSchemaRegister } from "../../common/FormRegister/Validators";
 
 export default function FormSubmit({
   inputs,
@@ -19,6 +20,8 @@ export default function FormSubmit({
   color,
   loading,
   alternativeText,
+  
+  
 }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
@@ -29,13 +32,15 @@ export default function FormSubmit({
     register,
     formState: { errors },
     reset,
+    
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(validationSchemaRegister(globalLanguage)),
   });
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [prices, setPrices] = useState({ price1: 0, price2: 0, price3: 0 });
   const [totalQuantity, setTotalQuantity] = useState(0);
+
 
   useEffect(() => {
     if (inputs) {
@@ -71,6 +76,7 @@ export default function FormSubmit({
   const [archiveError, setArchiveError] = useState(false);
 
   function submitHandler(data) {
+    
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
@@ -83,9 +89,10 @@ export default function FormSubmit({
         price1: prices.price1,
         price2: prices.price2,
         price3: prices.price3,
-
+        
         archive: archivesArray,
       });
+      
       setArchivesArray([]);
     } else {
       onSubmit({
@@ -169,17 +176,22 @@ export default function FormSubmit({
               type={input.key === "senha" || input.key === "confirmarSenha" ? "password" : "text"}
               showEyeIcon={input.showEyeIcon !== undefined ? input.showEyeIcon : true}
               showGoogleButton={input.showGoogleButton !== undefined ? input.showGoogleButton : true} 
+              register={register} 
+              errors={errors}
             />
           );
-        }
-        
-        
+        } 
         
         return null;
       })}
-      <Button type="submit" width="200px" height="50px">
+      <Button
+  type="submit"
+  width="200px"
+  height="50px"
+  onClick={handleSubmit(submitHandler)}
+>
   {loading ? <LoadingOutlined /> : alternativeText || translations.button}
-      </Button>
+</Button>
 
     </Form>
   );
