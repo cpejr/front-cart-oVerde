@@ -9,7 +9,7 @@ import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateTextHeader } from "./Translations";
 
 const GoogleButton = ({ disabled, price, onClose, years }) => {
-  // Translations
+
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextHeader({ globalLanguage });
 
