@@ -51,7 +51,7 @@ export function TranslateTextRegister({ globalLanguage }) {
         login = "¿Ya tienes una cuenta?";
         sign = "ENTRAR";
         nameMinError = "El nombre no puede estar en blanco";
-        emailError = "El coreo electrónico es inválido";
+        emailError = "El correo electrónico es inválido";
         passwordMinError = "La contraseña debe contener al menos 5 caracteres";
     }
 
