@@ -9,7 +9,7 @@ import {
   logout,
 } from "../../services/api/endpoints";
 import useAuthStore from "../../Stores/auth";
-export function usePostUser({
+export function useCreateUser({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {

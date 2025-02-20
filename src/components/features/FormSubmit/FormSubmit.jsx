@@ -40,7 +40,7 @@ export default function FormSubmit({
   const [selectedOptions, setSelectedOptions] = useState({});
   const [prices, setPrices] = useState({ price1: 0, price2: 0, price3: 0 });
   const [totalQuantity, setTotalQuantity] = useState(0);
-
+  
 
   useEffect(() => {
     if (inputs) {
@@ -171,6 +171,7 @@ export default function FormSubmit({
         } else if (input.type === "register") {
           return (
             <FormRegister
+              key={input.key}
               inputKey={input.key}
               placeholder={input.placeholder}
               type={input.key === "senha" || input.key === "confirmarSenha" ? "password" : "text"}

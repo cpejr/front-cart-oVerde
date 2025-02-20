@@ -1,29 +1,38 @@
-import {
-  Container,
-  Title,
-  Login,
-  DivLogin,
-  LoginLink,
- 
-} from "./Styles"; 
+import { Container, Title, Login, DivLogin, LoginLink } from "./Styles";
 import { useState, useEffect } from "react";
-import { TranslateTextRegister } from "./Translations";
+import {
+  TranslateTextRegister,
+  TranslateRegisterToastError,
+} from "./Translations";
 import { useGlobalLanguage } from "../../Stores/globalLanguage";
 import { validationSchemaRegister } from "./Validators";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 import FormSubmit from "../../components/features/FormSubmit/FormSubmit";
-
+import { useCreateUser } from "../../hooks/querys/user";
 export default function RegisterPage() {
   const { globalLanguage } = useGlobalLanguage();
   const translations = TranslateTextRegister({ globalLanguage });
-  
-  
+
+  const { mutate: createUser, isPending: registerLoading } = useCreateUser({
+    onSuccess: () => {
+      toast.success(translations.toastCreate);
+    },
+    onError: (err) => {
+      toast.error(
+        TranslateRegisterToastError(globalLanguage, err.response.status)
+      );
+    },
+  });
+  const registerSubmit = (data) => {
+    createUser(data);
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset, 
+    reset,
   } = useForm({
     resolver: zodResolver(validationSchemaRegister()),
   });
@@ -36,7 +45,8 @@ export default function RegisterPage() {
     <Container>
       <Title>{translations.title}</Title>
 
-      <FormSubmit 
+      <FormSubmit
+        onSubmit={registerSubmit}
         inputs={[
           {
             key: "nome",
@@ -51,7 +61,6 @@ export default function RegisterPage() {
             placeholder: translations.email,
             showEyeIcon: false,
             showGoogleButton: false,
-            
           },
           {
             key: "senha",
@@ -68,15 +77,11 @@ export default function RegisterPage() {
             showGoogleButton: true,
           },
         ]}
-        
-        onSubmit={handleFormSubmit}
         schema={validationSchemaRegister(globalLanguage)}
         color="blue"
-        loading = {false}
+        loading={false}
         alternativeText={translations.text}
       />
-
-       
       <DivLogin>
         <Login>{translations.login}</Login>
         <LoginLink href="/login">{translations.sign}</LoginLink>
