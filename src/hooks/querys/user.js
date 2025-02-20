@@ -1,20 +1,32 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
-  getUsers,
+  getUser,
   deleteUser,
   updateUser,
   login,
   refresh,
+  postUser,
   logout,
 } from "../../services/api/endpoints";
 import useAuthStore from "../../Stores/auth";
+export function usePostUser({
+  onSuccess = () => {},
+  onError = (err) => console.error(err),
+} = {}) {
+  return useMutation({
+    mutationFn: postUser,
+    onSuccess,
+    onError,
+  });
+}
+
 export function useGetUsers({
   onSuccess = () => {},
   onError = (err) => console.error(err),
 } = {}) {
   return useQuery({
     queryKey: ["users"],
-    queryFn: () => getUsers(),
+    queryFn: () => getUser(),
     onSuccess,
     onError,
   });
