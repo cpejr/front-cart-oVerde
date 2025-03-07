@@ -9,6 +9,7 @@ const Button = styled.button`
   justify-content: center;
   /*Medidas*/
   margin-top: ${(props) => props.marginTop};
+  margin-bottom: ${(props) => props.marginBottom};
   margin-left: ${(props) => props.marginLeft};
   min-width: ${(props) => props.minWidth};
   max-width: ${(props) => props.maxWidth};
@@ -41,6 +42,11 @@ const Button = styled.button`
     width: 100px;
     font-size: 1.6rem;
   }
+  @media (max-width: ${breakpoints.smallDevice}) {
+    width: 100px;
+    font-size: 1rem;
+  }
+
   &:hover {
     background-color: ${(props) =>
       props.hoverBackgroundColor ?? colors.accent.hover};

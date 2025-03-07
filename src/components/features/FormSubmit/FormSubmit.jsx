@@ -4,14 +4,24 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Button from "../../common/Button/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, ErrorMessage, InputKeep, Select, StyledNumber } from "./Styles";
+import {
+  Form,
+  ErrorMessage,
+  InputKeep,
+  Select,
+  StyledNumber,
+  GoogleButton,
+  GoogleIcon,
+} from "./Styles";
 import FormInput from "../../common/FormInput/FormInput";
 import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateText } from "./Translations";
+
 import FormRegister from "../../common/FormRegister/FormRegister";
 import { validationSchemaRegister } from "../../common/FormRegister/Validators";
+
 
 export default function FormSubmit({
   inputs,
@@ -20,8 +30,7 @@ export default function FormSubmit({
   color,
   loading,
   alternativeText,
-  
-  
+
 }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
@@ -59,7 +68,6 @@ export default function FormSubmit({
       }
     }
   }, [inputs]);
-
   const handleSelectChange = (key, value) => {
     setSelectedOptions({ ...selectedOptions, [key]: value });
   };
@@ -74,7 +82,6 @@ export default function FormSubmit({
 
   const [archivesArray, setArchivesArray] = useState([]);
   const [archiveError, setArchiveError] = useState(false);
-
   function submitHandler(data) {
     
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
@@ -168,6 +175,7 @@ export default function FormSubmit({
               color={color}
             />
           );
+
         } else if (input.type === "register") {
           return (
             <FormRegister
@@ -194,6 +202,53 @@ export default function FormSubmit({
   {loading ? <LoadingOutlined /> : alternativeText || translations.button}
 </Button>
 
+
+        } else if (input.type === "login") {
+          return (
+            <FormLogin
+              key={input.key}
+              inputKey={input.key}
+              placeholder={input.placeholder}
+              type={input.type !== "password" ? input.type : "text"}
+              showEyeIcon={
+                input.showEyeIcon !== undefined ? input.showEyeIcon : true
+              }
+            />
+          );
+        }
+        return null;
+      })}
+      {(buttons || []).map((button) => {
+        if (button.type === "google") {
+          return (
+            <GoogleButton key={button.key || button.type}>
+              <GoogleIcon />
+              {translations.google}{" "}
+              <strong style={{ marginLeft: "7px" }}>Google</strong>
+            </GoogleButton>
+          );
+        } else if (button.type === "submit") {
+          return (
+            <Button
+              key={button.key}
+              type="submit"
+              width={button.width || "200px"}
+              height={button.height || "50px"}
+            >
+              {loading ? (
+                <LoadingOutlined />
+              ) : (
+                button.text || translations.button
+              )}
+            </Button>
+          );
+        }
+        return null;
+      })}
+      <Button type="submit" width="200px" height="50px">
+        {loading ? <LoadingOutlined /> : alternativeText || translations.button}
+      </Button>
+
     </Form>
   );
 }
@@ -204,4 +259,5 @@ FormSubmit.propTypes = {
   schema: PropTypes.object.isRequired,
   color: PropTypes.string,
   loading: PropTypes.bool,
+  alternativeText: PropTypes.string,
 };

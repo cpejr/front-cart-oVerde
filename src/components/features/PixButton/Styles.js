@@ -7,7 +7,7 @@ export const ButtonPix = styled.button`
   margin-top: 10px;
   align-items: center;
   height: 50px;
-  width: 93px;
+  width:20%;
   background-color: ${colors.font.secondary};
   border: solid 1px #33603f;
   border-radius: 5px;
@@ -15,10 +15,6 @@ export const ButtonPix = styled.button`
   cursor: pointer;
   font-weight: bold;
   gap: 7px;
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 180px;
-  }
   &:hover {
     opacity: 0.8;
   }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BsGoogle } from "react-icons/bs";
 import { MultiSelect } from "primereact/multiselect";
 import { InputNumber } from "primereact/inputnumber";
 import { colors, breakpoints } from "../../../styles/stylesVariables";
@@ -52,18 +53,14 @@ export const Select = styled(MultiSelect)`
   .p-checkbox .p-checkbox-box {
     border-color: ${(props) => props?.selectColor} !important;
   }
-  .p-checkbox-input{
+  .p-checkbox-input {
     display: none;
   }
 
   .p-checkbox-box {
     background-color: green;
-    
   }
-
-  
 `;
-
 
 export const StyledNumber = styled(InputNumber)`
   width: 70%;
@@ -100,4 +97,22 @@ export const ErrorMessage = styled.p`
 `;
 export const InputKeep = styled.div`
   width: 100%;
+`;
+export const GoogleButton = styled.button`
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  font-size: 2rem;
+  padding: 0.7rem 3rem 0.7rem 3rem;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 5vw;
+  }
+`;
+export const GoogleIcon = styled(BsGoogle)`
+  margin-right: 12px;
+  margin-top: 1px;
 `;

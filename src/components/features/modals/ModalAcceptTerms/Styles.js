@@ -2,17 +2,45 @@ import styled, { keyframes, css } from "styled-components";
 import { breakpoints, colors } from "../../../../styles/stylesVariables";
 import { Checkbox as AntCheckbox } from "antd";
 import { Button } from "@components";
+import { createGlobalStyle } from "styled-components";
+
+
+
+export const ParagraphBLACK = styled.p`
+align-items: center;
+font-weight:bold;
+justify-content:center;
+margin-left: 5%;
+color:black;
+`
+export const Paragraph = styled.p`
+align-items: center;
+justify-content:center;
+margin-left: 5%;
+color:black;
+`
+ export const GlobalStyle = createGlobalStyle`
+   height: 100%;
+  .ant-modal {
+    border-radius: 0 !important;
+    margin-top:none;
+    padding:none;
+  }
+
+  .ant-modal-content {
+    border-radius: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+  }
+`;
+
+export const negrito =styled.p`
+font-weight:bold;
+`
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  overflow: hidden;
-  align-items: center;
-  text-align: center;
-  padding-bottom: 3rem;
-  text-align: justify;
-  margin-top: 30px;
   p {
     font-size: 1.5rem;
     width: 75%;
@@ -25,6 +53,48 @@ export const Container = styled.div`
       font-weight: bold;
     }
   }
+`
+
+export const Picture2 = styled.img`
+width: 18%;
+margin-bottom: none;
+right: 82.3%;
+overflow-y:hidden;
+position:absolute;
+height:12rem;
+`;
+
+export const Picture3 = styled.img`
+width: 18%;
+margin-bottom: none;
+right: 82.3%;
+overflow-x:hidden;
+height:12rem;
+position:absolute;
+`;
+
+export const Final = styled.div`
+height:12rem;
+background-color:white;
+`
+export const Logo = styled.img`
+margin-top:25%;
+height:14vh;
+width:auto;
+margin-bottom:none;
+`;
+
+export const Picture = styled.img`
+position:absolute;
+margin-top:none;
+left: 82.3%;
+width: 18%;
+overflow-x:hidden;
+`;
+
+export const Icones = styled.div`
+  display: flex;
+  overflow-x:hidden;
 `;
 export const Section = styled.div`
   display: flex;
@@ -34,19 +104,32 @@ export const Section = styled.div`
 `;
 
 export const Header = styled.h1`
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-align: center;
-  padding: 15px;
+  border: 5px solid black;
+  letter-spacing: 5px;
+  word-spacing: 20px;
+  align-items:center;
+  justify-content:center;
+  padding: 5px;
+  margin-bottom:0px;
+  color: black;  
+  margin-top: 3%;
+  margin-left: 10%;
+  margin-right:10%;
   @media (max-width: ${breakpoints.mobile}) {
     font-size: 1.5rem;
+    word-spacing:none;
+    width: 80%;
   }
 `;
 
 export const Image = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 17vh;
+  width: 10%;
+  margin-left:5%;
+  margin-bottom:none;
+  border:none;
   > img {
     width: 25rem;
     @media (max-width: ${breakpoints.mobile}) {
@@ -55,7 +138,10 @@ export const Image = styled.div`
   }
 `;
 
+
 export const StyledCheckBox = styled(AntCheckbox)`
+align-items: center;
+justify-content:center;
   &.custom-checkbox {
     .ant-checkbox-checked .ant-checkbox-inner {
       background-color: ${colors.background.secondary};
@@ -63,6 +149,8 @@ export const StyledCheckBox = styled(AntCheckbox)`
     }
   }
 `;
+
+
 
 const slideAnimation = keyframes`
   0% {
@@ -74,11 +162,12 @@ const slideAnimation = keyframes`
 `;
 
 export const CheckboxLabel = styled.label`
+  margin-top:6%;
   cursor: pointer;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
-  gap: 17px;
+  justify-content:center;
   color: ${(props) => (props.alert ? "red" : colors.font.primary)};
   ${(props) =>
     props.alert &&
@@ -100,9 +189,7 @@ export const DivButton = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  padding-top: 0px;
-  gap: 25px;
+  height: 12rem;
   @media (max-width: ${breakpoints.tablet}) {
     padding: 10px;
   }
@@ -138,7 +225,6 @@ export const ConteinerPixForms = styled.div`
   border: solid 1px #33603f;
   border-radius: 10px;
   padding: 15px;
-
   @media (max-width: ${breakpoints.mobile}) {
     padding: 5px;
   }
@@ -151,3 +237,17 @@ export const FormsText = styled.h1`
     font-size: 1.5rem;
   }
 `;
+ 
+export const Last = styled.div`
+position:relative;
+`;
+
+
+
+
+
+
+
+
+
+

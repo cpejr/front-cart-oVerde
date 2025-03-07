@@ -1,17 +1,20 @@
 export function TranslateText({ globalLanguage }) {
-    let button;
-  
-    if (globalLanguage === 'EN') {
-        button = 'Send';
+  let button;
+  let google;
 
-    } else if (globalLanguage === 'PT') {
-        button = 'Enviar';
-
-    } else if (globalLanguage === 'ES') {
-        button = 'Mandar';
-    }
-
-    return {
-        button,
-    };
+  if (globalLanguage === "EN") {
+    button = "Send";
+    google = "Sign up with";
+  } else if (globalLanguage === "PT") {
+    button = "Enviar";
+    google = "Entrar com";
+  } else if (globalLanguage === "ES") {
+    button = "Mandar";
+    google = "Regístrate con";
   }
+
+  return {
+    button,
+    google,
+  };
+}

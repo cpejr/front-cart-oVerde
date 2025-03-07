@@ -10,6 +10,16 @@ import {
   StyledCheckBox,
   ConteinerPixForms,
   FormsText,
+  Icones,
+  GlobalStyle,
+  Paragraph,
+  Picture,
+  Picture2,
+  Last,
+  Picture3,
+  Final,
+  ParagraphBLACK,
+  Logo
 } from "./Styles";
 import { LogoVerde } from "../../../../assets";
 import { Modal } from "antd";
@@ -24,9 +34,11 @@ import { usePostPixPayment } from "../../../../hooks/querys/pixPayment";
 import { useCart } from "../../../../Stores/CartContext";
 import { useCreateCertificate } from "../../../../hooks/querys/certificate";
 import useAuthStore from "../../../../Stores/auth";
+import bottomimage from "../../../../assets/images/bottomimage.png";
+import topimage from  "../../../../assets/images/topimage.png";
 
 export default function ModalAcceptTerms({ modal, onClose, price, years }) {
-  //Tradução
+  
   const { globalLanguage } = useGlobalLanguage();
 
   const [accept, setAccept] = useState(false);
@@ -34,6 +46,7 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   const [submit, setSubmit] = useState(false);
   const [checkBoxAlert, setCheckBoxAlert] = useState(false);
 
+  const showWarningImage = !accept;
   const translations = TranslateTextModal({ globalLanguage });
 
   const toggleAccept = () => {
@@ -119,13 +132,16 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
   }, [res]);
 
   return (
-    <Modal
+    <>
+    <GlobalStyle />
+    <Modal 
       open={modal}
       onCancel={handleCancel}
       footer={
         accept && (
           <>
             <DivButton key="divButton">
+            <Picture2 src={bottomimage} alt="Bottomimage" />
               <GoogleButton
                 price={price}
                 onClick={handleSubmit}
@@ -147,42 +163,45 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
                 </ConteinerPixForms>
               )}
             </DivButton>
+            
           </>
         )
       }
       width={"70%"}
     >
+    <Icones>
+    <Image>
+    <Logo src={LogoVerde} alt="Logo" />
+    </Image>
+     <div>
+     <Picture src={topimage} alt="topimage" />
+    </div>
+     </Icones>
       <Container>
         <Header>{translations.Title}</Header>
         <Section>
-          <p>{translations.WelcomeTitle}</p>
-          <p>{translations.WelcomeText}</p>
-          <p>{translations.Acceptance1}</p>
-          <p>{translations.Acceptance1Text}</p>
-          <p>{translations.UseofSite}</p>
-          <p>{translations.UseofSiteText}</p>
-          <p>{translations.IntellectualPropery}</p>
-          <p>{translations.IntellectualPropertyText}</p>
-          <p>{translations.Privacy}</p>
-          <p>{translations.PrivacyText}</p>
-          <p>{translations.LimitationofLiability}</p>
-          <p>{translations.LimitationofLiabilityText}</p>
+          <ParagraphBLACK>{translations.WelcomeTitle}</ParagraphBLACK>
+          <Paragraph>{translations.WelcomeText}</Paragraph>
+          <ParagraphBLACK>{translations.Acceptance1}</ParagraphBLACK>
+          <Paragraph>{translations.Acceptance1Text}</Paragraph>
+          <ParagraphBLACK>{translations.UseofSite}</ParagraphBLACK>
+          <Paragraph>{translations.UseofSiteText}</Paragraph>
+          <Paragraph>{translations.IntellectualPropery }</Paragraph>
+          <Paragraph>{translations.IntellectualPropertyText}</Paragraph>
+          <ParagraphBLACK>{translations.Privacy}</ParagraphBLACK>
+          <Paragraph>{translations.PrivacyText}</Paragraph>
+          <ParagraphBLACK>{translations.LimitationofLiability}</ParagraphBLACK>
+          <Paragraph>{translations.LimitationofLiabilityText}</Paragraph>
         </Section>
-
-        <Image>
-          <img src={LogoVerde} alt="Logo" />
-        </Image>
 
         <Section>
-          <p>{translations.LinkstoThirdPartySites}</p>
-          <p>{translations.LinkstoThirdPartySitesText}</p>
-          <p>{translations.GoverningLaw}</p>
-          <p>{translations.GoverningLawText}</p>
-          <p>{translations.Contact}</p>
-          <p>{translations.ContactText}</p>
-          <p>{translations.Acceptance2}</p>
-          <p>{translations.Acceptance2Text}</p>
+          <ParagraphBLACK>{translations.LinkstoThirdPartySites}</ParagraphBLACK>
+          <Paragraph>{translations.LinkstoThirdPartySitesText}</Paragraph>
+          <ParagraphBLACK>{translations.Contact}</ParagraphBLACK>
+          <Paragraph>{translations.ContactText}</Paragraph>
+          <Paragraph>{translations.Acceptance2Text}</Paragraph>
         </Section>
+        <Last>
         <CheckboxLabel alert={checkBoxAlert}>
           <StyledCheckBox
             className="custom-checkbox"
@@ -191,12 +210,18 @@ export default function ModalAcceptTerms({ modal, onClose, price, years }) {
           />
           {translations.select}
         </CheckboxLabel>
+        {showWarningImage && (
+          <Final>
+              <Picture3 src={bottomimage} alt="bottoimage" />
+          </Final>
+            )}
+        </Last>
       </Container>
     </Modal>
+    </>
   );
 }
 
-//props validation
 ModalAcceptTerms.propTypes = {
   modal: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
