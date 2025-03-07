@@ -39,7 +39,7 @@ export function CartProvider({ children }) {
 
   const removeFromCart = (id) => {
     setCartItems((prevCart) => prevCart.filter((tree) => tree._id !== id));
-    toast.success(translations.toastRemovedMessage);
+    
   };
 
   const isInCart = (tree) => {

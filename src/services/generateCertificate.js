@@ -10,7 +10,7 @@ export default function generateCertificate(cardId) {
     .then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
-      const imgWidth = 210;
+      
       const imgHeight = 297;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);

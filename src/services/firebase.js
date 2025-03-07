@@ -15,7 +15,7 @@ const auth = getAuth(app);
 
 // whenever a user interacts with the provider, we force them to select an account
 provider.setCustomParameters({
-  prompt: "select_account ",
+  
 });
 
 //apply the default browser language preference
