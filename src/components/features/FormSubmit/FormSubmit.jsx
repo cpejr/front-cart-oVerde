@@ -18,7 +18,11 @@ import UploadInput from "../../common/UploadInput/UploadInput";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useGlobalLanguage } from "../../../Stores/globalLanguage";
 import { TranslateText } from "./Translations";
-import FormLogin from "../../common/FormLogin/FormLogin";
+
+import FormRegister from "../../common/FormRegister/FormRegister";
+import { validationSchemaRegister } from "../../common/FormRegister/Validators";
+
+
 export default function FormSubmit({
   inputs,
   onSubmit,
@@ -26,7 +30,7 @@ export default function FormSubmit({
   color,
   loading,
   alternativeText,
-  buttons,
+
 }) {
   // Translations
   const { globalLanguage } = useGlobalLanguage();
@@ -37,13 +41,15 @@ export default function FormSubmit({
     register,
     formState: { errors },
     reset,
+    
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(validationSchemaRegister(globalLanguage)),
   });
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [prices, setPrices] = useState({ price1: 0, price2: 0, price3: 0 });
   const [totalQuantity, setTotalQuantity] = useState(0);
+  
 
   useEffect(() => {
     if (inputs) {
@@ -77,6 +83,7 @@ export default function FormSubmit({
   const [archivesArray, setArchivesArray] = useState([]);
   const [archiveError, setArchiveError] = useState(false);
   function submitHandler(data) {
+    
     const hasArchiveInput = inputs.some((input) => input.type === "archive");
     if (hasArchiveInput && !archivesArray[0]) {
       setArchiveError(true);
@@ -89,9 +96,10 @@ export default function FormSubmit({
         price1: prices.price1,
         price2: prices.price2,
         price3: prices.price3,
-
+        
         archive: archivesArray,
       });
+      
       setArchivesArray([]);
     } else {
       onSubmit({
@@ -167,6 +175,34 @@ export default function FormSubmit({
               color={color}
             />
           );
+
+        } else if (input.type === "register") {
+          return (
+            <FormRegister
+              key={input.key}
+              inputKey={input.key}
+              placeholder={input.placeholder}
+              type={input.key === "senha" || input.key === "confirmarSenha" ? "password" : "text"}
+              showEyeIcon={input.showEyeIcon !== undefined ? input.showEyeIcon : true}
+              showGoogleButton={input.showGoogleButton !== undefined ? input.showGoogleButton : true} 
+              register={register} 
+              errors={errors}
+            />
+          );
+        } 
+        
+        return null;
+      })}
+      <Button
+  type="submit"
+  width="200px"
+  height="50px"
+  onClick={handleSubmit(submitHandler)}
+>
+  {loading ? <LoadingOutlined /> : alternativeText || translations.button}
+</Button>
+
+
         } else if (input.type === "login") {
           return (
             <FormLogin
@@ -212,6 +248,7 @@ export default function FormSubmit({
       <Button type="submit" width="200px" height="50px">
         {loading ? <LoadingOutlined /> : alternativeText || translations.button}
       </Button>
+
     </Form>
   );
 }

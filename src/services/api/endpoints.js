@@ -6,13 +6,21 @@ import api from "./api";
  *                        *
  **************************/
 
-export async function getUsers() {
+export async function getUser() {
   const { data } = await api.get("/user");
   return data;
 }
-
+export async function postUser(body) {
+  const { data } = await api.post("/user", body);
+  return data;
+}
 export async function deleteUser(_id) {
   const { data } = await api.delete(`/user/${_id}`);
+
+  return data;
+}
+export async function updateUser({ _id, newUserData }) {
+  const { data } = await api.put(`/user/${_id}`, newUserData);
 
   return data;
 }
@@ -21,12 +29,6 @@ export async function login(credentials) {
 
   const { data } = await api.post("/user", credentials);
   setAuth(data.accessToken);
-
-  return data;
-}
-
-export async function updateUser({ _id, newUserData }) {
-  const { data } = await api.put(`/user/${_id}`, newUserData);
 
   return data;
 }
